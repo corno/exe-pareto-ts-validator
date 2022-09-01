@@ -11,21 +11,21 @@
     "analyseTypeScriptProject": "dist/esc/bin/analyseTypeScriptProject.js"
   },
   "dependencies": {
-    "lib-analyse-path": "^0.1.2",
+    "lib-analyse-path": "^0.1.4",
     "lib-pareto-exe": "^0.2.3",
     "pareto-core-async": "^0.3.0",
-    "pareto-core-exe": "^0.5.0",
+    "pareto-core-exe": "^0.8.0",
     "pareto-core-state": "^0.6.0",
-    "pareto-core-tostring": "^0.2.0",
-    "res-dynamic-typescript-parser": "^0.11.0",
-    "res-pareto-filesystem": "^0.22.0",
-    "res-pareto-path": "^0.6.0",
-    "res-pareto-ugly-stuff": "^0.4.0"
+    "pareto-core-tostring": "^0.3.0",
+    "res-dynamic-typescript-parser": "^0.15.0",
+    "res-pareto-filesystem": "^0.23.0",
+    "res-pareto-path": "^0.8.0",
+    "res-pareto-ugly-stuff": "^0.5.0"
   },
   "files": [
     "dist",
     "data"
   ],
   "interface-fingerprint": "9a8e53a830fb382ca20813c792301ea5551e98c6",
-  "content-fingerprint": "4ba55c16be7ba697296cb2c568c60b8767779214"
+  "content-fingerprint": "d61d10f139570ac47faebfba1032df008fc73ba9"
 }

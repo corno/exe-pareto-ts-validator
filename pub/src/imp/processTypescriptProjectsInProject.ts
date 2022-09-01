@@ -3,62 +3,58 @@
 import * as pt from "pareto-core-types"
 
 import * as dynAPI from "api-dynamic-typescript-parser"
-import * as uglyStuff from "api-pareto-ugly-stuff"
-import * as pp from "api-pareto-path"
 
 import { _typescriptProject } from "../data/typescriptProject"
-import { parseTypescriptProject } from "./processTypescriptProject"
-import { UnexpectedTokenData } from "./ParseType"
+import { ParseError, parseTypescriptProject, ParseTypescriptProjectDependencies } from "./processTypescriptProject"
 
+export type ProjectType =
+    | ["executable", {}]
+    | ["resource", {}]
+    | ["library", {}]
+    | ["api", {}]
 
 export function parseTypescriptProjectsInProject<ImplementationDetails>(
     $: {
         projectName: string
-        path: dynAPI.Path
+        contextDirectory: dynAPI.Path
+        type: ProjectType
     },
     $i: {
-        reportUnexpectedToken: ($: UnexpectedTokenData<ImplementationDetails>) => void
+        onError: ($: ParseError<ImplementationDetails>) => void
     },
     $d: {
-        startAsync: ($: pt.AsyncNonValue) => void
-        parseDynamic: dynAPI.Parse<ImplementationDetails>
-        doUntil: uglyStuff.DoUntil
-        lookAhead: uglyStuff.LookAhead
-        stringsNotEqual: (a: string, b: string) => boolean
-        parseFilePath: pp.ParseFilePath
+        parseDependencies: ParseTypescriptProjectDependencies<ImplementationDetails>
     }
 ) {
     parseTypescriptProject(
         {
-            projectName: $.projectName,
-            partName: "dev",
-            path: [$.path, "dev"],
+            path: [$.contextDirectory, $.projectName, "dev"],
         },
         {
-            reportUnexpectedToken: $i.reportUnexpectedToken
+            onError: $i.onError
         },
-        $d
+        $d.parseDependencies
     )
+    if ($.type[0] === "resource") {
+        //skip
+    } else {
+        parseTypescriptProject(
+            {
+                path: [$.contextDirectory, $.projectName, "pub"],
+            },
+            {
+                onError: $i.onError
+            },
+            $d.parseDependencies
+        )
+    }
     parseTypescriptProject(
         {
-            projectName: $.projectName,
-            partName: "pub",
-            path: [$.path, "pub"],
+            path: [$.contextDirectory, $.projectName, "test"],
         },
         {
-            reportUnexpectedToken: $i.reportUnexpectedToken
+            onError: $i.onError
         },
-        $d
-    )
-    parseTypescriptProject(
-        {
-            projectName: $.projectName,
-            partName: "test",
-            path: [$.path, "test"],
-        },
-        {
-            reportUnexpectedToken: $i.reportUnexpectedToken
-        },
-        $d
+        $d.parseDependencies
     )
 }

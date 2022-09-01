@@ -17,27 +17,40 @@ import { parse } from "../imp/parse"
 import { _typescriptProject } from "../data/typescriptProject"
 import { UnexpectedTokenData } from "./ParseType"
 
+export type ParseError<ImplementationDetails> =
+    | ["dynamic parser", dynAPI.TypeScriptParserError]
+    | ["unexpected token", UnexpectedTokenData<ImplementationDetails>]
+    | ["missing token", {
+        parentAnnotation: ImplementationDetails
+        path: string
+        kindNameOptions: string
+    }]
+    | ["file path", {
+        error: ap.PathError
+        path: pt.Array<string> | null
+    }]
+    | ["pattern", {
+        "unknown pattern": pt.Array<string>
+    }]
+
+export type ParseTypescriptProjectDependencies<ImplementationDetails> = {
+    startAsync: ($: pt.AsyncNonValue) => void
+    parseDynamic: dynAPI.Parse<ImplementationDetails>
+    doUntil: uglyStuff.DoUntil
+    lookAhead: uglyStuff.LookAhead
+    stringsNotEqual: (a: string, b: string) => boolean
+    parseFilePath: pp.ParseFilePath
+}
+
 export function parseTypescriptProject<ImplementationDetails>(
     $: {
-        projectName: string
-        partName: string
         path: dynAPI.Path
     },
     $i: {
-        reportUnexpectedToken: ($: UnexpectedTokenData<ImplementationDetails>) => void
+        onError: ($: ParseError<ImplementationDetails>) => void
     },
-    $d: {
-        startAsync: ($: pt.AsyncNonValue) => void
-        parseDynamic: dynAPI.Parse<ImplementationDetails>
-        doUntil: uglyStuff.DoUntil
-        lookAhead: uglyStuff.LookAhead
-        stringsNotEqual: (a: string, b: string) => boolean
-        parseFilePath: pp.ParseFilePath
-    }
+    $d: ParseTypescriptProjectDependencies<ImplementationDetails>
 ) {
-    const projectName = $.projectName
-    const partName = $.partName
-    //pl.logDebugMessage($.path)
     $d.startAsync(
 
         parse(
@@ -47,14 +60,15 @@ export function parseTypescriptProject<ImplementationDetails>(
             {
                 onError: ($) => {
 
-                    pl.logDebugMessage(`${projectName}/${partName}: parser error: ${$[0]}`)
+                    $i.onError(["dynamic parser", $])
                 },
-                reportMissingToken: () => {
-                    pl.logDebugMessage("missing token")
+                reportMissingToken: ($) => {
+                    $i.onError(["missing token", $])
                 },
-                reportUnexpectedToken: $i.reportUnexpectedToken,
+                reportUnexpectedToken: ($) => {
+                    $i.onError(["unexpected token", $])
+                },
                 onFile: ($) => {
-                    //pl.logDebugMessage(`FILE: ${$.path}`)
                     const path = $d.parseFilePath({
                         filePath: $.path
                     })
@@ -66,7 +80,8 @@ export function parseTypescriptProject<ImplementationDetails>(
                     switch (result[0]) {
                         case "error":
                             pl.cc(result[1], ($) => {
-                                pl.logDebugMessage(`path error: ${$.error[0]} ${pl.isNotNull($.path) ? p2s.getArrayAsString($.path, "/") : ""}`)
+                                $i.onError(["file path", $])
+                                //pl.logDebugMessage(`path error: ${$.error[0]} ${pl.isNotNull($.path) ? p2s.getArrayAsString($.path, "/") : ""}`)
                             })
                             break
                         case "success":
@@ -87,10 +102,9 @@ export function parseTypescriptProject<ImplementationDetails>(
 
                                     },
                                     () => {
-                                        pl.logDebugMessage(`Unknown pattern: ${pattern}`)
+                                        $i.onError(["pattern", { "unknown pattern": $.pattern }])
                                     }
                                 )
-                                //pl.logDebugMessage(`path success: ${p2s.getArrayAsString($.pattern, "/")}`)
                             })
                             break
                         default: pl.au(result[0])

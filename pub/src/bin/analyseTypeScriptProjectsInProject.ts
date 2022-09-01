@@ -12,6 +12,7 @@ import * as exeLib from "lib-pareto-exe"
 import { _typescriptProject } from "../data/typescriptProject"
 import { parseTypescriptProjectsInProject } from "../imp"
 
+
 pe.runProgram(($, $i, $d) => {
     exeLib.getSingleArgument(
         $.arguments,
@@ -20,13 +21,20 @@ pe.runProgram(($, $i, $d) => {
                 pl.panic("args")
             },
             callback: ($) => {
-                const contextPath = $
+                const projectPathAsString = $
 
+                const projectPath = path.parseFilePath({
+                    filePath: projectPathAsString
+                })
+
+                if (projectPath.extension !== null) {
+                    pl.panic("unexpected extension")
+                }
 
                 parseTypescriptProjectsInProject(
                     {
-                        projectName: "na",
-                        path: [contextPath]
+                        projectName: projectPath.baseName,
+                        //path: projectPath.directoryPath
                     },
                     {
                         reportUnexpectedToken: ($) => {

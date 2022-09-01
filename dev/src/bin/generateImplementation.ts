@@ -23,6 +23,7 @@ function genImp(
     },
     $d: {
         startAsync: ($: pt.AsyncNonValue) => void
+        orderStrings: (a: string, b: string) => boolean
     }
 ) {
     const rootPath = $.path
@@ -39,7 +40,7 @@ function genImp(
             }
         },
         {
-
+            orderStrings: $d.orderStrings,
             createWriteStream: (
                 $,
                 $c,
@@ -87,6 +88,7 @@ pe.runProgram(
 
                             },
                             {
+                                orderStrings: (a, b) => a > b,
                                 startAsync: $d.startAsync,
                             }
                         )

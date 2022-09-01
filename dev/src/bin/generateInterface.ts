@@ -38,7 +38,7 @@ function genInf(
             }
         },
         {
-
+            orderStrings: (a, b) => a > b,
             createWriteStream: (
                 $,
                 $c,

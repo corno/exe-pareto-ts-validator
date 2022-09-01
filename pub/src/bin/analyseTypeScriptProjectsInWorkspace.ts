@@ -45,11 +45,10 @@ pe.runProgram(($, $i, $d) => {
                                             parseTypescriptProjectsInProject(
                                                 {
                                                     projectName: key,
-                                                    path: [$.path, "dev"]
+                                                    path: $.path
                                                 },
                                                 {
                                                     reportUnexpectedToken: ($) => {
-
                                                         pl.logDebugMessage(`${$.file.absolutePath}:${$.token.details.location.line}:${$.token.details.location.column}: unexpected token '${$.token.kindName}', expected: ${$.expected}`)
                                                     }
                                                 },

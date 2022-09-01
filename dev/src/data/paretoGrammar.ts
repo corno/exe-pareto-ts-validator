@@ -1,7 +1,9 @@
+import * as pw from "pareto-core-raw"
+
 import * as gr from "exe-generate-typesafe-ast"
 
 export const _typeScriptGrammar: gr.TGrammar = {
-    'globalValueTypes': {
+    'globalValueTypes': pw.wrapRawDictionary({
         'block': ["node", {
             'name': `Block`,
             'type': ["composite", {
@@ -10,7 +12,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
             }],
         }],
         'expression': ["choice", {
-            'options': {
+            'options': pw.wrapRawDictionary({
                 'arrayLiteral': {
                     'cardinality': ["one", {}],
                     'type': ["node", {
@@ -28,7 +30,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
-                                'elements': ([
+                                'elements': pw.wrapRawArray([
                                     {
                                         'name': `typeParameters`,
                                         'value': {
@@ -69,7 +71,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                         'value': {
                                             'cardinality': ["one", {}],
                                             'type': ["choice", {
-                                                'options': {
+                                                'options': pw.wrapRawDictionary({
                                                     "block": {
                                                         'cardinality': ["one", {}],
                                                         'type': ["reference", {
@@ -80,7 +82,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                         'cardinality': ["one", {}],
                                                         'type': ["reference", { 'name': `expression` }],
                                                     },
-                                                }
+                                                })
                                             }]
                                         }
                                     },
@@ -96,7 +98,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
-                                'elements': ([
+                                'elements': pw.wrapRawArray([
                                     {
                                         'name': `leftHandSide`,
                                         'value': {
@@ -109,7 +111,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                         'value': {
                                             'cardinality': ["one", {}],
                                             'type': ["choice", {
-                                                'options': {
+                                                'options': pw.wrapRawDictionary({
                                                     'equals': {
                                                         'cardinality': ["one", {}],
                                                         'type': ["node", {
@@ -117,7 +119,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                             'type': ["leaf", { 'hasTextContent': false }]
                                                         }]
                                                     },
-                                                }
+                                                })
                                             }],
                                         }
                                     },
@@ -140,7 +142,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
-                                'elements': ([
+                                'elements': pw.wrapRawArray([
                                     {
                                         'name': `function`,
                                         'value': {
@@ -174,7 +176,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
-                                'elements': ([
+                                'elements': pw.wrapRawArray([
                                     {
                                         'name': `test`,
                                         'value': {
@@ -228,7 +230,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
-                                'elements': ([
+                                'elements': pw.wrapRawArray([
                                     {
                                         'name': `array`,
                                         'value': {
@@ -288,7 +290,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["array", {}],
                             'type': ["choice", {
-                                'options': {
+                                'options': pw.wrapRawDictionary({
                                     "propertyAssignment": {
                                         'cardinality': ["one", {}],
                                         'type': ["node", {
@@ -296,13 +298,13 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                             'type': ["composite", {
                                                 'cardinality': ["one", {}],
                                                 'type': ["sequence", {
-                                                    'elements': ([
+                                                    'elements': pw.wrapRawArray([
                                                         {
                                                             'name': `name`,
                                                             'value': {
                                                                 'cardinality': ["one", {}],
                                                                 'type': ["choice", {
-                                                                    'options': {
+                                                                    'options': pw.wrapRawDictionary({
                                                                         'identifier': {
                                                                             'cardinality': ["one", {}],
                                                                             'type': ["reference", {
@@ -315,7 +317,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                                                 'name': `stringLiteral`
                                                                             }]
                                                                         },
-                                                                    }
+                                                                    })
                                                                 }]
                                                             }
                                                         },
@@ -331,7 +333,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                             }]
                                         }]
                                     }
-                                }
+                                })
                             }]
                         }],
                     }]
@@ -363,7 +365,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
-                                'elements': ([
+                                'elements': pw.wrapRawArray([
                                     {
                                         'name': `object`,
                                         'value': {
@@ -396,7 +398,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
-                                'elements': ([
+                                'elements': pw.wrapRawArray([
                                     {
                                         'name': `head`,
                                         'value': {
@@ -416,7 +418,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                 'type': ["composite", {
                                                     'cardinality': ["one", {}],
                                                     'type': ["sequence", {
-                                                        'elements': ([
+                                                        'elements': pw.wrapRawArray([
                                                             {
                                                                 'name': `expression`,
                                                                 'value': {
@@ -429,7 +431,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                                 'value': {
                                                                     'cardinality': ["one", {}],
                                                                     'type': ["choice", {
-                                                                        'options': {
+                                                                        'options': pw.wrapRawDictionary({
                                                                             'middle': {
                                                                                 'cardinality': ["one", {}],
                                                                                 'type': ["node", {
@@ -444,7 +446,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                                                     'type': ["leaf", { 'hasTextContent': true }]
                                                                                 }],
                                                                             }
-                                                                        }
+                                                                        })
                                                                     }],
                                                                 }
                                                             },
@@ -466,10 +468,10 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["leaf", { 'hasTextContent': false }]
                     }]
                 },
-            }
+            })
         }],
         'functionDefinition': ["sequence", {
-            'elements': ([
+            'elements': pw.wrapRawArray([
                 {
                     'name': `typeParameters`,
                     'value': {
@@ -502,7 +504,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
             'type': ["leaf", { 'hasTextContent': true }]
         }],
         'identifierOrStringLiteral': ["choice", {
-            'options': {
+            'options': pw.wrapRawDictionary({
                 'identifier': {
                     'cardinality': ["one", {}],
                     'type': ["reference", {
@@ -515,10 +517,10 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'name': `stringLiteral`
                     }]
                 },
-            }
+            })
         }],
         'modifier': ["choice", {
-            'options': {
+            'options': pw.wrapRawDictionary({
                 'export': {
                     'cardinality': ["one", {}],
                     'type': ["node", {
@@ -533,7 +535,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["leaf", { 'hasTextContent': false }],
                     }]
                 },
-            }
+            })
         }],
         'numericLiteral': ["node", {
             'name': `NumericLiteral`,
@@ -544,7 +546,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
             'type': ["composite", {
                 'cardinality': ["one", {}],
                 'type': ["sequence", {
-                    'elements': ([
+                    'elements': pw.wrapRawArray([
                         {
                             'name': `name`,
                             'value': {
@@ -576,7 +578,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
             }]
         }],
         'statement': ["choice", {
-            'options': {
+            'options': pw.wrapRawDictionary({
                 'block': {
                     'cardinality': ["one", {}],
                     'type': ["reference", {
@@ -624,7 +626,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
-                                'elements': ([
+                                'elements': pw.wrapRawArray([
                                     {
                                         'name': `modifiers`,
                                         'value': {
@@ -671,7 +673,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
-                                'elements': ([
+                                'elements': pw.wrapRawArray([
                                     {
                                         'name': `expression`,
                                         'value': {
@@ -705,7 +707,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
-                                'elements': ([
+                                'elements': pw.wrapRawArray([
                                     {
                                         'name': `clause`,
                                         'value': {
@@ -715,7 +717,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                 'type': ["composite", {
                                                     'cardinality': ["one", {}],
                                                     'type': ["choice", {
-                                                        'options': {
+                                                        'options': pw.wrapRawDictionary({
                                                             'namespace': {
                                                                 'cardinality': ["one", {}],
                                                                 'type': ["node", {
@@ -739,7 +741,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                                             'type': ["composite", {
                                                                                 'cardinality': ["one", {}],
                                                                                 'type': ["sequence", {
-                                                                                    'elements': ([
+                                                                                    'elements': pw.wrapRawArray([
                                                                                         {
                                                                                             'name': `name`,
                                                                                             'value': {
@@ -765,7 +767,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                                     }]
                                                                 }]
                                                             }
-                                                        }
+                                                        })
                                                     }]
                                                 }]
                                             }]
@@ -792,7 +794,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
-                                'elements': ([
+                                'elements': pw.wrapRawArray([
                                     {
                                         'name': `modifiers`,
                                         'value': {
@@ -847,7 +849,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
-                                'elements': ([
+                                'elements': pw.wrapRawArray([
                                     {
                                         'name': `expression`,
                                         'value': {
@@ -864,7 +866,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                 'type': ["composite", {
                                                     'cardinality': ["array", {}],
                                                     'type': ["choice", {
-                                                        'options': {
+                                                        'options': pw.wrapRawDictionary({
                                                             "case": {
                                                                 'cardinality': ["one", {}],
                                                                 'type': ["node", {
@@ -872,7 +874,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                                     'type': ["composite", {
                                                                         'cardinality': ["one", {}],
                                                                         'type': ["sequence", {
-                                                                            'elements': ([
+                                                                            'elements': pw.wrapRawArray([
                                                                                 {
                                                                                     'name': `case`,
                                                                                     'value': {
@@ -902,7 +904,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                                     }]
                                                                 }]
                                                             },
-                                                        }
+                                                        })
                                                     }]
                                                 }]
                                             }]
@@ -920,7 +922,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
-                                'elements': ([
+                                'elements': pw.wrapRawArray([
                                     {
                                         'name': `modifiers`,
                                         'value': {
@@ -965,7 +967,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
-                                'elements': ([
+                                'elements': pw.wrapRawArray([
                                     {
                                         'name': `modifiers`,
                                         'value': {
@@ -987,14 +989,14 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         }]
                     }]
                 },
-            }
+            })
         }],
         'stringLiteral': ["node", {
             'name': `StringLiteral`,
             'type': ["leaf", { 'hasTextContent': true }]
         }],
         'type': ["choice", {
-            'options': {
+            'options': pw.wrapRawDictionary({
                 'array': {
                     'cardinality': ["one", {}],
                     'type': ["node", {
@@ -1019,7 +1021,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
-                                'elements': ([
+                                'elements': pw.wrapRawArray([
                                     {
                                         'name': `typeParameters`,
                                         'value': {
@@ -1057,7 +1059,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["choice", {
-                                'options': {
+                                'options': pw.wrapRawDictionary({
                                     'null': {
                                         'cardinality': ["one", {}],
                                         'type': ["node", {
@@ -1071,7 +1073,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                             'name': `stringLiteral`
                                         }],
                                     },
-                                }
+                                })
                             }]
                         }]
                     }]
@@ -1137,13 +1139,13 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
-                                'elements': ([
+                                'elements': pw.wrapRawArray([
                                     {
                                         'name': `x`,
                                         'value': {
                                             "cardinality": ["one", {}],
                                             'type': ["choice", {
-                                                'options': {
+                                                'options': pw.wrapRawDictionary({
                                                     "identifier": {
                                                         'cardinality': ["one", {}],
                                                         'type': ["reference", {
@@ -1157,7 +1159,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                             'type': ["composite", {
                                                                 'cardinality': ["one", {}],
                                                                 'type': ["sequence", {
-                                                                    'elements': ([
+                                                                    'elements': pw.wrapRawArray([
                                                                         {
                                                                             'name': `context`,
                                                                             'value': {
@@ -1181,7 +1183,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                             }]
                                                         }]
                                                     }
-                                                }
+                                                })
                                             }]
                                         }
                                     },
@@ -1221,7 +1223,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["leaf", { 'hasTextContent': false }]
                     }]
                 },
-            }
+            })
         }],
         'typeParameter': ["node", {
             'name': `TypeParameter`,
@@ -1233,7 +1235,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
             }]
         }],
         'typeSignature': ["choice", {
-            'options': {
+            'options': pw.wrapRawDictionary({
                 'method': {
                     'cardinality': ["one", {}],
                     'type': ["node", {
@@ -1241,7 +1243,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
-                                'elements': ([
+                                'elements': pw.wrapRawArray([
                                     {
                                         'name': `name`,
                                         'value': {
@@ -1272,7 +1274,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'type': ["composite", {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
-                                'elements': ([
+                                'elements': pw.wrapRawArray([
                                     {
                                         'name': `modifiers`,
                                         'value': {
@@ -1309,20 +1311,20 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         }]
                     }]
                 },
-            }
+            })
         }],
         'variableDeclaration': ["node", {
             'name': `VariableDeclaration`,
             'type': ["composite", {
                 'cardinality': ["one", {}],
                 'type': ["sequence", {
-                    'elements': ([
+                    'elements': pw.wrapRawArray([
                         {
                             'name': `nameOrArrayBinding`,
                             'value': {
                                 'cardinality': ["one", {}],
                                 'type': ["choice", {
-                                    'options': {
+                                    'options': pw.wrapRawDictionary({
                                         "identifier": {
                                             'cardinality': ["one", {}],
                                             'type': ["reference", {
@@ -1336,7 +1338,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                 'type': ["composite", {
                                                     'cardinality': ["array", {}],
                                                     'type': ["choice", {
-                                                        'options': {
+                                                        'options': pw.wrapRawDictionary({
                                                             "omitted": {
                                                                 'cardinality': ["one", {}],
                                                                 'type': ["node", {
@@ -1356,12 +1358,12 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                                     }]
                                                                 }]
                                                             }
-                                                        }
+                                                        })
                                                     }]
                                                 }]
                                             }],
                                         }
-                                    }
+                                    })
                                 }]
                             },
                         },
@@ -1392,13 +1394,13 @@ export const _typeScriptGrammar: gr.TGrammar = {
                 }]
             }],
         }]
-    },
+    }),
     'root': {
         'name': `SourceFile`,
         'type': ["composite", {
             'cardinality': ["one", {}],
             'type': ["sequence", {
-                'elements': ([
+                'elements': pw.wrapRawArray([
                     {
                         'name': `statements`,
                         'value': {
