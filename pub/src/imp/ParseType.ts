@@ -2,11 +2,12 @@ import * as pt from "pareto-core-types"
 
 
 import * as ts from "api-dynamic-typescript-parser"
+import * as uast from "api-untyped-ast"
 import * as uglyStuff from "api-pareto-ugly-stuff"
 
 import * as x from "../interface"
 
-export type UnexpectedTokenData<ImplementationDetails> = {
+export type UnexpectedTokenData = {
     file: {
         relativePath: string,
         absolutePath: string,
@@ -14,31 +15,31 @@ export type UnexpectedTokenData<ImplementationDetails> = {
     token: {
         path: string,
         kindName: string,
-        details: ImplementationDetails,
+        details: uast.TDetails,
     }
     expected: null | string
 }
 
-export type Parse = <ImplementationDetails>(
+export type Parse = (
     $: {
         tsConfigPath: ts.Path,
     },
     $i: {
-        reportUnexpectedToken: ($: UnexpectedTokenData<ImplementationDetails>) => void,
+        reportUnexpectedToken: ($: UnexpectedTokenData) => void,
         reportMissingToken: ($: {
-            parentAnnotation: ImplementationDetails,
+            parentDetails: uast.TDetails,
             path: string,
             kindNameOptions: string,
         }) => void,
         onError: ($: ts.TypeScriptParserError) => void
         onFile: ($: {
             path: string,
-            data: x.TRoot<ImplementationDetails>
+            data: x.TRoot
         }) => void
         onEnd: () => void
     },
     $d: {
-        parseDynamic: ts.Parse<ImplementationDetails>
+        parseDynamic: ts.Parse
         doUntil: uglyStuff.DoUntil,
         lookAhead: uglyStuff.LookAhead,
         stringsNotEqual: (a: string, b: string) => boolean

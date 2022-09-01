@@ -13,7 +13,10 @@ import * as uglyStuff from "res-pareto-ugly-stuff"
 import * as exeLib from "lib-pareto-exe"
 
 import { _typescriptProject } from "../data/typescriptProject"
-import { parseTypescriptProjectsInProject } from "../imp/processTypescriptProjectsInProject"
+import { parseTypescriptProjectsInProject, ProjectType } from "../imp/processTypescriptProjectsInProject"
+import { createParseErrorMessage } from "../imp/createParseErrorMessage"
+import { getType } from "../imp/getType"
+
 
 pe.runProgram(($, $i, $d) => {
     exeLib.getSingleArgument(
@@ -45,20 +48,30 @@ pe.runProgram(($, $i, $d) => {
                                             parseTypescriptProjectsInProject(
                                                 {
                                                     projectName: key,
-                                                    path: $.path
+                                                    contextDirectory: contextPath,
+                                                    type: getType(
+                                                        key,
+                                                        {
+                                                            substr: uglyStuff.substr,
+                                                        }
+                                                    ),
+                                                    //path: $.path,
                                                 },
                                                 {
-                                                    reportUnexpectedToken: ($) => {
-                                                        pl.logDebugMessage(`${$.file.absolutePath}:${$.token.details.location.line}:${$.token.details.location.column}: unexpected token '${$.token.kindName}', expected: ${$.expected}`)
+                                                    onError: ($) => {
+
+                                                        pl.logDebugMessage(createParseErrorMessage($))
                                                     }
                                                 },
                                                 {
-                                                    parseDynamic: ts.parse,
-                                                    startAsync: $d.startAsync,
-                                                    doUntil: uglyStuff.doUntil,
-                                                    lookAhead: uglyStuff.lookAhead,
-                                                    stringsNotEqual: (a, b) => a !== b,
-                                                    parseFilePath: path.parseFilePath,
+                                                    parseDependencies: {
+                                                        parseDynamic: ts.parse,
+                                                        startAsync: $d.startAsync,
+                                                        doUntil: uglyStuff.doUntil,
+                                                        lookAhead: uglyStuff.lookAhead,
+                                                        stringsNotEqual: (a, b) => a !== b,
+                                                        parseFilePath: path.parseFilePath,
+                                                    }
                                                 }
                                             )
                                         })

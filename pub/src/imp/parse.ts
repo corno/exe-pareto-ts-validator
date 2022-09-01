@@ -19,7 +19,7 @@ export const parse: Parse = ($, $i, $d) => {
                         reportMissingToken: ($) => {
                             $i.reportMissingToken(
                                 {
-                                    parentAnnotation: $.parentAnnotation,
+                                    parentDetails: $.parentDetails,
                                     path: $.path,
                                     kindNameOptions: $.kindNameOptions
                                 }
@@ -36,7 +36,7 @@ export const parse: Parse = ($, $i, $d) => {
                                     token: {
                                         path: $.path,
                                         kindName: $.token.kindName,
-                                        details: $.token.implementationDetails,
+                                        details: $.token.details,
                                     },
                                     expected: $.expected,
                                 }

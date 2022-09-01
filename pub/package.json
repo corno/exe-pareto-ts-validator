@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "lib-analyse-path": "^0.1.4",
-    "lib-pareto-exe": "^0.2.3",
+    "lib-pareto-exe": "^0.2.4",
     "pareto-core-async": "^0.3.0",
     "pareto-core-exe": "^0.8.0",
     "pareto-core-state": "^0.6.0",
@@ -26,6 +26,6 @@
     "dist",
     "data"
   ],
-  "interface-fingerprint": "9a8e53a830fb382ca20813c792301ea5551e98c6",
-  "content-fingerprint": "d61d10f139570ac47faebfba1032df008fc73ba9"
+  "interface-fingerprint": "99b488fb49dcc81b161fc95ec9fc6541b4685415",
+  "content-fingerprint": "aa1d670f5d6c02b14ad51ce5100f7da89b758506"
 }

@@ -6,7 +6,8 @@ import * as pw from "pareto-core-raw"
 import * as pr from "pareto-core-resolve"
 import * as pt from "pareto-core-types"
 
-import * as dynAPI from "api-dynamic-typescript-parser"
+import * as ts from "api-dynamic-typescript-parser"
+import * as uast from "api-untyped-ast"
 import * as uglyStuff from "api-pareto-ugly-stuff"
 import * as pp from "api-pareto-path"
 
@@ -17,11 +18,11 @@ import { parse } from "../imp/parse"
 import { _typescriptProject } from "../data/typescriptProject"
 import { UnexpectedTokenData } from "./ParseType"
 
-export type ParseError<ImplementationDetails> =
-    | ["dynamic parser", dynAPI.TypeScriptParserError]
-    | ["unexpected token", UnexpectedTokenData<ImplementationDetails>]
+export type ParseError =
+    | ["dynamic parser", ts.TypeScriptParserError]
+    | ["unexpected token", UnexpectedTokenData]
     | ["missing token", {
-        parentAnnotation: ImplementationDetails
+        parentDetails: uast.TDetails
         path: string
         kindNameOptions: string
     }]
@@ -33,23 +34,23 @@ export type ParseError<ImplementationDetails> =
         "unknown pattern": pt.Array<string>
     }]
 
-export type ParseTypescriptProjectDependencies<ImplementationDetails> = {
+export type ParseTypescriptProjectDependencies = {
     startAsync: ($: pt.AsyncNonValue) => void
-    parseDynamic: dynAPI.Parse<ImplementationDetails>
+    parseDynamic: ts.Parse
     doUntil: uglyStuff.DoUntil
     lookAhead: uglyStuff.LookAhead
     stringsNotEqual: (a: string, b: string) => boolean
     parseFilePath: pp.ParseFilePath
 }
 
-export function parseTypescriptProject<ImplementationDetails>(
+export function parseTypescriptProject(
     $: {
-        path: dynAPI.Path
+        path: ts.Path
     },
     $i: {
-        onError: ($: ParseError<ImplementationDetails>) => void
+        onError: ($: ParseError) => void
     },
-    $d: ParseTypescriptProjectDependencies<ImplementationDetails>
+    $d: ParseTypescriptProjectDependencies
 ) {
     $d.startAsync(
 

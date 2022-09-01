@@ -1,7 +1,5 @@
 // #!/usr/bin/env node
 
-import * as pt from "pareto-core-types"
-
 import * as dynAPI from "api-dynamic-typescript-parser"
 
 import { _typescriptProject } from "../data/typescriptProject"
@@ -12,18 +10,19 @@ export type ProjectType =
     | ["resource", {}]
     | ["library", {}]
     | ["api", {}]
+    | ["unknown", {}]
 
-export function parseTypescriptProjectsInProject<ImplementationDetails>(
+export function parseTypescriptProjectsInProject(
     $: {
         projectName: string
         contextDirectory: dynAPI.Path
         type: ProjectType
     },
     $i: {
-        onError: ($: ParseError<ImplementationDetails>) => void
+        onError: ($: ParseError) => void
     },
     $d: {
-        parseDependencies: ParseTypescriptProjectDependencies<ImplementationDetails>
+        parseDependencies: ParseTypescriptProjectDependencies
     }
 ) {
     parseTypescriptProject(

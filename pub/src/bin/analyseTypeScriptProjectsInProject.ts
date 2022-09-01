@@ -11,6 +11,9 @@ import * as exeLib from "lib-pareto-exe"
 
 import { _typescriptProject } from "../data/typescriptProject"
 import { parseTypescriptProjectsInProject } from "../imp"
+import { ParseError } from "../imp/processTypescriptProject"
+import { createParseErrorMessage } from "../imp/createParseErrorMessage"
+import { getType } from "../imp/getType"
 
 
 pe.runProgram(($, $i, $d) => {
@@ -21,33 +24,34 @@ pe.runProgram(($, $i, $d) => {
                 pl.panic("args")
             },
             callback: ($) => {
-                const projectPathAsString = $
-
-                const projectPath = path.parseFilePath({
-                    filePath: projectPathAsString
-                })
-
-                if (projectPath.extension !== null) {
-                    pl.panic("unexpected extension")
-                }
+                const projectPath = $
 
                 parseTypescriptProjectsInProject(
                     {
-                        projectName: projectPath.baseName,
+                        projectName: path.basename(projectPath),
+                        contextDirectory: path.dirname(projectPath),
+                        type: getType(
+                            path.basename(projectPath),
+                            {
+                                substr: uglyStuff.substr
+                            }
+                        ),
                         //path: projectPath.directoryPath
                     },
                     {
-                        reportUnexpectedToken: ($) => {
-                            pl.logDebugMessage(`${$.file.absolutePath}:${$.token.details.location.line}:${$.token.details.location.column}: unexpected token '${$.token.kindName}', expected: ${$.expected}`)
+                        onError: ($) => {
+                            pl.logDebugMessage(createParseErrorMessage($))
                         },
                     },
                     {
-                        parseDynamic: ts.parse,
-                        startAsync: $d.startAsync,
-                        doUntil: uglyStuff.doUntil,
-                        lookAhead: uglyStuff.lookAhead,
-                        stringsNotEqual: (a, b) => a !== b,
-                        parseFilePath: path.parseFilePath,
+                        parseDependencies: {
+                            parseDynamic: ts.parse,
+                            startAsync: $d.startAsync,
+                            doUntil: uglyStuff.doUntil,
+                            lookAhead: uglyStuff.lookAhead,
+                            stringsNotEqual: (a, b) => a !== b,
+                            parseFilePath: path.parseFilePath,
+                        },
                     }
                 )
 
