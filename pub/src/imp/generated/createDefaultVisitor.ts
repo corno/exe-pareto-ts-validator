@@ -112,6 +112,10 @@ export function createDefaultVisistor<ImplementationDetails>(
             begin: ($) => { $i.log("$statement/?return/*ReturnStatement begin") },
             end: ($) => { $i.log("$statement/?return/*ReturnStatement end") },
         },
+        "$statement/?interface/*InterfaceDeclaration": {
+            begin: ($) => { $i.log("$statement/?interface/*InterfaceDeclaration begin") },
+            end: ($) => { $i.log("$statement/?interface/*InterfaceDeclaration end") },
+        },
         "$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports/*ImportSpecifier": {
             begin: ($) => { $i.log("$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports/*ImportSpecifier begin") },
             end: ($) => { $i.log("$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports/*ImportSpecifier end") },

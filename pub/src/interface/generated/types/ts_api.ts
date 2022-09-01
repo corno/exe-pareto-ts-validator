@@ -180,11 +180,14 @@ export type TVGtype_literal$<Annotation> = TVTGtype_literal$<Annotation>
 export type TNGtype_literal$<Annotation> = TAnnotatedType<Annotation, TVGtype_literal$<Annotation>>
 export type TVTGtype_literal<Annotation> = TNGtype_literal$<Annotation>
 export type TVGtype_literal<Annotation> = TVTGtype_literal<Annotation>
+export type TVTGtype_function$_typeParameters<Annotation> = TGtypeParameter<Annotation>
+export type TVGtype_function$_typeParameters<Annotation> = pt.Array<TVTGtype_function$_typeParameters<Annotation>>
 export type TVTGtype_function$_parameters<Annotation> = TGparameter<Annotation>
 export type TVGtype_function$_parameters<Annotation> = pt.Array<TVTGtype_function$_parameters<Annotation>>
 export type TVTGtype_function$_returnType<Annotation> = TGtype<Annotation>
 export type TVGtype_function$_returnType<Annotation> = null | TVTGtype_function$_returnType<Annotation>
 export type TVTGtype_function$<Annotation> = {
+    readonly "typeParameters":  TVGtype_function$_typeParameters<Annotation>
     readonly "parameters":  TVGtype_function$_parameters<Annotation>
     readonly "returnType":  TVGtype_function$_returnType<Annotation>
 }
@@ -299,6 +302,25 @@ export type TVGstatement_return$<Annotation> = null | TVTGstatement_return$<Anno
 export type TNGstatement_return$<Annotation> = TAnnotatedType<Annotation, TVGstatement_return$<Annotation>>
 export type TVTGstatement_return<Annotation> = TNGstatement_return$<Annotation>
 export type TVGstatement_return<Annotation> = TVTGstatement_return<Annotation>
+export type TVTGstatement_interface$_modifiers<Annotation> = TGmodifier<Annotation>
+export type TVGstatement_interface$_modifiers<Annotation> = pt.Array<TVTGstatement_interface$_modifiers<Annotation>>
+export type TVTGstatement_interface$_name<Annotation> = TGidentifier<Annotation>
+export type TVGstatement_interface$_name<Annotation> = TVTGstatement_interface$_name<Annotation>
+export type TVTGstatement_interface$_typeParameters<Annotation> = TGtypeParameter<Annotation>
+export type TVGstatement_interface$_typeParameters<Annotation> = pt.Array<TVTGstatement_interface$_typeParameters<Annotation>>
+export type TVTGstatement_interface$_signature<Annotation> = TGtypeSignature<Annotation>
+export type TVGstatement_interface$_signature<Annotation> = pt.Array<TVTGstatement_interface$_signature<Annotation>>
+export type TVTGstatement_interface$<Annotation> = {
+    readonly "modifiers":  TVGstatement_interface$_modifiers<Annotation>
+    readonly "name":  TVGstatement_interface$_name<Annotation>
+    readonly "typeParameters":  TVGstatement_interface$_typeParameters<Annotation>
+    readonly "signature":  TVGstatement_interface$_signature<Annotation>
+}
+export type TVGstatement_interface$<Annotation> = TVTGstatement_interface$<Annotation>
+
+export type TNGstatement_interface$<Annotation> = TAnnotatedType<Annotation, TVGstatement_interface$<Annotation>>
+export type TVTGstatement_interface<Annotation> = TNGstatement_interface$<Annotation>
+export type TVGstatement_interface<Annotation> = TVTGstatement_interface<Annotation>
 export type TVTGstatement_import$_clause$_named$$_name<Annotation> = TGidentifier<Annotation>
 export type TVGstatement_import$_clause$_named$$_name<Annotation> = TVTGstatement_import$_clause$_named$$_name<Annotation>
 export type TVTGstatement_import$_clause$_named$$_as<Annotation> = TGidentifier<Annotation>
@@ -401,6 +423,7 @@ export type TVTGstatement<Annotation> =
     | [ "typeAlias", TVGstatement_typeAlias<Annotation>]
     | [ "switch", TVGstatement_switch<Annotation>]
     | [ "return", TVGstatement_return<Annotation>]
+    | [ "interface", TVGstatement_interface<Annotation>]
     | [ "import", TVGstatement_import<Annotation>]
     | [ "if", TVGstatement_if<Annotation>]
     | [ "function", TVGstatement_function<Annotation>]
@@ -652,6 +675,8 @@ export type TVGexpression_binary$<Annotation> = TVTGexpression_binary$<Annotatio
 export type TNGexpression_binary$<Annotation> = TAnnotatedType<Annotation, TVGexpression_binary$<Annotation>>
 export type TVTGexpression_binary<Annotation> = TNGexpression_binary$<Annotation>
 export type TVGexpression_binary<Annotation> = TVTGexpression_binary<Annotation>
+export type TVTGexpression_arrowFunction$_typeParameters<Annotation> = TGtypeParameter<Annotation>
+export type TVGexpression_arrowFunction$_typeParameters<Annotation> = pt.Array<TVTGexpression_arrowFunction$_typeParameters<Annotation>>
 export type TVTGexpression_arrowFunction$_parameters<Annotation> = TGparameter<Annotation>
 export type TVGexpression_arrowFunction$_parameters<Annotation> = pt.Array<TVTGexpression_arrowFunction$_parameters<Annotation>>
 export type TVTGexpression_arrowFunction$_returnType<Annotation> = TGtype<Annotation>
@@ -669,6 +694,7 @@ export type TVTGexpression_arrowFunction$_implementation<Annotation> =
     | [ "block", TVGexpression_arrowFunction$_implementation_block<Annotation>]
 export type TVGexpression_arrowFunction$_implementation<Annotation> = TVTGexpression_arrowFunction$_implementation<Annotation>
 export type TVTGexpression_arrowFunction$<Annotation> = {
+    readonly "typeParameters":  TVGexpression_arrowFunction$_typeParameters<Annotation>
     readonly "parameters":  TVGexpression_arrowFunction$_parameters<Annotation>
     readonly "returnType":  TVGexpression_arrowFunction$_returnType<Annotation>
     readonly "equalsGreaterThan":  TVGexpression_arrowFunction$_equalsGreaterThan<Annotation>

@@ -30,6 +30,15 @@ export const _typeScriptGrammar: gr.TGrammar = {
                             'type': ["sequence", {
                                 'elements': ([
                                     {
+                                        'name': `typeParameters`,
+                                        'value': {
+                                            'cardinality': ["array", {}],
+                                            'type': ["reference", {
+                                                'name': `typeParameter`
+                                            }]
+                                        },
+                                    },
+                                    {
                                         'name': `parameters`,
                                         'value': {
                                             'cardinality': ["array", {}],
@@ -101,20 +110,6 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                             'cardinality': ["one", {}],
                                             'type': ["choice", {
                                                 'options': {
-                                                    // 'ampersandAmpersand': {
-                                                    //     'cardinality': ["one", {}],
-                                                    //     'type': ["node", {
-                                                    //         'name': `AmpersandAmpersandToken`,
-                                                    //         'type': ["leaf", { 'hasTextContent': false }]
-                                                    //     }]
-                                                    // },
-                                                    // 'barBar': {
-                                                    //     'cardinality': ["one", {}],
-                                                    //     'type': ["node", {
-                                                    //         'name': `BarBarToken`,
-                                                    //         'type': ["leaf", { 'hasTextContent': false }]
-                                                    //     }]
-                                                    // },
                                                     'equals': {
                                                         'cardinality': ["one", {}],
                                                         'type': ["node", {
@@ -122,62 +117,6 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                             'type': ["leaf", { 'hasTextContent': false }]
                                                         }]
                                                     },
-                                                    // 'equalsEqualsEquals': {
-                                                    //     'cardinality': ["one", {}],
-                                                    //     'type': ["node", {
-                                                    //         'name': `EqualsEqualsEqualsToken`,
-                                                    //         'type': ["leaf", { 'hasTextContent': false }]
-                                                    //     }]
-                                                    // },
-                                                    // 'exclamationEqualsEquals': {
-                                                    //     'cardinality': ["one", {}],
-                                                    //     'type': ["node", {
-                                                    //         'name': `ExclamationEqualsEqualsToken`,
-                                                    //         'type': ["leaf", { 'hasTextContent': false }]
-                                                    //     }]
-                                                    // },
-                                                    // 'greaterThan': {
-                                                    //     'cardinality': ["one", {}],
-                                                    //     'type': ["node", {
-                                                    //         'name': `GreaterThanToken`,
-                                                    //         'type': ["leaf", { 'hasTextContent': false }],
-                                                    //     }]
-                                                    // },
-                                                    // 'lessThan': {
-                                                    //     'cardinality': ["one", {}],
-                                                    //     'type': ["node", {
-                                                    //         'name': `LessThanToken`,
-                                                    //         'type': ["leaf", { 'hasTextContent': false }],
-                                                    //     }]
-                                                    // },
-                                                    // 'minus': {
-                                                    //     'cardinality': ["one", {}],
-                                                    //     'type': ["node", {
-                                                    //         'name': `MinusToken`,
-                                                    //         'type': ["leaf", { 'hasTextContent': false }],
-                                                    //     }]
-                                                    // },
-                                                    // 'minusEquals': {
-                                                    //     'cardinality': ["one", {}],
-                                                    //     'type': ["node", {
-                                                    //         'name': `MinusEqualsToken`,
-                                                    //         'type': ["leaf", { 'hasTextContent': false }]
-                                                    //     }]
-                                                    // },
-                                                    // 'plus': {
-                                                    //     'cardinality': ["one", {}],
-                                                    //     'type': ["node", {
-                                                    //         'name': `PlusToken`,
-                                                    //         'type': ["leaf", { 'hasTextContent': false }]
-                                                    //     }]
-                                                    // },
-                                                    // 'plusEquals': {
-                                                    //     'cardinality': ["one", {}],
-                                                    //     'type': ["node", {
-                                                    //         'name': `PlusEqualsToken`,
-                                                    //         'type': ["leaf", { 'hasTextContent': false }]
-                                                    //     }]
-                                                    // }
                                                 }
                                             }],
                                         }
@@ -322,35 +261,6 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'name': `identifier`
                     }],
                 },
-                // 'new': {
-                //     'cardinality': ["one", {}],
-                //     'type': ["node", {
-                //         'name': `NewExpression`,
-                //         'type': ["composite", {
-                //             'cardinality': ["one", {}],
-                //             'type': ["sequence", {
-                //                 'elements': ([
-                //                     {
-                //                         'name': `class`,
-                //                         'value': {
-                //                             'cardinality': ["one", {}],
-                //                             'type': ["reference", {
-                //                                 'name': `expression`
-                //                             }],
-                //                         }
-                //                     },
-                //                     {
-                //                         'name': `parameters`,
-                //                         'value': {
-                //                             'cardinality': ["array", {}],
-                //                             'type': ["reference", { 'name': `expression` }],
-                //                         }
-                //                     },
-                //                 ])
-                //             }]
-                //         }]
-                //     }]
-                // },
                 'noSubstitutionTemplateLiteral': {
                     'cardinality': ["one", {}],
                     'type': ["node", {
@@ -377,18 +287,10 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         'name': `ObjectLiteralExpression`,
                         'type': ["composite", {
                             'cardinality': ["array", {}],
-
                             'type': ["choice", {
                                 'options': {
-                                    // "getAccessor": {
-                                    //     'cardinality': ["one", {}],
-                                    //     'type': ["reference", {
-                                    //         'name': `getAccessor`
-                                    //     }]
-                                    // },
                                     "propertyAssignment": {
                                         'cardinality': ["one", {}],
-
                                         'type': ["node", {
                                             'name': `PropertyAssignment`,
                                             'type': ["composite", {
@@ -407,12 +309,6 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                                                 'name': `identifier`
                                                                             }],
                                                                         },
-                                                                        // 'numericLiteral': {
-                                                                        //     'cardinality': ["one", {}],
-                                                                        //     'type': ["reference", {
-                                                                        //         'name': `numericLiteral`,
-                                                                        //     }],
-                                                                        // },
                                                                         'stringLiteral': {
                                                                             'cardinality': ["one", {}],
                                                                             'type': ["reference", {
@@ -450,16 +346,6 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         }],
                     }]
                 },
-                // 'postfixUnary': {
-                //     'cardinality': ["one", {}],
-                //     'type': ["node", {
-                //         'name': `PostfixUnaryExpression`,
-                //         'type': ["composite", {
-                //             'cardinality': ["one", {}],
-                //             'type': ["reference", { 'name': `expression` }],
-                //         }],
-                //     }]
-                // },
                 'prefixUnary': {
                     'cardinality': ["one", {}],
                     'type': ["node", {
@@ -611,34 +497,6 @@ export const _typeScriptGrammar: gr.TGrammar = {
                 },
             ])
         }],
-        // 'getAccessor': ["node", {
-        //     'name': `GetAccessor`,
-        //     'type': ["composite", {
-        //         'cardinality': ["one", {}],
-        //         'type': ["sequence", {
-        //             'elements': ([
-        //                 {
-        //                     'name': `name`,
-        //                     'value': {
-        //                         'cardinality': ["one", {}],
-        //                         'type': ["reference", {
-        //                             'name': `identifier`,
-        //                         }]
-        //                     }
-        //                 },
-        //                 {
-        //                     'name': `block`,
-        //                     'value': {
-        //                         'cardinality': ["one", {}],
-        //                         'type': ["reference", {
-        //                             'name': `block`,
-        //                         }]
-        //                     }
-        //                 }
-        //             ])
-        //         }]
-        //     }]
-        // }],
         'identifier': ["node", {
             'name': `Identifier`,
             'type': ["leaf", { 'hasTextContent': true }]
@@ -660,15 +518,7 @@ export const _typeScriptGrammar: gr.TGrammar = {
             }
         }],
         'modifier': ["choice", {
-            //AbstractKeyword | AsyncKeyword | ConstKeyword | DeclareKeyword | DefaultKeyword | ExportKeyword | PrivateKeyword | ProtectedKeyword | PublicKeyword | OverrideKeyword | ReadonlyKeyword | StaticKeyword;
             'options': {
-                // 'declare': {
-                //     'cardinality': ["one", {}],
-                //     'type': ["node", {
-                //         'name': `DeclareKeyword`,
-                //         'type': ["leaf", { 'hasTextContent': false }]
-                //     }]
-                // },
                 'export': {
                     'cardinality': ["one", {}],
                     'type': ["node", {
@@ -745,84 +595,6 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         }],
                     }]
                 },
-                // 'class': {
-                //     'cardinality': ["one", {}],
-                //     'type': ["node", {
-                //         'name': `ClassDeclaration`,
-                //         'type': ["composite", {
-                //             'cardinality': ["one", {}],
-                //             'type': ["sequence", {
-                //                 'elements': ([
-                //                     {
-                //                         'name': `name`,
-                //                         'value': {
-                //                             'cardinality': ["one", {}],
-                //                             'type': ["reference", {
-                //                                 'name': `identifier`
-                //                             }],
-                //                         }
-                //                     },
-                //                     {
-                //                         'name': `heritageClause`,
-                //                         'value': {
-                //                             'cardinality': ["optional", {}],
-                //                             'type': ["node", {
-                //                                 'name': `HeritageClause`,
-                //                                 'type': ["composite", {
-                //                                     'cardinality': ["array", {}],
-                //                                     'type': ["node", {
-                //                                         'name': `ExpressionWithTypeArguments`,
-                //                                         'type': ["composite", {
-                //                                             'cardinality': ["one", {}],
-                //                                             'type': ["sequence", {
-                //                                                 'elements': ([
-                //                                                     {
-                //                                                         'name': `expression`,
-                //                                                         'value': {
-                //                                                             'cardinality': ["one", {}],
-                //                                                             'type': ["reference", {
-                //                                                                 'name': `expression`
-                //                                                             }]
-
-                //                                                         }
-                //                                                     },
-                //                                                     {
-                //                                                         'name': `typeArguments`,
-                //                                                         'value': {
-                //                                                             'cardinality': ["array", {}],
-                //                                                             'type': ["reference", {
-                //                                                                 'name': `type`
-                //                                                             }]
-
-                //                                                         }
-                //                                                     }
-                //                                                 ])
-                //                                             }]
-                //                                         }]
-                //                                     }]
-                //                                 }]
-                //                             }]
-                //                         }
-                //                     },
-                //                     {
-                //                         'name': `members`,
-                //                         'value': {
-                //                             'cardinality': ["array", {}],
-                //                             'type': ["choice", {
-                //                                 'options': {
-                //                                     "getAccessor": {
-                //                                         'cardinality': ["one", {}],
-                //                                         'type': ["reference", { 'name': `getAccessor` }]
-                //                                     }
-                //                                 }
-                //                             }]
-                //                         }
-                //                     },
-                //                 ])
-                //             }],
-                //         }],
-                //     }]
-                // },
                 'export': {
                     'cardinality': ["one", {}],
                     'type': ["node", {
@@ -845,51 +617,6 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         }],
                     }]
                 },
-                // 'for': {
-                //     'cardinality': ["one", {}],
-                //     'type': ["node", {
-                //         'name': `ForStatement`,
-                //         'type': ["composite", {
-                //             'cardinality': ["one", {}],
-                //             'type': ["sequence", {
-                //                 'elements': ([
-                //                     {
-                //                         'name': `initializer`,
-                //                         'value': {
-                //                             "cardinality": ["one", {}],
-                //                             'type': ["reference", {
-                //                                 'name': `variableDeclarationList`
-                //                             }]
-                //                         }
-                //                     },
-                //                     {
-                //                         'name': `condition`,
-                //                         'value': {
-                //                             "cardinality": ["one", {}],
-                //                             'type': ["reference", { 'name': `expression` }]
-                //                         }
-                //                     },
-                //                     {
-                //                         'name': `incrementer`,
-                //                         'value': {
-                //                             "cardinality": ["one", {}],
-                //                             'type': ["reference", { 'name': `expression` }]
-                //                         }
-                //                     },
-                //                     {
-                //                         'name': `block`,
-                //                         'value': {
-                //                             "cardinality": ["one", {}],
-                //                             'type': ["reference", {
-                //                                 'name': `block`,
-                //                             }]
-                //                         }
-                //                     },
-                //                 ])
-                //             }]
-                //         }]
-                //     }]
-                // },
                 'function': {
                     'cardinality': ["one", {}],
                     'type': ["node", {
@@ -1058,80 +785,51 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         }]
                     }]
                 },
-                // 'interface': {
-                //     'cardinality': ["one", {}],
-                //     'type': ["node", {
-                //         'name': `InterfaceDeclaration`,
-                //         'type': ["composite", {
-                //             'cardinality': ["one", {}],
-                //             'type': ["sequence", {
-                //                 'elements': ([
-                //                     {
-                //                         'name': `modifiers`,
-                //                         'value': {
-                //                             'cardinality': ["array", {}],
-                //                             'type': ["reference", { 'name': `modifier` }]
-                //                         },
-                //                     },
-                //                     {
-                //                         'name': `name`,
-                //                         'value': {
-                //                             'cardinality': ["one", {}],
-                //                             'type': ["reference", {
-                //                                 'name': `identifier`
-                //                             }],
-                //                         }
-                //                     },
-                //                     {
-                //                         'name': `typeParameters`,
-                //                         'value': {
-                //                             'cardinality': ["array", {}],
-                //                             'type': ["reference", {
-                //                                 'name': `typeParameter`
-                //                             }]
-                //                         },
-                //                     },
-                //                     {
-                //                         'name': `signature`,
-                //                         'value': {
-                //                             'cardinality': ["array", {}],
-                //                             'type': ["reference", { 'name': `typeSignature` }]
-                //                         },
-                //                     },
-                //                 ])
-                //             }]
-                //         }]
-                //     }]
-                // },
-                // 'labeled': {
-                //     'cardinality': ["one", {}],
-                //     'type': ["node", {
-                //         'name': `LabeledStatement`,
-                //         'type': ["composite", {
-                //             'cardinality': ["one", {}],
-                //             'type': ["sequence", {
-                //                 'elements': ([
-                //                     {
-                //                         'name': `label`,
-                //                         'value': {
-                //                             'cardinality': ["one", {}],
-                //                             'type': ["reference", {
-                //                                 'name': `identifier`
-                //                             }],
-                //                         }
-                //                     },
-                //                     {
-                //                         'name': `statement`,
-                //                         'value': {
-                //                             'cardinality': ["one", {}],
-                //                             'type': ["reference", { 'name': `statement` }],
-                //                         }
-                //                     },
-                //                 ])
-                //             }]
-                //         }]
-                //     }]
-                // },
+                'interface': {
+                    'cardinality': ["one", {}],
+                    'type': ["node", {
+                        'name': `InterfaceDeclaration`,
+                        'type': ["composite", {
+                            'cardinality': ["one", {}],
+                            'type': ["sequence", {
+                                'elements': ([
+                                    {
+                                        'name': `modifiers`,
+                                        'value': {
+                                            'cardinality': ["array", {}],
+                                            'type': ["reference", { 'name': `modifier` }]
+                                        },
+                                    },
+                                    {
+                                        'name': `name`,
+                                        'value': {
+                                            'cardinality': ["one", {}],
+                                            'type': ["reference", {
+                                                'name': `identifier`
+                                            }],
+                                        }
+                                    },
+                                    {
+                                        'name': `typeParameters`,
+                                        'value': {
+                                            'cardinality': ["array", {}],
+                                            'type': ["reference", {
+                                                'name': `typeParameter`
+                                            }]
+                                        },
+                                    },
+                                    {
+                                        'name': `signature`,
+                                        'value': {
+                                            'cardinality': ["array", {}],
+                                            'type': ["reference", { 'name': `typeSignature` }]
+                                        },
+                                    },
+                                ])
+                            }]
+                        }]
+                    }]
+                },
                 'return': {
                     'cardinality': ["one", {}],
                     'type': ["node", {
@@ -1215,72 +913,6 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         }]
                     }]
                 },
-                // 'throw': {
-                //     'cardinality': ["one", {}],
-                //     'type': ["node", {
-                //         'name': `ThrowStatement`,
-                //         'type': ["composite", {
-                //             'cardinality': ["one", {}],
-                //             'type': ["reference", { 'name': `expression` }],
-                //         }]
-                //     }]
-                // },
-                // 'try': {
-                //     'cardinality': ["one", {}],
-                //     'type': ["node", {
-                //         'name': `TryStatement`,
-                //         'type': ["composite", {
-                //             'cardinality': ["one", {}],
-                //             'type': ["sequence", {
-                //                 'elements': ([
-                //                     {
-                //                         'name': `block`,
-                //                         'value': {
-                //                             'cardinality': ["one", {}],
-                //                             'type': ["reference", {
-                //                                 'name': `block`
-                //                             }]
-                //                         },
-                //                     },
-                //                     {
-                //                         'name': `catchClause`,
-                //                         'value': {
-                //                             'cardinality': ["one", {}],
-                //                             'type': ["node", {
-                //                                 'name': `CatchClause`,
-                //                                 'type': ["composite", {
-                //                                     'cardinality': ["one", {}],
-                //                                     'type': ["sequence", {
-                //                                         'elements': ([
-                //                                             {
-                //                                                 'name': `variable`,
-                //                                                 'value': {
-                //                                                     'cardinality': ["one", {}],
-                //                                                     'type': ["reference", {
-                //                                                         'name': `variableDeclaration`
-                //                                                     }]
-                //                                                 }
-                //                                             },
-                //                                             {
-                //                                                 'name': `block`,
-                //                                                 'value': {
-                //                                                     'cardinality': ["one", {}],
-                //                                                     'type': ["reference", {
-                //                                                         'name': `block`
-                //                                                     }]
-                //                                                 }
-                //                                             },
-                //                                         ])
-                //                                     }]
-                //                                 }]
-                //                             }]
-                //                         },
-                //                     },
-                //                 ])
-                //             }]
-                //         }]
-                //     }]
-                // },
                 'typeAlias': {
                     'cardinality': ["one", {}],
                     'type': ["node", {
@@ -1355,35 +987,6 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         }]
                     }]
                 },
-                // 'while': {
-                //     'cardinality': ["one", {}],
-                //     'type': ["node", {
-                //         'name': `WhileStatement`,
-                //         'type': ["composite", {
-                //             'cardinality': ["one", {}],
-                //             'type': ["sequence", {
-                //                 'elements': ([
-                //                     {
-                //                         'name': `condition`,
-                //                         'value': {
-                //                             'cardinality': ["one", {}],
-                //                             'type': ["reference", { 'name': `expression` }],
-                //                         },
-                //                     },
-                //                     {
-                //                         'name': `block`,
-                //                         'value': {
-                //                             'cardinality': ["one", {}],
-                //                             'type': ["reference", {
-                //                                 'name': `block`
-                //                             }],
-                //                         },
-                //                     },
-                //                 ])
-                //             }]
-                //         }]
-                //     }]
-                // },
             }
         }],
         'stringLiteral': ["node", {
@@ -1392,13 +995,6 @@ export const _typeScriptGrammar: gr.TGrammar = {
         }],
         'type': ["choice", {
             'options': {
-                // 'any': {
-                //     'cardinality': ["one", {}],
-                //     'type': ["node", {
-                //         'name': `AnyKeyword`,
-                //         'type': ["leaf", { 'hasTextContent': false }],
-                //     }]
-                // },
                 'array': {
                     'cardinality': ["one", {}],
                     'type': ["node", {
@@ -1424,6 +1020,15 @@ export const _typeScriptGrammar: gr.TGrammar = {
                             'cardinality': ["one", {}],
                             'type': ["sequence", {
                                 'elements': ([
+                                    {
+                                        'name': `typeParameters`,
+                                        'value': {
+                                            'cardinality': ["array", {}],
+                                            'type': ["reference", {
+                                                'name': `typeParameter`
+                                            }]
+                                        },
+                                    },
                                     {
                                         'name': `parameters`,
                                         'value': {
@@ -1481,13 +1086,6 @@ export const _typeScriptGrammar: gr.TGrammar = {
                         }],
                     }]
                 },
-                // 'never': {
-                //     'cardinality': ["one", {}],
-                //     'type': ["node", {
-                //         'name': `NeverKeyword`,
-                //         'type': ["leaf", { 'hasTextContent': false }],
-                //     }]
-                // },
                 'number': {
                     'cardinality': ["one", {}],
                     'type': ["node", {
@@ -1636,73 +1234,6 @@ export const _typeScriptGrammar: gr.TGrammar = {
         }],
         'typeSignature': ["choice", {
             'options': {
-                // 'construct': {
-                //     'cardinality': ["one", {}],
-                //     'type': ["node", {
-                //         'name': `ConstructSignature`,
-                //         'type': ["composite", {
-                //             'cardinality': ["one", {}],
-                //             'type': ["sequence", {
-                //                 'elements': ([
-                //                     {
-                //                         'name': `parameters`,
-                //                         'value': {
-                //                             'cardinality': ["array", {}],
-                //                             'type': ["reference", {
-                //                                 'name': `parameter`
-                //                             }]
-                //                         }
-                //                     },
-                //                     {
-                //                         'name': `returnType`,
-                //                         'value': {
-                //                             'cardinality': ["one", {}],
-                //                             'type': ["reference", {
-                //                                 'name': `type`
-                //                             }]
-                //                         }
-                //                     },
-                //                 ])
-                //             }]
-                //         }]
-                //     }]
-                // },
-                // 'index': {
-                //     'cardinality': ["one", {}],
-                //     'type': ["node", {
-                //         'name': `IndexSignature`,
-                //         'type': ["composite", {
-                //             'cardinality': ["one", {}],
-                //             'type': ["sequence", {
-                //                 'elements': ([
-                //                     {
-                //                         'name': `modifiers`,
-                //                         'value': {
-                //                             'cardinality': ["array", {}],
-                //                             'type': ["reference", { 'name': `modifier` }]
-                //                         },
-                //                     },
-                //                     {
-                //                         'name': `parameter`,
-                //                         'value': {
-                //                             'cardinality': ["one", {}],
-                //                             'type': ["reference", {
-                //                                 'name': `parameter`
-                //                             }],
-                //                         }
-                //                     },
-                //                     {
-                //                         'name': `type`,
-                //                         'value': {
-                //                             'cardinality': ["optional", {}],
-                //                             'type': ["reference", { 'name': `type` }],
-                //                         },
-                //                     },
-                //                 ])
-                //             }]
-                //         }]
-                //     }]
-                // },
                 'method': {
                     'cardinality': ["one", {}],
                     'type': ["node", {

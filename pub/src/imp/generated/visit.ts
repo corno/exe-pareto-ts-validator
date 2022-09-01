@@ -1,6 +1,7 @@
 import * as pl from "pareto-core-lib"
 import * as api from "../../interface"
 
+
 export function visit<Annotation>(
     $: api.TNroot<Annotation>,
     $i: {
@@ -13,13 +14,13 @@ export function visit<Annotation>(
         ((
             $: api.TNGblock$<Annotation>,
         ) => {
-            if ($i.visitor["$block/*Block"] !== undefined) { $i.visitor["$block/*Block"].begin($) }
+            if (pl.isNotUndefined($i.visitor["$block/*Block"])) { $i.visitor["$block/*Block"].begin($) }
             pl.cc($.content, ($) => {
                 $.forEach(($) => {
                     X_statement($)
                 })
             })
-            if ($i.visitor["$block/*Block"] !== undefined) { $i.visitor["$block/*Block"].end($) }
+            if (pl.isNotUndefined($i.visitor["$block/*Block"])) { $i.visitor["$block/*Block"].end($) }
         })($)
     }
     function X_expression(
@@ -31,7 +32,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGexpression_true$<Annotation>,
                     ) => {
-                        if ($i.visitor["$expression/?true/*TrueKeyword"] !== undefined) { $i.visitor["$expression/?true/*TrueKeyword"]($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?true/*TrueKeyword"])) { $i.visitor["$expression/?true/*TrueKeyword"]($) }
                     })($)
                 })
                 break
@@ -41,13 +42,13 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGexpression_template$<Annotation>,
                     ) => {
-                        if ($i.visitor["$expression/?template/*TemplateExpression"] !== undefined) { $i.visitor["$expression/?template/*TemplateExpression"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?template/*TemplateExpression"])) { $i.visitor["$expression/?template/*TemplateExpression"].begin($) }
                         pl.cc($.content, ($) => {
                             pl.cc($["head"], ($) => {
                                 ((
                                     $: api.TNGexpression_template$_head$<Annotation>,
                                 ) => {
-                                    if ($i.visitor["$expression/?template/*TemplateExpression/.head/*TemplateHead"] !== undefined) { $i.visitor["$expression/?template/*TemplateExpression/.head/*TemplateHead"]($) }
+                                    if (pl.isNotUndefined($i.visitor["$expression/?template/*TemplateExpression/.head/*TemplateHead"])) { $i.visitor["$expression/?template/*TemplateExpression/.head/*TemplateHead"]($) }
                                 })($)
                             })
                             pl.cc($["spans"], ($) => {
@@ -55,7 +56,7 @@ export function visit<Annotation>(
                                     ((
                                         $: api.TNGexpression_template$_spans$<Annotation>,
                                     ) => {
-                                        if ($i.visitor["$expression/?template/*TemplateExpression/.spans/*TemplateSpan"] !== undefined) { $i.visitor["$expression/?template/*TemplateExpression/.spans/*TemplateSpan"].begin($) }
+                                        if (pl.isNotUndefined($i.visitor["$expression/?template/*TemplateExpression/.spans/*TemplateSpan"])) { $i.visitor["$expression/?template/*TemplateExpression/.spans/*TemplateSpan"].begin($) }
                                         pl.cc($.content, ($) => {
                                             pl.cc($["expression"], ($) => {
                                                 X_expression($)
@@ -67,7 +68,7 @@ export function visit<Annotation>(
                                                             ((
                                                                 $: api.TNGexpression_template$_spans$_x_tail$<Annotation>,
                                                             ) => {
-                                                                if ($i.visitor["$expression/?template/*TemplateExpression/.spans/*TemplateSpan/.x/?tail/*TemplateTail"] !== undefined) { $i.visitor["$expression/?template/*TemplateExpression/.spans/*TemplateSpan/.x/?tail/*TemplateTail"]($) }
+                                                                if (pl.isNotUndefined($i.visitor["$expression/?template/*TemplateExpression/.spans/*TemplateSpan/.x/?tail/*TemplateTail"])) { $i.visitor["$expression/?template/*TemplateExpression/.spans/*TemplateSpan/.x/?tail/*TemplateTail"]($) }
                                                             })($)
                                                         })
                                                         break
@@ -77,7 +78,7 @@ export function visit<Annotation>(
                                                             ((
                                                                 $: api.TNGexpression_template$_spans$_x_middle$<Annotation>,
                                                             ) => {
-                                                                if ($i.visitor["$expression/?template/*TemplateExpression/.spans/*TemplateSpan/.x/?middle/*TemplateMiddle"] !== undefined) { $i.visitor["$expression/?template/*TemplateExpression/.spans/*TemplateSpan/.x/?middle/*TemplateMiddle"]($) }
+                                                                if (pl.isNotUndefined($i.visitor["$expression/?template/*TemplateExpression/.spans/*TemplateSpan/.x/?middle/*TemplateMiddle"])) { $i.visitor["$expression/?template/*TemplateExpression/.spans/*TemplateSpan/.x/?middle/*TemplateMiddle"]($) }
                                                             })($)
                                                         })
                                                         break
@@ -86,12 +87,12 @@ export function visit<Annotation>(
                                                 }
                                             })
                                         })
-                                        if ($i.visitor["$expression/?template/*TemplateExpression/.spans/*TemplateSpan"] !== undefined) { $i.visitor["$expression/?template/*TemplateExpression/.spans/*TemplateSpan"].end($) }
+                                        if (pl.isNotUndefined($i.visitor["$expression/?template/*TemplateExpression/.spans/*TemplateSpan"])) { $i.visitor["$expression/?template/*TemplateExpression/.spans/*TemplateSpan"].end($) }
                                     })($)
                                 })
                             })
                         })
-                        if ($i.visitor["$expression/?template/*TemplateExpression"] !== undefined) { $i.visitor["$expression/?template/*TemplateExpression"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?template/*TemplateExpression"])) { $i.visitor["$expression/?template/*TemplateExpression"].end($) }
                     })($)
                 })
                 break
@@ -107,7 +108,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGexpression_propertyAccess$<Annotation>,
                     ) => {
-                        if ($i.visitor["$expression/?propertyAccess/*PropertyAccessExpression"] !== undefined) { $i.visitor["$expression/?propertyAccess/*PropertyAccessExpression"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?propertyAccess/*PropertyAccessExpression"])) { $i.visitor["$expression/?propertyAccess/*PropertyAccessExpression"].begin($) }
                         pl.cc($.content, ($) => {
                             pl.cc($["object"], ($) => {
                                 X_expression($)
@@ -116,7 +117,7 @@ export function visit<Annotation>(
                                 X_expression($)
                             })
                         })
-                        if ($i.visitor["$expression/?propertyAccess/*PropertyAccessExpression"] !== undefined) { $i.visitor["$expression/?propertyAccess/*PropertyAccessExpression"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?propertyAccess/*PropertyAccessExpression"])) { $i.visitor["$expression/?propertyAccess/*PropertyAccessExpression"].end($) }
                     })($)
                 })
                 break
@@ -126,11 +127,11 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGexpression_prefixUnary$<Annotation>,
                     ) => {
-                        if ($i.visitor["$expression/?prefixUnary/*PrefixUnaryExpression"] !== undefined) { $i.visitor["$expression/?prefixUnary/*PrefixUnaryExpression"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?prefixUnary/*PrefixUnaryExpression"])) { $i.visitor["$expression/?prefixUnary/*PrefixUnaryExpression"].begin($) }
                         pl.cc($.content, ($) => {
                             X_expression($)
                         })
-                        if ($i.visitor["$expression/?prefixUnary/*PrefixUnaryExpression"] !== undefined) { $i.visitor["$expression/?prefixUnary/*PrefixUnaryExpression"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?prefixUnary/*PrefixUnaryExpression"])) { $i.visitor["$expression/?prefixUnary/*PrefixUnaryExpression"].end($) }
                     })($)
                 })
                 break
@@ -140,11 +141,11 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGexpression_parenthesizedExpression$<Annotation>,
                     ) => {
-                        if ($i.visitor["$expression/?parenthesizedExpression/*ParenthesizedExpression"] !== undefined) { $i.visitor["$expression/?parenthesizedExpression/*ParenthesizedExpression"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?parenthesizedExpression/*ParenthesizedExpression"])) { $i.visitor["$expression/?parenthesizedExpression/*ParenthesizedExpression"].begin($) }
                         pl.cc($.content, ($) => {
                             X_expression($)
                         })
-                        if ($i.visitor["$expression/?parenthesizedExpression/*ParenthesizedExpression"] !== undefined) { $i.visitor["$expression/?parenthesizedExpression/*ParenthesizedExpression"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?parenthesizedExpression/*ParenthesizedExpression"])) { $i.visitor["$expression/?parenthesizedExpression/*ParenthesizedExpression"].end($) }
                     })($)
                 })
                 break
@@ -154,7 +155,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGexpression_objectLiteral$<Annotation>,
                     ) => {
-                        if ($i.visitor["$expression/?objectLiteral/*ObjectLiteralExpression"] !== undefined) { $i.visitor["$expression/?objectLiteral/*ObjectLiteralExpression"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?objectLiteral/*ObjectLiteralExpression"])) { $i.visitor["$expression/?objectLiteral/*ObjectLiteralExpression"].begin($) }
                         pl.cc($.content, ($) => {
                             $.forEach(($) => {
                                 switch ($[0]) {
@@ -163,7 +164,7 @@ export function visit<Annotation>(
                                             ((
                                                 $: api.TNGexpression_objectLiteral$_propertyAssignment$<Annotation>,
                                             ) => {
-                                                if ($i.visitor["$expression/?objectLiteral/*ObjectLiteralExpression/?propertyAssignment/*PropertyAssignment"] !== undefined) { $i.visitor["$expression/?objectLiteral/*ObjectLiteralExpression/?propertyAssignment/*PropertyAssignment"].begin($) }
+                                                if (pl.isNotUndefined($i.visitor["$expression/?objectLiteral/*ObjectLiteralExpression/?propertyAssignment/*PropertyAssignment"])) { $i.visitor["$expression/?objectLiteral/*ObjectLiteralExpression/?propertyAssignment/*PropertyAssignment"].begin($) }
                                                 pl.cc($.content, ($) => {
                                                     pl.cc($["name"], ($) => {
                                                         switch ($[0]) {
@@ -186,7 +187,7 @@ export function visit<Annotation>(
                                                         X_expression($)
                                                     })
                                                 })
-                                                if ($i.visitor["$expression/?objectLiteral/*ObjectLiteralExpression/?propertyAssignment/*PropertyAssignment"] !== undefined) { $i.visitor["$expression/?objectLiteral/*ObjectLiteralExpression/?propertyAssignment/*PropertyAssignment"].end($) }
+                                                if (pl.isNotUndefined($i.visitor["$expression/?objectLiteral/*ObjectLiteralExpression/?propertyAssignment/*PropertyAssignment"])) { $i.visitor["$expression/?objectLiteral/*ObjectLiteralExpression/?propertyAssignment/*PropertyAssignment"].end($) }
                                             })($)
                                         })
                                         break
@@ -195,7 +196,7 @@ export function visit<Annotation>(
                                 }
                             })
                         })
-                        if ($i.visitor["$expression/?objectLiteral/*ObjectLiteralExpression"] !== undefined) { $i.visitor["$expression/?objectLiteral/*ObjectLiteralExpression"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?objectLiteral/*ObjectLiteralExpression"])) { $i.visitor["$expression/?objectLiteral/*ObjectLiteralExpression"].end($) }
                     })($)
                 })
                 break
@@ -205,7 +206,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGexpression_nullKeyword$<Annotation>,
                     ) => {
-                        if ($i.visitor["$expression/?nullKeyword/*NullKeyword"] !== undefined) { $i.visitor["$expression/?nullKeyword/*NullKeyword"]($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?nullKeyword/*NullKeyword"])) { $i.visitor["$expression/?nullKeyword/*NullKeyword"]($) }
                     })($)
                 })
                 break
@@ -221,7 +222,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGexpression_noSubstitutionTemplateLiteral$<Annotation>,
                     ) => {
-                        if ($i.visitor["$expression/?noSubstitutionTemplateLiteral/*NoSubstitutionTemplateLiteral"] !== undefined) { $i.visitor["$expression/?noSubstitutionTemplateLiteral/*NoSubstitutionTemplateLiteral"]($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?noSubstitutionTemplateLiteral/*NoSubstitutionTemplateLiteral"])) { $i.visitor["$expression/?noSubstitutionTemplateLiteral/*NoSubstitutionTemplateLiteral"]($) }
                     })($)
                 })
                 break
@@ -237,7 +238,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGexpression_false$<Annotation>,
                     ) => {
-                        if ($i.visitor["$expression/?false/*FalseKeyword"] !== undefined) { $i.visitor["$expression/?false/*FalseKeyword"]($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?false/*FalseKeyword"])) { $i.visitor["$expression/?false/*FalseKeyword"]($) }
                     })($)
                 })
                 break
@@ -247,7 +248,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGexpression_elementAccess$<Annotation>,
                     ) => {
-                        if ($i.visitor["$expression/?elementAccess/*ElementAccessExpression"] !== undefined) { $i.visitor["$expression/?elementAccess/*ElementAccessExpression"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?elementAccess/*ElementAccessExpression"])) { $i.visitor["$expression/?elementAccess/*ElementAccessExpression"].begin($) }
                         pl.cc($.content, ($) => {
                             pl.cc($["array"], ($) => {
                                 X_expression($)
@@ -256,7 +257,7 @@ export function visit<Annotation>(
                                 X_expression($)
                             })
                         })
-                        if ($i.visitor["$expression/?elementAccess/*ElementAccessExpression"] !== undefined) { $i.visitor["$expression/?elementAccess/*ElementAccessExpression"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?elementAccess/*ElementAccessExpression"])) { $i.visitor["$expression/?elementAccess/*ElementAccessExpression"].end($) }
                     })($)
                 })
                 break
@@ -266,7 +267,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGexpression_conditional$<Annotation>,
                     ) => {
-                        if ($i.visitor["$expression/?conditional/*ConditionalExpression"] !== undefined) { $i.visitor["$expression/?conditional/*ConditionalExpression"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?conditional/*ConditionalExpression"])) { $i.visitor["$expression/?conditional/*ConditionalExpression"].begin($) }
                         pl.cc($.content, ($) => {
                             pl.cc($["test"], ($) => {
                                 X_expression($)
@@ -275,7 +276,7 @@ export function visit<Annotation>(
                                 ((
                                     $: api.TNGexpression_conditional$_questionToken$<Annotation>,
                                 ) => {
-                                    if ($i.visitor["$expression/?conditional/*ConditionalExpression/.questionToken/*QuestionToken"] !== undefined) { $i.visitor["$expression/?conditional/*ConditionalExpression/.questionToken/*QuestionToken"]($) }
+                                    if (pl.isNotUndefined($i.visitor["$expression/?conditional/*ConditionalExpression/.questionToken/*QuestionToken"])) { $i.visitor["$expression/?conditional/*ConditionalExpression/.questionToken/*QuestionToken"]($) }
                                 })($)
                             })
                             pl.cc($["ifExpression"], ($) => {
@@ -285,14 +286,14 @@ export function visit<Annotation>(
                                 ((
                                     $: api.TNGexpression_conditional$_colonToken$<Annotation>,
                                 ) => {
-                                    if ($i.visitor["$expression/?conditional/*ConditionalExpression/.colonToken/*ColonToken"] !== undefined) { $i.visitor["$expression/?conditional/*ConditionalExpression/.colonToken/*ColonToken"]($) }
+                                    if (pl.isNotUndefined($i.visitor["$expression/?conditional/*ConditionalExpression/.colonToken/*ColonToken"])) { $i.visitor["$expression/?conditional/*ConditionalExpression/.colonToken/*ColonToken"]($) }
                                 })($)
                             })
                             pl.cc($["elseExpression"], ($) => {
                                 X_expression($)
                             })
                         })
-                        if ($i.visitor["$expression/?conditional/*ConditionalExpression"] !== undefined) { $i.visitor["$expression/?conditional/*ConditionalExpression"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?conditional/*ConditionalExpression"])) { $i.visitor["$expression/?conditional/*ConditionalExpression"].end($) }
                     })($)
                 })
                 break
@@ -302,7 +303,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGexpression_call$<Annotation>,
                     ) => {
-                        if ($i.visitor["$expression/?call/*CallExpression"] !== undefined) { $i.visitor["$expression/?call/*CallExpression"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?call/*CallExpression"])) { $i.visitor["$expression/?call/*CallExpression"].begin($) }
                         pl.cc($.content, ($) => {
                             pl.cc($["function"], ($) => {
                                 X_expression($)
@@ -318,7 +319,7 @@ export function visit<Annotation>(
                                 })
                             })
                         })
-                        if ($i.visitor["$expression/?call/*CallExpression"] !== undefined) { $i.visitor["$expression/?call/*CallExpression"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?call/*CallExpression"])) { $i.visitor["$expression/?call/*CallExpression"].end($) }
                     })($)
                 })
                 break
@@ -328,7 +329,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGexpression_binary$<Annotation>,
                     ) => {
-                        if ($i.visitor["$expression/?binary/*BinaryExpression"] !== undefined) { $i.visitor["$expression/?binary/*BinaryExpression"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?binary/*BinaryExpression"])) { $i.visitor["$expression/?binary/*BinaryExpression"].begin($) }
                         pl.cc($.content, ($) => {
                             pl.cc($["leftHandSide"], ($) => {
                                 X_expression($)
@@ -340,7 +341,7 @@ export function visit<Annotation>(
                                             ((
                                                 $: api.TNGexpression_binary$_operator_equals$<Annotation>,
                                             ) => {
-                                                if ($i.visitor["$expression/?binary/*BinaryExpression/.operator/?equals/*EqualsToken"] !== undefined) { $i.visitor["$expression/?binary/*BinaryExpression/.operator/?equals/*EqualsToken"]($) }
+                                                if (pl.isNotUndefined($i.visitor["$expression/?binary/*BinaryExpression/.operator/?equals/*EqualsToken"])) { $i.visitor["$expression/?binary/*BinaryExpression/.operator/?equals/*EqualsToken"]($) }
                                             })($)
                                         })
                                         break
@@ -352,7 +353,7 @@ export function visit<Annotation>(
                                 X_expression($)
                             })
                         })
-                        if ($i.visitor["$expression/?binary/*BinaryExpression"] !== undefined) { $i.visitor["$expression/?binary/*BinaryExpression"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?binary/*BinaryExpression"])) { $i.visitor["$expression/?binary/*BinaryExpression"].end($) }
                     })($)
                 })
                 break
@@ -362,25 +363,30 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGexpression_arrowFunction$<Annotation>,
                     ) => {
-                        if ($i.visitor["$expression/?arrowFunction/*ArrowFunction"] !== undefined) { $i.visitor["$expression/?arrowFunction/*ArrowFunction"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?arrowFunction/*ArrowFunction"])) { $i.visitor["$expression/?arrowFunction/*ArrowFunction"].begin($) }
                         pl.cc($.content, ($) => {
+                            pl.cc($["typeParameters"], ($) => {
+                                $.forEach(($) => {
+                                    X_typeParameter($)
+                                })
+                            })
                             pl.cc($["parameters"], ($) => {
                                 $.forEach(($) => {
                                     X_parameter($)
                                 })
                             })
                             pl.cc($["returnType"], ($) => {
-                                if ($ === null) {
-                                    //FIXME??
-                                } else {
+                                if (pl.isNotNull($)) {
                                     X_type($)
+                                } else {
+                                    //FIXME??
                                 }
                             })
                             pl.cc($["equalsGreaterThan"], ($) => {
                                 ((
                                     $: api.TNGexpression_arrowFunction$_equalsGreaterThan$<Annotation>,
                                 ) => {
-                                    if ($i.visitor["$expression/?arrowFunction/*ArrowFunction/.equalsGreaterThan/*EqualsGreaterThanToken"] !== undefined) { $i.visitor["$expression/?arrowFunction/*ArrowFunction/.equalsGreaterThan/*EqualsGreaterThanToken"]($) }
+                                    if (pl.isNotUndefined($i.visitor["$expression/?arrowFunction/*ArrowFunction/.equalsGreaterThan/*EqualsGreaterThanToken"])) { $i.visitor["$expression/?arrowFunction/*ArrowFunction/.equalsGreaterThan/*EqualsGreaterThanToken"]($) }
                                 })($)
                             })
                             pl.cc($["implementation"], ($) => {
@@ -401,7 +407,7 @@ export function visit<Annotation>(
                                 }
                             })
                         })
-                        if ($i.visitor["$expression/?arrowFunction/*ArrowFunction"] !== undefined) { $i.visitor["$expression/?arrowFunction/*ArrowFunction"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?arrowFunction/*ArrowFunction"])) { $i.visitor["$expression/?arrowFunction/*ArrowFunction"].end($) }
                     })($)
                 })
                 break
@@ -411,13 +417,13 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGexpression_arrayLiteral$<Annotation>,
                     ) => {
-                        if ($i.visitor["$expression/?arrayLiteral/*ArrayLiteralExpression"] !== undefined) { $i.visitor["$expression/?arrayLiteral/*ArrayLiteralExpression"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?arrayLiteral/*ArrayLiteralExpression"])) { $i.visitor["$expression/?arrayLiteral/*ArrayLiteralExpression"].begin($) }
                         pl.cc($.content, ($) => {
                             $.forEach(($) => {
                                 X_expression($)
                             })
                         })
-                        if ($i.visitor["$expression/?arrayLiteral/*ArrayLiteralExpression"] !== undefined) { $i.visitor["$expression/?arrayLiteral/*ArrayLiteralExpression"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$expression/?arrayLiteral/*ArrayLiteralExpression"])) { $i.visitor["$expression/?arrayLiteral/*ArrayLiteralExpression"].end($) }
                     })($)
                 })
                 break
@@ -439,10 +445,10 @@ export function visit<Annotation>(
             })
         })
         pl.cc($["returnType"], ($) => {
-            if ($ === null) {
-                //FIXME??
-            } else {
+            if (pl.isNotNull($)) {
                 X_type($)
+            } else {
+                //FIXME??
             }
         })
     }
@@ -452,7 +458,7 @@ export function visit<Annotation>(
         ((
             $: api.TNGidentifier$<Annotation>,
         ) => {
-            if ($i.visitor["$identifier/*Identifier"] !== undefined) { $i.visitor["$identifier/*Identifier"]($) }
+            if (pl.isNotUndefined($i.visitor["$identifier/*Identifier"])) { $i.visitor["$identifier/*Identifier"]($) }
         })($)
     }
     function X_identifierOrStringLiteral(
@@ -483,7 +489,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGmodifier_readonly$<Annotation>,
                     ) => {
-                        if ($i.visitor["$modifier/?readonly/*ReadonlyKeyword"] !== undefined) { $i.visitor["$modifier/?readonly/*ReadonlyKeyword"]($) }
+                        if (pl.isNotUndefined($i.visitor["$modifier/?readonly/*ReadonlyKeyword"])) { $i.visitor["$modifier/?readonly/*ReadonlyKeyword"]($) }
                     })($)
                 })
                 break
@@ -493,7 +499,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGmodifier_export$<Annotation>,
                     ) => {
-                        if ($i.visitor["$modifier/?export/*ExportKeyword"] !== undefined) { $i.visitor["$modifier/?export/*ExportKeyword"]($) }
+                        if (pl.isNotUndefined($i.visitor["$modifier/?export/*ExportKeyword"])) { $i.visitor["$modifier/?export/*ExportKeyword"]($) }
                     })($)
                 })
                 break
@@ -507,7 +513,7 @@ export function visit<Annotation>(
         ((
             $: api.TNGnumericLiteral$<Annotation>,
         ) => {
-            if ($i.visitor["$numericLiteral/*NumericLiteral"] !== undefined) { $i.visitor["$numericLiteral/*NumericLiteral"]($) }
+            if (pl.isNotUndefined($i.visitor["$numericLiteral/*NumericLiteral"])) { $i.visitor["$numericLiteral/*NumericLiteral"]($) }
         })($)
     }
     function X_parameter(
@@ -516,31 +522,31 @@ export function visit<Annotation>(
         ((
             $: api.TNGparameter$<Annotation>,
         ) => {
-            if ($i.visitor["$parameter/*Parameter"] !== undefined) { $i.visitor["$parameter/*Parameter"].begin($) }
+            if (pl.isNotUndefined($i.visitor["$parameter/*Parameter"])) { $i.visitor["$parameter/*Parameter"].begin($) }
             pl.cc($.content, ($) => {
                 pl.cc($["name"], ($) => {
                     X_identifier($)
                 })
                 pl.cc($["questionToken"], ($) => {
-                    if ($ === null) {
-                        //FIXME??
-                    } else {
+                    if (pl.isNotNull($)) {
                         ((
                             $: api.TNGparameter$_questionToken$<Annotation>,
                         ) => {
-                            if ($i.visitor["$parameter/*Parameter/.questionToken/*QuestionToken"] !== undefined) { $i.visitor["$parameter/*Parameter/.questionToken/*QuestionToken"]($) }
+                            if (pl.isNotUndefined($i.visitor["$parameter/*Parameter/.questionToken/*QuestionToken"])) { $i.visitor["$parameter/*Parameter/.questionToken/*QuestionToken"]($) }
                         })($)
+                    } else {
+                        //FIXME??
                     }
                 })
                 pl.cc($["type"], ($) => {
-                    if ($ === null) {
-                        //FIXME??
-                    } else {
+                    if (pl.isNotNull($)) {
                         X_type($)
+                    } else {
+                        //FIXME??
                     }
                 })
             })
-            if ($i.visitor["$parameter/*Parameter"] !== undefined) { $i.visitor["$parameter/*Parameter"].end($) }
+            if (pl.isNotUndefined($i.visitor["$parameter/*Parameter"])) { $i.visitor["$parameter/*Parameter"].end($) }
         })($)
     }
     function X_statement(
@@ -552,7 +558,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGstatement_variable$<Annotation>,
                     ) => {
-                        if ($i.visitor["$statement/?variable/*VariableStatement"] !== undefined) { $i.visitor["$statement/?variable/*VariableStatement"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?variable/*VariableStatement"])) { $i.visitor["$statement/?variable/*VariableStatement"].begin($) }
                         pl.cc($.content, ($) => {
                             pl.cc($["modifiers"], ($) => {
                                 $.forEach(($) => {
@@ -563,7 +569,7 @@ export function visit<Annotation>(
                                 X_variableDeclarationList($)
                             })
                         })
-                        if ($i.visitor["$statement/?variable/*VariableStatement"] !== undefined) { $i.visitor["$statement/?variable/*VariableStatement"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?variable/*VariableStatement"])) { $i.visitor["$statement/?variable/*VariableStatement"].end($) }
                     })($)
                 })
                 break
@@ -573,7 +579,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGstatement_typeAlias$<Annotation>,
                     ) => {
-                        if ($i.visitor["$statement/?typeAlias/*TypeAliasDeclaration"] !== undefined) { $i.visitor["$statement/?typeAlias/*TypeAliasDeclaration"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?typeAlias/*TypeAliasDeclaration"])) { $i.visitor["$statement/?typeAlias/*TypeAliasDeclaration"].begin($) }
                         pl.cc($.content, ($) => {
                             pl.cc($["modifiers"], ($) => {
                                 $.forEach(($) => {
@@ -592,7 +598,7 @@ export function visit<Annotation>(
                                 X_type($)
                             })
                         })
-                        if ($i.visitor["$statement/?typeAlias/*TypeAliasDeclaration"] !== undefined) { $i.visitor["$statement/?typeAlias/*TypeAliasDeclaration"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?typeAlias/*TypeAliasDeclaration"])) { $i.visitor["$statement/?typeAlias/*TypeAliasDeclaration"].end($) }
                     })($)
                 })
                 break
@@ -602,7 +608,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGstatement_switch$<Annotation>,
                     ) => {
-                        if ($i.visitor["$statement/?switch/*SwitchStatement"] !== undefined) { $i.visitor["$statement/?switch/*SwitchStatement"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?switch/*SwitchStatement"])) { $i.visitor["$statement/?switch/*SwitchStatement"].begin($) }
                         pl.cc($.content, ($) => {
                             pl.cc($["expression"], ($) => {
                                 X_expression($)
@@ -611,7 +617,7 @@ export function visit<Annotation>(
                                 ((
                                     $: api.TNGstatement_switch$_caseBlock$<Annotation>,
                                 ) => {
-                                    if ($i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock"] !== undefined) { $i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock"].begin($) }
+                                    if (pl.isNotUndefined($i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock"])) { $i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock"].begin($) }
                                     pl.cc($.content, ($) => {
                                         $.forEach(($) => {
                                             switch ($[0]) {
@@ -620,13 +626,13 @@ export function visit<Annotation>(
                                                         ((
                                                             $: api.TNGstatement_switch$_caseBlock$_default$<Annotation>,
                                                         ) => {
-                                                            if ($i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?default/*DefaultClause"] !== undefined) { $i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?default/*DefaultClause"].begin($) }
+                                                            if (pl.isNotUndefined($i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?default/*DefaultClause"])) { $i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?default/*DefaultClause"].begin($) }
                                                             pl.cc($.content, ($) => {
                                                                 $.forEach(($) => {
                                                                     X_statement($)
                                                                 })
                                                             })
-                                                            if ($i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?default/*DefaultClause"] !== undefined) { $i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?default/*DefaultClause"].end($) }
+                                                            if (pl.isNotUndefined($i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?default/*DefaultClause"])) { $i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?default/*DefaultClause"].end($) }
                                                         })($)
                                                     })
                                                     break
@@ -636,7 +642,7 @@ export function visit<Annotation>(
                                                         ((
                                                             $: api.TNGstatement_switch$_caseBlock$_case$<Annotation>,
                                                         ) => {
-                                                            if ($i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?case/*CaseClause"] !== undefined) { $i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?case/*CaseClause"].begin($) }
+                                                            if (pl.isNotUndefined($i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?case/*CaseClause"])) { $i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?case/*CaseClause"].begin($) }
                                                             pl.cc($.content, ($) => {
                                                                 pl.cc($["case"], ($) => {
                                                                     X_expression($)
@@ -647,7 +653,7 @@ export function visit<Annotation>(
                                                                     })
                                                                 })
                                                             })
-                                                            if ($i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?case/*CaseClause"] !== undefined) { $i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?case/*CaseClause"].end($) }
+                                                            if (pl.isNotUndefined($i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?case/*CaseClause"])) { $i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?case/*CaseClause"].end($) }
                                                         })($)
                                                     })
                                                     break
@@ -656,11 +662,11 @@ export function visit<Annotation>(
                                             }
                                         })
                                     })
-                                    if ($i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock"] !== undefined) { $i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock"].end($) }
+                                    if (pl.isNotUndefined($i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock"])) { $i.visitor["$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock"].end($) }
                                 })($)
                             })
                         })
-                        if ($i.visitor["$statement/?switch/*SwitchStatement"] !== undefined) { $i.visitor["$statement/?switch/*SwitchStatement"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?switch/*SwitchStatement"])) { $i.visitor["$statement/?switch/*SwitchStatement"].end($) }
                     })($)
                 })
                 break
@@ -670,15 +676,46 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGstatement_return$<Annotation>,
                     ) => {
-                        if ($i.visitor["$statement/?return/*ReturnStatement"] !== undefined) { $i.visitor["$statement/?return/*ReturnStatement"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?return/*ReturnStatement"])) { $i.visitor["$statement/?return/*ReturnStatement"].begin($) }
                         pl.cc($.content, ($) => {
-                            if ($ === null) {
-                                //FIXME??
-                            } else {
+                            if (pl.isNotNull($)) {
                                 X_expression($)
+                            } else {
+                                //FIXME??
                             }
                         })
-                        if ($i.visitor["$statement/?return/*ReturnStatement"] !== undefined) { $i.visitor["$statement/?return/*ReturnStatement"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?return/*ReturnStatement"])) { $i.visitor["$statement/?return/*ReturnStatement"].end($) }
+                    })($)
+                })
+                break
+            }
+            case "interface": {
+                pl.cc($[1], ($) => {
+                    ((
+                        $: api.TNGstatement_interface$<Annotation>,
+                    ) => {
+                        if (pl.isNotUndefined($i.visitor["$statement/?interface/*InterfaceDeclaration"])) { $i.visitor["$statement/?interface/*InterfaceDeclaration"].begin($) }
+                        pl.cc($.content, ($) => {
+                            pl.cc($["modifiers"], ($) => {
+                                $.forEach(($) => {
+                                    X_modifier($)
+                                })
+                            })
+                            pl.cc($["name"], ($) => {
+                                X_identifier($)
+                            })
+                            pl.cc($["typeParameters"], ($) => {
+                                $.forEach(($) => {
+                                    X_typeParameter($)
+                                })
+                            })
+                            pl.cc($["signature"], ($) => {
+                                $.forEach(($) => {
+                                    X_typeSignature($)
+                                })
+                            })
+                        })
+                        if (pl.isNotUndefined($i.visitor["$statement/?interface/*InterfaceDeclaration"])) { $i.visitor["$statement/?interface/*InterfaceDeclaration"].end($) }
                     })($)
                 })
                 break
@@ -688,13 +725,13 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGstatement_import$<Annotation>,
                     ) => {
-                        if ($i.visitor["$statement/?import/*ImportDeclaration"] !== undefined) { $i.visitor["$statement/?import/*ImportDeclaration"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?import/*ImportDeclaration"])) { $i.visitor["$statement/?import/*ImportDeclaration"].begin($) }
                         pl.cc($.content, ($) => {
                             pl.cc($["clause"], ($) => {
                                 ((
                                     $: api.TNGstatement_import$_clause$<Annotation>,
                                 ) => {
-                                    if ($i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause"] !== undefined) { $i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause"].begin($) }
+                                    if (pl.isNotUndefined($i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause"])) { $i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause"].begin($) }
                                     pl.cc($.content, ($) => {
                                         switch ($[0]) {
                                             case "named": {
@@ -702,30 +739,30 @@ export function visit<Annotation>(
                                                     ((
                                                         $: api.TNGstatement_import$_clause$_named$<Annotation>,
                                                     ) => {
-                                                        if ($i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports"] !== undefined) { $i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports"].begin($) }
+                                                        if (pl.isNotUndefined($i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports"])) { $i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports"].begin($) }
                                                         pl.cc($.content, ($) => {
                                                             $.forEach(($) => {
                                                                 ((
                                                                     $: api.TNGstatement_import$_clause$_named$$<Annotation>,
                                                                 ) => {
-                                                                    if ($i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports/*ImportSpecifier"] !== undefined) { $i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports/*ImportSpecifier"].begin($) }
+                                                                    if (pl.isNotUndefined($i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports/*ImportSpecifier"])) { $i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports/*ImportSpecifier"].begin($) }
                                                                     pl.cc($.content, ($) => {
                                                                         pl.cc($["name"], ($) => {
                                                                             X_identifier($)
                                                                         })
                                                                         pl.cc($["as"], ($) => {
-                                                                            if ($ === null) {
-                                                                                //FIXME??
-                                                                            } else {
+                                                                            if (pl.isNotNull($)) {
                                                                                 X_identifier($)
+                                                                            } else {
+                                                                                //FIXME??
                                                                             }
                                                                         })
                                                                     })
-                                                                    if ($i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports/*ImportSpecifier"] !== undefined) { $i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports/*ImportSpecifier"].end($) }
+                                                                    if (pl.isNotUndefined($i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports/*ImportSpecifier"])) { $i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports/*ImportSpecifier"].end($) }
                                                                 })($)
                                                             })
                                                         })
-                                                        if ($i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports"] !== undefined) { $i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports"].end($) }
+                                                        if (pl.isNotUndefined($i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports"])) { $i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports"].end($) }
                                                     })($)
                                                 })
                                                 break
@@ -735,11 +772,11 @@ export function visit<Annotation>(
                                                     ((
                                                         $: api.TNGstatement_import$_clause$_namespace$<Annotation>,
                                                     ) => {
-                                                        if ($i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?namespace/*NamespaceImport"] !== undefined) { $i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?namespace/*NamespaceImport"].begin($) }
+                                                        if (pl.isNotUndefined($i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?namespace/*NamespaceImport"])) { $i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?namespace/*NamespaceImport"].begin($) }
                                                         pl.cc($.content, ($) => {
                                                             X_identifier($)
                                                         })
-                                                        if ($i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?namespace/*NamespaceImport"] !== undefined) { $i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?namespace/*NamespaceImport"].end($) }
+                                                        if (pl.isNotUndefined($i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?namespace/*NamespaceImport"])) { $i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause/?namespace/*NamespaceImport"].end($) }
                                                     })($)
                                                 })
                                                 break
@@ -747,14 +784,14 @@ export function visit<Annotation>(
                                             default: pl.au($[0])
                                         }
                                     })
-                                    if ($i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause"] !== undefined) { $i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause"].end($) }
+                                    if (pl.isNotUndefined($i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause"])) { $i.visitor["$statement/?import/*ImportDeclaration/.clause/*ImportClause"].end($) }
                                 })($)
                             })
                             pl.cc($["file"], ($) => {
                                 X_stringLiteral($)
                             })
                         })
-                        if ($i.visitor["$statement/?import/*ImportDeclaration"] !== undefined) { $i.visitor["$statement/?import/*ImportDeclaration"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?import/*ImportDeclaration"])) { $i.visitor["$statement/?import/*ImportDeclaration"].end($) }
                     })($)
                 })
                 break
@@ -764,7 +801,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGstatement_if$<Annotation>,
                     ) => {
-                        if ($i.visitor["$statement/?if/*IfStatement"] !== undefined) { $i.visitor["$statement/?if/*IfStatement"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?if/*IfStatement"])) { $i.visitor["$statement/?if/*IfStatement"].begin($) }
                         pl.cc($.content, ($) => {
                             pl.cc($["expression"], ($) => {
                                 X_expression($)
@@ -773,14 +810,14 @@ export function visit<Annotation>(
                                 X_statement($)
                             })
                             pl.cc($["elseStatement"], ($) => {
-                                if ($ === null) {
-                                    //FIXME??
-                                } else {
+                                if (pl.isNotNull($)) {
                                     X_statement($)
+                                } else {
+                                    //FIXME??
                                 }
                             })
                         })
-                        if ($i.visitor["$statement/?if/*IfStatement"] !== undefined) { $i.visitor["$statement/?if/*IfStatement"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?if/*IfStatement"])) { $i.visitor["$statement/?if/*IfStatement"].end($) }
                     })($)
                 })
                 break
@@ -790,7 +827,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGstatement_function$<Annotation>,
                     ) => {
-                        if ($i.visitor["$statement/?function/*FunctionDeclaration"] !== undefined) { $i.visitor["$statement/?function/*FunctionDeclaration"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?function/*FunctionDeclaration"])) { $i.visitor["$statement/?function/*FunctionDeclaration"].begin($) }
                         pl.cc($.content, ($) => {
                             pl.cc($["modifiers"], ($) => {
                                 $.forEach(($) => {
@@ -804,14 +841,14 @@ export function visit<Annotation>(
                                 X_functionDefinition($)
                             })
                             pl.cc($["block"], ($) => {
-                                if ($ === null) {
-                                    //FIXME??
-                                } else {
+                                if (pl.isNotNull($)) {
                                     X_block($)
+                                } else {
+                                    //FIXME??
                                 }
                             })
                         })
-                        if ($i.visitor["$statement/?function/*FunctionDeclaration"] !== undefined) { $i.visitor["$statement/?function/*FunctionDeclaration"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?function/*FunctionDeclaration"])) { $i.visitor["$statement/?function/*FunctionDeclaration"].end($) }
                     })($)
                 })
                 break
@@ -821,11 +858,11 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGstatement_expression$<Annotation>,
                     ) => {
-                        if ($i.visitor["$statement/?expression/*ExpressionStatement"] !== undefined) { $i.visitor["$statement/?expression/*ExpressionStatement"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?expression/*ExpressionStatement"])) { $i.visitor["$statement/?expression/*ExpressionStatement"].begin($) }
                         pl.cc($.content, ($) => {
                             X_expression($)
                         })
-                        if ($i.visitor["$statement/?expression/*ExpressionStatement"] !== undefined) { $i.visitor["$statement/?expression/*ExpressionStatement"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?expression/*ExpressionStatement"])) { $i.visitor["$statement/?expression/*ExpressionStatement"].end($) }
                     })($)
                 })
                 break
@@ -835,11 +872,11 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGstatement_export$<Annotation>,
                     ) => {
-                        if ($i.visitor["$statement/?export/*ExportDeclaration"] !== undefined) { $i.visitor["$statement/?export/*ExportDeclaration"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?export/*ExportDeclaration"])) { $i.visitor["$statement/?export/*ExportDeclaration"].begin($) }
                         pl.cc($.content, ($) => {
                             X_stringLiteral($)
                         })
-                        if ($i.visitor["$statement/?export/*ExportDeclaration"] !== undefined) { $i.visitor["$statement/?export/*ExportDeclaration"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?export/*ExportDeclaration"])) { $i.visitor["$statement/?export/*ExportDeclaration"].end($) }
                     })($)
                 })
                 break
@@ -849,15 +886,15 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGstatement_break$<Annotation>,
                     ) => {
-                        if ($i.visitor["$statement/?break/*BreakStatement"] !== undefined) { $i.visitor["$statement/?break/*BreakStatement"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?break/*BreakStatement"])) { $i.visitor["$statement/?break/*BreakStatement"].begin($) }
                         pl.cc($.content, ($) => {
-                            if ($ === null) {
-                                //FIXME??
-                            } else {
+                            if (pl.isNotNull($)) {
                                 X_identifier($)
+                            } else {
+                                //FIXME??
                             }
                         })
-                        if ($i.visitor["$statement/?break/*BreakStatement"] !== undefined) { $i.visitor["$statement/?break/*BreakStatement"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$statement/?break/*BreakStatement"])) { $i.visitor["$statement/?break/*BreakStatement"].end($) }
                     })($)
                 })
                 break
@@ -877,7 +914,7 @@ export function visit<Annotation>(
         ((
             $: api.TNGstringLiteral$<Annotation>,
         ) => {
-            if ($i.visitor["$stringLiteral/*StringLiteral"] !== undefined) { $i.visitor["$stringLiteral/*StringLiteral"]($) }
+            if (pl.isNotUndefined($i.visitor["$stringLiteral/*StringLiteral"])) { $i.visitor["$stringLiteral/*StringLiteral"]($) }
         })($)
     }
     function X_type(
@@ -889,7 +926,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGtype_void$<Annotation>,
                     ) => {
-                        if ($i.visitor["$type/?void/*VoidKeyword"] !== undefined) { $i.visitor["$type/?void/*VoidKeyword"]($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?void/*VoidKeyword"])) { $i.visitor["$type/?void/*VoidKeyword"]($) }
                     })($)
                 })
                 break
@@ -899,13 +936,13 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGtype_union$<Annotation>,
                     ) => {
-                        if ($i.visitor["$type/?union/*UnionType"] !== undefined) { $i.visitor["$type/?union/*UnionType"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?union/*UnionType"])) { $i.visitor["$type/?union/*UnionType"].begin($) }
                         pl.cc($.content, ($) => {
                             $.forEach(($) => {
                                 X_type($)
                             })
                         })
-                        if ($i.visitor["$type/?union/*UnionType"] !== undefined) { $i.visitor["$type/?union/*UnionType"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?union/*UnionType"])) { $i.visitor["$type/?union/*UnionType"].end($) }
                     })($)
                 })
                 break
@@ -915,7 +952,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGtype_undefined$<Annotation>,
                     ) => {
-                        if ($i.visitor["$type/?undefined/*UndefinedKeyword"] !== undefined) { $i.visitor["$type/?undefined/*UndefinedKeyword"]($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?undefined/*UndefinedKeyword"])) { $i.visitor["$type/?undefined/*UndefinedKeyword"]($) }
                     })($)
                 })
                 break
@@ -925,7 +962,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGtype_typeReference$<Annotation>,
                     ) => {
-                        if ($i.visitor["$type/?typeReference/*TypeReference"] !== undefined) { $i.visitor["$type/?typeReference/*TypeReference"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?typeReference/*TypeReference"])) { $i.visitor["$type/?typeReference/*TypeReference"].begin($) }
                         pl.cc($.content, ($) => {
                             pl.cc($["x"], ($) => {
                                 switch ($[0]) {
@@ -934,7 +971,7 @@ export function visit<Annotation>(
                                             ((
                                                 $: api.TNGtype_typeReference$_x_qualifiedName$<Annotation>,
                                             ) => {
-                                                if ($i.visitor["$type/?typeReference/*TypeReference/.x/?qualifiedName/*QualifiedName"] !== undefined) { $i.visitor["$type/?typeReference/*TypeReference/.x/?qualifiedName/*QualifiedName"].begin($) }
+                                                if (pl.isNotUndefined($i.visitor["$type/?typeReference/*TypeReference/.x/?qualifiedName/*QualifiedName"])) { $i.visitor["$type/?typeReference/*TypeReference/.x/?qualifiedName/*QualifiedName"].begin($) }
                                                 pl.cc($.content, ($) => {
                                                     pl.cc($["context"], ($) => {
                                                         X_identifier($)
@@ -943,7 +980,7 @@ export function visit<Annotation>(
                                                         X_identifier($)
                                                     })
                                                 })
-                                                if ($i.visitor["$type/?typeReference/*TypeReference/.x/?qualifiedName/*QualifiedName"] !== undefined) { $i.visitor["$type/?typeReference/*TypeReference/.x/?qualifiedName/*QualifiedName"].end($) }
+                                                if (pl.isNotUndefined($i.visitor["$type/?typeReference/*TypeReference/.x/?qualifiedName/*QualifiedName"])) { $i.visitor["$type/?typeReference/*TypeReference/.x/?qualifiedName/*QualifiedName"].end($) }
                                             })($)
                                         })
                                         break
@@ -963,7 +1000,7 @@ export function visit<Annotation>(
                                 })
                             })
                         })
-                        if ($i.visitor["$type/?typeReference/*TypeReference"] !== undefined) { $i.visitor["$type/?typeReference/*TypeReference"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?typeReference/*TypeReference"])) { $i.visitor["$type/?typeReference/*TypeReference"].end($) }
                     })($)
                 })
                 break
@@ -973,7 +1010,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGtype_string$<Annotation>,
                     ) => {
-                        if ($i.visitor["$type/?string/*StringKeyword"] !== undefined) { $i.visitor["$type/?string/*StringKeyword"]($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?string/*StringKeyword"])) { $i.visitor["$type/?string/*StringKeyword"]($) }
                     })($)
                 })
                 break
@@ -983,13 +1020,13 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGtype_typeLiteral$<Annotation>,
                     ) => {
-                        if ($i.visitor["$type/?typeLiteral/*TypeLiteral"] !== undefined) { $i.visitor["$type/?typeLiteral/*TypeLiteral"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?typeLiteral/*TypeLiteral"])) { $i.visitor["$type/?typeLiteral/*TypeLiteral"].begin($) }
                         pl.cc($.content, ($) => {
                             $.forEach(($) => {
                                 X_typeSignature($)
                             })
                         })
-                        if ($i.visitor["$type/?typeLiteral/*TypeLiteral"] !== undefined) { $i.visitor["$type/?typeLiteral/*TypeLiteral"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?typeLiteral/*TypeLiteral"])) { $i.visitor["$type/?typeLiteral/*TypeLiteral"].end($) }
                     })($)
                 })
                 break
@@ -999,13 +1036,13 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGtype_tuple$<Annotation>,
                     ) => {
-                        if ($i.visitor["$type/?tuple/*TupleType"] !== undefined) { $i.visitor["$type/?tuple/*TupleType"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?tuple/*TupleType"])) { $i.visitor["$type/?tuple/*TupleType"].begin($) }
                         pl.cc($.content, ($) => {
                             $.forEach(($) => {
                                 X_type($)
                             })
                         })
-                        if ($i.visitor["$type/?tuple/*TupleType"] !== undefined) { $i.visitor["$type/?tuple/*TupleType"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?tuple/*TupleType"])) { $i.visitor["$type/?tuple/*TupleType"].end($) }
                     })($)
                 })
                 break
@@ -1015,11 +1052,11 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGtype_optional$<Annotation>,
                     ) => {
-                        if ($i.visitor["$type/?optional/*OptionalType"] !== undefined) { $i.visitor["$type/?optional/*OptionalType"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?optional/*OptionalType"])) { $i.visitor["$type/?optional/*OptionalType"].begin($) }
                         pl.cc($.content, ($) => {
                             X_type($)
                         })
-                        if ($i.visitor["$type/?optional/*OptionalType"] !== undefined) { $i.visitor["$type/?optional/*OptionalType"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?optional/*OptionalType"])) { $i.visitor["$type/?optional/*OptionalType"].end($) }
                     })($)
                 })
                 break
@@ -1029,7 +1066,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGtype_number$<Annotation>,
                     ) => {
-                        if ($i.visitor["$type/?number/*NumberKeyword"] !== undefined) { $i.visitor["$type/?number/*NumberKeyword"]($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?number/*NumberKeyword"])) { $i.visitor["$type/?number/*NumberKeyword"]($) }
                     })($)
                 })
                 break
@@ -1039,11 +1076,11 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGtype_parenthesized$<Annotation>,
                     ) => {
-                        if ($i.visitor["$type/?parenthesized/*ParenthesizedType"] !== undefined) { $i.visitor["$type/?parenthesized/*ParenthesizedType"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?parenthesized/*ParenthesizedType"])) { $i.visitor["$type/?parenthesized/*ParenthesizedType"].begin($) }
                         pl.cc($.content, ($) => {
                             X_type($)
                         })
-                        if ($i.visitor["$type/?parenthesized/*ParenthesizedType"] !== undefined) { $i.visitor["$type/?parenthesized/*ParenthesizedType"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?parenthesized/*ParenthesizedType"])) { $i.visitor["$type/?parenthesized/*ParenthesizedType"].end($) }
                     })($)
                 })
                 break
@@ -1053,7 +1090,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGtype_literal$<Annotation>,
                     ) => {
-                        if ($i.visitor["$type/?literal/*LiteralType"] !== undefined) { $i.visitor["$type/?literal/*LiteralType"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?literal/*LiteralType"])) { $i.visitor["$type/?literal/*LiteralType"].begin($) }
                         pl.cc($.content, ($) => {
                             switch ($[0]) {
                                 case "string": {
@@ -1067,7 +1104,7 @@ export function visit<Annotation>(
                                         ((
                                             $: api.TNGtype_literal$_null$<Annotation>,
                                         ) => {
-                                            if ($i.visitor["$type/?literal/*LiteralType/?null/*NullKeyword"] !== undefined) { $i.visitor["$type/?literal/*LiteralType/?null/*NullKeyword"]($) }
+                                            if (pl.isNotUndefined($i.visitor["$type/?literal/*LiteralType/?null/*NullKeyword"])) { $i.visitor["$type/?literal/*LiteralType/?null/*NullKeyword"]($) }
                                         })($)
                                     })
                                     break
@@ -1075,7 +1112,7 @@ export function visit<Annotation>(
                                 default: pl.au($[0])
                             }
                         })
-                        if ($i.visitor["$type/?literal/*LiteralType"] !== undefined) { $i.visitor["$type/?literal/*LiteralType"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?literal/*LiteralType"])) { $i.visitor["$type/?literal/*LiteralType"].end($) }
                     })($)
                 })
                 break
@@ -1085,22 +1122,27 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGtype_function$<Annotation>,
                     ) => {
-                        if ($i.visitor["$type/?function/*FunctionType"] !== undefined) { $i.visitor["$type/?function/*FunctionType"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?function/*FunctionType"])) { $i.visitor["$type/?function/*FunctionType"].begin($) }
                         pl.cc($.content, ($) => {
+                            pl.cc($["typeParameters"], ($) => {
+                                $.forEach(($) => {
+                                    X_typeParameter($)
+                                })
+                            })
                             pl.cc($["parameters"], ($) => {
                                 $.forEach(($) => {
                                     X_parameter($)
                                 })
                             })
                             pl.cc($["returnType"], ($) => {
-                                if ($ === null) {
-                                    //FIXME??
-                                } else {
+                                if (pl.isNotNull($)) {
                                     X_type($)
+                                } else {
+                                    //FIXME??
                                 }
                             })
                         })
-                        if ($i.visitor["$type/?function/*FunctionType"] !== undefined) { $i.visitor["$type/?function/*FunctionType"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?function/*FunctionType"])) { $i.visitor["$type/?function/*FunctionType"].end($) }
                     })($)
                 })
                 break
@@ -1110,7 +1152,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGtype_boolean$<Annotation>,
                     ) => {
-                        if ($i.visitor["$type/?boolean/*BooleanKeyword"] !== undefined) { $i.visitor["$type/?boolean/*BooleanKeyword"]($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?boolean/*BooleanKeyword"])) { $i.visitor["$type/?boolean/*BooleanKeyword"]($) }
                     })($)
                 })
                 break
@@ -1120,11 +1162,11 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGtype_array$<Annotation>,
                     ) => {
-                        if ($i.visitor["$type/?array/*ArrayType"] !== undefined) { $i.visitor["$type/?array/*ArrayType"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?array/*ArrayType"])) { $i.visitor["$type/?array/*ArrayType"].begin($) }
                         pl.cc($.content, ($) => {
                             X_type($)
                         })
-                        if ($i.visitor["$type/?array/*ArrayType"] !== undefined) { $i.visitor["$type/?array/*ArrayType"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$type/?array/*ArrayType"])) { $i.visitor["$type/?array/*ArrayType"].end($) }
                     })($)
                 })
                 break
@@ -1138,11 +1180,11 @@ export function visit<Annotation>(
         ((
             $: api.TNGtypeParameter$<Annotation>,
         ) => {
-            if ($i.visitor["$typeParameter/*TypeParameter"] !== undefined) { $i.visitor["$typeParameter/*TypeParameter"].begin($) }
+            if (pl.isNotUndefined($i.visitor["$typeParameter/*TypeParameter"])) { $i.visitor["$typeParameter/*TypeParameter"].begin($) }
             pl.cc($.content, ($) => {
                 X_identifier($)
             })
-            if ($i.visitor["$typeParameter/*TypeParameter"] !== undefined) { $i.visitor["$typeParameter/*TypeParameter"].end($) }
+            if (pl.isNotUndefined($i.visitor["$typeParameter/*TypeParameter"])) { $i.visitor["$typeParameter/*TypeParameter"].end($) }
         })($)
     }
     function X_typeSignature(
@@ -1154,7 +1196,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGtypeSignature_property$<Annotation>,
                     ) => {
-                        if ($i.visitor["$typeSignature/?property/*PropertySignature"] !== undefined) { $i.visitor["$typeSignature/?property/*PropertySignature"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$typeSignature/?property/*PropertySignature"])) { $i.visitor["$typeSignature/?property/*PropertySignature"].begin($) }
                         pl.cc($.content, ($) => {
                             pl.cc($["modifiers"], ($) => {
                                 $.forEach(($) => {
@@ -1165,25 +1207,25 @@ export function visit<Annotation>(
                                 X_identifierOrStringLiteral($)
                             })
                             pl.cc($["quesionToken"], ($) => {
-                                if ($ === null) {
-                                    //FIXME??
-                                } else {
+                                if (pl.isNotNull($)) {
                                     ((
                                         $: api.TNGtypeSignature_property$_quesionToken$<Annotation>,
                                     ) => {
-                                        if ($i.visitor["$typeSignature/?property/*PropertySignature/.quesionToken/*QuestionToken"] !== undefined) { $i.visitor["$typeSignature/?property/*PropertySignature/.quesionToken/*QuestionToken"]($) }
+                                        if (pl.isNotUndefined($i.visitor["$typeSignature/?property/*PropertySignature/.quesionToken/*QuestionToken"])) { $i.visitor["$typeSignature/?property/*PropertySignature/.quesionToken/*QuestionToken"]($) }
                                     })($)
+                                } else {
+                                    //FIXME??
                                 }
                             })
                             pl.cc($["type"], ($) => {
-                                if ($ === null) {
-                                    //FIXME??
-                                } else {
+                                if (pl.isNotNull($)) {
                                     X_type($)
+                                } else {
+                                    //FIXME??
                                 }
                             })
                         })
-                        if ($i.visitor["$typeSignature/?property/*PropertySignature"] !== undefined) { $i.visitor["$typeSignature/?property/*PropertySignature"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$typeSignature/?property/*PropertySignature"])) { $i.visitor["$typeSignature/?property/*PropertySignature"].end($) }
                     })($)
                 })
                 break
@@ -1193,7 +1235,7 @@ export function visit<Annotation>(
                     ((
                         $: api.TNGtypeSignature_method$<Annotation>,
                     ) => {
-                        if ($i.visitor["$typeSignature/?method/*MethodSignature"] !== undefined) { $i.visitor["$typeSignature/?method/*MethodSignature"].begin($) }
+                        if (pl.isNotUndefined($i.visitor["$typeSignature/?method/*MethodSignature"])) { $i.visitor["$typeSignature/?method/*MethodSignature"].begin($) }
                         pl.cc($.content, ($) => {
                             pl.cc($["name"], ($) => {
                                 X_identifier($)
@@ -1202,7 +1244,7 @@ export function visit<Annotation>(
                                 X_functionDefinition($)
                             })
                         })
-                        if ($i.visitor["$typeSignature/?method/*MethodSignature"] !== undefined) { $i.visitor["$typeSignature/?method/*MethodSignature"].end($) }
+                        if (pl.isNotUndefined($i.visitor["$typeSignature/?method/*MethodSignature"])) { $i.visitor["$typeSignature/?method/*MethodSignature"].end($) }
                     })($)
                 })
                 break
@@ -1216,7 +1258,7 @@ export function visit<Annotation>(
         ((
             $: api.TNGvariableDeclaration$<Annotation>,
         ) => {
-            if ($i.visitor["$variableDeclaration/*VariableDeclaration"] !== undefined) { $i.visitor["$variableDeclaration/*VariableDeclaration"].begin($) }
+            if (pl.isNotUndefined($i.visitor["$variableDeclaration/*VariableDeclaration"])) { $i.visitor["$variableDeclaration/*VariableDeclaration"].begin($) }
             pl.cc($.content, ($) => {
                 pl.cc($["nameOrArrayBinding"], ($) => {
                     switch ($[0]) {
@@ -1225,7 +1267,7 @@ export function visit<Annotation>(
                                 ((
                                     $: api.TNGvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern$<Annotation>,
                                 ) => {
-                                    if ($i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern"] !== undefined) { $i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern"].begin($) }
+                                    if (pl.isNotUndefined($i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern"])) { $i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern"].begin($) }
                                     pl.cc($.content, ($) => {
                                         $.forEach(($) => {
                                             switch ($[0]) {
@@ -1234,11 +1276,11 @@ export function visit<Annotation>(
                                                         ((
                                                             $: api.TNGvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern$_bindingElement$<Annotation>,
                                                         ) => {
-                                                            if ($i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?bindingElement/*BindingElement"] !== undefined) { $i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?bindingElement/*BindingElement"].begin($) }
+                                                            if (pl.isNotUndefined($i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?bindingElement/*BindingElement"])) { $i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?bindingElement/*BindingElement"].begin($) }
                                                             pl.cc($.content, ($) => {
                                                                 X_identifier($)
                                                             })
-                                                            if ($i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?bindingElement/*BindingElement"] !== undefined) { $i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?bindingElement/*BindingElement"].end($) }
+                                                            if (pl.isNotUndefined($i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?bindingElement/*BindingElement"])) { $i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?bindingElement/*BindingElement"].end($) }
                                                         })($)
                                                     })
                                                     break
@@ -1248,7 +1290,7 @@ export function visit<Annotation>(
                                                         ((
                                                             $: api.TNGvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern$_omitted$<Annotation>,
                                                         ) => {
-                                                            if ($i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?omitted/*OmittedExpression"] !== undefined) { $i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?omitted/*OmittedExpression"]($) }
+                                                            if (pl.isNotUndefined($i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?omitted/*OmittedExpression"])) { $i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?omitted/*OmittedExpression"]($) }
                                                         })($)
                                                     })
                                                     break
@@ -1257,7 +1299,7 @@ export function visit<Annotation>(
                                             }
                                         })
                                     })
-                                    if ($i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern"] !== undefined) { $i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern"].end($) }
+                                    if (pl.isNotUndefined($i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern"])) { $i.visitor["$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern"].end($) }
                                 })($)
                             })
                             break
@@ -1272,21 +1314,21 @@ export function visit<Annotation>(
                     }
                 })
                 pl.cc($["type"], ($) => {
-                    if ($ === null) {
-                        //FIXME??
-                    } else {
+                    if (pl.isNotNull($)) {
                         X_type($)
+                    } else {
+                        //FIXME??
                     }
                 })
                 pl.cc($["expression"], ($) => {
-                    if ($ === null) {
-                        //FIXME??
-                    } else {
+                    if (pl.isNotNull($)) {
                         X_expression($)
+                    } else {
+                        //FIXME??
                     }
                 })
             })
-            if ($i.visitor["$variableDeclaration/*VariableDeclaration"] !== undefined) { $i.visitor["$variableDeclaration/*VariableDeclaration"].end($) }
+            if (pl.isNotUndefined($i.visitor["$variableDeclaration/*VariableDeclaration"])) { $i.visitor["$variableDeclaration/*VariableDeclaration"].end($) }
         })($)
     }
     function X_variableDeclarationList(
@@ -1295,19 +1337,19 @@ export function visit<Annotation>(
         ((
             $: api.TNGvariableDeclarationList$<Annotation>,
         ) => {
-            if ($i.visitor["$variableDeclarationList/*VariableDeclarationList"] !== undefined) { $i.visitor["$variableDeclarationList/*VariableDeclarationList"].begin($) }
+            if (pl.isNotUndefined($i.visitor["$variableDeclarationList/*VariableDeclarationList"])) { $i.visitor["$variableDeclarationList/*VariableDeclarationList"].begin($) }
             pl.cc($.content, ($) => {
                 $.forEach(($) => {
                     X_variableDeclaration($)
                 })
             })
-            if ($i.visitor["$variableDeclarationList/*VariableDeclarationList"] !== undefined) { $i.visitor["$variableDeclarationList/*VariableDeclarationList"].end($) }
+            if (pl.isNotUndefined($i.visitor["$variableDeclarationList/*VariableDeclarationList"])) { $i.visitor["$variableDeclarationList/*VariableDeclarationList"].end($) }
         })($)
     }
     ((
         $: api.TNroot<Annotation>,
     ) => {
-        if ($i.visitor[""] !== undefined) { $i.visitor[""].begin($) }
+        if (pl.isNotUndefined($i.visitor[""])) { $i.visitor[""].begin($) }
         pl.cc($.content, ($) => {
             pl.cc($["statements"], ($) => {
                 $.forEach(($) => {
@@ -1318,10 +1360,10 @@ export function visit<Annotation>(
                 ((
                     $: api.TNroot_endOfFile$<Annotation>,
                 ) => {
-                    if ($i.visitor["/.endOfFile/*EndOfFileToken"] !== undefined) { $i.visitor["/.endOfFile/*EndOfFileToken"]($) }
+                    if (pl.isNotUndefined($i.visitor["/.endOfFile/*EndOfFileToken"])) { $i.visitor["/.endOfFile/*EndOfFileToken"]($) }
                 })($)
             })
         })
-        if ($i.visitor[""] !== undefined) { $i.visitor[""].end($) }
+        if (pl.isNotUndefined($i.visitor[""])) { $i.visitor[""].end($) }
     })($)
 }

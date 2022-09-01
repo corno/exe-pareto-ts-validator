@@ -107,6 +107,10 @@ export type IVisitor<Annotation> = {
         readonly "begin": ($: types.TNGstatement_return$<Annotation>) => void,
         readonly "end": ($: types.TNGstatement_return$<Annotation>) => void,
     }
+    readonly "$statement/?interface/*InterfaceDeclaration"?: {
+        readonly "begin": ($: types.TNGstatement_interface$<Annotation>) => void,
+        readonly "end": ($: types.TNGstatement_interface$<Annotation>) => void,
+    }
     readonly "$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports/*ImportSpecifier"?: {
         readonly "begin": ($: types.TNGstatement_import$_clause$_named$$<Annotation>) => void,
         readonly "end": ($: types.TNGstatement_import$_clause$_named$$<Annotation>) => void,

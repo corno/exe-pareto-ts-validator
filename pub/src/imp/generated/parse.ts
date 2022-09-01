@@ -13,6 +13,7 @@ export function parse<Annotation>(
     $d: {
         doUntil: <T>(stack: pm.Stack<T>, callback: ($: T) => boolean) => void,
         lookAhead: <T>(stack: pm.Stack<T>, exists: ($: T) => void, notExists: () => void) => void,
+        stringsNotEqual: (a: string, b: string) => boolean,
     },
 ): void {
     const $x = $i
@@ -23,7 +24,7 @@ export function parse<Annotation>(
     ): void {
         children.pop(
             (currentChild) => {
-                if (currentChild.kindName !== "VariableDeclarationList") {
+                if ($d.stringsNotEqual(currentChild.kindName, "VariableDeclarationList")) {
                     $x.reportUnexpectedToken({
                         path: "GvariableDeclarationList",
                         token: currentChild,
@@ -93,7 +94,7 @@ export function parse<Annotation>(
     ): void {
         children.pop(
             (currentChild) => {
-                if (currentChild.kindName !== "VariableDeclaration") {
+                if ($d.stringsNotEqual(currentChild.kindName, "VariableDeclaration")) {
                     $x.reportUnexpectedToken({
                         path: "GvariableDeclaration",
                         token: currentChild,
@@ -254,7 +255,7 @@ export function parse<Annotation>(
                             const choose_arrayBindingPattern = () => {
                                 children.pop(
                                     (currentChild) => {
-                                        if (currentChild.kindName !== "ArrayBindingPattern") {
+                                        if ($d.stringsNotEqual(currentChild.kindName, "ArrayBindingPattern")) {
                                             $x.reportUnexpectedToken({
                                                 path: "GvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern",
                                                 token: currentChild,
@@ -278,7 +279,7 @@ export function parse<Annotation>(
                                                         const choose_bindingElement = () => {
                                                             children.pop(
                                                                 (currentChild) => {
-                                                                    if (currentChild.kindName !== "BindingElement") {
+                                                                    if ($d.stringsNotEqual(currentChild.kindName, "BindingElement")) {
                                                                         $x.reportUnexpectedToken({
                                                                             path: "GvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern$_bindingElement",
                                                                             token: currentChild,
@@ -327,7 +328,7 @@ export function parse<Annotation>(
                                                         const choose_omitted = () => {
                                                             children.pop(
                                                                 (currentChild) => {
-                                                                    if (currentChild.kindName !== "OmittedExpression") {
+                                                                    if ($d.stringsNotEqual(currentChild.kindName, "OmittedExpression")) {
                                                                         $x.reportUnexpectedToken({
                                                                             path: "GvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern$_omitted",
                                                                             token: currentChild,
@@ -511,7 +512,7 @@ export function parse<Annotation>(
                 const choose_property = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "PropertySignature") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "PropertySignature")) {
                                 $x.reportUnexpectedToken({
                                     path: "GtypeSignature_property",
                                     token: currentChild,
@@ -559,7 +560,7 @@ export function parse<Annotation>(
                                         const setOptional = () => {
                                             children.pop(
                                                 (currentChild) => {
-                                                    if (currentChild.kindName !== "QuestionToken") {
+                                                    if ($d.stringsNotEqual(currentChild.kindName, "QuestionToken")) {
                                                         $x.reportUnexpectedToken({
                                                             path: "GtypeSignature_property$_quesionToken",
                                                             token: currentChild,
@@ -708,7 +709,7 @@ export function parse<Annotation>(
                 const choose_method = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "MethodSignature") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "MethodSignature")) {
                                 $x.reportUnexpectedToken({
                                     path: "GtypeSignature_method",
                                     token: currentChild,
@@ -798,7 +799,7 @@ export function parse<Annotation>(
     ): void {
         children.pop(
             (currentChild) => {
-                if (currentChild.kindName !== "TypeParameter") {
+                if ($d.stringsNotEqual(currentChild.kindName, "TypeParameter")) {
                     $x.reportUnexpectedToken({
                         path: "GtypeParameter",
                         token: currentChild,
@@ -857,7 +858,7 @@ export function parse<Annotation>(
                 const choose_void = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "VoidKeyword") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "VoidKeyword")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gtype_void",
                                     token: currentChild,
@@ -901,7 +902,7 @@ export function parse<Annotation>(
                 const choose_union = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "UnionType") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "UnionType")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gtype_union",
                                     token: currentChild,
@@ -1006,7 +1007,7 @@ export function parse<Annotation>(
                 const choose_undefined = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "UndefinedKeyword") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "UndefinedKeyword")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gtype_undefined",
                                     token: currentChild,
@@ -1050,7 +1051,7 @@ export function parse<Annotation>(
                 const choose_typeReference = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "TypeReference") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "TypeReference")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gtype_typeReference",
                                     token: currentChild,
@@ -1141,7 +1142,7 @@ export function parse<Annotation>(
                                         const choose_qualifiedName = () => {
                                             children.pop(
                                                 (currentChild) => {
-                                                    if (currentChild.kindName !== "QualifiedName") {
+                                                    if ($d.stringsNotEqual(currentChild.kindName, "QualifiedName")) {
                                                         $x.reportUnexpectedToken({
                                                             path: "Gtype_typeReference$_x_qualifiedName",
                                                             token: currentChild,
@@ -1257,7 +1258,7 @@ export function parse<Annotation>(
                 const choose_string = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "StringKeyword") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "StringKeyword")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gtype_string",
                                     token: currentChild,
@@ -1301,7 +1302,7 @@ export function parse<Annotation>(
                 const choose_typeLiteral = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "TypeLiteral") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "TypeLiteral")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gtype_typeLiteral",
                                     token: currentChild,
@@ -1370,7 +1371,7 @@ export function parse<Annotation>(
                 const choose_tuple = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "TupleType") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "TupleType")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gtype_tuple",
                                     token: currentChild,
@@ -1475,7 +1476,7 @@ export function parse<Annotation>(
                 const choose_optional = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "OptionalType") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "OptionalType")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gtype_optional",
                                     token: currentChild,
@@ -1524,7 +1525,7 @@ export function parse<Annotation>(
                 const choose_number = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "NumberKeyword") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "NumberKeyword")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gtype_number",
                                     token: currentChild,
@@ -1568,7 +1569,7 @@ export function parse<Annotation>(
                 const choose_parenthesized = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "ParenthesizedType") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "ParenthesizedType")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gtype_parenthesized",
                                     token: currentChild,
@@ -1617,7 +1618,7 @@ export function parse<Annotation>(
                 const choose_literal = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "LiteralType") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "LiteralType")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gtype_literal",
                                     token: currentChild,
@@ -1647,7 +1648,7 @@ export function parse<Annotation>(
                                         const choose_null = () => {
                                             children.pop(
                                                 (currentChild) => {
-                                                    if (currentChild.kindName !== "NullKeyword") {
+                                                    if ($d.stringsNotEqual(currentChild.kindName, "NullKeyword")) {
                                                         $x.reportUnexpectedToken({
                                                             path: "Gtype_literal$_null",
                                                             token: currentChild,
@@ -1743,7 +1744,7 @@ export function parse<Annotation>(
                 const choose_function = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "FunctionType") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "FunctionType")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gtype_function",
                                     token: currentChild,
@@ -1763,9 +1764,9 @@ export function parse<Annotation>(
                                         content: $,
                                     })
                                 }
-                                const elements = pm.createArrayBuilder<api.TVTGtype_function$_parameters<Annotation>>()
+                                const elements = pm.createArrayBuilder<api.TVTGtype_function$_typeParameters<Annotation>>()
                                 const processElement = () => {
-                                    Gparameter(node, children, ($) => {
+                                    GtypeParameter(node, children, ($) => {
                                         elements.push($)
                                     })
                                 }
@@ -1773,7 +1774,7 @@ export function parse<Annotation>(
                                     children,
                                     (nextChild) => {
                                         switch (nextChild.kindName) {
-                                            case "Parameter": //z
+                                            case "TypeParameter": //z
                                                 processElement()
                                                 return true
                                             default: return false
@@ -1781,67 +1782,88 @@ export function parse<Annotation>(
                                     },
                                 )
                                 pl.cc(elements.getArray(), ($) => {
-                                    const _parameters = $
-                                    let optional: null | api.TVTGtype_function$_returnType<Annotation> = null
-                                    const setOptional = () => {
-                                        Gtype(node, children, ($) => {
-                                            optional = $
+                                    const _typeParameters = $
+                                    const elements = pm.createArrayBuilder<api.TVTGtype_function$_parameters<Annotation>>()
+                                    const processElement = () => {
+                                        Gparameter(node, children, ($) => {
+                                            elements.push($)
                                         })
                                     }
-                                    $d.lookAhead(children, 
+                                    $d.doUntil(
+                                        children,
                                         (nextChild) => {
                                             switch (nextChild.kindName) {
-                                                case "ArrayType": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "BooleanKeyword": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "FunctionType": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "LiteralType": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "ParenthesizedType": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "NumberKeyword": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "OptionalType": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "TupleType": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "TypeLiteral": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "StringKeyword": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "TypeReference": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "UndefinedKeyword": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "UnionType": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "VoidKeyword": //XXX
-                                                    setOptional()
-                                                    break
+                                                case "Parameter": //z
+                                                    processElement()
+                                                    return true
+                                                default: return false
                                             }
                                         },
-                                        () => {},
                                     )
-                                    pl.cc(optional, ($) => {
-                                        const _returnType = $
-                                        sequenceEnd({
-                                            "parameters": _parameters,
-                                            "returnType": _returnType,
+                                    pl.cc(elements.getArray(), ($) => {
+                                        const _parameters = $
+                                        let optional: null | api.TVTGtype_function$_returnType<Annotation> = null
+                                        const setOptional = () => {
+                                            Gtype(node, children, ($) => {
+                                                optional = $
+                                            })
+                                        }
+                                        $d.lookAhead(children, 
+                                            (nextChild) => {
+                                                switch (nextChild.kindName) {
+                                                    case "ArrayType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "BooleanKeyword": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "FunctionType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "LiteralType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "ParenthesizedType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "NumberKeyword": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "OptionalType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "TupleType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "TypeLiteral": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "StringKeyword": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "TypeReference": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "UndefinedKeyword": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "UnionType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "VoidKeyword": //XXX
+                                                        setOptional()
+                                                        break
+                                                }
+                                            },
+                                            () => {},
+                                        )
+                                        pl.cc(optional, ($) => {
+                                            const _returnType = $
+                                            sequenceEnd({
+                                                "typeParameters": _typeParameters,
+                                                "parameters": _parameters,
+                                                "returnType": _returnType,
+                                            })
                                         })
                                     })
                                 })
@@ -1874,7 +1896,7 @@ export function parse<Annotation>(
                 const choose_boolean = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "BooleanKeyword") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "BooleanKeyword")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gtype_boolean",
                                     token: currentChild,
@@ -1918,7 +1940,7 @@ export function parse<Annotation>(
                 const choose_array = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "ArrayType") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "ArrayType")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gtype_array",
                                     token: currentChild,
@@ -2046,7 +2068,7 @@ export function parse<Annotation>(
     ): void {
         children.pop(
             (currentChild) => {
-                if (currentChild.kindName !== "StringLiteral") {
+                if ($d.stringsNotEqual(currentChild.kindName, "StringLiteral")) {
                     $x.reportUnexpectedToken({
                         path: "GstringLiteral",
                         token: currentChild,
@@ -2103,7 +2125,7 @@ export function parse<Annotation>(
                 const choose_variable = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "VariableStatement") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "VariableStatement")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gstatement_variable",
                                     token: currentChild,
@@ -2182,7 +2204,7 @@ export function parse<Annotation>(
                 const choose_typeAlias = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "TypeAliasDeclaration") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "TypeAliasDeclaration")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gstatement_typeAlias",
                                     token: currentChild,
@@ -2286,7 +2308,7 @@ export function parse<Annotation>(
                 const choose_switch = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "SwitchStatement") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "SwitchStatement")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gstatement_switch",
                                     token: currentChild,
@@ -2310,7 +2332,7 @@ export function parse<Annotation>(
                                     const _expression = $
                                     children.pop(
                                         (currentChild) => {
-                                            if (currentChild.kindName !== "CaseBlock") {
+                                            if ($d.stringsNotEqual(currentChild.kindName, "CaseBlock")) {
                                                 $x.reportUnexpectedToken({
                                                     path: "Gstatement_switch$_caseBlock",
                                                     token: currentChild,
@@ -2334,7 +2356,7 @@ export function parse<Annotation>(
                                                             const choose_default = () => {
                                                                 children.pop(
                                                                     (currentChild) => {
-                                                                        if (currentChild.kindName !== "DefaultClause") {
+                                                                        if ($d.stringsNotEqual(currentChild.kindName, "DefaultClause")) {
                                                                             $x.reportUnexpectedToken({
                                                                                 path: "Gstatement_switch$_caseBlock$_default",
                                                                                 token: currentChild,
@@ -2377,6 +2399,9 @@ export function parse<Annotation>(
                                                                                             processElement()
                                                                                             return true
                                                                                         case "ImportDeclaration": //z
+                                                                                            processElement()
+                                                                                            return true
+                                                                                        case "InterfaceDeclaration": //z
                                                                                             processElement()
                                                                                             return true
                                                                                         case "ReturnStatement": //z
@@ -2430,7 +2455,7 @@ export function parse<Annotation>(
                                                             const choose_case = () => {
                                                                 children.pop(
                                                                     (currentChild) => {
-                                                                        if (currentChild.kindName !== "CaseClause") {
+                                                                        if ($d.stringsNotEqual(currentChild.kindName, "CaseClause")) {
                                                                             $x.reportUnexpectedToken({
                                                                                 path: "Gstatement_switch$_caseBlock$_case",
                                                                                 token: currentChild,
@@ -2481,6 +2506,9 @@ export function parse<Annotation>(
                                                                                                 processElement()
                                                                                                 return true
                                                                                             case "ImportDeclaration": //z
+                                                                                                processElement()
+                                                                                                return true
+                                                                                            case "InterfaceDeclaration": //z
                                                                                                 processElement()
                                                                                                 return true
                                                                                             case "ReturnStatement": //z
@@ -2639,7 +2667,7 @@ export function parse<Annotation>(
                 const choose_return = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "ReturnStatement") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "ReturnStatement")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gstatement_return",
                                     token: currentChild,
@@ -2752,10 +2780,134 @@ export function parse<Annotation>(
                         },
                     )
                 }
+                const choose_interface = () => {
+                    children.pop(
+                        (currentChild) => {
+                            if ($d.stringsNotEqual(currentChild.kindName, "InterfaceDeclaration")) {
+                                $x.reportUnexpectedToken({
+                                    path: "Gstatement_interface",
+                                    token: currentChild,
+                                    expected: "InterfaceDeclaration",
+                                })
+                                return
+                            }
+                            ((
+                                $: uast.TUntypedNode<Annotation>,
+                                callback: ($: api.TNGstatement_interface$<Annotation>) => void,
+                            ): void => {
+                                const node = $
+                                const children = pm.createStack($.children)
+                                const sequenceEnd = ($: api.TVTGstatement_interface$<Annotation>) => {
+                                    callback({
+                                        annotation: node.implementationDetails,
+                                        content: $,
+                                    })
+                                }
+                                const elements = pm.createArrayBuilder<api.TVTGstatement_interface$_modifiers<Annotation>>()
+                                const processElement = () => {
+                                    Gmodifier(node, children, ($) => {
+                                        elements.push($)
+                                    })
+                                }
+                                $d.doUntil(
+                                    children,
+                                    (nextChild) => {
+                                        switch (nextChild.kindName) {
+                                            case "ExportKeyword": //z
+                                                processElement()
+                                                return true
+                                            case "ReadonlyKeyword": //z
+                                                processElement()
+                                                return true
+                                            default: return false
+                                        }
+                                    },
+                                )
+                                pl.cc(elements.getArray(), ($) => {
+                                    const _modifiers = $
+                                    Gidentifier(node, children, ($) => {
+                                        const _name = $
+                                        const elements = pm.createArrayBuilder<api.TVTGstatement_interface$_typeParameters<Annotation>>()
+                                        const processElement = () => {
+                                            GtypeParameter(node, children, ($) => {
+                                                elements.push($)
+                                            })
+                                        }
+                                        $d.doUntil(
+                                            children,
+                                            (nextChild) => {
+                                                switch (nextChild.kindName) {
+                                                    case "TypeParameter": //z
+                                                        processElement()
+                                                        return true
+                                                    default: return false
+                                                }
+                                            },
+                                        )
+                                        pl.cc(elements.getArray(), ($) => {
+                                            const _typeParameters = $
+                                            const elements = pm.createArrayBuilder<api.TVTGstatement_interface$_signature<Annotation>>()
+                                            const processElement = () => {
+                                                GtypeSignature(node, children, ($) => {
+                                                    elements.push($)
+                                                })
+                                            }
+                                            $d.doUntil(
+                                                children,
+                                                (nextChild) => {
+                                                    switch (nextChild.kindName) {
+                                                        case "MethodSignature": //z
+                                                            processElement()
+                                                            return true
+                                                        case "PropertySignature": //z
+                                                            processElement()
+                                                            return true
+                                                        default: return false
+                                                    }
+                                                },
+                                            )
+                                            pl.cc(elements.getArray(), ($) => {
+                                                const _signature = $
+                                                sequenceEnd({
+                                                    "modifiers": _modifiers,
+                                                    "name": _name,
+                                                    "typeParameters": _typeParameters,
+                                                    "signature": _signature,
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                                children.pop(
+                                    (nextChild) => {
+                                        $x.reportUnexpectedToken({
+                                            path: "Gstatement_interface$",
+                                            token: nextChild,
+                                            expected: null,
+                                        })
+                                    },
+                                    () => {},
+                                )
+                            })(
+                                currentChild,
+                                ($) => {
+                                    choiceEnd_Gstatement(["interface", $])
+                                }
+                            )
+                        },
+                        () => { // no child
+                            $x.reportMissingToken({
+                                parentAnnotation: node.implementationDetails,
+                                path: "Gstatement_interface",
+                                kindNameOptions: "InterfaceDeclaration",
+                            })
+                        },
+                    )
+                }
                 const choose_import = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "ImportDeclaration") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "ImportDeclaration")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gstatement_import",
                                     token: currentChild,
@@ -2777,7 +2929,7 @@ export function parse<Annotation>(
                                 }
                                 children.pop(
                                     (currentChild) => {
-                                        if (currentChild.kindName !== "ImportClause") {
+                                        if ($d.stringsNotEqual(currentChild.kindName, "ImportClause")) {
                                             $x.reportUnexpectedToken({
                                                 path: "Gstatement_import$_clause",
                                                 token: currentChild,
@@ -2802,7 +2954,7 @@ export function parse<Annotation>(
                                                     const choose_named = () => {
                                                         children.pop(
                                                             (currentChild) => {
-                                                                if (currentChild.kindName !== "NamedImports") {
+                                                                if ($d.stringsNotEqual(currentChild.kindName, "NamedImports")) {
                                                                     $x.reportUnexpectedToken({
                                                                         path: "Gstatement_import$_clause$_named",
                                                                         token: currentChild,
@@ -2820,7 +2972,7 @@ export function parse<Annotation>(
                                                                     const processElement = () => {
                                                                         children.pop(
                                                                             (currentChild) => {
-                                                                                if (currentChild.kindName !== "ImportSpecifier") {
+                                                                                if ($d.stringsNotEqual(currentChild.kindName, "ImportSpecifier")) {
                                                                                     $x.reportUnexpectedToken({
                                                                                         path: "Gstatement_import$_clause$_named$",
                                                                                         token: currentChild,
@@ -2938,7 +3090,7 @@ export function parse<Annotation>(
                                                     const choose_namespace = () => {
                                                         children.pop(
                                                             (currentChild) => {
-                                                                if (currentChild.kindName !== "NamespaceImport") {
+                                                                if ($d.stringsNotEqual(currentChild.kindName, "NamespaceImport")) {
                                                                     $x.reportUnexpectedToken({
                                                                         path: "Gstatement_import$_clause$_namespace",
                                                                         token: currentChild,
@@ -3071,7 +3223,7 @@ export function parse<Annotation>(
                 const choose_if = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "IfStatement") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "IfStatement")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gstatement_if",
                                     token: currentChild,
@@ -3123,6 +3275,9 @@ export function parse<Annotation>(
                                                         setOptional()
                                                         break
                                                     case "ImportDeclaration": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "InterfaceDeclaration": //XXX
                                                         setOptional()
                                                         break
                                                     case "ReturnStatement": //XXX
@@ -3180,7 +3335,7 @@ export function parse<Annotation>(
                 const choose_function = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "FunctionDeclaration") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "FunctionDeclaration")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gstatement_function",
                                     token: currentChild,
@@ -3283,7 +3438,7 @@ export function parse<Annotation>(
                 const choose_expression = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "ExpressionStatement") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "ExpressionStatement")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gstatement_expression",
                                     token: currentChild,
@@ -3332,7 +3487,7 @@ export function parse<Annotation>(
                 const choose_export = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "ExportDeclaration") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "ExportDeclaration")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gstatement_export",
                                     token: currentChild,
@@ -3381,7 +3536,7 @@ export function parse<Annotation>(
                 const choose_break = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "BreakStatement") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "BreakStatement")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gstatement_break",
                                     token: currentChild,
@@ -3477,6 +3632,10 @@ export function parse<Annotation>(
                         choose_import()
                         break
                     }
+                    case "InterfaceDeclaration": /*Y*/ {
+                        choose_interface()
+                        break
+                    }
                     case "ReturnStatement": /*Y*/ {
                         choose_return()
                         break
@@ -3497,7 +3656,7 @@ export function parse<Annotation>(
                         $x.reportUnexpectedToken({
                             path: "Gstatement",
                             token: nextChild,
-                            expected: "Block, BreakStatement, ExportDeclaration, ExpressionStatement, FunctionDeclaration, IfStatement, ImportDeclaration, ReturnStatement, SwitchStatement, TypeAliasDeclaration, VariableStatement",
+                            expected: "Block, BreakStatement, ExportDeclaration, ExpressionStatement, FunctionDeclaration, IfStatement, ImportDeclaration, InterfaceDeclaration, ReturnStatement, SwitchStatement, TypeAliasDeclaration, VariableStatement",
                         })
                     }
                 }
@@ -3506,7 +3665,7 @@ export function parse<Annotation>(
                 $x.reportMissingToken({
                     parentAnnotation: node.implementationDetails,
                     path: "Gstatement",
-                    kindNameOptions: "Block, BreakStatement, ExportDeclaration, ExpressionStatement, FunctionDeclaration, IfStatement, ImportDeclaration, ReturnStatement, SwitchStatement, TypeAliasDeclaration, VariableStatement",
+                    kindNameOptions: "Block, BreakStatement, ExportDeclaration, ExpressionStatement, FunctionDeclaration, IfStatement, ImportDeclaration, InterfaceDeclaration, ReturnStatement, SwitchStatement, TypeAliasDeclaration, VariableStatement",
                 })
             },
         )
@@ -3518,7 +3677,7 @@ export function parse<Annotation>(
     ): void {
         children.pop(
             (currentChild) => {
-                if (currentChild.kindName !== "Parameter") {
+                if ($d.stringsNotEqual(currentChild.kindName, "Parameter")) {
                     $x.reportUnexpectedToken({
                         path: "Gparameter",
                         token: currentChild,
@@ -3544,7 +3703,7 @@ export function parse<Annotation>(
                         const setOptional = () => {
                             children.pop(
                                 (currentChild) => {
-                                    if (currentChild.kindName !== "QuestionToken") {
+                                    if ($d.stringsNotEqual(currentChild.kindName, "QuestionToken")) {
                                         $x.reportUnexpectedToken({
                                             path: "Gparameter$_questionToken",
                                             token: currentChild,
@@ -3695,7 +3854,7 @@ export function parse<Annotation>(
     ): void {
         children.pop(
             (currentChild) => {
-                if (currentChild.kindName !== "NumericLiteral") {
+                if ($d.stringsNotEqual(currentChild.kindName, "NumericLiteral")) {
                     $x.reportUnexpectedToken({
                         path: "GnumericLiteral",
                         token: currentChild,
@@ -3752,7 +3911,7 @@ export function parse<Annotation>(
                 const choose_readonly = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "ReadonlyKeyword") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "ReadonlyKeyword")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gmodifier_readonly",
                                     token: currentChild,
@@ -3796,7 +3955,7 @@ export function parse<Annotation>(
                 const choose_export = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "ExportKeyword") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "ExportKeyword")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gmodifier_export",
                                     token: currentChild,
@@ -3918,7 +4077,7 @@ export function parse<Annotation>(
     ): void {
         children.pop(
             (currentChild) => {
-                if (currentChild.kindName !== "Identifier") {
+                if ($d.stringsNotEqual(currentChild.kindName, "Identifier")) {
                     $x.reportUnexpectedToken({
                         path: "Gidentifier",
                         token: currentChild,
@@ -4087,7 +4246,7 @@ export function parse<Annotation>(
                 const choose_true = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "TrueKeyword") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "TrueKeyword")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gexpression_true",
                                     token: currentChild,
@@ -4131,7 +4290,7 @@ export function parse<Annotation>(
                 const choose_template = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "TemplateExpression") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "TemplateExpression")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gexpression_template",
                                     token: currentChild,
@@ -4153,7 +4312,7 @@ export function parse<Annotation>(
                                 }
                                 children.pop(
                                     (currentChild) => {
-                                        if (currentChild.kindName !== "TemplateHead") {
+                                        if ($d.stringsNotEqual(currentChild.kindName, "TemplateHead")) {
                                             $x.reportUnexpectedToken({
                                                 path: "Gexpression_template$_head",
                                                 token: currentChild,
@@ -4189,7 +4348,7 @@ export function parse<Annotation>(
                                                 const processElement = () => {
                                                     children.pop(
                                                         (currentChild) => {
-                                                            if (currentChild.kindName !== "TemplateSpan") {
+                                                            if ($d.stringsNotEqual(currentChild.kindName, "TemplateSpan")) {
                                                                 $x.reportUnexpectedToken({
                                                                     path: "Gexpression_template$_spans",
                                                                     token: currentChild,
@@ -4223,7 +4382,7 @@ export function parse<Annotation>(
                                                                             const choose_tail = () => {
                                                                                 children.pop(
                                                                                     (currentChild) => {
-                                                                                        if (currentChild.kindName !== "TemplateTail") {
+                                                                                        if ($d.stringsNotEqual(currentChild.kindName, "TemplateTail")) {
                                                                                             $x.reportUnexpectedToken({
                                                                                                 path: "Gexpression_template$_spans$_x_tail",
                                                                                                 token: currentChild,
@@ -4270,7 +4429,7 @@ export function parse<Annotation>(
                                                                             const choose_middle = () => {
                                                                                 children.pop(
                                                                                     (currentChild) => {
-                                                                                        if (currentChild.kindName !== "TemplateMiddle") {
+                                                                                        if ($d.stringsNotEqual(currentChild.kindName, "TemplateMiddle")) {
                                                                                             $x.reportUnexpectedToken({
                                                                                                 path: "Gexpression_template$_spans$_x_middle",
                                                                                                 token: currentChild,
@@ -4430,7 +4589,7 @@ export function parse<Annotation>(
                 const choose_propertyAccess = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "PropertyAccessExpression") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "PropertyAccessExpression")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gexpression_propertyAccess",
                                     token: currentChild,
@@ -4489,7 +4648,7 @@ export function parse<Annotation>(
                 const choose_prefixUnary = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "PrefixUnaryExpression") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "PrefixUnaryExpression")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gexpression_prefixUnary",
                                     token: currentChild,
@@ -4538,7 +4697,7 @@ export function parse<Annotation>(
                 const choose_parenthesizedExpression = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "ParenthesizedExpression") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "ParenthesizedExpression")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gexpression_parenthesizedExpression",
                                     token: currentChild,
@@ -4587,7 +4746,7 @@ export function parse<Annotation>(
                 const choose_objectLiteral = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "ObjectLiteralExpression") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "ObjectLiteralExpression")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gexpression_objectLiteral",
                                     token: currentChild,
@@ -4611,7 +4770,7 @@ export function parse<Annotation>(
                                             const choose_propertyAssignment = () => {
                                                 children.pop(
                                                     (currentChild) => {
-                                                        if (currentChild.kindName !== "PropertyAssignment") {
+                                                        if ($d.stringsNotEqual(currentChild.kindName, "PropertyAssignment")) {
                                                             $x.reportUnexpectedToken({
                                                                 path: "Gexpression_objectLiteral$_propertyAssignment",
                                                                 token: currentChild,
@@ -4774,7 +4933,7 @@ export function parse<Annotation>(
                 const choose_nullKeyword = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "NullKeyword") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "NullKeyword")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gexpression_nullKeyword",
                                     token: currentChild,
@@ -4823,7 +4982,7 @@ export function parse<Annotation>(
                 const choose_noSubstitutionTemplateLiteral = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "NoSubstitutionTemplateLiteral") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "NoSubstitutionTemplateLiteral")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gexpression_noSubstitutionTemplateLiteral",
                                     token: currentChild,
@@ -4872,7 +5031,7 @@ export function parse<Annotation>(
                 const choose_false = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "FalseKeyword") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "FalseKeyword")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gexpression_false",
                                     token: currentChild,
@@ -4916,7 +5075,7 @@ export function parse<Annotation>(
                 const choose_elementAccess = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "ElementAccessExpression") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "ElementAccessExpression")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gexpression_elementAccess",
                                     token: currentChild,
@@ -4975,7 +5134,7 @@ export function parse<Annotation>(
                 const choose_conditional = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "ConditionalExpression") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "ConditionalExpression")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gexpression_conditional",
                                     token: currentChild,
@@ -4999,7 +5158,7 @@ export function parse<Annotation>(
                                     const _test = $
                                     children.pop(
                                         (currentChild) => {
-                                            if (currentChild.kindName !== "QuestionToken") {
+                                            if ($d.stringsNotEqual(currentChild.kindName, "QuestionToken")) {
                                                 $x.reportUnexpectedToken({
                                                     path: "Gexpression_conditional$_questionToken",
                                                     token: currentChild,
@@ -5032,7 +5191,7 @@ export function parse<Annotation>(
                                                         const _ifExpression = $
                                                         children.pop(
                                                             (currentChild) => {
-                                                                if (currentChild.kindName !== "ColonToken") {
+                                                                if ($d.stringsNotEqual(currentChild.kindName, "ColonToken")) {
                                                                     $x.reportUnexpectedToken({
                                                                         path: "Gexpression_conditional$_colonToken",
                                                                         token: currentChild,
@@ -5124,7 +5283,7 @@ export function parse<Annotation>(
                 const choose_call = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "CallExpression") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "CallExpression")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gexpression_call",
                                     token: currentChild,
@@ -5311,7 +5470,7 @@ export function parse<Annotation>(
                 const choose_binary = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "BinaryExpression") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "BinaryExpression")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gexpression_binary",
                                     token: currentChild,
@@ -5349,7 +5508,7 @@ export function parse<Annotation>(
                                             const choose_equals = () => {
                                                 children.pop(
                                                     (currentChild) => {
-                                                        if (currentChild.kindName !== "EqualsToken") {
+                                                        if ($d.stringsNotEqual(currentChild.kindName, "EqualsToken")) {
                                                             $x.reportUnexpectedToken({
                                                                 path: "Gexpression_binary$_operator_equals",
                                                                 token: currentChild,
@@ -5442,7 +5601,7 @@ export function parse<Annotation>(
                 const choose_arrowFunction = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "ArrowFunction") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "ArrowFunction")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gexpression_arrowFunction",
                                     token: currentChild,
@@ -5462,9 +5621,9 @@ export function parse<Annotation>(
                                         content: $,
                                     })
                                 }
-                                const elements = pm.createArrayBuilder<api.TVTGexpression_arrowFunction$_parameters<Annotation>>()
+                                const elements = pm.createArrayBuilder<api.TVTGexpression_arrowFunction$_typeParameters<Annotation>>()
                                 const processElement = () => {
-                                    Gparameter(node, children, ($) => {
+                                    GtypeParameter(node, children, ($) => {
                                         elements.push($)
                                     })
                                 }
@@ -5472,7 +5631,7 @@ export function parse<Annotation>(
                                     children,
                                     (nextChild) => {
                                         switch (nextChild.kindName) {
-                                            case "Parameter": //z
+                                            case "TypeParameter": //z
                                                 processElement()
                                                 return true
                                             default: return false
@@ -5480,221 +5639,242 @@ export function parse<Annotation>(
                                     },
                                 )
                                 pl.cc(elements.getArray(), ($) => {
-                                    const _parameters = $
-                                    let optional: null | api.TVTGexpression_arrowFunction$_returnType<Annotation> = null
-                                    const setOptional = () => {
-                                        Gtype(node, children, ($) => {
-                                            optional = $
+                                    const _typeParameters = $
+                                    const elements = pm.createArrayBuilder<api.TVTGexpression_arrowFunction$_parameters<Annotation>>()
+                                    const processElement = () => {
+                                        Gparameter(node, children, ($) => {
+                                            elements.push($)
                                         })
                                     }
-                                    $d.lookAhead(children, 
+                                    $d.doUntil(
+                                        children,
                                         (nextChild) => {
                                             switch (nextChild.kindName) {
-                                                case "ArrayType": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "BooleanKeyword": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "FunctionType": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "LiteralType": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "ParenthesizedType": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "NumberKeyword": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "OptionalType": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "TupleType": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "TypeLiteral": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "StringKeyword": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "TypeReference": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "UndefinedKeyword": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "UnionType": //XXX
-                                                    setOptional()
-                                                    break
-                                                case "VoidKeyword": //XXX
-                                                    setOptional()
-                                                    break
+                                                case "Parameter": //z
+                                                    processElement()
+                                                    return true
+                                                default: return false
                                             }
                                         },
-                                        () => {},
                                     )
-                                    pl.cc(optional, ($) => {
-                                        const _returnType = $
-                                        children.pop(
-                                            (currentChild) => {
-                                                if (currentChild.kindName !== "EqualsGreaterThanToken") {
-                                                    $x.reportUnexpectedToken({
-                                                        path: "Gexpression_arrowFunction$_equalsGreaterThan",
-                                                        token: currentChild,
-                                                        expected: "EqualsGreaterThanToken",
-                                                    })
-                                                    return
+                                    pl.cc(elements.getArray(), ($) => {
+                                        const _parameters = $
+                                        let optional: null | api.TVTGexpression_arrowFunction$_returnType<Annotation> = null
+                                        const setOptional = () => {
+                                            Gtype(node, children, ($) => {
+                                                optional = $
+                                            })
+                                        }
+                                        $d.lookAhead(children, 
+                                            (nextChild) => {
+                                                switch (nextChild.kindName) {
+                                                    case "ArrayType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "BooleanKeyword": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "FunctionType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "LiteralType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "ParenthesizedType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "NumberKeyword": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "OptionalType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "TupleType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "TypeLiteral": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "StringKeyword": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "TypeReference": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "UndefinedKeyword": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "UnionType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "VoidKeyword": //XXX
+                                                        setOptional()
+                                                        break
                                                 }
-                                                ((
-                                                    $: uast.TUntypedNode<Annotation>,
-                                                    callback: ($: api.TNGexpression_arrowFunction$_equalsGreaterThan$<Annotation>) => void,
-                                                ): void => {
-                                                    const node = $
-                                                    const children = pm.createStack($.children)
-                                                    callback($.implementationDetails)
-                                                    children.pop(
-                                                        (nextChild) => {
-                                                            $x.reportUnexpectedToken({
-                                                                path: "Gexpression_arrowFunction$_equalsGreaterThan$",
-                                                                token: nextChild,
-                                                                expected: null,
-                                                            })
-                                                        },
-                                                        () => {},
-                                                    )
-                                                })(
-                                                    currentChild,
-                                                    ($) => {
-                                                        const _equalsGreaterThan = $
-                                                        const choiceEnd_Gexpression_arrowFunction$_implementation = ($: api.TVTGexpression_arrowFunction$_implementation<Annotation>) => {
-                                                            const _implementation = $
-                                                            sequenceEnd({
-                                                                "parameters": _parameters,
-                                                                "returnType": _returnType,
-                                                                "equalsGreaterThan": _equalsGreaterThan,
-                                                                "implementation": _implementation,
-                                                            })
-                                                        }
-                                                        $d.lookAhead(children, 
+                                            },
+                                            () => {},
+                                        )
+                                        pl.cc(optional, ($) => {
+                                            const _returnType = $
+                                            children.pop(
+                                                (currentChild) => {
+                                                    if ($d.stringsNotEqual(currentChild.kindName, "EqualsGreaterThanToken")) {
+                                                        $x.reportUnexpectedToken({
+                                                            path: "Gexpression_arrowFunction$_equalsGreaterThan",
+                                                            token: currentChild,
+                                                            expected: "EqualsGreaterThanToken",
+                                                        })
+                                                        return
+                                                    }
+                                                    ((
+                                                        $: uast.TUntypedNode<Annotation>,
+                                                        callback: ($: api.TNGexpression_arrowFunction$_equalsGreaterThan$<Annotation>) => void,
+                                                    ): void => {
+                                                        const node = $
+                                                        const children = pm.createStack($.children)
+                                                        callback($.implementationDetails)
+                                                        children.pop(
                                                             (nextChild) => {
-                                                                const choose_expression = () => {
-                                                                    Gexpression(node, children, ($) => {
-                                                                        choiceEnd_Gexpression_arrowFunction$_implementation(["expression", $])
-                                                                    })
-                                                                }
-                                                                const choose_block = () => {
-                                                                    Gblock(node, children, ($) => {
-                                                                        choiceEnd_Gexpression_arrowFunction$_implementation(["block", $])
-                                                                    })
-                                                                }
-                                                                switch (nextChild.kindName) {
-                                                                    case "Block": /*Y*/ {
-                                                                        choose_block()
-                                                                        break
-                                                                    }
-                                                                    case "ArrayLiteralExpression": /*Y*/ {
-                                                                        choose_expression()
-                                                                        break
-                                                                    }
-                                                                    case "ArrowFunction": /*Y*/ {
-                                                                        choose_expression()
-                                                                        break
-                                                                    }
-                                                                    case "BinaryExpression": /*Y*/ {
-                                                                        choose_expression()
-                                                                        break
-                                                                    }
-                                                                    case "CallExpression": /*Y*/ {
-                                                                        choose_expression()
-                                                                        break
-                                                                    }
-                                                                    case "ConditionalExpression": /*Y*/ {
-                                                                        choose_expression()
-                                                                        break
-                                                                    }
-                                                                    case "ElementAccessExpression": /*Y*/ {
-                                                                        choose_expression()
-                                                                        break
-                                                                    }
-                                                                    case "FalseKeyword": /*Y*/ {
-                                                                        choose_expression()
-                                                                        break
-                                                                    }
-                                                                    case "Identifier": /*Y*/ {
-                                                                        choose_expression()
-                                                                        break
-                                                                    }
-                                                                    case "NoSubstitutionTemplateLiteral": /*Y*/ {
-                                                                        choose_expression()
-                                                                        break
-                                                                    }
-                                                                    case "NumericLiteral": /*Y*/ {
-                                                                        choose_expression()
-                                                                        break
-                                                                    }
-                                                                    case "NullKeyword": /*Y*/ {
-                                                                        choose_expression()
-                                                                        break
-                                                                    }
-                                                                    case "ObjectLiteralExpression": /*Y*/ {
-                                                                        choose_expression()
-                                                                        break
-                                                                    }
-                                                                    case "ParenthesizedExpression": /*Y*/ {
-                                                                        choose_expression()
-                                                                        break
-                                                                    }
-                                                                    case "PrefixUnaryExpression": /*Y*/ {
-                                                                        choose_expression()
-                                                                        break
-                                                                    }
-                                                                    case "PropertyAccessExpression": /*Y*/ {
-                                                                        choose_expression()
-                                                                        break
-                                                                    }
-                                                                    case "StringLiteral": /*Y*/ {
-                                                                        choose_expression()
-                                                                        break
-                                                                    }
-                                                                    case "TemplateExpression": /*Y*/ {
-                                                                        choose_expression()
-                                                                        break
-                                                                    }
-                                                                    case "TrueKeyword": /*Y*/ {
-                                                                        choose_expression()
-                                                                        break
-                                                                    }
-                                                                    default: {
-                                                                        $x.reportUnexpectedToken({
-                                                                            path: "Gexpression_arrowFunction$_implementation",
-                                                                            token: nextChild,
-                                                                            expected: "Block, ArrayLiteralExpression, ArrowFunction, BinaryExpression, CallExpression, ConditionalExpression, ElementAccessExpression, FalseKeyword, Identifier, NoSubstitutionTemplateLiteral, NumericLiteral, NullKeyword, ObjectLiteralExpression, ParenthesizedExpression, PrefixUnaryExpression, PropertyAccessExpression, StringLiteral, TemplateExpression, TrueKeyword",
-                                                                        })
-                                                                    }
-                                                                }
-                                                            },
-                                                            () => { //no child
-                                                                $x.reportMissingToken({
-                                                                    parentAnnotation: node.implementationDetails,
-                                                                    path: "Gexpression_arrowFunction$_implementation",
-                                                                    kindNameOptions: "Block, ArrayLiteralExpression, ArrowFunction, BinaryExpression, CallExpression, ConditionalExpression, ElementAccessExpression, FalseKeyword, Identifier, NoSubstitutionTemplateLiteral, NumericLiteral, NullKeyword, ObjectLiteralExpression, ParenthesizedExpression, PrefixUnaryExpression, PropertyAccessExpression, StringLiteral, TemplateExpression, TrueKeyword",
+                                                                $x.reportUnexpectedToken({
+                                                                    path: "Gexpression_arrowFunction$_equalsGreaterThan$",
+                                                                    token: nextChild,
+                                                                    expected: null,
                                                                 })
                                                             },
+                                                            () => {},
                                                         )
-                                                    }
-                                                )
-                                            },
-                                            () => { // no child
-                                                $x.reportMissingToken({
-                                                    parentAnnotation: node.implementationDetails,
-                                                    path: "Gexpression_arrowFunction$_equalsGreaterThan",
-                                                    kindNameOptions: "EqualsGreaterThanToken",
-                                                })
-                                            },
-                                        )
+                                                    })(
+                                                        currentChild,
+                                                        ($) => {
+                                                            const _equalsGreaterThan = $
+                                                            const choiceEnd_Gexpression_arrowFunction$_implementation = ($: api.TVTGexpression_arrowFunction$_implementation<Annotation>) => {
+                                                                const _implementation = $
+                                                                sequenceEnd({
+                                                                    "typeParameters": _typeParameters,
+                                                                    "parameters": _parameters,
+                                                                    "returnType": _returnType,
+                                                                    "equalsGreaterThan": _equalsGreaterThan,
+                                                                    "implementation": _implementation,
+                                                                })
+                                                            }
+                                                            $d.lookAhead(children, 
+                                                                (nextChild) => {
+                                                                    const choose_expression = () => {
+                                                                        Gexpression(node, children, ($) => {
+                                                                            choiceEnd_Gexpression_arrowFunction$_implementation(["expression", $])
+                                                                        })
+                                                                    }
+                                                                    const choose_block = () => {
+                                                                        Gblock(node, children, ($) => {
+                                                                            choiceEnd_Gexpression_arrowFunction$_implementation(["block", $])
+                                                                        })
+                                                                    }
+                                                                    switch (nextChild.kindName) {
+                                                                        case "Block": /*Y*/ {
+                                                                            choose_block()
+                                                                            break
+                                                                        }
+                                                                        case "ArrayLiteralExpression": /*Y*/ {
+                                                                            choose_expression()
+                                                                            break
+                                                                        }
+                                                                        case "ArrowFunction": /*Y*/ {
+                                                                            choose_expression()
+                                                                            break
+                                                                        }
+                                                                        case "BinaryExpression": /*Y*/ {
+                                                                            choose_expression()
+                                                                            break
+                                                                        }
+                                                                        case "CallExpression": /*Y*/ {
+                                                                            choose_expression()
+                                                                            break
+                                                                        }
+                                                                        case "ConditionalExpression": /*Y*/ {
+                                                                            choose_expression()
+                                                                            break
+                                                                        }
+                                                                        case "ElementAccessExpression": /*Y*/ {
+                                                                            choose_expression()
+                                                                            break
+                                                                        }
+                                                                        case "FalseKeyword": /*Y*/ {
+                                                                            choose_expression()
+                                                                            break
+                                                                        }
+                                                                        case "Identifier": /*Y*/ {
+                                                                            choose_expression()
+                                                                            break
+                                                                        }
+                                                                        case "NoSubstitutionTemplateLiteral": /*Y*/ {
+                                                                            choose_expression()
+                                                                            break
+                                                                        }
+                                                                        case "NumericLiteral": /*Y*/ {
+                                                                            choose_expression()
+                                                                            break
+                                                                        }
+                                                                        case "NullKeyword": /*Y*/ {
+                                                                            choose_expression()
+                                                                            break
+                                                                        }
+                                                                        case "ObjectLiteralExpression": /*Y*/ {
+                                                                            choose_expression()
+                                                                            break
+                                                                        }
+                                                                        case "ParenthesizedExpression": /*Y*/ {
+                                                                            choose_expression()
+                                                                            break
+                                                                        }
+                                                                        case "PrefixUnaryExpression": /*Y*/ {
+                                                                            choose_expression()
+                                                                            break
+                                                                        }
+                                                                        case "PropertyAccessExpression": /*Y*/ {
+                                                                            choose_expression()
+                                                                            break
+                                                                        }
+                                                                        case "StringLiteral": /*Y*/ {
+                                                                            choose_expression()
+                                                                            break
+                                                                        }
+                                                                        case "TemplateExpression": /*Y*/ {
+                                                                            choose_expression()
+                                                                            break
+                                                                        }
+                                                                        case "TrueKeyword": /*Y*/ {
+                                                                            choose_expression()
+                                                                            break
+                                                                        }
+                                                                        default: {
+                                                                            $x.reportUnexpectedToken({
+                                                                                path: "Gexpression_arrowFunction$_implementation",
+                                                                                token: nextChild,
+                                                                                expected: "Block, ArrayLiteralExpression, ArrowFunction, BinaryExpression, CallExpression, ConditionalExpression, ElementAccessExpression, FalseKeyword, Identifier, NoSubstitutionTemplateLiteral, NumericLiteral, NullKeyword, ObjectLiteralExpression, ParenthesizedExpression, PrefixUnaryExpression, PropertyAccessExpression, StringLiteral, TemplateExpression, TrueKeyword",
+                                                                            })
+                                                                        }
+                                                                    }
+                                                                },
+                                                                () => { //no child
+                                                                    $x.reportMissingToken({
+                                                                        parentAnnotation: node.implementationDetails,
+                                                                        path: "Gexpression_arrowFunction$_implementation",
+                                                                        kindNameOptions: "Block, ArrayLiteralExpression, ArrowFunction, BinaryExpression, CallExpression, ConditionalExpression, ElementAccessExpression, FalseKeyword, Identifier, NoSubstitutionTemplateLiteral, NumericLiteral, NullKeyword, ObjectLiteralExpression, ParenthesizedExpression, PrefixUnaryExpression, PropertyAccessExpression, StringLiteral, TemplateExpression, TrueKeyword",
+                                                                    })
+                                                                },
+                                                            )
+                                                        }
+                                                    )
+                                                },
+                                                () => { // no child
+                                                    $x.reportMissingToken({
+                                                        parentAnnotation: node.implementationDetails,
+                                                        path: "Gexpression_arrowFunction$_equalsGreaterThan",
+                                                        kindNameOptions: "EqualsGreaterThanToken",
+                                                    })
+                                                },
+                                            )
+                                        })
                                     })
                                 })
                                 children.pop(
@@ -5726,7 +5906,7 @@ export function parse<Annotation>(
                 const choose_arrayLiteral = () => {
                     children.pop(
                         (currentChild) => {
-                            if (currentChild.kindName !== "ArrayLiteralExpression") {
+                            if ($d.stringsNotEqual(currentChild.kindName, "ArrayLiteralExpression")) {
                                 $x.reportUnexpectedToken({
                                     path: "Gexpression_arrayLiteral",
                                     token: currentChild,
@@ -5938,7 +6118,7 @@ export function parse<Annotation>(
     ): void {
         children.pop(
             (currentChild) => {
-                if (currentChild.kindName !== "Block") {
+                if ($d.stringsNotEqual(currentChild.kindName, "Block")) {
                     $x.reportUnexpectedToken({
                         path: "Gblock",
                         token: currentChild,
@@ -5981,6 +6161,9 @@ export function parse<Annotation>(
                                     processElement()
                                     return true
                                 case "ImportDeclaration": //z
+                                    processElement()
+                                    return true
+                                case "InterfaceDeclaration": //z
                                     processElement()
                                     return true
                                 case "ReturnStatement": //z
@@ -6031,7 +6214,7 @@ export function parse<Annotation>(
             },
         )
     }
-    if ($.kindName !== "SourceFile") {
+    if ($d.stringsNotEqual($.kindName, "SourceFile")) {
         $x.reportUnexpectedToken({
             path: "",
             token: $,
@@ -6082,6 +6265,9 @@ export function parse<Annotation>(
                         case "ImportDeclaration": //z
                             processElement()
                             return true
+                        case "InterfaceDeclaration": //z
+                            processElement()
+                            return true
                         case "ReturnStatement": //z
                             processElement()
                             return true
@@ -6102,7 +6288,7 @@ export function parse<Annotation>(
                 const _statements = $
                 children.pop(
                     (currentChild) => {
-                        if (currentChild.kindName !== "EndOfFileToken") {
+                        if ($d.stringsNotEqual(currentChild.kindName, "EndOfFileToken")) {
                             $x.reportUnexpectedToken({
                                 path: "root_endOfFile",
                                 token: currentChild,

@@ -2,3 +2,5 @@
 // export * from "./esc/implementations/analyseGitRepo"
 // export * from "./esc/implementations/analyseTypescriptFilesInWorkspace"
 // export * from "./esc/implementations/readWorkspace"
+
+export * from "./processTypescriptProjectsInProject"
