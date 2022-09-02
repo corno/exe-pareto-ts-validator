@@ -1,6 +1,6 @@
 {
   "name": "exe-pareto-ts-validator",
-  "version": "0.31.0",
+  "version": "0.1.0",
   "description": "validates if a typescript code base conforms the 'pareto' rules",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
