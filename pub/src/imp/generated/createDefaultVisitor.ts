@@ -7,118 +7,102 @@ export function createDefaultVisistor(
     }
 ): api.IVisitor {
     return {
-        "$variableDeclarationList/*VariableDeclarationList": {
-            begin: ($) => { $i.log("$variableDeclarationList/*VariableDeclarationList begin") },
-            end: ($) => { $i.log("$variableDeclarationList/*VariableDeclarationList end") },
+        "$block/*Block": {
+            begin: ($) => { $i.log("$block/*Block begin") },
+            end: ($) => { $i.log("$block/*Block end") },
         },
-        "$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?bindingElement/*BindingElement": {
-            begin: ($) => { $i.log("$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?bindingElement/*BindingElement begin") },
-            end: ($) => { $i.log("$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?bindingElement/*BindingElement end") },
+        "$expression/?arrayLiteral/*ArrayLiteralExpression": {
+            begin: ($) => { $i.log("$expression/?arrayLiteral/*ArrayLiteralExpression begin") },
+            end: ($) => { $i.log("$expression/?arrayLiteral/*ArrayLiteralExpression end") },
         },
-        "$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?omitted/*OmittedExpression": ($) => { $i.log("$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?omitted/*OmittedExpression") },
-        "$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern": {
-            begin: ($) => { $i.log("$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern begin") },
-            end: ($) => { $i.log("$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern end") },
+        "$expression/?arrowFunction/*ArrowFunction/.equalsGreaterThan/*EqualsGreaterThanToken": ($) => { $i.log("$expression/?arrowFunction/*ArrowFunction/.equalsGreaterThan/*EqualsGreaterThanToken") },
+        "$expression/?arrowFunction/*ArrowFunction": {
+            begin: ($) => { $i.log("$expression/?arrowFunction/*ArrowFunction begin") },
+            end: ($) => { $i.log("$expression/?arrowFunction/*ArrowFunction end") },
         },
-        "$variableDeclaration/*VariableDeclaration": {
-            begin: ($) => { $i.log("$variableDeclaration/*VariableDeclaration begin") },
-            end: ($) => { $i.log("$variableDeclaration/*VariableDeclaration end") },
+        "$expression/?binary/*BinaryExpression/.operator/?equals/*EqualsToken": ($) => { $i.log("$expression/?binary/*BinaryExpression/.operator/?equals/*EqualsToken") },
+        "$expression/?binary/*BinaryExpression/.operator/?equalsEqualsEquals/*EqualsEqualsEqualsToken": ($) => { $i.log("$expression/?binary/*BinaryExpression/.operator/?equalsEqualsEquals/*EqualsEqualsEqualsToken") },
+        "$expression/?binary/*BinaryExpression": {
+            begin: ($) => { $i.log("$expression/?binary/*BinaryExpression begin") },
+            end: ($) => { $i.log("$expression/?binary/*BinaryExpression end") },
         },
-        "$typeSignature/?property/*PropertySignature/.quesionToken/*QuestionToken": ($) => { $i.log("$typeSignature/?property/*PropertySignature/.quesionToken/*QuestionToken") },
-        "$typeSignature/?property/*PropertySignature": {
-            begin: ($) => { $i.log("$typeSignature/?property/*PropertySignature begin") },
-            end: ($) => { $i.log("$typeSignature/?property/*PropertySignature end") },
+        "$expression/?call/*CallExpression": {
+            begin: ($) => { $i.log("$expression/?call/*CallExpression begin") },
+            end: ($) => { $i.log("$expression/?call/*CallExpression end") },
         },
-        "$typeSignature/?method/*MethodSignature": {
-            begin: ($) => { $i.log("$typeSignature/?method/*MethodSignature begin") },
-            end: ($) => { $i.log("$typeSignature/?method/*MethodSignature end") },
+        "$expression/?conditional/*ConditionalExpression/.questionToken/*QuestionToken": ($) => { $i.log("$expression/?conditional/*ConditionalExpression/.questionToken/*QuestionToken") },
+        "$expression/?conditional/*ConditionalExpression/.colonToken/*ColonToken": ($) => { $i.log("$expression/?conditional/*ConditionalExpression/.colonToken/*ColonToken") },
+        "$expression/?conditional/*ConditionalExpression": {
+            begin: ($) => { $i.log("$expression/?conditional/*ConditionalExpression begin") },
+            end: ($) => { $i.log("$expression/?conditional/*ConditionalExpression end") },
         },
-        "$typeSignature/?index/*IndexSignature": {
-            begin: ($) => { $i.log("$typeSignature/?index/*IndexSignature begin") },
-            end: ($) => { $i.log("$typeSignature/?index/*IndexSignature end") },
+        "$expression/?elementAccess/*ElementAccessExpression": {
+            begin: ($) => { $i.log("$expression/?elementAccess/*ElementAccessExpression begin") },
+            end: ($) => { $i.log("$expression/?elementAccess/*ElementAccessExpression end") },
         },
-        "$typeParameter/*TypeParameter": {
-            begin: ($) => { $i.log("$typeParameter/*TypeParameter begin") },
-            end: ($) => { $i.log("$typeParameter/*TypeParameter end") },
+        "$expression/?false/*FalseKeyword": ($) => { $i.log("$expression/?false/*FalseKeyword") },
+        "$expression/?noSubstitutionTemplateLiteral/*NoSubstitutionTemplateLiteral": ($) => { $i.log("$expression/?noSubstitutionTemplateLiteral/*NoSubstitutionTemplateLiteral") },
+        "$expression/?nullKeyword/*NullKeyword": ($) => { $i.log("$expression/?nullKeyword/*NullKeyword") },
+        "$expression/?objectLiteral/*ObjectLiteralExpression/?propertyAssignment/*PropertyAssignment": {
+            begin: ($) => { $i.log("$expression/?objectLiteral/*ObjectLiteralExpression/?propertyAssignment/*PropertyAssignment begin") },
+            end: ($) => { $i.log("$expression/?objectLiteral/*ObjectLiteralExpression/?propertyAssignment/*PropertyAssignment end") },
         },
-        "$type/?void/*VoidKeyword": ($) => { $i.log("$type/?void/*VoidKeyword") },
-        "$type/?union/*UnionType": {
-            begin: ($) => { $i.log("$type/?union/*UnionType begin") },
-            end: ($) => { $i.log("$type/?union/*UnionType end") },
+        "$expression/?objectLiteral/*ObjectLiteralExpression": {
+            begin: ($) => { $i.log("$expression/?objectLiteral/*ObjectLiteralExpression begin") },
+            end: ($) => { $i.log("$expression/?objectLiteral/*ObjectLiteralExpression end") },
         },
-        "$type/?undefined/*UndefinedKeyword": ($) => { $i.log("$type/?undefined/*UndefinedKeyword") },
-        "$type/?typeReference/*TypeReference/.x/?qualifiedName/*QualifiedName": {
-            begin: ($) => { $i.log("$type/?typeReference/*TypeReference/.x/?qualifiedName/*QualifiedName begin") },
-            end: ($) => { $i.log("$type/?typeReference/*TypeReference/.x/?qualifiedName/*QualifiedName end") },
+        "$expression/?parenthesizedExpression/*ParenthesizedExpression": {
+            begin: ($) => { $i.log("$expression/?parenthesizedExpression/*ParenthesizedExpression begin") },
+            end: ($) => { $i.log("$expression/?parenthesizedExpression/*ParenthesizedExpression end") },
         },
-        "$type/?typeReference/*TypeReference": {
-            begin: ($) => { $i.log("$type/?typeReference/*TypeReference begin") },
-            end: ($) => { $i.log("$type/?typeReference/*TypeReference end") },
+        "$expression/?prefixUnary/*PrefixUnaryExpression": {
+            begin: ($) => { $i.log("$expression/?prefixUnary/*PrefixUnaryExpression begin") },
+            end: ($) => { $i.log("$expression/?prefixUnary/*PrefixUnaryExpression end") },
         },
-        "$type/?string/*StringKeyword": ($) => { $i.log("$type/?string/*StringKeyword") },
-        "$type/?typeLiteral/*TypeLiteral": {
-            begin: ($) => { $i.log("$type/?typeLiteral/*TypeLiteral begin") },
-            end: ($) => { $i.log("$type/?typeLiteral/*TypeLiteral end") },
+        "$expression/?propertyAccess/*PropertyAccessExpression": {
+            begin: ($) => { $i.log("$expression/?propertyAccess/*PropertyAccessExpression begin") },
+            end: ($) => { $i.log("$expression/?propertyAccess/*PropertyAccessExpression end") },
         },
-        "$type/?tuple/*TupleType": {
-            begin: ($) => { $i.log("$type/?tuple/*TupleType begin") },
-            end: ($) => { $i.log("$type/?tuple/*TupleType end") },
+        "$expression/?template/*TemplateExpression/.head/*TemplateHead": ($) => { $i.log("$expression/?template/*TemplateExpression/.head/*TemplateHead") },
+        "$expression/?template/*TemplateExpression/.spans/*TemplateSpan/.x/?middle/*TemplateMiddle": ($) => { $i.log("$expression/?template/*TemplateExpression/.spans/*TemplateSpan/.x/?middle/*TemplateMiddle") },
+        "$expression/?template/*TemplateExpression/.spans/*TemplateSpan/.x/?tail/*TemplateTail": ($) => { $i.log("$expression/?template/*TemplateExpression/.spans/*TemplateSpan/.x/?tail/*TemplateTail") },
+        "$expression/?template/*TemplateExpression/.spans/*TemplateSpan": {
+            begin: ($) => { $i.log("$expression/?template/*TemplateExpression/.spans/*TemplateSpan begin") },
+            end: ($) => { $i.log("$expression/?template/*TemplateExpression/.spans/*TemplateSpan end") },
         },
-        "$type/?optional/*OptionalType": {
-            begin: ($) => { $i.log("$type/?optional/*OptionalType begin") },
-            end: ($) => { $i.log("$type/?optional/*OptionalType end") },
+        "$expression/?template/*TemplateExpression": {
+            begin: ($) => { $i.log("$expression/?template/*TemplateExpression begin") },
+            end: ($) => { $i.log("$expression/?template/*TemplateExpression end") },
         },
-        "$type/?number/*NumberKeyword": ($) => { $i.log("$type/?number/*NumberKeyword") },
-        "$type/?parenthesized/*ParenthesizedType": {
-            begin: ($) => { $i.log("$type/?parenthesized/*ParenthesizedType begin") },
-            end: ($) => { $i.log("$type/?parenthesized/*ParenthesizedType end") },
+        "$expression/?true/*TrueKeyword": ($) => { $i.log("$expression/?true/*TrueKeyword") },
+        "$identifier/*Identifier": ($) => { $i.log("$identifier/*Identifier") },
+        "$modifier/?export/*ExportKeyword": ($) => { $i.log("$modifier/?export/*ExportKeyword") },
+        "$modifier/?readonly/*ReadonlyKeyword": ($) => { $i.log("$modifier/?readonly/*ReadonlyKeyword") },
+        "$numericLiteral/*NumericLiteral": ($) => { $i.log("$numericLiteral/*NumericLiteral") },
+        "$parameter/*Parameter/.questionToken/*QuestionToken": ($) => { $i.log("$parameter/*Parameter/.questionToken/*QuestionToken") },
+        "$parameter/*Parameter": {
+            begin: ($) => { $i.log("$parameter/*Parameter begin") },
+            end: ($) => { $i.log("$parameter/*Parameter end") },
         },
-        "$type/?literal/*LiteralType/?null/*NullKeyword": ($) => { $i.log("$type/?literal/*LiteralType/?null/*NullKeyword") },
-        "$type/?literal/*LiteralType": {
-            begin: ($) => { $i.log("$type/?literal/*LiteralType begin") },
-            end: ($) => { $i.log("$type/?literal/*LiteralType end") },
+        "$statement/?break/*BreakStatement": {
+            begin: ($) => { $i.log("$statement/?break/*BreakStatement begin") },
+            end: ($) => { $i.log("$statement/?break/*BreakStatement end") },
         },
-        "$type/?function/*FunctionType": {
-            begin: ($) => { $i.log("$type/?function/*FunctionType begin") },
-            end: ($) => { $i.log("$type/?function/*FunctionType end") },
+        "$statement/?export/*ExportDeclaration": {
+            begin: ($) => { $i.log("$statement/?export/*ExportDeclaration begin") },
+            end: ($) => { $i.log("$statement/?export/*ExportDeclaration end") },
         },
-        "$type/?boolean/*BooleanKeyword": ($) => { $i.log("$type/?boolean/*BooleanKeyword") },
-        "$type/?array/*ArrayType": {
-            begin: ($) => { $i.log("$type/?array/*ArrayType begin") },
-            end: ($) => { $i.log("$type/?array/*ArrayType end") },
+        "$statement/?expression/*ExpressionStatement": {
+            begin: ($) => { $i.log("$statement/?expression/*ExpressionStatement begin") },
+            end: ($) => { $i.log("$statement/?expression/*ExpressionStatement end") },
         },
-        "$stringLiteral/*StringLiteral": ($) => { $i.log("$stringLiteral/*StringLiteral") },
-        "$statement/?variable/*VariableStatement": {
-            begin: ($) => { $i.log("$statement/?variable/*VariableStatement begin") },
-            end: ($) => { $i.log("$statement/?variable/*VariableStatement end") },
+        "$statement/?function/*FunctionDeclaration": {
+            begin: ($) => { $i.log("$statement/?function/*FunctionDeclaration begin") },
+            end: ($) => { $i.log("$statement/?function/*FunctionDeclaration end") },
         },
-        "$statement/?typeAlias/*TypeAliasDeclaration": {
-            begin: ($) => { $i.log("$statement/?typeAlias/*TypeAliasDeclaration begin") },
-            end: ($) => { $i.log("$statement/?typeAlias/*TypeAliasDeclaration end") },
-        },
-        "$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?default/*DefaultClause": {
-            begin: ($) => { $i.log("$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?default/*DefaultClause begin") },
-            end: ($) => { $i.log("$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?default/*DefaultClause end") },
-        },
-        "$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?case/*CaseClause": {
-            begin: ($) => { $i.log("$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?case/*CaseClause begin") },
-            end: ($) => { $i.log("$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?case/*CaseClause end") },
-        },
-        "$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock": {
-            begin: ($) => { $i.log("$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock begin") },
-            end: ($) => { $i.log("$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock end") },
-        },
-        "$statement/?switch/*SwitchStatement": {
-            begin: ($) => { $i.log("$statement/?switch/*SwitchStatement begin") },
-            end: ($) => { $i.log("$statement/?switch/*SwitchStatement end") },
-        },
-        "$statement/?return/*ReturnStatement": {
-            begin: ($) => { $i.log("$statement/?return/*ReturnStatement begin") },
-            end: ($) => { $i.log("$statement/?return/*ReturnStatement end") },
-        },
-        "$statement/?interface/*InterfaceDeclaration": {
-            begin: ($) => { $i.log("$statement/?interface/*InterfaceDeclaration begin") },
-            end: ($) => { $i.log("$statement/?interface/*InterfaceDeclaration end") },
+        "$statement/?if/*IfStatement": {
+            begin: ($) => { $i.log("$statement/?if/*IfStatement begin") },
+            end: ($) => { $i.log("$statement/?if/*IfStatement end") },
         },
         "$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports/*ImportSpecifier": {
             begin: ($) => { $i.log("$statement/?import/*ImportDeclaration/.clause/*ImportClause/?named/*NamedImports/*ImportSpecifier begin") },
@@ -140,102 +124,118 @@ export function createDefaultVisistor(
             begin: ($) => { $i.log("$statement/?import/*ImportDeclaration begin") },
             end: ($) => { $i.log("$statement/?import/*ImportDeclaration end") },
         },
-        "$statement/?if/*IfStatement": {
-            begin: ($) => { $i.log("$statement/?if/*IfStatement begin") },
-            end: ($) => { $i.log("$statement/?if/*IfStatement end") },
+        "$statement/?interface/*InterfaceDeclaration": {
+            begin: ($) => { $i.log("$statement/?interface/*InterfaceDeclaration begin") },
+            end: ($) => { $i.log("$statement/?interface/*InterfaceDeclaration end") },
         },
-        "$statement/?function/*FunctionDeclaration": {
-            begin: ($) => { $i.log("$statement/?function/*FunctionDeclaration begin") },
-            end: ($) => { $i.log("$statement/?function/*FunctionDeclaration end") },
+        "$statement/?return/*ReturnStatement": {
+            begin: ($) => { $i.log("$statement/?return/*ReturnStatement begin") },
+            end: ($) => { $i.log("$statement/?return/*ReturnStatement end") },
         },
-        "$statement/?expression/*ExpressionStatement": {
-            begin: ($) => { $i.log("$statement/?expression/*ExpressionStatement begin") },
-            end: ($) => { $i.log("$statement/?expression/*ExpressionStatement end") },
+        "$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?case/*CaseClause": {
+            begin: ($) => { $i.log("$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?case/*CaseClause begin") },
+            end: ($) => { $i.log("$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?case/*CaseClause end") },
         },
-        "$statement/?export/*ExportDeclaration": {
-            begin: ($) => { $i.log("$statement/?export/*ExportDeclaration begin") },
-            end: ($) => { $i.log("$statement/?export/*ExportDeclaration end") },
+        "$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?default/*DefaultClause": {
+            begin: ($) => { $i.log("$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?default/*DefaultClause begin") },
+            end: ($) => { $i.log("$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock/?default/*DefaultClause end") },
         },
-        "$statement/?break/*BreakStatement": {
-            begin: ($) => { $i.log("$statement/?break/*BreakStatement begin") },
-            end: ($) => { $i.log("$statement/?break/*BreakStatement end") },
+        "$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock": {
+            begin: ($) => { $i.log("$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock begin") },
+            end: ($) => { $i.log("$statement/?switch/*SwitchStatement/.caseBlock/*CaseBlock end") },
         },
-        "$parameter/*Parameter/.questionToken/*QuestionToken": ($) => { $i.log("$parameter/*Parameter/.questionToken/*QuestionToken") },
-        "$parameter/*Parameter": {
-            begin: ($) => { $i.log("$parameter/*Parameter begin") },
-            end: ($) => { $i.log("$parameter/*Parameter end") },
+        "$statement/?switch/*SwitchStatement": {
+            begin: ($) => { $i.log("$statement/?switch/*SwitchStatement begin") },
+            end: ($) => { $i.log("$statement/?switch/*SwitchStatement end") },
         },
-        "$numericLiteral/*NumericLiteral": ($) => { $i.log("$numericLiteral/*NumericLiteral") },
-        "$modifier/?readonly/*ReadonlyKeyword": ($) => { $i.log("$modifier/?readonly/*ReadonlyKeyword") },
-        "$modifier/?export/*ExportKeyword": ($) => { $i.log("$modifier/?export/*ExportKeyword") },
-        "$identifier/*Identifier": ($) => { $i.log("$identifier/*Identifier") },
-        "$expression/?true/*TrueKeyword": ($) => { $i.log("$expression/?true/*TrueKeyword") },
-        "$expression/?template/*TemplateExpression/.head/*TemplateHead": ($) => { $i.log("$expression/?template/*TemplateExpression/.head/*TemplateHead") },
-        "$expression/?template/*TemplateExpression/.spans/*TemplateSpan/.x/?tail/*TemplateTail": ($) => { $i.log("$expression/?template/*TemplateExpression/.spans/*TemplateSpan/.x/?tail/*TemplateTail") },
-        "$expression/?template/*TemplateExpression/.spans/*TemplateSpan/.x/?middle/*TemplateMiddle": ($) => { $i.log("$expression/?template/*TemplateExpression/.spans/*TemplateSpan/.x/?middle/*TemplateMiddle") },
-        "$expression/?template/*TemplateExpression/.spans/*TemplateSpan": {
-            begin: ($) => { $i.log("$expression/?template/*TemplateExpression/.spans/*TemplateSpan begin") },
-            end: ($) => { $i.log("$expression/?template/*TemplateExpression/.spans/*TemplateSpan end") },
+        "$statement/?typeAlias/*TypeAliasDeclaration": {
+            begin: ($) => { $i.log("$statement/?typeAlias/*TypeAliasDeclaration begin") },
+            end: ($) => { $i.log("$statement/?typeAlias/*TypeAliasDeclaration end") },
         },
-        "$expression/?template/*TemplateExpression": {
-            begin: ($) => { $i.log("$expression/?template/*TemplateExpression begin") },
-            end: ($) => { $i.log("$expression/?template/*TemplateExpression end") },
+        "$statement/?variable/*VariableStatement": {
+            begin: ($) => { $i.log("$statement/?variable/*VariableStatement begin") },
+            end: ($) => { $i.log("$statement/?variable/*VariableStatement end") },
         },
-        "$expression/?propertyAccess/*PropertyAccessExpression": {
-            begin: ($) => { $i.log("$expression/?propertyAccess/*PropertyAccessExpression begin") },
-            end: ($) => { $i.log("$expression/?propertyAccess/*PropertyAccessExpression end") },
+        "$stringLiteral/*StringLiteral": ($) => { $i.log("$stringLiteral/*StringLiteral") },
+        "$type/?array/*ArrayType": {
+            begin: ($) => { $i.log("$type/?array/*ArrayType begin") },
+            end: ($) => { $i.log("$type/?array/*ArrayType end") },
         },
-        "$expression/?prefixUnary/*PrefixUnaryExpression": {
-            begin: ($) => { $i.log("$expression/?prefixUnary/*PrefixUnaryExpression begin") },
-            end: ($) => { $i.log("$expression/?prefixUnary/*PrefixUnaryExpression end") },
+        "$type/?boolean/*BooleanKeyword": ($) => { $i.log("$type/?boolean/*BooleanKeyword") },
+        "$type/?function/*FunctionType": {
+            begin: ($) => { $i.log("$type/?function/*FunctionType begin") },
+            end: ($) => { $i.log("$type/?function/*FunctionType end") },
         },
-        "$expression/?parenthesizedExpression/*ParenthesizedExpression": {
-            begin: ($) => { $i.log("$expression/?parenthesizedExpression/*ParenthesizedExpression begin") },
-            end: ($) => { $i.log("$expression/?parenthesizedExpression/*ParenthesizedExpression end") },
+        "$type/?literal/*LiteralType/?null/*NullKeyword": ($) => { $i.log("$type/?literal/*LiteralType/?null/*NullKeyword") },
+        "$type/?literal/*LiteralType": {
+            begin: ($) => { $i.log("$type/?literal/*LiteralType begin") },
+            end: ($) => { $i.log("$type/?literal/*LiteralType end") },
         },
-        "$expression/?objectLiteral/*ObjectLiteralExpression/?propertyAssignment/*PropertyAssignment": {
-            begin: ($) => { $i.log("$expression/?objectLiteral/*ObjectLiteralExpression/?propertyAssignment/*PropertyAssignment begin") },
-            end: ($) => { $i.log("$expression/?objectLiteral/*ObjectLiteralExpression/?propertyAssignment/*PropertyAssignment end") },
+        "$type/?number/*NumberKeyword": ($) => { $i.log("$type/?number/*NumberKeyword") },
+        "$type/?optional/*OptionalType": {
+            begin: ($) => { $i.log("$type/?optional/*OptionalType begin") },
+            end: ($) => { $i.log("$type/?optional/*OptionalType end") },
         },
-        "$expression/?objectLiteral/*ObjectLiteralExpression": {
-            begin: ($) => { $i.log("$expression/?objectLiteral/*ObjectLiteralExpression begin") },
-            end: ($) => { $i.log("$expression/?objectLiteral/*ObjectLiteralExpression end") },
+        "$type/?parenthesized/*ParenthesizedType": {
+            begin: ($) => { $i.log("$type/?parenthesized/*ParenthesizedType begin") },
+            end: ($) => { $i.log("$type/?parenthesized/*ParenthesizedType end") },
         },
-        "$expression/?nullKeyword/*NullKeyword": ($) => { $i.log("$expression/?nullKeyword/*NullKeyword") },
-        "$expression/?noSubstitutionTemplateLiteral/*NoSubstitutionTemplateLiteral": ($) => { $i.log("$expression/?noSubstitutionTemplateLiteral/*NoSubstitutionTemplateLiteral") },
-        "$expression/?false/*FalseKeyword": ($) => { $i.log("$expression/?false/*FalseKeyword") },
-        "$expression/?elementAccess/*ElementAccessExpression": {
-            begin: ($) => { $i.log("$expression/?elementAccess/*ElementAccessExpression begin") },
-            end: ($) => { $i.log("$expression/?elementAccess/*ElementAccessExpression end") },
+        "$type/?string/*StringKeyword": ($) => { $i.log("$type/?string/*StringKeyword") },
+        "$type/?tuple/*TupleType": {
+            begin: ($) => { $i.log("$type/?tuple/*TupleType begin") },
+            end: ($) => { $i.log("$type/?tuple/*TupleType end") },
         },
-        "$expression/?conditional/*ConditionalExpression/.questionToken/*QuestionToken": ($) => { $i.log("$expression/?conditional/*ConditionalExpression/.questionToken/*QuestionToken") },
-        "$expression/?conditional/*ConditionalExpression/.colonToken/*ColonToken": ($) => { $i.log("$expression/?conditional/*ConditionalExpression/.colonToken/*ColonToken") },
-        "$expression/?conditional/*ConditionalExpression": {
-            begin: ($) => { $i.log("$expression/?conditional/*ConditionalExpression begin") },
-            end: ($) => { $i.log("$expression/?conditional/*ConditionalExpression end") },
+        "$type/?typeLiteral/*TypeLiteral": {
+            begin: ($) => { $i.log("$type/?typeLiteral/*TypeLiteral begin") },
+            end: ($) => { $i.log("$type/?typeLiteral/*TypeLiteral end") },
         },
-        "$expression/?call/*CallExpression": {
-            begin: ($) => { $i.log("$expression/?call/*CallExpression begin") },
-            end: ($) => { $i.log("$expression/?call/*CallExpression end") },
+        "$type/?typeReference/*TypeReference/.x/?qualifiedName/*QualifiedName": {
+            begin: ($) => { $i.log("$type/?typeReference/*TypeReference/.x/?qualifiedName/*QualifiedName begin") },
+            end: ($) => { $i.log("$type/?typeReference/*TypeReference/.x/?qualifiedName/*QualifiedName end") },
         },
-        "$expression/?binary/*BinaryExpression/.operator/?equals/*EqualsToken": ($) => { $i.log("$expression/?binary/*BinaryExpression/.operator/?equals/*EqualsToken") },
-        "$expression/?binary/*BinaryExpression/.operator/?equalsEqualsEquals/*EqualsEqualsEqualsToken": ($) => { $i.log("$expression/?binary/*BinaryExpression/.operator/?equalsEqualsEquals/*EqualsEqualsEqualsToken") },
-        "$expression/?binary/*BinaryExpression": {
-            begin: ($) => { $i.log("$expression/?binary/*BinaryExpression begin") },
-            end: ($) => { $i.log("$expression/?binary/*BinaryExpression end") },
+        "$type/?typeReference/*TypeReference": {
+            begin: ($) => { $i.log("$type/?typeReference/*TypeReference begin") },
+            end: ($) => { $i.log("$type/?typeReference/*TypeReference end") },
         },
-        "$expression/?arrowFunction/*ArrowFunction/.equalsGreaterThan/*EqualsGreaterThanToken": ($) => { $i.log("$expression/?arrowFunction/*ArrowFunction/.equalsGreaterThan/*EqualsGreaterThanToken") },
-        "$expression/?arrowFunction/*ArrowFunction": {
-            begin: ($) => { $i.log("$expression/?arrowFunction/*ArrowFunction begin") },
-            end: ($) => { $i.log("$expression/?arrowFunction/*ArrowFunction end") },
+        "$type/?undefined/*UndefinedKeyword": ($) => { $i.log("$type/?undefined/*UndefinedKeyword") },
+        "$type/?union/*UnionType": {
+            begin: ($) => { $i.log("$type/?union/*UnionType begin") },
+            end: ($) => { $i.log("$type/?union/*UnionType end") },
         },
-        "$expression/?arrayLiteral/*ArrayLiteralExpression": {
-            begin: ($) => { $i.log("$expression/?arrayLiteral/*ArrayLiteralExpression begin") },
-            end: ($) => { $i.log("$expression/?arrayLiteral/*ArrayLiteralExpression end") },
+        "$type/?void/*VoidKeyword": ($) => { $i.log("$type/?void/*VoidKeyword") },
+        "$typeParameter/*TypeParameter": {
+            begin: ($) => { $i.log("$typeParameter/*TypeParameter begin") },
+            end: ($) => { $i.log("$typeParameter/*TypeParameter end") },
         },
-        "$block/*Block": {
-            begin: ($) => { $i.log("$block/*Block begin") },
-            end: ($) => { $i.log("$block/*Block end") },
+        "$typeSignature/?index/*IndexSignature": {
+            begin: ($) => { $i.log("$typeSignature/?index/*IndexSignature begin") },
+            end: ($) => { $i.log("$typeSignature/?index/*IndexSignature end") },
+        },
+        "$typeSignature/?method/*MethodSignature": {
+            begin: ($) => { $i.log("$typeSignature/?method/*MethodSignature begin") },
+            end: ($) => { $i.log("$typeSignature/?method/*MethodSignature end") },
+        },
+        "$typeSignature/?property/*PropertySignature/.quesionToken/*QuestionToken": ($) => { $i.log("$typeSignature/?property/*PropertySignature/.quesionToken/*QuestionToken") },
+        "$typeSignature/?property/*PropertySignature": {
+            begin: ($) => { $i.log("$typeSignature/?property/*PropertySignature begin") },
+            end: ($) => { $i.log("$typeSignature/?property/*PropertySignature end") },
+        },
+        "$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?bindingElement/*BindingElement": {
+            begin: ($) => { $i.log("$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?bindingElement/*BindingElement begin") },
+            end: ($) => { $i.log("$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?bindingElement/*BindingElement end") },
+        },
+        "$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?omitted/*OmittedExpression": ($) => { $i.log("$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?omitted/*OmittedExpression") },
+        "$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern": {
+            begin: ($) => { $i.log("$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern begin") },
+            end: ($) => { $i.log("$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern end") },
+        },
+        "$variableDeclaration/*VariableDeclaration": {
+            begin: ($) => { $i.log("$variableDeclaration/*VariableDeclaration begin") },
+            end: ($) => { $i.log("$variableDeclaration/*VariableDeclaration end") },
+        },
+        "$variableDeclarationList/*VariableDeclarationList": {
+            begin: ($) => { $i.log("$variableDeclarationList/*VariableDeclarationList begin") },
+            end: ($) => { $i.log("$variableDeclarationList/*VariableDeclarationList end") },
         },
         "/.endOfFile/*EndOfFileToken": ($) => { $i.log("/.endOfFile/*EndOfFileToken") },
         "": {

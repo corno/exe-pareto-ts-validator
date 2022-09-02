@@ -11,25 +11,29 @@ import * as gta from "exe-generate-typesafe-ast"
 export type Dependencies = {
     isYinBeforeYang: collation.IsYinBeforeYang
     createWriteStream: fs.CreateWriteStream
+    startAsync: main.StartAsync
 }
 
-export function createGenerateInterfaceMain(
+
+export function generateImplementation(
     $: {
         grammar: gta.TGrammar,
+        arguments: main.Arguments,
     },
     $d: Dependencies
-): main.ProgramMain {
+): void {
     const conf = $
     const deps = $d
-    return ($, $i, $d) => {
+    const argStack = pm.createStack($.arguments)
 
-        const argStack = pm.createStack($.arguments)
+    argStack.pop(
+        (first) => {
 
-        argStack.pop(
-            (first) => {
+            argStack.pop(
+                (second) => {
                     const rootPath = first
-                
-                    gta.generateInterface(
+
+                    gta.generateImplementation(
                         {
                             fpSettings: {
                                 newline: "\n",
@@ -37,6 +41,7 @@ export function createGenerateInterfaceMain(
                             },
                             generation: {
                                 grammar: conf.grammar,
+                                pathToInterface: second,
                             }
                         },
                         {
@@ -52,8 +57,8 @@ export function createGenerateInterfaceMain(
                                             createContainingDirectories: true,
                                         },
                                         {
-                                            onError: ($) => {
-                                                pl.implementMe("ERROR MSG")
+                                            onError: () => {
+                                                pl.implementMe("ERROR HANDLER")
                                             }
                                         },
                                         ($c2) => {
@@ -64,10 +69,14 @@ export function createGenerateInterfaceMain(
                             }
                         }
                     )
-            },
-            () => {
-                pl.panic("args")
-            }
-        )
-    }
+                },
+                () => {
+                    pl.panic("args")
+                }
+            )
+        },
+        () => {
+            pl.panic("args")
+        }
+    )
 }

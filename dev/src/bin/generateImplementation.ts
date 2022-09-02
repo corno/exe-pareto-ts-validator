@@ -6,18 +6,21 @@ import * as collation from "res-pareto-collation"
 import * as fs from "res-pareto-filesystem"
 
 import * as tsg from "../data/paretoGrammar"
-import { createGenerateImplementationMain } from "../imp/createGenerateImplementationMain"
+import { generateImplementation } from "../imp/generateImplementation"
 
 
 pe.runProgram(
-
-    createGenerateImplementationMain(
-        {
-            grammar: tsg._typeScriptGrammar
-        },
-        {
-            isYinBeforeYang: collation.localeIsYinBeforeYang,
-            createWriteStream: fs.createWriteStream,
-        }
-    )
+    ($, $i, $d) => {
+        generateImplementation(
+            {
+                grammar: tsg._typeScriptGrammar,
+                arguments: $.arguments,
+            },
+            {
+                isYinBeforeYang: collation.localeIsYinBeforeYang,
+                createWriteStream: fs.createWriteStream,
+                startAsync: $d.startAsync
+            }
+        )
+    }
 )
