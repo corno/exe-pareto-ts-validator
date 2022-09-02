@@ -11,7 +11,6 @@ import * as exeLib from "lib-pareto-exe"
 
 import { _typescriptProject } from "../data/typescriptProject"
 import { parseTypescriptProjectsInProject } from "../imp"
-import { ParseError } from "../imp/processTypescriptProject"
 import { createParseErrorMessage } from "../imp/createParseErrorMessage"
 import { getType } from "../imp/getType"
 
@@ -36,7 +35,6 @@ pe.runProgram(($, $i, $d) => {
                                 substr: uglyStuff.substr
                             }
                         ),
-                        //path: projectPath.directoryPath
                     },
                     {
                         onError: ($) => {

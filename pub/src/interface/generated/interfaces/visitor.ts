@@ -28,6 +28,10 @@ export type IVisitor = {
         readonly "begin": ($: types.TNGtypeSignature_method$) => void,
         readonly "end": ($: types.TNGtypeSignature_method$) => void,
     }
+    readonly "$typeSignature/?index/*IndexSignature"?: {
+        readonly "begin": ($: types.TNGtypeSignature_index$) => void,
+        readonly "end": ($: types.TNGtypeSignature_index$) => void,
+    }
     readonly "$typeParameter/*TypeParameter"?: {
         readonly "begin": ($: types.TNGtypeParameter$) => void,
         readonly "end": ($: types.TNGtypeParameter$) => void,
@@ -210,6 +214,7 @@ export type IVisitor = {
         readonly "end": ($: types.TNGexpression_call$) => void,
     }
     readonly "$expression/?binary/*BinaryExpression/.operator/?equals/*EqualsToken"?: ($: types.TNGexpression_binary$_operator_equals$) => void
+    readonly "$expression/?binary/*BinaryExpression/.operator/?equalsEqualsEquals/*EqualsEqualsEqualsToken"?: ($: types.TNGexpression_binary$_operator_equalsEqualsEquals$) => void
     readonly "$expression/?binary/*BinaryExpression"?: {
         readonly "begin": ($: types.TNGexpression_binary$) => void,
         readonly "end": ($: types.TNGexpression_binary$) => void,

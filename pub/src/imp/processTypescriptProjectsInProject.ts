@@ -28,6 +28,7 @@ export function parseTypescriptProjectsInProject(
     parseTypescriptProject(
         {
             path: [$.contextDirectory, $.projectName, "dev"],
+            allowNonExistence: true,
         },
         {
             onError: $i.onError
@@ -40,6 +41,7 @@ export function parseTypescriptProjectsInProject(
         parseTypescriptProject(
             {
                 path: [$.contextDirectory, $.projectName, "pub"],
+                allowNonExistence: false,
             },
             {
                 onError: $i.onError
@@ -50,6 +52,7 @@ export function parseTypescriptProjectsInProject(
     parseTypescriptProject(
         {
             path: [$.contextDirectory, $.projectName, "test"],
+            allowNonExistence: $.type[0] === "api",
         },
         {
             onError: $i.onError

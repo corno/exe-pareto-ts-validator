@@ -8,7 +8,7 @@ export const parse: Parse = ($, $i, $d) => {
             tsconfigPath: $.tsConfigPath
         },
         {
-            onError: $i.onError,
+            onError: $i.onErrorX,
             onFile: ($$) => {
                 const $ = $$.data
                 const fullPath = $.fullPath

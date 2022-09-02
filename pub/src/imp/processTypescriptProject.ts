@@ -27,8 +27,8 @@ export type ParseError =
         kindNameOptions: string
     }]
     | ["file path", {
-        error: ap.PathError
-        path: pt.Array<string> | null
+        error: ap.AnnotatedPathError
+        path: ts.Path
     }]
     | ["pattern", {
         "unknown pattern": pt.Array<string>
@@ -46,12 +46,14 @@ export type ParseTypescriptProjectDependencies = {
 export function parseTypescriptProject(
     $: {
         path: ts.Path
+        allowNonExistence: boolean
     },
     $i: {
         onError: ($: ParseError) => void
     },
     $d: ParseTypescriptProjectDependencies
 ) {
+    const config = $
     $d.startAsync(
 
         parse(
@@ -59,9 +61,16 @@ export function parseTypescriptProject(
                 tsConfigPath: [$.path, "tsconfig.json"],
             },
             {
-                onError: ($) => {
-
-                    $i.onError(["dynamic parser", $])
+                onErrorX: ($) => {
+                    if (config.allowNonExistence) {
+                        if ($[0] === "tsconfg.json does not exist") {
+                            //do nothing
+                        } else {
+                            $i.onError(["dynamic parser", $])
+                        }
+                    } else {
+                        $i.onError(["dynamic parser", $])
+                    }
                 },
                 reportMissingToken: ($) => {
                     $i.onError(["missing token", $])
@@ -81,7 +90,10 @@ export function parseTypescriptProject(
                     switch (result[0]) {
                         case "error":
                             pl.cc(result[1], ($) => {
-                                $i.onError(["file path", $])
+                                $i.onError(["file path", {
+                                    error: $,
+                                    path: config.path
+                                }])
                                 //pl.logDebugMessage(`path error: ${$.error[0]} ${pl.isNotNull($.path) ? p2s.getArrayAsString($.path, "/") : ""}`)
                             })
                             break

@@ -765,7 +765,149 @@ export function parse(
                         },
                     )
                 }
+                const choose_index = () => {
+                    children.pop(
+                        (currentChild) => {
+                            if ($d.stringsNotEqual(currentChild.kindName, "IndexSignature")) {
+                                $x.reportUnexpectedToken({
+                                    path: "GtypeSignature_index",
+                                    token: currentChild,
+                                    expected: "IndexSignature",
+                                })
+                                return
+                            }
+                            ((
+                                $: uast.TUntypedNode,
+                                callback: ($: api.TNGtypeSignature_index$) => void,
+                            ): void => {
+                                const node = $
+                                const children = pm.createStack($.children)
+                                const sequenceEnd = ($: api.TVTGtypeSignature_index$) => {
+                                    callback({
+                                        tokenDetails: node.details,
+                                        content: $,
+                                    })
+                                }
+                                const elements = pm.createArrayBuilder<api.TVTGtypeSignature_index$_modifiers>()
+                                const processElement = () => {
+                                    Gmodifier(node, children, ($) => {
+                                        elements.push($)
+                                    })
+                                }
+                                $d.doUntil(
+                                    children,
+                                    (nextChild) => {
+                                        switch (nextChild.kindName) {
+                                            case "ExportKeyword": //z
+                                                processElement()
+                                                return true
+                                            case "ReadonlyKeyword": //z
+                                                processElement()
+                                                return true
+                                            default: return false
+                                        }
+                                    },
+                                )
+                                pl.cc(elements.getArray(), ($) => {
+                                    const _modifiers = $
+                                    Gparameter(node, children, ($) => {
+                                        const _parameter = $
+                                        let optional: null | api.TVTGtypeSignature_index$_type = null
+                                        const setOptional = () => {
+                                            Gtype(node, children, ($) => {
+                                                optional = $
+                                            })
+                                        }
+                                        $d.lookAhead(children, 
+                                            (nextChild) => {
+                                                switch (nextChild.kindName) {
+                                                    case "ArrayType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "BooleanKeyword": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "FunctionType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "LiteralType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "ParenthesizedType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "NumberKeyword": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "OptionalType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "TupleType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "TypeLiteral": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "StringKeyword": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "TypeReference": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "UndefinedKeyword": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "UnionType": //XXX
+                                                        setOptional()
+                                                        break
+                                                    case "VoidKeyword": //XXX
+                                                        setOptional()
+                                                        break
+                                                }
+                                            },
+                                            () => {},
+                                        )
+                                        pl.cc(optional, ($) => {
+                                            const _type = $
+                                            sequenceEnd({
+                                                "modifiers": _modifiers,
+                                                "parameter": _parameter,
+                                                "type": _type,
+                                            })
+                                        })
+                                    })
+                                })
+                                children.pop(
+                                    (nextChild) => {
+                                        $x.reportUnexpectedToken({
+                                            path: "GtypeSignature_index$",
+                                            token: nextChild,
+                                            expected: null,
+                                        })
+                                    },
+                                    () => {},
+                                )
+                            })(
+                                currentChild,
+                                ($) => {
+                                    choiceEnd_GtypeSignature(["index", $])
+                                }
+                            )
+                        },
+                        () => { // no child
+                            $x.reportMissingToken({
+                                parentDetails: node.details,
+                                path: "GtypeSignature_index",
+                                kindNameOptions: "IndexSignature",
+                            })
+                        },
+                    )
+                }
                 switch (nextChild.kindName) {
+                    case "IndexSignature": /*Y*/ {
+                        choose_index()
+                        break
+                    }
                     case "MethodSignature": /*Y*/ {
                         choose_method()
                         break
@@ -778,7 +920,7 @@ export function parse(
                         $x.reportUnexpectedToken({
                             path: "GtypeSignature",
                             token: nextChild,
-                            expected: "MethodSignature, PropertySignature",
+                            expected: "IndexSignature, MethodSignature, PropertySignature",
                         })
                     }
                 }
@@ -787,7 +929,7 @@ export function parse(
                 $x.reportMissingToken({
                     parentDetails: node.details,
                     path: "GtypeSignature",
-                    kindNameOptions: "MethodSignature, PropertySignature",
+                    kindNameOptions: "IndexSignature, MethodSignature, PropertySignature",
                 })
             },
         )
@@ -1326,6 +1468,9 @@ export function parse(
                                     children,
                                     (nextChild) => {
                                         switch (nextChild.kindName) {
+                                            case "IndexSignature": //z
+                                                processElement()
+                                                return true
                                             case "MethodSignature": //z
                                                 processElement()
                                                 return true
@@ -2856,6 +3001,9 @@ export function parse(
                                                 children,
                                                 (nextChild) => {
                                                     switch (nextChild.kindName) {
+                                                        case "IndexSignature": //z
+                                                            processElement()
+                                                            return true
                                                         case "MethodSignature": //z
                                                             processElement()
                                                             return true
@@ -5549,7 +5697,55 @@ export function parse(
                                                     },
                                                 )
                                             }
+                                            const choose_equalsEqualsEquals = () => {
+                                                children.pop(
+                                                    (currentChild) => {
+                                                        if ($d.stringsNotEqual(currentChild.kindName, "EqualsEqualsEqualsToken")) {
+                                                            $x.reportUnexpectedToken({
+                                                                path: "Gexpression_binary$_operator_equalsEqualsEquals",
+                                                                token: currentChild,
+                                                                expected: "EqualsEqualsEqualsToken",
+                                                            })
+                                                            return
+                                                        }
+                                                        ((
+                                                            $: uast.TUntypedNode,
+                                                            callback: ($: api.TNGexpression_binary$_operator_equalsEqualsEquals$) => void,
+                                                        ): void => {
+                                                            const node = $
+                                                            const children = pm.createStack($.children)
+                                                            callback($.details)
+                                                            children.pop(
+                                                                (nextChild) => {
+                                                                    $x.reportUnexpectedToken({
+                                                                        path: "Gexpression_binary$_operator_equalsEqualsEquals$",
+                                                                        token: nextChild,
+                                                                        expected: null,
+                                                                    })
+                                                                },
+                                                                () => {},
+                                                            )
+                                                        })(
+                                                            currentChild,
+                                                            ($) => {
+                                                                choiceEnd_Gexpression_binary$_operator(["equalsEqualsEquals", $])
+                                                            }
+                                                        )
+                                                    },
+                                                    () => { // no child
+                                                        $x.reportMissingToken({
+                                                            parentDetails: node.details,
+                                                            path: "Gexpression_binary$_operator_equalsEqualsEquals",
+                                                            kindNameOptions: "EqualsEqualsEqualsToken",
+                                                        })
+                                                    },
+                                                )
+                                            }
                                             switch (nextChild.kindName) {
+                                                case "EqualsEqualsEqualsToken": /*Y*/ {
+                                                    choose_equalsEqualsEquals()
+                                                    break
+                                                }
                                                 case "EqualsToken": /*Y*/ {
                                                     choose_equals()
                                                     break
@@ -5558,7 +5754,7 @@ export function parse(
                                                     $x.reportUnexpectedToken({
                                                         path: "Gexpression_binary$_operator",
                                                         token: nextChild,
-                                                        expected: "EqualsToken",
+                                                        expected: "EqualsEqualsEqualsToken, EqualsToken",
                                                     })
                                                 }
                                             }
@@ -5567,7 +5763,7 @@ export function parse(
                                             $x.reportMissingToken({
                                                 parentDetails: node.details,
                                                 path: "Gexpression_binary$_operator",
-                                                kindNameOptions: "EqualsToken",
+                                                kindNameOptions: "EqualsEqualsEqualsToken, EqualsToken",
                                             })
                                         },
                                     )

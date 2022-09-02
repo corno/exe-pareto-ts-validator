@@ -346,6 +346,16 @@ export function visit(
                                         })
                                         break
                                     }
+                                    case "equalsEqualsEquals": {
+                                        pl.cc($[1], ($) => {
+                                            ((
+                                                $: api.TNGexpression_binary$_operator_equalsEqualsEquals$,
+                                            ) => {
+                                                if (pl.isNotUndefined($i.visitor["$expression/?binary/*BinaryExpression/.operator/?equalsEqualsEquals/*EqualsEqualsEqualsToken"])) { $i.visitor["$expression/?binary/*BinaryExpression/.operator/?equalsEqualsEquals/*EqualsEqualsEqualsToken"]($) }
+                                            })($)
+                                        })
+                                        break
+                                    }
                                     default: pl.au($[0])
                                 }
                             })
@@ -1245,6 +1255,34 @@ export function visit(
                             })
                         })
                         if (pl.isNotUndefined($i.visitor["$typeSignature/?method/*MethodSignature"])) { $i.visitor["$typeSignature/?method/*MethodSignature"].end($) }
+                    })($)
+                })
+                break
+            }
+            case "index": {
+                pl.cc($[1], ($) => {
+                    ((
+                        $: api.TNGtypeSignature_index$,
+                    ) => {
+                        if (pl.isNotUndefined($i.visitor["$typeSignature/?index/*IndexSignature"])) { $i.visitor["$typeSignature/?index/*IndexSignature"].begin($) }
+                        pl.cc($.content, ($) => {
+                            pl.cc($["modifiers"], ($) => {
+                                $.forEach(($) => {
+                                    X_modifier($)
+                                })
+                            })
+                            pl.cc($["parameter"], ($) => {
+                                X_parameter($)
+                            })
+                            pl.cc($["type"], ($) => {
+                                if (pl.isNotNull($)) {
+                                    X_type($)
+                                } else {
+                                    //FIXME??
+                                }
+                            })
+                        })
+                        if (pl.isNotUndefined($i.visitor["$typeSignature/?index/*IndexSignature"])) { $i.visitor["$typeSignature/?index/*IndexSignature"].end($) }
                     })($)
                 })
                 break

@@ -31,7 +31,7 @@ export type Parse = (
             path: string,
             kindNameOptions: string,
         }) => void,
-        onError: ($: ts.TypeScriptParserError) => void
+        onErrorX: ($: ts.TypeScriptParserError) => void
         onFile: ($: {
             path: string,
             data: x.TRoot

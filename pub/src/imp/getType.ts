@@ -1,5 +1,4 @@
 import * as uglyStuff from "api-pareto-ugly-stuff"
-import { substr } from "res-pareto-ugly-stuff"
 import { ProjectType } from "./processTypescriptProjectsInProject"
 
 

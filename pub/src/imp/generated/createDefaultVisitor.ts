@@ -33,6 +33,10 @@ export function createDefaultVisistor(
             begin: ($) => { $i.log("$typeSignature/?method/*MethodSignature begin") },
             end: ($) => { $i.log("$typeSignature/?method/*MethodSignature end") },
         },
+        "$typeSignature/?index/*IndexSignature": {
+            begin: ($) => { $i.log("$typeSignature/?index/*IndexSignature begin") },
+            end: ($) => { $i.log("$typeSignature/?index/*IndexSignature end") },
+        },
         "$typeParameter/*TypeParameter": {
             begin: ($) => { $i.log("$typeParameter/*TypeParameter begin") },
             end: ($) => { $i.log("$typeParameter/*TypeParameter end") },
@@ -215,6 +219,7 @@ export function createDefaultVisistor(
             end: ($) => { $i.log("$expression/?call/*CallExpression end") },
         },
         "$expression/?binary/*BinaryExpression/.operator/?equals/*EqualsToken": ($) => { $i.log("$expression/?binary/*BinaryExpression/.operator/?equals/*EqualsToken") },
+        "$expression/?binary/*BinaryExpression/.operator/?equalsEqualsEquals/*EqualsEqualsEqualsToken": ($) => { $i.log("$expression/?binary/*BinaryExpression/.operator/?equalsEqualsEquals/*EqualsEqualsEqualsToken") },
         "$expression/?binary/*BinaryExpression": {
             begin: ($) => { $i.log("$expression/?binary/*BinaryExpression begin") },
             end: ($) => { $i.log("$expression/?binary/*BinaryExpression end") },

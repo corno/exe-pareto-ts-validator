@@ -82,9 +82,26 @@ export type TVGtypeSignature_method$ = TVTGtypeSignature_method$
 export type TNGtypeSignature_method$ = TAnnotatedType<TVGtypeSignature_method$>
 export type TVTGtypeSignature_method = TNGtypeSignature_method$
 export type TVGtypeSignature_method = TVTGtypeSignature_method
+export type TVTGtypeSignature_index$_modifiers = TGmodifier
+export type TVGtypeSignature_index$_modifiers = pt.Array<TVTGtypeSignature_index$_modifiers>
+export type TVTGtypeSignature_index$_parameter = TGparameter
+export type TVGtypeSignature_index$_parameter = TVTGtypeSignature_index$_parameter
+export type TVTGtypeSignature_index$_type = TGtype
+export type TVGtypeSignature_index$_type = null | TVTGtypeSignature_index$_type
+export type TVTGtypeSignature_index$ = {
+    readonly "modifiers":  TVGtypeSignature_index$_modifiers
+    readonly "parameter":  TVGtypeSignature_index$_parameter
+    readonly "type":  TVGtypeSignature_index$_type
+}
+export type TVGtypeSignature_index$ = TVTGtypeSignature_index$
+
+export type TNGtypeSignature_index$ = TAnnotatedType<TVGtypeSignature_index$>
+export type TVTGtypeSignature_index = TNGtypeSignature_index$
+export type TVGtypeSignature_index = TVTGtypeSignature_index
 export type TVTGtypeSignature = 
     | [ "property", TVGtypeSignature_property]
     | [ "method", TVGtypeSignature_method]
+    | [ "index", TVGtypeSignature_index]
 export type TGtypeSignature =  TVTGtypeSignature
 export type TVTGtypeParameter$ = TGidentifier
 export type TVGtypeParameter$ = TVTGtypeParameter$
@@ -662,8 +679,13 @@ export type TVGexpression_binary$_leftHandSide = TVTGexpression_binary$_leftHand
 export type TNGexpression_binary$_operator_equals$ = uast.TDetails
 export type TVTGexpression_binary$_operator_equals = TNGexpression_binary$_operator_equals$
 export type TVGexpression_binary$_operator_equals = TVTGexpression_binary$_operator_equals
+
+export type TNGexpression_binary$_operator_equalsEqualsEquals$ = uast.TDetails
+export type TVTGexpression_binary$_operator_equalsEqualsEquals = TNGexpression_binary$_operator_equalsEqualsEquals$
+export type TVGexpression_binary$_operator_equalsEqualsEquals = TVTGexpression_binary$_operator_equalsEqualsEquals
 export type TVTGexpression_binary$_operator = 
     | [ "equals", TVGexpression_binary$_operator_equals]
+    | [ "equalsEqualsEquals", TVGexpression_binary$_operator_equalsEqualsEquals]
 export type TVGexpression_binary$_operator = TVTGexpression_binary$_operator
 export type TVTGexpression_binary$_rightHandSide = TGexpression
 export type TVGexpression_binary$_rightHandSide = TVTGexpression_binary$_rightHandSide

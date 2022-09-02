@@ -112,6 +112,13 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                             'cardinality': ["one", {}],
                                             'type': ["choice", {
                                                 'options': pw.wrapRawDictionary({
+                                                    'equalsEqualsEquals': {
+                                                        'cardinality': ["one", {}],
+                                                        'type': ["node", {
+                                                            'name': `EqualsEqualsEqualsToken`,
+                                                            'type': ["leaf", { 'hasTextContent': false }]
+                                                        }]
+                                                    },
                                                     'equals': {
                                                         'cardinality': ["one", {}],
                                                         'type': ["node", {
@@ -1236,6 +1243,42 @@ export const _typeScriptGrammar: gr.TGrammar = {
         }],
         'typeSignature': ["choice", {
             'options': pw.wrapRawDictionary({
+                'index': {
+                    'cardinality': ["one", {}],
+                    'type': ["node", {
+                        'name': `IndexSignature`,
+                        'type': ["composite", {
+                            'cardinality': ["one", {}],
+                            'type': ["sequence", {
+                                'elements': pw.wrapRawArray([
+                                    {
+                                        'name': `modifiers`,
+                                        'value': {
+                                            'cardinality': ["array", {}],
+                                            'type': ["reference", { 'name': `modifier` }]
+                                        },
+                                    },
+                                    {
+                                        'name': `parameter`,
+                                        'value': {
+                                            'cardinality': ["one", {}],
+                                            'type': ["reference", {
+                                                'name': `parameter`
+                                            }],
+                                        }
+                                    },
+                                    {
+                                        'name': `type`,
+                                        'value': {
+                                            'cardinality': ["optional", {}],
+                                            'type': ["reference", { 'name': `type` }],
+                                        },
+                                    },
+                                ])
+                            }]
+                        }]
+                    }]
+                },
                 'method': {
                     'cardinality': ["one", {}],
                     'type': ["node", {

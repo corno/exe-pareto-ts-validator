@@ -1,9 +1,10 @@
 {
   "dependencies": {
-    "exe-generate-typesafe-ast": "^0.2.3",
+    "exe-generate-typesafe-ast": "^0.3.0",
     "lib-pareto-exe": "^0.2.4",
-    "pareto-core-exe": "^0.8.0",
     "lib-pareto-filesystem": "^0.2.1",
+    "pareto-core-exe": "^0.8.0",
+    "res-pareto-collation": "^0.1.0",
     "res-pareto-filesystem": "^0.23.0"
   }
 }
