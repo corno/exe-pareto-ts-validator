@@ -1,4 +1,6 @@
-// #!/usr/bin/env node
+#!/usr/bin/env node
+
+
 // import * as pf from "pareto-filesystem-lib"
 // import { _paretoProject } from "../../data/paretoProject"
 // import { analyseFile } from "../implementations/analyseFile"

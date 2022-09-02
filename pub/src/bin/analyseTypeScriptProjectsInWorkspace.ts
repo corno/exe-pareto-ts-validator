@@ -1,4 +1,4 @@
-// #!/usr/bin/env node
+#!/usr/bin/env node
 
 import * as pa from "pareto-core-async"
 import * as pe from "pareto-core-exe"

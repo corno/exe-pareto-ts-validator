@@ -1,4 +1,4 @@
-// #!/usr/bin/env node
+#!/usr/bin/env node
 
 import * as pe from "pareto-core-exe"
 import * as pl from "pareto-core-lib"
