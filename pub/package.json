@@ -1,5 +1,5 @@
 {
-  "name": "pareto-ts-validator-lib",
+  "name": "exe-pareto-ts-validator",
   "version": "0.31.0",
   "description": "validates if a typescript code base conforms the 'pareto' rules",
   "main": "dist/index.js",
@@ -27,5 +27,5 @@
     "data"
   ],
   "interface-fingerprint": "8b4e29dfe2cb6ca99e60d88a4ecce08641344d9f",
-  "content-fingerprint": "bee401fc83370e042ec7618d62acd9b999c0f209"
+  "content-fingerprint": "4faacd8f450ab0211411f6eaa71aa76fc00d8cc2"
 }
