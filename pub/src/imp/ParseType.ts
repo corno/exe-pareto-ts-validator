@@ -42,6 +42,6 @@ export type Parse = (
         parseDynamic: ts.Parse
         doUntil: uglyStuff.DoUntil,
         lookAhead: uglyStuff.LookAhead,
-        stringsNotEqual: (a: string, b: string) => boolean
+        stringsAreEqual: (a: string, b: string) => boolean
     }
 ) => pt.AsyncNonValue

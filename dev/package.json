@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "exe-generate-typesafe-ast": "^0.3.0",
+    "exe-generate-typesafe-ast": "^0.3.2",
     "lib-pareto-exe": "^0.2.4",
     "lib-pareto-filesystem": "^0.2.1",
     "pareto-core-exe": "^0.9.0",

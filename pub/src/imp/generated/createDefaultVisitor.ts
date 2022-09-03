@@ -76,18 +76,15 @@ export function createDefaultVisistor(
         },
         "$expression/?true/*TrueKeyword": ($) => { $i.log("$expression/?true/*TrueKeyword") },
         "$identifier/*Identifier": ($) => { $i.log("$identifier/*Identifier") },
-        "$modifier/?export/*ExportKeyword": ($) => { $i.log("$modifier/?export/*ExportKeyword") },
-        "$modifier/?readonly/*ReadonlyKeyword": ($) => { $i.log("$modifier/?readonly/*ReadonlyKeyword") },
+        "$modifiers/.modifiers/?export/*ExportKeyword": ($) => { $i.log("$modifiers/.modifiers/?export/*ExportKeyword") },
+        "$modifiers/.modifiers/?readonly/*ReadonlyKeyword": ($) => { $i.log("$modifiers/.modifiers/?readonly/*ReadonlyKeyword") },
         "$numericLiteral/*NumericLiteral": ($) => { $i.log("$numericLiteral/*NumericLiteral") },
         "$parameter/*Parameter/.questionToken/*QuestionToken": ($) => { $i.log("$parameter/*Parameter/.questionToken/*QuestionToken") },
         "$parameter/*Parameter": {
             begin: ($) => { $i.log("$parameter/*Parameter begin") },
             end: ($) => { $i.log("$parameter/*Parameter end") },
         },
-        "$statement/?break/*BreakStatement": {
-            begin: ($) => { $i.log("$statement/?break/*BreakStatement begin") },
-            end: ($) => { $i.log("$statement/?break/*BreakStatement end") },
-        },
+        "$statement/?break/*BreakStatement": ($) => { $i.log("$statement/?break/*BreakStatement") },
         "$statement/?export/*ExportDeclaration": {
             begin: ($) => { $i.log("$statement/?export/*ExportDeclaration begin") },
             end: ($) => { $i.log("$statement/?export/*ExportDeclaration end") },
@@ -161,7 +158,7 @@ export function createDefaultVisistor(
             begin: ($) => { $i.log("$type/?array/*ArrayType begin") },
             end: ($) => { $i.log("$type/?array/*ArrayType end") },
         },
-        "$type/?boolean/*BooleanKeyword": ($) => { $i.log("$type/?boolean/*BooleanKeyword") },
+        "$type/?booleanKeyword/*BooleanKeyword": ($) => { $i.log("$type/?booleanKeyword/*BooleanKeyword") },
         "$type/?function/*FunctionType": {
             begin: ($) => { $i.log("$type/?function/*FunctionType begin") },
             end: ($) => { $i.log("$type/?function/*FunctionType end") },
@@ -171,7 +168,7 @@ export function createDefaultVisistor(
             begin: ($) => { $i.log("$type/?literal/*LiteralType begin") },
             end: ($) => { $i.log("$type/?literal/*LiteralType end") },
         },
-        "$type/?number/*NumberKeyword": ($) => { $i.log("$type/?number/*NumberKeyword") },
+        "$type/?numberKeyword/*NumberKeyword": ($) => { $i.log("$type/?numberKeyword/*NumberKeyword") },
         "$type/?optional/*OptionalType": {
             begin: ($) => { $i.log("$type/?optional/*OptionalType begin") },
             end: ($) => { $i.log("$type/?optional/*OptionalType end") },
@@ -180,7 +177,7 @@ export function createDefaultVisistor(
             begin: ($) => { $i.log("$type/?parenthesized/*ParenthesizedType begin") },
             end: ($) => { $i.log("$type/?parenthesized/*ParenthesizedType end") },
         },
-        "$type/?string/*StringKeyword": ($) => { $i.log("$type/?string/*StringKeyword") },
+        "$type/?stringKeyword/*StringKeyword": ($) => { $i.log("$type/?stringKeyword/*StringKeyword") },
         "$type/?tuple/*TupleType": {
             begin: ($) => { $i.log("$type/?tuple/*TupleType begin") },
             end: ($) => { $i.log("$type/?tuple/*TupleType end") },
@@ -197,15 +194,15 @@ export function createDefaultVisistor(
             begin: ($) => { $i.log("$type/?typeReference/*TypeReference begin") },
             end: ($) => { $i.log("$type/?typeReference/*TypeReference end") },
         },
-        "$type/?undefined/*UndefinedKeyword": ($) => { $i.log("$type/?undefined/*UndefinedKeyword") },
+        "$type/?undefinedKeyword/*UndefinedKeyword": ($) => { $i.log("$type/?undefinedKeyword/*UndefinedKeyword") },
         "$type/?union/*UnionType": {
             begin: ($) => { $i.log("$type/?union/*UnionType begin") },
             end: ($) => { $i.log("$type/?union/*UnionType end") },
         },
-        "$type/?void/*VoidKeyword": ($) => { $i.log("$type/?void/*VoidKeyword") },
-        "$typeParameter/*TypeParameter": {
-            begin: ($) => { $i.log("$typeParameter/*TypeParameter begin") },
-            end: ($) => { $i.log("$typeParameter/*TypeParameter end") },
+        "$type/?voidKeyword/*VoidKeyword": ($) => { $i.log("$type/?voidKeyword/*VoidKeyword") },
+        "$typeParameters/.typeParameters/*TypeParameter": {
+            begin: ($) => { $i.log("$typeParameters/.typeParameters/*TypeParameter begin") },
+            end: ($) => { $i.log("$typeParameters/.typeParameters/*TypeParameter end") },
         },
         "$typeSignature/?index/*IndexSignature": {
             begin: ($) => { $i.log("$typeSignature/?index/*IndexSignature begin") },
@@ -215,19 +212,10 @@ export function createDefaultVisistor(
             begin: ($) => { $i.log("$typeSignature/?method/*MethodSignature begin") },
             end: ($) => { $i.log("$typeSignature/?method/*MethodSignature end") },
         },
-        "$typeSignature/?property/*PropertySignature/.quesionToken/*QuestionToken": ($) => { $i.log("$typeSignature/?property/*PropertySignature/.quesionToken/*QuestionToken") },
+        "$typeSignature/?property/*PropertySignature/.questionToken/*QuestionToken": ($) => { $i.log("$typeSignature/?property/*PropertySignature/.questionToken/*QuestionToken") },
         "$typeSignature/?property/*PropertySignature": {
             begin: ($) => { $i.log("$typeSignature/?property/*PropertySignature begin") },
             end: ($) => { $i.log("$typeSignature/?property/*PropertySignature end") },
-        },
-        "$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?bindingElement/*BindingElement": {
-            begin: ($) => { $i.log("$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?bindingElement/*BindingElement begin") },
-            end: ($) => { $i.log("$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?bindingElement/*BindingElement end") },
-        },
-        "$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?omitted/*OmittedExpression": ($) => { $i.log("$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?omitted/*OmittedExpression") },
-        "$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern": {
-            begin: ($) => { $i.log("$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern begin") },
-            end: ($) => { $i.log("$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern end") },
         },
         "$variableDeclaration/*VariableDeclaration": {
             begin: ($) => { $i.log("$variableDeclaration/*VariableDeclaration begin") },

@@ -35,38 +35,14 @@ export function generateImplementation(
 
                     gta.generateImplementation(
                         {
-                            fpSettings: {
-                                newline: "\n",
-                                indentation: "    ",
-                            },
-                            generation: {
-                                grammar: conf.grammar,
-                                pathToInterface: second,
-                            }
+                            grammar: conf.grammar,
+                            rootPath: rootPath,
+                            pathToInterface: second,
                         },
                         {
                             isYinBeforeYang: deps.isYinBeforeYang,
-                            createWriteStream: (
-                                $,
-                                $c,
-                            ) => {
-                                $d.startAsync(
-                                    deps.createWriteStream(
-                                        {
-                                            path: [rootPath, $.path],
-                                            createContainingDirectories: true,
-                                        },
-                                        {
-                                            onError: () => {
-                                                pl.implementMe("ERROR HANDLER")
-                                            }
-                                        },
-                                        ($c2) => {
-                                            $c($c2)
-                                        }
-                                    )
-                                )
-                            }
+                            createWriteStream: deps.createWriteStream,
+                            startAsync: $d.startAsync,
                         }
                     )
                 },

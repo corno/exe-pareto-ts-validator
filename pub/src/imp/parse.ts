@@ -53,7 +53,7 @@ export const parse: Parse = ($, $i, $d) => {
                     {
                         doUntil: $d.doUntil,
                         lookAhead: $d.lookAhead,
-                        stringsNotEqual: $d.stringsNotEqual,
+                        stringsAreEqual: $d.stringsAreEqual,
                     }
                 )
             },

@@ -32,37 +32,13 @@ export function generateInterface(
 
             gta.generateInterface(
                 {
-                    fpSettings: {
-                        newline: "\n",
-                        indentation: "    ",
-                    },
-                    generation: {
-                        grammar: conf.grammar,
-                    }
+                    grammar: conf.grammar,
+                    rootPath: first,
                 },
                 {
                     isYinBeforeYang: deps.isYinBeforeYang,
-                    createWriteStream: (
-                        $,
-                        $c,
-                    ) => {
-                        $d.startAsync(
-                            deps.createWriteStream(
-                                {
-                                    path: [rootPath, $.path],
-                                    createContainingDirectories: true,
-                                },
-                                {
-                                    onError: ($) => {
-                                        pl.implementMe("ERROR MSG")
-                                    }
-                                },
-                                ($c2) => {
-                                    $c($c2)
-                                }
-                            )
-                        )
-                    }
+                    createWriteStream: deps.createWriteStream,
+                    startAsync: $d.startAsync
                 }
             )
         },

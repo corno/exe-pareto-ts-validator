@@ -6,6 +6,8 @@ import * as pl from "pareto-core-lib"
 import * as ts from "res-dynamic-typescript-parser"
 import * as path from "res-pareto-path"
 import * as uglyStuff from "res-pareto-ugly-stuff"
+import * as diff from "res-pareto-diff"
+import * as fs from "res-pareto-filesystem"
 
 import * as exeLib from "lib-pareto-exe"
 
@@ -47,9 +49,10 @@ pe.runProgram(($, $i, $d) => {
                             startAsync: $d.startAsync,
                             doUntil: uglyStuff.doUntil,
                             lookAhead: uglyStuff.lookAhead,
-                            stringsNotEqual: (a, b) => a !== b,
+                            stringsAreEqual: (a, b) => diff.stringsAreEqual({a: a, b: b}),
                             parseFilePath: path.parseFilePath,
                         },
+                        createWriteStream: fs.createWriteStream
                     }
                 )
 

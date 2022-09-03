@@ -71,18 +71,15 @@ export type IVisitor = {
     }
     readonly "$expression/?true/*TrueKeyword"?: ($: types.TNGexpression_true$) => void
     readonly "$identifier/*Identifier"?: ($: types.TNGidentifier$) => void
-    readonly "$modifier/?export/*ExportKeyword"?: ($: types.TNGmodifier_export$) => void
-    readonly "$modifier/?readonly/*ReadonlyKeyword"?: ($: types.TNGmodifier_readonly$) => void
+    readonly "$modifiers/.modifiers/?export/*ExportKeyword"?: ($: types.TNGmodifiers_modifiers_export$) => void
+    readonly "$modifiers/.modifiers/?readonly/*ReadonlyKeyword"?: ($: types.TNGmodifiers_modifiers_readonly$) => void
     readonly "$numericLiteral/*NumericLiteral"?: ($: types.TNGnumericLiteral$) => void
     readonly "$parameter/*Parameter/.questionToken/*QuestionToken"?: ($: types.TNGparameter$_questionToken$) => void
     readonly "$parameter/*Parameter"?: {
         readonly "begin": ($: types.TNGparameter$) => void,
         readonly "end": ($: types.TNGparameter$) => void,
     }
-    readonly "$statement/?break/*BreakStatement"?: {
-        readonly "begin": ($: types.TNGstatement_break$) => void,
-        readonly "end": ($: types.TNGstatement_break$) => void,
-    }
+    readonly "$statement/?break/*BreakStatement"?: ($: types.TNGstatement_break$) => void
     readonly "$statement/?export/*ExportDeclaration"?: {
         readonly "begin": ($: types.TNGstatement_export$) => void,
         readonly "end": ($: types.TNGstatement_export$) => void,
@@ -156,7 +153,7 @@ export type IVisitor = {
         readonly "begin": ($: types.TNGtype_array$) => void,
         readonly "end": ($: types.TNGtype_array$) => void,
     }
-    readonly "$type/?boolean/*BooleanKeyword"?: ($: types.TNGtype_boolean$) => void
+    readonly "$type/?booleanKeyword/*BooleanKeyword"?: ($: types.TNGtype_booleanKeyword$) => void
     readonly "$type/?function/*FunctionType"?: {
         readonly "begin": ($: types.TNGtype_function$) => void,
         readonly "end": ($: types.TNGtype_function$) => void,
@@ -166,7 +163,7 @@ export type IVisitor = {
         readonly "begin": ($: types.TNGtype_literal$) => void,
         readonly "end": ($: types.TNGtype_literal$) => void,
     }
-    readonly "$type/?number/*NumberKeyword"?: ($: types.TNGtype_number$) => void
+    readonly "$type/?numberKeyword/*NumberKeyword"?: ($: types.TNGtype_numberKeyword$) => void
     readonly "$type/?optional/*OptionalType"?: {
         readonly "begin": ($: types.TNGtype_optional$) => void,
         readonly "end": ($: types.TNGtype_optional$) => void,
@@ -175,7 +172,7 @@ export type IVisitor = {
         readonly "begin": ($: types.TNGtype_parenthesized$) => void,
         readonly "end": ($: types.TNGtype_parenthesized$) => void,
     }
-    readonly "$type/?string/*StringKeyword"?: ($: types.TNGtype_string$) => void
+    readonly "$type/?stringKeyword/*StringKeyword"?: ($: types.TNGtype_stringKeyword$) => void
     readonly "$type/?tuple/*TupleType"?: {
         readonly "begin": ($: types.TNGtype_tuple$) => void,
         readonly "end": ($: types.TNGtype_tuple$) => void,
@@ -192,15 +189,15 @@ export type IVisitor = {
         readonly "begin": ($: types.TNGtype_typeReference$) => void,
         readonly "end": ($: types.TNGtype_typeReference$) => void,
     }
-    readonly "$type/?undefined/*UndefinedKeyword"?: ($: types.TNGtype_undefined$) => void
+    readonly "$type/?undefinedKeyword/*UndefinedKeyword"?: ($: types.TNGtype_undefinedKeyword$) => void
     readonly "$type/?union/*UnionType"?: {
         readonly "begin": ($: types.TNGtype_union$) => void,
         readonly "end": ($: types.TNGtype_union$) => void,
     }
-    readonly "$type/?void/*VoidKeyword"?: ($: types.TNGtype_void$) => void
-    readonly "$typeParameter/*TypeParameter"?: {
-        readonly "begin": ($: types.TNGtypeParameter$) => void,
-        readonly "end": ($: types.TNGtypeParameter$) => void,
+    readonly "$type/?voidKeyword/*VoidKeyword"?: ($: types.TNGtype_voidKeyword$) => void
+    readonly "$typeParameters/.typeParameters/*TypeParameter"?: {
+        readonly "begin": ($: types.TNGtypeParameters_typeParameters$) => void,
+        readonly "end": ($: types.TNGtypeParameters_typeParameters$) => void,
     }
     readonly "$typeSignature/?index/*IndexSignature"?: {
         readonly "begin": ($: types.TNGtypeSignature_index$) => void,
@@ -210,19 +207,10 @@ export type IVisitor = {
         readonly "begin": ($: types.TNGtypeSignature_method$) => void,
         readonly "end": ($: types.TNGtypeSignature_method$) => void,
     }
-    readonly "$typeSignature/?property/*PropertySignature/.quesionToken/*QuestionToken"?: ($: types.TNGtypeSignature_property$_quesionToken$) => void
+    readonly "$typeSignature/?property/*PropertySignature/.questionToken/*QuestionToken"?: ($: types.TNGtypeSignature_property$_questionToken$) => void
     readonly "$typeSignature/?property/*PropertySignature"?: {
         readonly "begin": ($: types.TNGtypeSignature_property$) => void,
         readonly "end": ($: types.TNGtypeSignature_property$) => void,
-    }
-    readonly "$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?bindingElement/*BindingElement"?: {
-        readonly "begin": ($: types.TNGvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern$_bindingElement$) => void,
-        readonly "end": ($: types.TNGvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern$_bindingElement$) => void,
-    }
-    readonly "$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern/?omitted/*OmittedExpression"?: ($: types.TNGvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern$_omitted$) => void
-    readonly "$variableDeclaration/*VariableDeclaration/.nameOrArrayBinding/?arrayBindingPattern/*ArrayBindingPattern"?: {
-        readonly "begin": ($: types.TNGvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern$) => void,
-        readonly "end": ($: types.TNGvariableDeclaration$_nameOrArrayBinding_arrayBindingPattern$) => void,
     }
     readonly "$variableDeclaration/*VariableDeclaration"?: {
         readonly "begin": ($: types.TNGvariableDeclaration$) => void,

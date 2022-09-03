@@ -17,6 +17,7 @@ import * as ap from "lib-analyse-path"
 import { parse } from "../imp/parse"
 import { _typescriptProject } from "../data/typescriptProject"
 import { UnexpectedTokenData } from "./ParseType"
+import { TNroot } from "../interface"
 
 export type ParseError =
     | ["dynamic parser", ts.TypeScriptParserError]
@@ -39,7 +40,7 @@ export type ParseTypescriptProjectDependencies = {
     parseDynamic: ts.Parse
     doUntil: uglyStuff.DoUntil
     lookAhead: uglyStuff.LookAhead
-    stringsNotEqual: (a: string, b: string) => boolean
+    stringsAreEqual: (a: string, b: string) => boolean
     parseFilePath: pp.ParseFilePath
 }
 
@@ -50,6 +51,10 @@ export function parseTypescriptProject(
     },
     $i: {
         onError: ($: ParseError) => void
+        onFile: ($: {
+            path: string
+            data: TNroot
+        }) => void
     },
     $d: ParseTypescriptProjectDependencies
 ) {
@@ -122,6 +127,8 @@ export function parseTypescriptProject(
                             break
                         default: pl.au(result[0])
                     }
+                    $i.onFile($)
+
 
                 },
                 onEnd: () => {
@@ -133,7 +140,7 @@ export function parseTypescriptProject(
                 parseDynamic: $d.parseDynamic,
                 doUntil: $d.doUntil,
                 lookAhead: $d.lookAhead,
-                stringsNotEqual: $d.stringsNotEqual
+                stringsAreEqual: $d.stringsAreEqual
             }
         )
     )
