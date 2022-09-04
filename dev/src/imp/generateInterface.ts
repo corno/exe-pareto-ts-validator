@@ -8,7 +8,7 @@ import * as fs from "api-pareto-filesystem"
 
 import * as gta from "exe-generate-typesafe-ast"
 
-export type Dependencies = {
+export type DDependencies = {
     isYinBeforeYang: collation.IsYinBeforeYang
     createWriteStream: fs.CreateWriteStream
     startAsync: main.StartAsync
@@ -19,7 +19,7 @@ export function generateInterface(
         grammar: gta.TGrammar,
         arguments: main.Arguments,
     },
-    $d: Dependencies
+    $d: DDependencies
 ): void {
     const conf = $
     const deps = $d

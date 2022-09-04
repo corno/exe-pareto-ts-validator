@@ -113,6 +113,16 @@ export function visit(
                                         })
                                         break
                                     }
+                                    case "exclamationEqualsEquals": {
+                                        pl.cc($[1], ($) => {
+                                            ((
+                                                $: api.TNGexpression_binary$_operator_exclamationEqualsEquals$,
+                                            ) => {
+                                                if (pl.isNotUndefined($i.visitor["$expression/?binary/*BinaryExpression/.operator/?exclamationEqualsEquals/*ExclamationEqualsEqualsToken"])) { $i.visitor["$expression/?binary/*BinaryExpression/.operator/?exclamationEqualsEquals/*ExclamationEqualsEqualsToken"]($) }
+                                            })($)
+                                        })
+                                        break
+                                    }
                                     default: pl.au($[0])
                                 }
                             })

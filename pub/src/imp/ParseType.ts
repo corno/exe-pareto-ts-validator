@@ -7,31 +7,31 @@ import * as uglyStuff from "api-pareto-ugly-stuff"
 
 import * as x from "../interface"
 
-export type UnexpectedTokenData = {
-    file: {
-        relativePath: string,
-        absolutePath: string,
+export type TUnexpectedTokenData = {
+    readonly "file": {
+        readonly "relativePath": string,
+        readonly "absolutePath": string,
     }
-    token: {
-        path: string,
-        kindName: string,
-        details: uast.TDetails,
+    readonly "token": {
+        readonly "path": string,
+        readonly "kindName": string,
+        readonly "details": uast.TDetails,
     }
-    expected: null | string
+    readonly "expected": null | string
 }
 
-export type Parse = (
+export type XParse = (
     $: {
-        tsConfigPath: ts.Path,
+        tsConfigPath: ts.TPath,
     },
     $i: {
-        reportUnexpectedToken: ($: UnexpectedTokenData) => void,
+        reportUnexpectedToken: ($: TUnexpectedTokenData) => void,
         reportMissingToken: ($: {
             parentDetails: uast.TDetails,
             path: string,
             kindNameOptions: string,
         }) => void,
-        onErrorX: ($: ts.TypeScriptParserError) => void
+        onErrorX: ($: ts.TTypeScriptParserError) => void
         onFile: ($: {
             path: string,
             data: x.TRoot
@@ -39,7 +39,7 @@ export type Parse = (
         onEnd: () => void
     },
     $d: {
-        parseDynamic: ts.Parse
+        parseDynamic: ts.XParse
         doUntil: uglyStuff.DoUntil,
         lookAhead: uglyStuff.LookAhead,
         stringsAreEqual: (a: string, b: string) => boolean

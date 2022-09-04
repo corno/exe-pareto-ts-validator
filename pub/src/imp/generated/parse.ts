@@ -524,6 +524,50 @@ export function parse(
                                                         },
                                                     )
                                                 }
+                                                const choose_exclamationEqualsEquals = () => {
+                                                    children.pop(
+                                                        (currentChild) => {
+                                                            if ($d.stringsAreEqual(currentChild.kindName, "ExclamationEqualsEqualsToken")) {
+                                                                ((
+                                                                    $: uast.TUntypedNode,
+                                                                    callback: ($: api.TNGexpression_binary$_operator_exclamationEqualsEquals$) => void,
+                                                                ): void => {
+                                                                    const node = $
+                                                                    const children = pm.createStack($.children)
+                                                                    callback($.details)
+                                                                    children.pop(
+                                                                        (nextChild) => {
+                                                                            $x.reportUnexpectedToken({
+                                                                                path: "Gexpression_binary$_operator_exclamationEqualsEquals$",
+                                                                                token: nextChild,
+                                                                                expected: null,
+                                                                            })
+                                                                        },
+                                                                        () => {},
+                                                                    )
+                                                                })(
+                                                                    currentChild,
+                                                                    ($) => {
+                                                                        choiceEnd_Gexpression_binary$_operator(["exclamationEqualsEquals", $])
+                                                                    }
+                                                                )
+                                                            } else {
+                                                                $x.reportUnexpectedToken({
+                                                                    path: "Gexpression_binary$_operator_exclamationEqualsEquals",
+                                                                    token: currentChild,
+                                                                    expected: "ExclamationEqualsEqualsToken",
+                                                                })
+                                                            }
+                                                        },
+                                                        () => { // no child
+                                                            $x.reportMissingToken({
+                                                                parentDetails: node.details,
+                                                                path: "Gexpression_binary$_operator_exclamationEqualsEquals",
+                                                                kindNameOptions: "ExclamationEqualsEqualsToken",
+                                                            })
+                                                        },
+                                                    )
+                                                }
                                                 switch (nextChild.kindName) {
                                                     case "EqualsEqualsEqualsToken": /*Y*/ {
                                                         choose_equalsEqualsEquals()
@@ -533,11 +577,15 @@ export function parse(
                                                         choose_equals()
                                                         break
                                                     }
+                                                    case "ExclamationEqualsEqualsToken": /*Y*/ {
+                                                        choose_exclamationEqualsEquals()
+                                                        break
+                                                    }
                                                     default: {
                                                         $x.reportUnexpectedToken({
                                                             path: "Gexpression_binary$_operator",
                                                             token: nextChild,
-                                                            expected: "EqualsEqualsEqualsToken, EqualsToken",
+                                                            expected: "ExclamationEqualsEqualsToken, EqualsEqualsEqualsToken, EqualsToken",
                                                         })
                                                     }
                                                 }
@@ -546,7 +594,7 @@ export function parse(
                                                 $x.reportMissingToken({
                                                     parentDetails: node.details,
                                                     path: "Gexpression_binary$_operator",
-                                                    kindNameOptions: "EqualsEqualsEqualsToken, EqualsToken",
+                                                    kindNameOptions: "ExclamationEqualsEqualsToken, EqualsEqualsEqualsToken, EqualsToken",
                                                 })
                                             },
                                         )

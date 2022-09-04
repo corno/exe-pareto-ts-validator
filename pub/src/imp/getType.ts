@@ -1,5 +1,5 @@
 import * as uglyStuff from "api-pareto-ugly-stuff"
-import { ProjectType } from "./processTypescriptProjectsInProject"
+import { TProjectType } from "./processTypescriptProjectsInProject"
 
 
 export function getType(
@@ -7,7 +7,7 @@ export function getType(
     $d: {
         substr: uglyStuff.SubStr
     },
-): ProjectType {
+): TProjectType {
     const substr = $d.substr($, 0, 3)
     switch (substr) {
         case "exe": return ["executable", {}]

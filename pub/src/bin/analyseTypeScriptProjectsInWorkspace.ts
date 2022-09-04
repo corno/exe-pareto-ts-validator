@@ -5,9 +5,6 @@ import * as pe from "pareto-core-exe"
 import * as pl from "pareto-core-lib"
 
 import * as fs from "res-pareto-filesystem"
-import * as ts from "res-dynamic-typescript-parser"
-import * as diff from "res-pareto-diff"
-import * as path from "res-pareto-path"
 import * as collation from "res-pareto-collation"
 import * as uglyStuff from "res-pareto-ugly-stuff"
 
@@ -15,9 +12,11 @@ import * as uglyStuff from "res-pareto-ugly-stuff"
 import * as exeLib from "lib-pareto-exe"
 
 import { _typescriptProject } from "../data/typescriptProject"
-import { parseTypescriptProjectsInProject, ProjectType } from "../imp/processTypescriptProjectsInProject"
+import { parseTypescriptProjectsInProject, TProjectType } from "../imp/processTypescriptProjectsInProject"
 import { createParseErrorMessage } from "../imp/createParseErrorMessage"
 import { getType } from "../imp/getType"
+import { cleanupDependencies } from "./cleanupDependencies"
+import { parseDependencies } from "./parseDependencies"
 
 
 pe.runProgram(($, $i, $d) => {
@@ -45,7 +44,7 @@ pe.runProgram(($, $i, $d) => {
                                     break
                                 case "success":
                                     pl.cc($[1], ($) => {
-                                        $.forEach((a, b) => collation.localeIsYinBeforeYang({yin: b, yang: a}), ($, key) => {
+                                        $.forEach((a, b) => collation.localeIsYinBeforeYang({ yin: b, yang: a }), ($, key) => {
 
                                             parseTypescriptProjectsInProject(
                                                 {
@@ -66,16 +65,12 @@ pe.runProgram(($, $i, $d) => {
                                                     }
                                                 },
                                                 {
-                                                    parseDependencies: {
-                                                        parseDynamic: ts.parse,
-                                                        startAsync: $d.startAsync,
-                                                        doUntil: uglyStuff.doUntil,
-                                                        lookAhead: uglyStuff.lookAhead,
-                                                        stringsAreEqual: (a, b) => diff.stringsAreEqual({a: a, b: b}),
-                                                        parseFilePath: path.parseFilePath,
-                                                    },
+                                                    parseDependencies: parseDependencies,
                                                     createWriteStream: fs.createWriteStream,
-                                                }
+                                                    cleanupDependencies: cleanupDependencies,
+                                                },
+
+                                                $d.startAsync,
                                             )
                                         })
                                     })

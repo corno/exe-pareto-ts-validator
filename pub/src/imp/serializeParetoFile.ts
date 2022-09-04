@@ -3,11 +3,11 @@ import * as pt from "pareto-core-types"
 
 import * as fp from "lib-fountain-pen"
 
-import * as nt from "./newTypes"
+import * as nt from "./cleanup/types"
 
 
-export function serializeParetoFile(
-    $: nt.SourceFile,
+export function serializeParetoFile<Annotation>(
+    $: nt.TSourceFile<Annotation>,
     $i: {
         block: fp.IBlock
     },
@@ -17,7 +17,7 @@ export function serializeParetoFile(
 ) {
 
     function Block(
-        $: nt.Block,
+        $: nt.TBlock<Annotation>,
         $i: fp.ILine
     ) {
         $i.snippet(`{`)
@@ -28,19 +28,19 @@ export function serializeParetoFile(
 
     }
     function Expression(
-        $: nt.Expression,
+        $: nt.TExpression<Annotation>,
         $i: fp.ILine,
     ) {
-        switch ($[0]) {
+        switch ($.type[0]) {
             case "arrayLiteral":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet(`[`)
                     let first = true
                     $.expressions.forEach(($) => {
-                        if (!first) {
-                            $i.snippet(`, `)
-                        } else {
+                        if (first) {
                             first = false
+                        } else {
+                            $i.snippet(`, `)
                         }
                         Expression($, $i)
                     })
@@ -48,7 +48,7 @@ export function serializeParetoFile(
                 })
                 break
             case "arrowFunction":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     FunctionDefinition(
                         {
                             sign: ":",
@@ -73,7 +73,7 @@ export function serializeParetoFile(
                 })
                 break
             case "binary":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     Expression($.leftHandSide, $i)
                     switch ($.operator[0]) {
                         case "equals":
@@ -86,22 +86,27 @@ export function serializeParetoFile(
                                 $i.snippet(` === `)
                             })
                             break
+                        case "exclamationEqualsEqualsEquals":
+                            pl.cc($.operator[1], ($) => {
+                                $i.snippet(` !== `)
+                            })
+                            break
                         default: pl.au($.operator[0])
                     }
                     Expression($.rightHandSide, $i)
                 })
                 break
             case "call":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     Expression($.function, $i)
                     if ($d.isNotEmpty($.typeArguments)) {
                         $i.snippet(`<`)
                         let first = true
                         $.typeArguments.forEach(($) => {
-                            if (!first) {
-                                $i.snippet(`, `)
-                            } else {
+                            if (first) {
                                 first = false
+                            } else {
+                                $i.snippet(`, `)
                             }
                             Type($, $i)
                         })
@@ -110,10 +115,10 @@ export function serializeParetoFile(
                     $i.snippet(`(`)
                     let first = true
                     $.arguments.forEach(($) => {
-                        if (!first) {
-                            $i.snippet(`, `)
-                        } else {
+                        if (first) {
                             first = false
+                        } else {
+                            $i.snippet(`, `)
                         }
                         Expression($, $i)
                     })
@@ -122,7 +127,7 @@ export function serializeParetoFile(
                 })
                 break
             case "conditional":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     Expression($.test, $i)
                     $i.snippet(` ?`)
                     Expression($.ifExpression, $i)
@@ -131,7 +136,7 @@ export function serializeParetoFile(
                 })
                 break
             case "elementAccess":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     Expression($.array, $i)
                     $i.snippet(`[`)
                     Expression($.element, $i)
@@ -139,32 +144,32 @@ export function serializeParetoFile(
                 })
                 break
             case "false":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet(`false`)
                 })
                 break
             case "identifier":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     Identifier($, $i)
                 })
                 break
             case "noSubstitutionTemplateLiteral":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet(`\`${"FIXMETEMPLATE"}\``)
                 })
                 break
             case "nullKeyword":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet(`null`)
                 })
                 break
             case "numericLiteral":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet($.myValue)
                 })
                 break
             case "objectLiteral":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet(`{`)
                     $i.indent({}, ($i) => {
 
@@ -183,32 +188,32 @@ export function serializeParetoFile(
                 })
                 break
             case "parenthesizedExpression":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet(`(`)
                     Expression($, $i)
                     $i.snippet(`)`)
                 })
                 break
             case "prefixUnary":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet(`?????PREFIXUNARY`)
                     Expression($, $i)
                 })
                 break
             case "propertyAccess":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     Expression($.object, $i)
                     $i.snippet(`.`)
                     Expression($.property, $i)
                 })
                 break
             case "stringLiteral":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     StringLiteral($, $i)
                 })
                 break
             case "template":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet(`"<<`)
                     //$i.snippet(`\``)
                     $i.snippet($.head.myValue)
@@ -237,17 +242,17 @@ export function serializeParetoFile(
                 })
                 break
             case "true":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet(`true`)
                 })
                 break
-            default: pl.au($[0])
+            default: pl.au($.type[0])
         }
     }
     function FunctionDefinition(
         $: {
             sign: string
-            def: nt.FunctionDefinition
+            def: nt.TFunctionDefinition<Annotation>
         },
         $i: fp.ILine,
     ) {
@@ -271,13 +276,13 @@ export function serializeParetoFile(
         }
     }
     function Identifier(
-        $: nt.Identifier,
+        $: nt.TIdentifier<Annotation>,
         $i: fp.ILine,
     ) {
         $i.snippet($.myValue)
     }
     function IdentifierOrStringLiteral(
-        $: nt.IdentifierOrStringLiteral,
+        $: nt.TIdentifierOrStringLiteral<Annotation>,
         $i: fp.ILine,
     ) {
         switch ($[0]) {
@@ -295,7 +300,7 @@ export function serializeParetoFile(
         }
     }
     function Modifiers(
-        $: nt.Modifiers,
+        $: nt.TModifiers<Annotation>,
         $i: fp.ILine,
     ) {
         $.forEach(($) => {
@@ -315,7 +320,7 @@ export function serializeParetoFile(
         })
     }
     function Parameter(
-        $: nt.Parameter,
+        $: nt.TParameter<Annotation>,
         $i: fp.ILine
     ) {
         Identifier($.name, $i)
@@ -327,187 +332,193 @@ export function serializeParetoFile(
         OptionalType($.type, $i)
     }
     function Statement(
-        $: nt.Statement,
+        $: nt.TStatement<Annotation>,
         $i: fp.ILine,
     ) {
-        switch ($[0]) {
-            case "block":
-                pl.cc($[1], (($) => {
-                    Block($, $i)
-                }))
-                break
-            case "break":
-                pl.cc($[1], ($) => {
-                    $i.snippet(`break`)
-                })
-                break
-            case "export":
-                pl.cc($[1], ($) => {
-                    $i.snippet(`export * from `)
-                    StringLiteral($.stringLiteral, $i)
-                })
-                break
-            case "expression":
-                pl.cc($[1], (($) => {
-                    Expression($, $i)
-                }))
-                break
-            case "function":
-                pl.cc($[1], ($) => {
-                    Modifiers($.modifiers, $i)
-                    $i.snippet(`function `)
-                    Identifier($.name, $i)
-                    FunctionDefinition(
-                        {
-                            sign: ":",
-                            def: $.definition
-                        },
-                        $i,
-                    )
-                    if (pl.isNotNull($.block)) {
-                        $i.snippet(` `)
-                        Block($.block, $i)
-                    } else {
-                        //
-                    }
-                })
-                break
-            case "if":
-                pl.cc($[1], ($) => {
-                    $i.snippet(`if (`)
-                    Expression($.expression, $i)
-                    $i.snippet(`)`)
-                    Statement($.thenStatement, $i)
-                    if (pl.isNotNull($.elseStatement)) {
-                        $i.snippet(` else`)
-                        Statement($.elseStatement, $i)
-                    } else {
-                        ///
-                    }
-                })
-                break
-            case "import":
-                pl.cc($[1], ($) => {
-                    $i.snippet(`import `)
-                    switch ($.clause[0]) {
-                        case "named":
-                            pl.cc($.clause[1], ($) => {
-                                $i.snippet(`{ `)
-                                let first = true
-                                $.forEach(($) => {
-                                    if (!first) {
-                                        $i.snippet(`, `)
-                                    } else {
-                                        first = false
-                                    }
-                                    Identifier($.name, $i)
-                                    if (pl.isNotNull($.as)) {
-                                        $i.snippet(` as `)
-                                        Identifier($.as, $i)
-                                    } else {
-                                        //
-                                    }
+
+        return {
+            type: pl.cc($, ($) => {
+
+                switch ($.type[0]) {
+                    case "block":
+                        pl.cc($.type[1], (($) => {
+                            Block($, $i)
+                        }))
+                        break
+                    case "break":
+                        pl.cc($.type[1], ($) => {
+                            $i.snippet(`break`)
+                        })
+                        break
+                    case "export":
+                        pl.cc($.type[1], ($) => {
+                            $i.snippet(`export * from `)
+                            StringLiteral($.stringLiteral, $i)
+                        })
+                        break
+                    case "expression":
+                        pl.cc($.type[1], (($) => {
+                            Expression($, $i)
+                        }))
+                        break
+                    case "function":
+                        pl.cc($.type[1], ($) => {
+                            Modifiers($.modifiers, $i)
+                            $i.snippet(`function `)
+                            Identifier($.name, $i)
+                            FunctionDefinition(
+                                {
+                                    sign: ":",
+                                    def: $.definition
+                                },
+                                $i,
+                            )
+                            if (pl.isNotNull($.block)) {
+                                $i.snippet(` `)
+                                Block($.block, $i)
+                            } else {
+                                //
+                            }
+                        })
+                        break
+                    case "if":
+                        pl.cc($.type[1], ($) => {
+                            $i.snippet(`if (`)
+                            Expression($.expression, $i)
+                            $i.snippet(`)`)
+                            Statement($.thenStatement, $i)
+                            if (pl.isNotNull($.elseStatement)) {
+                                $i.snippet(` else`)
+                                Statement($.elseStatement, $i)
+                            } else {
+                                ///
+                            }
+                        })
+                        break
+                    case "import":
+                        pl.cc($.type[1], ($) => {
+                            $i.snippet(`import `)
+                            switch ($.clause[0]) {
+                                case "named":
+                                    pl.cc($.clause[1], ($) => {
+                                        $i.snippet(`{ `)
+                                        let first = true
+                                        $.forEach(($) => {
+                                            if (first) {
+                                                first = false
+                                            } else {
+                                                $i.snippet(`, `)
+                                            }
+                                            Identifier($.name, $i)
+                                            if (pl.isNotNull($.as)) {
+                                                $i.snippet(` as `)
+                                                Identifier($.as, $i)
+                                            } else {
+                                                //
+                                            }
+                                        })
+                                        $i.snippet(` }`)
+                                    })
+                                    break
+                                case "namespace":
+                                    pl.cc($.clause[1], ($) => {
+                                        $i.snippet(`* as `)
+                                        Identifier($, $i)
+                                    })
+                                    break
+                                default: pl.au($.clause[0])
+                            }
+                            $i.snippet(` from `)
+                            StringLiteral($.file, $i)
+                        })
+                        break
+                    case "interface":
+                        pl.cc($.type[1], ($) => {
+                            Modifiers($.modifiers, $i)
+                            $i.snippet(`interface `)
+                            Identifier($.name, $i)
+                            TypeParameters($.typeParameters, $i)
+                            $i.snippet(` {`)
+                            $i.indent({}, ($i) => {
+                                $.signatures.forEach(($) => {
+                                    $i.line({}, ($i) => {
+                                        TypeSignature($, $i)
+                                    })
                                 })
-                                $i.snippet(` }`)
-                            })
-                            break
-                        case "namespace":
-                            pl.cc($.clause[1], ($) => {
-                                $i.snippet(`* as `)
-                                Identifier($, $i)
-                            })
-                            break
-                        default: pl.au($.clause[0])
-                    }
-                    $i.snippet(` from `)
-                    StringLiteral($.file, $i)
-                })
-                break
-            case "interface":
-                pl.cc($[1], ($) => {
-                    Modifiers($.modifiers, $i)
-                    $i.snippet(`interface `)
-                    Identifier($.name, $i)
-                    TypeParameters($.typeParameters, $i)
-                    $i.snippet(` {`)
-                    $i.indent({}, ($i) => {
-                        $.signatures.forEach(($) => {
-                            $i.line({}, ($i) => {
-                                TypeSignature($, $i)
-                            })
-                        })
 
-                    })
-                    $i.snippet(`}`)
-                })
-                break
-            case "return":
-                pl.cc($[1], ($) => {
-                    $i.snippet(`return`)
-                    if (pl.isNotNull($)) {
-                        $i.snippet(` `)
-                        Expression($, $i)
-                    } else {
-
-                    }
-                })
-                break
-            case "switch":
-                pl.cc($[1], ($) => {
-                    $i.snippet(`switch (`)
-                    Expression($.expression, $i)
-                    $i.snippet(`) {`)
-                    $i.indent({}, ($i) => {
-                        $.clauses.forEach(($) => {
-                            $i.line({}, ($i) => {
-                                switch ($[0]) {
-                                    case "case":
-                                        pl.cc($[1], ($) => {
-                                            $i.snippet(`case `)
-                                            Expression($.expression, $i)
-                                            $i.snippet(`:`)
-                                            $i.indent({}, ($i) => {
-                                                Statements($.statements, $i)
-                                            })
-                                        })
-                                        break
-                                    case "default":
-                                        pl.cc($[1], ($) => {
-                                            $i.snippet(`default:`)
-                                            $i.indent({}, ($i) => {
-                                                Statements($.statements, $i)
-                                            })
-                                        })
-                                        break
-                                    default: pl.au($[0])
-                                }
                             })
+                            $i.snippet(`}`)
                         })
-                    })
-                    $i.snippet(`}`)
-                })
-                break
-            case "typeAlias":
-                pl.cc($[1], ($) => {
-                    Modifiers($.modifiers, $i)
-                    $i.snippet(`type `)
-                    Identifier($.name, $i)
-                    TypeParameters($.typeParameters, $i)
-                    $i.snippet(` = `)
-                    Type($.type, $i)
-                })
-                break
-            case "variable":
-                pl.cc($[1], ($) => {
-                    Modifiers($.modifiers, $i)
-                    VariableDeclarationList($.list, $i)
-                })
-                break
-            default: pl.au($[0])
+                        break
+                    case "return":
+                        pl.cc($.type[1], ($) => {
+                            $i.snippet(`return`)
+                            if (pl.isNotNull($)) {
+                                $i.snippet(` `)
+                                Expression($, $i)
+                            } else {
+
+                            }
+                        })
+                        break
+                    case "switch":
+                        pl.cc($.type[1], ($) => {
+                            $i.snippet(`switch (`)
+                            Expression($.expression, $i)
+                            $i.snippet(`) {`)
+                            $i.indent({}, ($i) => {
+                                $.clauses.forEach(($) => {
+                                    $i.line({}, ($i) => {
+                                        switch ($[0]) {
+                                            case "case":
+                                                pl.cc($[1], ($) => {
+                                                    $i.snippet(`case `)
+                                                    Expression($.expression, $i)
+                                                    $i.snippet(`:`)
+                                                    $i.indent({}, ($i) => {
+                                                        Statements($.statements, $i)
+                                                    })
+                                                })
+                                                break
+                                            case "default":
+                                                pl.cc($[1], ($) => {
+                                                    $i.snippet(`default:`)
+                                                    $i.indent({}, ($i) => {
+                                                        Statements($.statements, $i)
+                                                    })
+                                                })
+                                                break
+                                            default: pl.au($[0])
+                                        }
+                                    })
+                                })
+                            })
+                            $i.snippet(`}`)
+                        })
+                        break
+                    case "typeAlias":
+                        pl.cc($.type[1], ($) => {
+                            Modifiers($.modifiers, $i)
+                            $i.snippet(`type `)
+                            Identifier($.name, $i)
+                            TypeParameters($.typeParameters, $i)
+                            $i.snippet(` = `)
+                            Type($.type, $i)
+                        })
+                        break
+                    case "variable":
+                        pl.cc($.type[1], ($) => {
+                            Modifiers($.modifiers, $i)
+                            VariableDeclarationList($.list, $i)
+                        })
+                        break
+                    default: pl.au($.type[0])
+                }
+            })
         }
     }
     function Statements(
-        $: nt.Statements,
+        $: nt.TStatements<Annotation>,
         $i: fp.IBlock,
     ) {
         $.forEach(($) => {
@@ -518,29 +529,30 @@ export function serializeParetoFile(
         })
     }
     function StringLiteral(
-        $: nt.StringLiteral,
+        $: nt.TStringLiteral<Annotation>,
         $i: fp.ILine
     ) {
         //$i.snippet(`"${$.myValue}"`)
-        $i.snippet(`${$.myValue}`)
+
+        $i.snippet(`${$.wrapper}${$.strippedValue}${$.wrapper}`)
     }
     function Type(
-        $: nt.Type,
+        $: nt.TType<Annotation>,
         $i: fp.ILine,
     ) {
-        switch ($[0]) {
+        switch ($.type[0]) {
             case "array":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     Type($, $i)
                 })
                 break
             case "booleanKeyword":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet(`boolean`)
                 })
                 break
             case "function":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     FunctionDefinition(
                         {
                             sign: " =>",
@@ -551,7 +563,7 @@ export function serializeParetoFile(
                 })
                 break
             case "literal":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     switch ($[0]) {
                         case "null":
                             pl.cc($[1], ($) => {
@@ -568,37 +580,37 @@ export function serializeParetoFile(
                 })
                 break
             case "numberKeyword":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet(`number`)
                 })
                 break
             case "optional":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet(`FIXME OPTIONAL`)
                     Type($, $i)
                 })
                 break
             case "parenthesized":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet(`(`)
                     Type($, $i)
                     $i.snippet(`)`)
                 })
                 break
             case "stringKeyword":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet(`string`)
                 })
                 break
             case "tuple":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet(`[`)
                     let first = true
                     $.forEach(($) => {
-                        if (!first) {
-                            $i.snippet(`, `)
-                        } else {
+                        if (first) {
                             first = false
+                        } else {
+                            $i.snippet(`, `)
                         }
                         Type($, $i)
                     })
@@ -606,7 +618,7 @@ export function serializeParetoFile(
                 })
                 break
             case "typeLiteral":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet(`{`)
                     $i.indent({}, ($i) => {
                         $.forEach(($) => {
@@ -619,7 +631,7 @@ export function serializeParetoFile(
                 })
                 break
             case "typeReference":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     switch ($.identification[0]) {
                         case "identifier":
                             pl.cc($.identification[1], ($) => {
@@ -639,10 +651,10 @@ export function serializeParetoFile(
                         $i.snippet(`<`)
                         let first = true
                         $.parameters.forEach(($) => {
-                            if (!first) {
-                                $i.snippet(`, `)
-                            } else {
+                            if (first) {
                                 first = false
+                            } else {
+                                $i.snippet(`, `)
                             }
                             Type($, $i)
                         })
@@ -652,12 +664,12 @@ export function serializeParetoFile(
                 })
                 break
             case "undefinedKeyword":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet(`undefined`)
                 })
                 break
             case "union":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.indent({}, ($i) => {
                         $.forEach(($) => {
                             $i.line({}, ($i) => {
@@ -669,25 +681,25 @@ export function serializeParetoFile(
                 })
                 break
             case "voidKeyword":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     $i.snippet(`void`)
                 })
                 break
-            default: pl.au($[0])
+            default: pl.au($.type[0])
         }
     }
     function TypeParameters(
-        $: nt.TypeParameters,
+        $: nt.TTypeParameters<Annotation>,
         $i: fp.ILine,
     ) {
         if ($d.isNotEmpty($)) {
             $i.snippet(`<`)
             let first = true
             $.forEach(($) => {
-                if (!first) {
-                    $i.snippet(`, `)
-                } else {
+                if (first) {
                     first = false
+                } else {
+                    $i.snippet(`, `)
                 }
                 Identifier($, $i)
             })
@@ -697,12 +709,12 @@ export function serializeParetoFile(
 
     }
     function TypeSignature(
-        $: nt.TypeSignature,
+        $: nt.TTypeSignature<Annotation>,
         $i: fp.ILine,
     ) {
-        switch ($[0]) {
+        switch ($.type[0]) {
             case "index":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     Modifiers($.modifiers, $i)
                     $i.snippet(`[ `)
                     Parameter($.parameter, $i)
@@ -711,7 +723,7 @@ export function serializeParetoFile(
                 })
                 break
             case "method":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
                     Identifier($.name, $i)
                     FunctionDefinition(
                         {
@@ -723,7 +735,7 @@ export function serializeParetoFile(
                 })
                 break
             case "property":
-                pl.cc($[1], ($) => {
+                pl.cc($.type[1], ($) => {
 
                     Modifiers($.modifiers, $i)
                     IdentifierOrStringLiteral($.name, $i)
@@ -735,11 +747,11 @@ export function serializeParetoFile(
                     OptionalType($.type, $i)
                 })
                 break
-            default: pl.au($[0])
+            default: pl.au($.type[0])
         }
     }
     function OptionalType(
-        $: nt.Type | null,
+        $: nt.TType<Annotation> | null,
         $i: fp.ILine
     ) {
         if (pl.isNotNull($)) {
@@ -750,7 +762,7 @@ export function serializeParetoFile(
         }
     }
     function VariableDeclaration(
-        $: nt.VariableDeclaration,
+        $: nt.TVariableDeclaration<Annotation>,
         $i: fp.ILine,
     ) {
         Identifier($.name, $i)
@@ -763,16 +775,16 @@ export function serializeParetoFile(
         }
     }
     function VariableDeclarationList(
-        $: nt.VariableDeclarationList,
+        $: nt.TVariableDeclarationList<Annotation>,
         $i: fp.ILine,
     ) {
         let first = true
         $i.snippet(`const/*??*/ `)
         $.declarations.forEach(($) => {
-            if (!first) {
-                $i.snippet(`, `)
-            } else {
+            if (first) {
                 first = false
+            } else {
+                $i.snippet(`, `)
             }
             VariableDeclaration($, $i)
         })

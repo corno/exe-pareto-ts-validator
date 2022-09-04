@@ -22,6 +22,7 @@ export function createDefaultVisistor(
         },
         "$expression/?binary/*BinaryExpression/.operator/?equals/*EqualsToken": ($) => { $i.log("$expression/?binary/*BinaryExpression/.operator/?equals/*EqualsToken") },
         "$expression/?binary/*BinaryExpression/.operator/?equalsEqualsEquals/*EqualsEqualsEqualsToken": ($) => { $i.log("$expression/?binary/*BinaryExpression/.operator/?equalsEqualsEquals/*EqualsEqualsEqualsToken") },
+        "$expression/?binary/*BinaryExpression/.operator/?exclamationEqualsEquals/*ExclamationEqualsEqualsToken": ($) => { $i.log("$expression/?binary/*BinaryExpression/.operator/?exclamationEqualsEquals/*ExclamationEqualsEqualsToken") },
         "$expression/?binary/*BinaryExpression": {
             begin: ($) => { $i.log("$expression/?binary/*BinaryExpression begin") },
             end: ($) => { $i.log("$expression/?binary/*BinaryExpression end") },

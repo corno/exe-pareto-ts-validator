@@ -50,9 +50,14 @@ export type TVGexpression_binary$_operator_equals = TVTGexpression_binary$_opera
 export type TNGexpression_binary$_operator_equalsEqualsEquals$ = uast.TDetails
 export type TVTGexpression_binary$_operator_equalsEqualsEquals = TNGexpression_binary$_operator_equalsEqualsEquals$
 export type TVGexpression_binary$_operator_equalsEqualsEquals = TVTGexpression_binary$_operator_equalsEqualsEquals
+
+export type TNGexpression_binary$_operator_exclamationEqualsEquals$ = uast.TDetails
+export type TVTGexpression_binary$_operator_exclamationEqualsEquals = TNGexpression_binary$_operator_exclamationEqualsEquals$
+export type TVGexpression_binary$_operator_exclamationEqualsEquals = TVTGexpression_binary$_operator_exclamationEqualsEquals
 export type TVTGexpression_binary$_operator = 
     | [ "equals", TVGexpression_binary$_operator_equals]
     | [ "equalsEqualsEquals", TVGexpression_binary$_operator_equalsEqualsEquals]
+    | [ "exclamationEqualsEquals", TVGexpression_binary$_operator_exclamationEqualsEquals]
 export type TVGexpression_binary$_operator = TVTGexpression_binary$_operator
 export type TVTGexpression_binary$_rightHandSide = TGexpression
 export type TVGexpression_binary$_rightHandSide = TVTGexpression_binary$_rightHandSide

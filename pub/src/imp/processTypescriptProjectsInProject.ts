@@ -3,12 +3,17 @@
 import * as dynAPI from "api-dynamic-typescript-parser"
 
 import * as fs from "api-pareto-filesystem"
+import * as uglyStuff from "api-pareto-ugly-stuff"
+import { StartAsync } from "pareto-core-async"
 
 import { _typescriptProject } from "../data/typescriptProject"
-import { ParseError, parseTypescriptProject, ParseTypescriptProjectDependencies } from "./processTypescriptProject"
+import { cleanup, DCleanupDependencies } from "./cleanup/imp/cleanup"
+import { doUpcycle } from "./doUpcycle"
+import { TParseError, parseTypescriptProject, DParseTypescriptProjectDependencies } from "./processTypescriptProject"
 import { serialize } from "./serialize"
+import { ts2pareto } from "./pareto/imp/ts2pareto"
 
-export type ProjectType =
+export type TProjectType =
     | ["executable", {}]
     | ["resource", {}]
     | ["library", {}]
@@ -18,19 +23,23 @@ export type ProjectType =
 export function parseTypescriptProjectsInProject(
     $: {
         projectName: string
-        contextDirectory: dynAPI.Path
-        type: ProjectType
+        contextDirectory: dynAPI.TPath
+        type: TProjectType
     },
     $i: {
-        onError: ($: ParseError) => void
+        onError: ($: TParseError) => void
     },
     $d: {
-        parseDependencies: ParseTypescriptProjectDependencies
+        parseDependencies: DParseTypescriptProjectDependencies
         createWriteStream: fs.CreateWriteStream
-
-    }
+        cleanupDependencies: DCleanupDependencies
+    },
+    $s: StartAsync,
 ) {
     const config = $
+    const deps = {
+        createWriteStream: $d.createWriteStream,
+    }
     parseTypescriptProject(
         {
             path: [$.contextDirectory, $.projectName, "dev"],
@@ -39,19 +48,31 @@ export function parseTypescriptProjectsInProject(
         {
             onError: $i.onError,
             onFile: ($) => {
+
+                const intermediate = cleanup(
+                    $.data,
+                    $d.cleanupDependencies
+                )
+                doUpcycle(
+                    {
+                        path: [ config.contextDirectory, config.projectName, "dev", $.path],
+                        data: intermediate,
+                    },
+                    $d.cleanupDependencies
+
+                )
                 serialize(
                     {
                         path: [ ".", "tmp", config.projectName, "dev", $.path],
-                        data: $.data,
+                        data: intermediate,
                     },
-                    {
-                        createWriteStream: $d.createWriteStream,
-                        startAsync: $d.parseDependencies.startAsync,
-                    }
+                    deps,
+                    $s,
                 )
             }
         },
-        $d.parseDependencies
+        $d.parseDependencies,
+        $s,
     )
     if ($.type[0] === "resource") {
         //skip
@@ -65,19 +86,30 @@ export function parseTypescriptProjectsInProject(
                 onError: $i.onError,
                 onFile: ($) => {
                 
+                    const intermediate = cleanup(
+                        $.data,
+                        $d.cleanupDependencies
+                    )
+                    doUpcycle(
+                        {
+                            path: [ config.contextDirectory, config.projectName, "pub", $.path],
+                            data: intermediate,
+                        },
+                        $d.cleanupDependencies
+    
+                    )
                     serialize(
                         {
                             path: [ ".", "tmp", config.projectName, "pub", $.path],
-                            data: $.data,
+                            data: intermediate,
                         },
-                        {
-                            createWriteStream: $d.createWriteStream,
-                            startAsync: $d.parseDependencies.startAsync,
-                        }
+                        deps,
+                        $s
                     )
                 },
             },
-            $d.parseDependencies
+            $d.parseDependencies,
+            $s,
         )
     }
     parseTypescriptProject(
@@ -88,18 +120,29 @@ export function parseTypescriptProjectsInProject(
         {
             onError: $i.onError,
             onFile: ($) => {
+                const intermediate = cleanup(
+                    $.data,
+                    $d.cleanupDependencies
+                )
+                doUpcycle(
+                    {
+                        path: [ config.contextDirectory, config.projectName, "test", $.path],
+                        data: intermediate,
+                    },
+                    $d.cleanupDependencies
+
+                )
                 serialize(
                     {
                         path: [".", "tmp", config.projectName, "test", $.path],
-                        data: $.data,
+                        data: intermediate,
                     },
-                    {
-                        createWriteStream: $d.createWriteStream,
-                        startAsync: $d.parseDependencies.startAsync,
-                    }
+                    deps,
+                    $s,
                 )
             },
         },
-        $d.parseDependencies
+        $d.parseDependencies,
+        $s,
     )
 }

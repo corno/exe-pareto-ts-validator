@@ -15,6 +15,9 @@ import { _typescriptProject } from "../data/typescriptProject"
 import { parseTypescriptProjectsInProject } from "../imp"
 import { createParseErrorMessage } from "../imp/createParseErrorMessage"
 import { getType } from "../imp/getType"
+import { cleanupDependencies } from "./cleanupDependencies"
+import { parseDependencies } from "./parseDependencies"
+import { cleanup } from "../imp/cleanup/imp/cleanup"
 
 
 pe.runProgram(($, $i, $d) => {
@@ -26,6 +29,7 @@ pe.runProgram(($, $i, $d) => {
             },
             callback: ($) => {
                 const projectPath = $
+
 
                 parseTypescriptProjectsInProject(
                     {
@@ -44,16 +48,11 @@ pe.runProgram(($, $i, $d) => {
                         },
                     },
                     {
-                        parseDependencies: {
-                            parseDynamic: ts.parse,
-                            startAsync: $d.startAsync,
-                            doUntil: uglyStuff.doUntil,
-                            lookAhead: uglyStuff.lookAhead,
-                            stringsAreEqual: (a, b) => diff.stringsAreEqual({a: a, b: b}),
-                            parseFilePath: path.parseFilePath,
-                        },
-                        createWriteStream: fs.createWriteStream
-                    }
+                        parseDependencies: parseDependencies,
+                        createWriteStream: fs.createWriteStream,
+                        cleanupDependencies: cleanupDependencies
+                    },
+                    $d.startAsync,
                 )
 
             }

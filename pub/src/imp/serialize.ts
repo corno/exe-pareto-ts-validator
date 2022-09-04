@@ -1,33 +1,27 @@
 
 import * as pl from "pareto-core-lib"
 import * as pm from "pareto-core-state"
-
 import * as fp from "lib-fountain-pen"
 import * as fs from "api-pareto-filesystem"
 
-
-import { visit } from "./visit"
-
-import { TNroot } from "../interface"
 import { serializeParetoFile } from "./serializeParetoFile"
 import { StartAsync } from "pareto-core-async"
+import { TSourceFile } from "./cleanup/types"
 
-export function serialize(
+export function serialize<Annotation>(
     $: {
         path: fs.Path
-        data: TNroot
+        data: TSourceFile<Annotation>
     },
     $d: {
         createWriteStream: fs.CreateWriteStream
-        startAsync: StartAsync
-    }
+    },
+    $s: StartAsync
 ) {
 
-    const intermediate = visit(
-        $.data,
-    )
+    const config = $
 
-    $d.startAsync(
+    $s(
         $d.createWriteStream(
             {
                 path: $.path,
@@ -46,9 +40,8 @@ export function serialize(
                         indentation: "    "
                     },
                     ($) => {
-
                         serializeParetoFile(
-                            intermediate,
+                            config.data,
                             {
                                 block: $
                             },

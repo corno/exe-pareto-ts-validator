@@ -1,8 +1,8 @@
 
 import * as x from "./generated"
-import { Parse } from "./ParseType"
+import { XParse } from "./ParseType"
 
-export const parse: Parse = ($, $i, $d) => {
+export const parse: XParse = ($, $i, $d) => {
     return $d.parseDynamic(
         {
             tsconfigPath: $.tsConfigPath
@@ -59,11 +59,6 @@ export const parse: Parse = ($, $i, $d) => {
             },
             onEnd: () => {
             },
-            // callback: ($) => {
-            //     $.files.forEach((a, b) => a > b, ($, key) => {
-            //     })
-            // }
-
         }
     )
 }

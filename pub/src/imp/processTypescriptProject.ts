@@ -13,31 +13,30 @@ import * as pp from "api-pareto-path"
 
 import * as ap from "lib-analyse-path"
 
-
 import { parse } from "../imp/parse"
 import { _typescriptProject } from "../data/typescriptProject"
-import { UnexpectedTokenData } from "./ParseType"
+import { TUnexpectedTokenData } from "./ParseType"
 import { TNroot } from "../interface"
+import { StartAsync } from "pareto-core-async"
 
-export type ParseError =
-    | ["dynamic parser", ts.TypeScriptParserError]
-    | ["unexpected token", UnexpectedTokenData]
+export type TParseError =
+    | ["dynamic parser", ts.TTypeScriptParserError]
+    | ["unexpected token", TUnexpectedTokenData]
     | ["missing token", {
-        parentDetails: uast.TDetails
-        path: string
-        kindNameOptions: string
+        readonly "parentDetails": uast.TDetails
+        readonly "path": string
+        readonly "kindNameOptions": string
     }]
     | ["file path", {
-        error: ap.AnnotatedPathError
-        path: ts.Path
+        readonly "error": ap.AnnotatedPathError
+        readonly "path": ts.TPath
     }]
     | ["pattern", {
-        "unknown pattern": pt.Array<string>
+        readonly "unknown pattern": pt.Array<string>
     }]
 
-export type ParseTypescriptProjectDependencies = {
-    startAsync: ($: pt.AsyncNonValue) => void
-    parseDynamic: ts.Parse
+export type DParseTypescriptProjectDependencies = {
+    parseDynamic: ts.XParse
     doUntil: uglyStuff.DoUntil
     lookAhead: uglyStuff.LookAhead
     stringsAreEqual: (a: string, b: string) => boolean
@@ -46,20 +45,21 @@ export type ParseTypescriptProjectDependencies = {
 
 export function parseTypescriptProject(
     $: {
-        path: ts.Path
-        allowNonExistence: boolean
+        readonly "path": ts.TPath
+        readonly "allowNonExistence": boolean
     },
     $i: {
-        onError: ($: ParseError) => void
+        onError: ($: TParseError) => void
         onFile: ($: {
-            path: string
-            data: TNroot
+            readonly  "path": string
+            readonly  "data": TNroot
         }) => void
     },
-    $d: ParseTypescriptProjectDependencies
+    $d: DParseTypescriptProjectDependencies,
+    $s: StartAsync,
 ) {
     const config = $
-    $d.startAsync(
+    $s(
 
         parse(
             {

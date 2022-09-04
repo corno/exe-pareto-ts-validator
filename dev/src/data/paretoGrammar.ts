@@ -103,6 +103,12 @@ export const _typeScriptGrammar: gr.TGrammar = {
                                                             'type': ["leaf", { 'hasTextContent': false }]
                                                         }]
                                                     },
+                                                    'exclamationEqualsEquals': {
+                                                        'type': ["node", {
+                                                            'name': `ExclamationEqualsEqualsToken`,
+                                                            'type': ["leaf", { 'hasTextContent': false }]
+                                                        }]
+                                                    },
                                                     'equals': {
                                                         'cardinality': ["one", {}],
                                                         'type': ["node", {
