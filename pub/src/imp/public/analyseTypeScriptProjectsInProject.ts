@@ -18,9 +18,9 @@ import { parseTypescriptProjectsInProject } from "./processTypescriptProjectsInP
 import { createParseErrorMessage } from "./createParseErrorMessage"
 import { getType } from "../private/getType"
 
-import { DParseTypescriptProjectDependencies } from "../private/processTypescriptProject"
-import { DCleanupDependencies } from "../../modules/cleanup/interface/dependencies/x"
-import { DTS2ParetoDependencies } from "../../modules/pareto/interface/dependencies/x"
+import { DCleanupDependencies } from "../../modules/cleanup"
+import { DTS2ParetoDependencies } from "../../modules/pareto"
+import { DParseTypescriptProjectDependencies } from "../../dependencies/x"
 
 export function analyseTypeScriptProjectsInProject(
     $: {

@@ -1,7 +1,5 @@
-// //export * from "./esc/implementations/analyseFile"
-// export * from "./esc/implementations/analyseGitRepo"
-// export * from "./esc/implementations/analyseTypescriptFilesInWorkspace"
-// export * from "./esc/implementations/readWorkspace"
 
 export * from "./public/createParseErrorMessage"
 export * from "./public/processTypescriptProjectsInProject"
+export * from "./public/analyseTypeScriptProjectsInProject"
+export * from "./public/analyseTypeScriptProjectsInWorkspace"

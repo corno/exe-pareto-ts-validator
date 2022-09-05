@@ -8,7 +8,7 @@ import * as path from "res-pareto-path"
 import * as uglyStuff from "res-pareto-ugly-stuff"
 import { cleanupDependencies } from "../modules/cleanup/dependencies/cleanupDependencies"
 import { ts2ParetoDependencies } from "../modules/pareto/dependencies/ts2paretoDependencies"
-import { analyseTypeScriptProjectsInProject } from "../imp/public/analyseTypeScriptProjectsInProject"
+import { analyseTypeScriptProjectsInProject } from "../imp"
 import { _typescriptProject } from "../data/typescriptProject"
 
 

@@ -1,7 +1,7 @@
 import * as pl from "pareto-core-lib"
 
 import * as ts from "../../../cleanup/interface/types/types"
-import * as t from "../../interface/types/types"
+import * as t from "../../interface"
 // import { unsafeToDictionary } from "../../../private/paretoCandidates"
 import { convertFunction } from "./convertFunction"
 import { DTS2ParetoDependencies } from "../../interface/dependencies/x"

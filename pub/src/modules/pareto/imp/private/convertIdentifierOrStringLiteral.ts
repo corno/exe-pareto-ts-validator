@@ -1,7 +1,7 @@
 import * as pl from "pareto-core-lib"
 
 import * as ts from "../../../cleanup/interface/types/types"
-import * as t from "../../interface/types/types"
+import * as t from "../../interface"
 
 export function convertIdentifierOrStringLiteral<Annotation>(
     $: ts.TIdentifierOrStringLiteral<Annotation>

@@ -262,7 +262,7 @@ export function doUpcycle(
                             case "import":
                                 pl.cc($.type[1], ($) => {
                                     //need to handle resources differently
-                                    //doImport($)
+                                    doImport($)
                                 })
                                 break
                             case "typeAlias":
@@ -303,7 +303,7 @@ export function doUpcycle(
                                 pl.cc($.type[1], ($) => {
                                     //need to handle resources differently
                                     //doImport($)
-                                    //doImport($)
+                                    doImport($)
                                 })
                                 break
                             case "variable":

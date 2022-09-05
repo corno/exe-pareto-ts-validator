@@ -3,7 +3,7 @@ import * as pc from "pareto-core-candidates"
 
 
 import * as ts from "../../../cleanup/interface/types/types"
-import * as t from "../../interface/types/types"
+import * as t from "../../interface"
 import { convertIdentifierOrStringLiteral } from "./convertIdentifierOrStringLiteral"
 import { convertLocalType } from "./convertLocalType"
 export function convertDependencies<Annotation>(

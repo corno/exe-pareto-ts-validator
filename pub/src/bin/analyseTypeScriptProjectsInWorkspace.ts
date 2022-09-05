@@ -3,7 +3,7 @@
 import * as pe from "pareto-core-exe"
 
 import { _typescriptProject } from "../data/typescriptProject"
-import { analyseTypeScriptProjectsInWorkspace } from "../imp/public/analyseTypeScriptProjectsInWorkspace"
+import { analyseTypeScriptProjectsInWorkspace } from "../imp"
 
 import { parseDependencies } from "../dependencies/parseDependencies"
 import * as fs from "res-pareto-filesystem"

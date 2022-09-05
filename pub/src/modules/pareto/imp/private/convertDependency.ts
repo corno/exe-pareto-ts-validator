@@ -3,7 +3,7 @@
 
 import * as ts from "../../../cleanup/interface/types/types"
 import { DTS2ParetoDependencies } from "../../interface/dependencies/x"
-import * as t from "../../interface/types/types"
+import * as t from "../../interface"
 
 type TDependencyPair = {
     name: string,

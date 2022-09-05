@@ -1,20 +1,17 @@
 // #!/usr/bin/env node
 
-import * as pl from "pareto-core-lib"
-import * as p2s from "pareto-core-tostring"
-
 import * as fs from "api-pareto-filesystem"
 import * as ts from "api-dynamic-typescript-parser"
 import * as uast from "api-untyped-ast"
-import * as pp from "api-pareto-path"
 
 import * as ap from "lib-analyse-path"
 
 import { parse } from "./parse"
 import { _typescriptProject } from "../../data/typescriptProject"
-import { DParse2Dependencies, TUnexpectedTokenData } from "./ParseType"
+import { TUnexpectedTokenData } from "./ParseType"
 import { TNroot } from "../../interface"
 import { StartAsync } from "pareto-core-async"
+import { DParseTypescriptProjectDependencies } from "../../dependencies/x"
 
 export type TParseError =
     | ["dynamic parser", ts.TTypeScriptParserError]
@@ -41,11 +38,6 @@ export type FStringsAreEqual = ($: {
     readonly "a": string,
     readonly "b": string
 }) => boolean
-
-export type DParseTypescriptProjectDependencies = {
-    readonly parse2: DParse2Dependencies
-    readonly parseFilePath: pp.ParseFilePath
-}
 
 export function parseTypescriptProject(
     $: {

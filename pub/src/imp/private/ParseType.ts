@@ -2,18 +2,10 @@ import * as pt from "pareto-core-types"
 
 
 import * as ts from "api-dynamic-typescript-parser"
-import * as diff from "api-pareto-diff"
 import * as uast from "api-untyped-ast"
-import * as uglyStuff from "api-pareto-ugly-stuff"
 
 import * as x from "../../interface"
-
-export type DParse2Dependencies = {
-    parseDynamic: ts.XParse
-    doUntil: uglyStuff.XDoUntil,
-    lookAhead: uglyStuff.XLookAhead,
-    stringsAreEqual: diff.StringsAreEqual
-}
+import { DParse2Dependencies } from "../../dependencies/x"
 
 export type TUnexpectedTokenData = {
     readonly "file": {

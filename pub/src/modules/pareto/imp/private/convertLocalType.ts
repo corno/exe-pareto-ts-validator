@@ -3,7 +3,7 @@ import * as pm from "pareto-core-state"
 import * as pc from "pareto-core-candidates"
 
 import * as ts from "../../../cleanup/interface/types/types"
-import * as t from "../../interface/types/types"
+import * as t from "../../interface"
 import { convertIdentifierOrStringLiteral } from "./convertIdentifierOrStringLiteral"
 
 // export type XType = {

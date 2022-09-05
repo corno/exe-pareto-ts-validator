@@ -1,7 +1,7 @@
 
 
 import * as ts from "../../../cleanup/interface/types/types"
-import * as t from "../../interface/types/types"
+import * as t from "../../interface"
 // import { unsafeToDictionary } from "../../../private/paretoCandidates"
 import { convertLocalInterface } from "./convertLocalInterface"
 import { DTS2ParetoDependencies } from "../../interface/dependencies/x"
