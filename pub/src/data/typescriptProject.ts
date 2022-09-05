@@ -2,6 +2,49 @@ import * as pw from "pareto-core-raw"
 
 import * as ap from "lib-analyse-path"
 
+
+export const _recursiveDir: ap.TNode = {
+    'type': ["directory", {
+        'type': ["files dictionary", {
+            'allow missing extension': false,
+            'extensionsX': pw.wrapRawArray([
+                `ts`,
+            ]),
+            'recursive': true
+        }]
+
+    }]
+}
+export const _flatDir: ap.TNode = {
+    'type': ["directory", {
+        'type': ["files dictionary", {
+            'allow missing extension': false,
+            'extensionsX': pw.wrapRawArray([
+                `ts`,
+            ]),
+            'recursive': false
+        }]
+
+    }]
+}
+
+export const _interface: ap.TNode = {
+    'type': ["directory", {
+        'type': ["type", {
+            'nodesX': pw.wrapRawDictionary({
+                "types": _recursiveDir,
+                "interfaces": _flatDir,
+                "algorithms": _flatDir,
+                "dependencies": _flatDir,
+                "index.ts": {
+                    'type': ["file", {}]
+                },
+            })
+        }]
+
+    }]
+}
+
 export const _typescriptProject: ap.TDirectory = {
     'type': ["type", {
         'nodesX': pw.wrapRawDictionary({
@@ -9,160 +52,51 @@ export const _typescriptProject: ap.TDirectory = {
                 'type': ["directory", {
                     'type': ["type", {
                         'nodesX': pw.wrapRawDictionary({
-                            "bin": {
-                                'type': ["directory", {
-                                    'type': ["files dictionary", {
-                                        'allow missing extension': false,
-                                        'extensionsX': pw.wrapRawArray([
-                                            `ts`,
-                                        ]),
-                                        'recursive': false
-                                    }]
-                
-                                }]
-                            },
-                            "data": {
-                                'type': ["directory", {
-                                    'type': ["files dictionary", {
-                                        'allow missing extension': false,
-                                        'extensionsX': pw.wrapRawArray([
-                                            `ts`,
-                                        ]),
-                                        'recursive': false
-                                    }]
-                
-                                }]
-                            },
-                            "dependencies": {
-                                'type': ["directory", {
-                                    'type': ["files dictionary", {
-                                        'allow missing extension': false,
-                                        'extensionsX': pw.wrapRawArray([
-                                            `ts`,
-                                        ]),
-                                        'recursive': false
-                                    }]
-                
-                                }]
-                            },
+                            "bin": _flatDir,
+                            "data": _flatDir,
+                            "dependencies": _flatDir,
                             "index.ts": {
                                 'type': ["file", {}]
                             },
                             "_globals.ts": {
                                 'type': ["file", {}]
                             },
-                            "interface": {
-                                'type': ["directory", {
-                                    'type': ["type", {
-                                        'nodesX': pw.wrapRawDictionary({
-                                            "types": {
-                                                'type': ["directory", {
-                                                    'type': ["files dictionary", {
-                                                        'allow missing extension': false,
-                                                        'extensionsX': pw.wrapRawArray([
-                                                            `ts`,
-                                                        ]),
-                                                        'recursive': true
-                                                    }]
-                                
-                                                }]
-                                            },
-                                            "interfaces": {
-                                                'type': ["directory", {
-                                                    'type': ["files dictionary", {
-                                                        'allow missing extension': false,
-                                                        'extensionsX': pw.wrapRawArray([
-                                                            `ts`,
-                                                        ]),
-                                                        'recursive': true
-                                                    }]
-                                
-                                                }]
-                                            },
-                                            "algorithms": {
-                                                'type': ["directory", {
-                                                    'type': ["files dictionary", {
-                                                        'allow missing extension': false,
-                                                        'extensionsX': pw.wrapRawArray([
-                                                            `ts`,
-                                                        ]),
-                                                        'recursive': true
-                                                    }]
-                                
-                                                }]
-                                            },
-                                            "dependencies": {
-                                                'type': ["directory", {
-                                                    'type': ["files dictionary", {
-                                                        'allow missing extension': false,
-                                                        'extensionsX': pw.wrapRawArray([
-                                                            `ts`,
-                                                        ]),
-                                                        'recursive': true
-                                                    }]
-                                
-                                                }]
-                                            },
-                                            "index.ts": {
-                                                'type': ["file", {}]
-                                            },
-                                        })
-                                    }]
-                
-                                }]
-                            },
+                            "interface": _interface,
                             "imp": {
                                 'type': ["directory", {
                                     'type': ["type", {
                                         'nodesX': pw.wrapRawDictionary({
                                             "modules": {
                                                 'type': ["directory", {
-                                                    'type': ["files dictionary", {
-                                                        'allow missing extension': false,
-                                                        'extensionsX': pw.wrapRawArray([
-                                                            `ts`,
-                                                        ]),
-                                                        'recursive': true
+                                                    'type': ["directory dictionary", {
+                                                        'definition': {
+                                                            'type': ["type", {
+                                                                'nodesX': pw.wrapRawDictionary({
+                                                                    "interface": _interface,
+                                                                    "imp": {
+                                                                        'type': ["directory", {
+                                                                            'type': ["type", {
+                                                                                'nodesX': pw.wrapRawDictionary({
+                                                                                    "public": _flatDir,
+                                                                                    "private": _recursiveDir,
+                                                                                    "types": _flatDir,
+                                                                                    "index.ts": {
+                                                                                        'type': ["file", {}]
+                                                                                    },
+                                                                                })
+                                                                            }]
+                                                                        }]
+                                                                    },
+                                                                })
+                                                            }]
+                                                        }
                                                     }]
-                                
+
                                                 }]
                                             },
-                                            "public": {
-                                                'type': ["directory", {
-                                                    'type': ["files dictionary", {
-                                                        'allow missing extension': false,
-                                                        'extensionsX': pw.wrapRawArray([
-                                                            `ts`,
-                                                        ]),
-                                                        'recursive': true
-                                                    }]
-                                
-                                                }]
-                                            },
-                                            "private": {
-                                                'type': ["directory", {
-                                                    'type': ["files dictionary", {
-                                                        'allow missing extension': false,
-                                                        'extensionsX': pw.wrapRawArray([
-                                                            `ts`,
-                                                        ]),
-                                                        'recursive': true
-                                                    }]
-                                
-                                                }]
-                                            },
-                                            "types": {
-                                                'type': ["directory", {
-                                                    'type': ["files dictionary", {
-                                                        'allow missing extension': false,
-                                                        'extensionsX': pw.wrapRawArray([
-                                                            `ts`,
-                                                        ]),
-                                                        'recursive': true
-                                                    }]
-                                
-                                                }]
-                                            },
+                                            "public": _flatDir,
+                                            "private": _recursiveDir,
+                                            "types": _flatDir,
                                             "index.ts": {
                                                 'type': ["file", {}]
                                             },

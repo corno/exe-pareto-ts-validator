@@ -103,20 +103,18 @@ export function parseTypescriptProjectsInProject(
                                                     return ["root index", {}]
                                                 case "src/interface/types/**/*.ts":
                                                     return ["interface types", {}]
-                                                case "src/interface/interfaces/**/*.ts":
+                                                case "src/interface/interfaces/*.ts":
                                                     return ["interface interfaces", {}]
-                                                case "src/interface/algorithms/**/*.ts":
+                                                case "src/interface/algorithms/*.ts":
                                                     return ["interface algorithms", {}]
-                                                case "src/interface/dependencies/**/*.ts":
+                                                case "src/interface/dependencies/*.ts":
                                                     return ["interface dependencies", {}]
                                                 case "src/interface/index.ts":
                                                     return ["interface index", {}]
                                                 case "src/imp/index.ts":
                                                     return ["imp index", {}]
-                                                case "src/imp/public/**/*.ts":
+                                                case "src/imp/public/*.ts":
                                                     return ["public implementation", {}]
-                                                case "src/imp/modules/**/*.ts":
-                                                    return ["module", {}]
                                                 case "src/imp/private/**/*.ts":
                                                     return ["private implementation", {}]
                                                 case "src/bin/*.ts":
