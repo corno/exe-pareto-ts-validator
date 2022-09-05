@@ -3,7 +3,7 @@ import * as pt from "pareto-core-types"
 
 import * as fp from "lib-fountain-pen"
 
-import * as nt from "../modules/cleanup/interface/types/types"
+import * as nt from "../../modules/cleanup/interface/types/types"
 
 
 export function serializeParetoFile<Annotation>(

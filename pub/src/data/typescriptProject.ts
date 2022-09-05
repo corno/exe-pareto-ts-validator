@@ -45,6 +45,21 @@ export const _interface: ap.TNode = {
     }]
 }
 
+export const _imp: ap.TNode = {
+    'type': ["directory", {
+        'type': ["type", {
+            'nodesX': pw.wrapRawDictionary({
+                "public": _flatDir,
+                "private": _recursiveDir,
+                "types": _flatDir,
+                "index.ts": {
+                    'type': ["file", {}]
+                },
+            })
+        }]
+    }]
+}
+
 export const _typescriptProject: ap.TDirectory = {
     'type': ["type", {
         'nodesX': pw.wrapRawDictionary({
@@ -52,56 +67,35 @@ export const _typescriptProject: ap.TDirectory = {
                 'type': ["directory", {
                     'type': ["type", {
                         'nodesX': pw.wrapRawDictionary({
-                            "bin": _flatDir,
-                            "data": _flatDir,
                             "dependencies": _flatDir,
                             "index.ts": {
                                 'type': ["file", {}]
                             },
+                            "interface": _interface,
+                            "imp": _imp,
+
                             "_globals.ts": {
                                 'type': ["file", {}]
                             },
-                            "interface": _interface,
-                            "imp": {
+                            "bin": _flatDir,
+                            "data": _flatDir,
+                            "modules": {
                                 'type': ["directory", {
-                                    'type': ["type", {
-                                        'nodesX': pw.wrapRawDictionary({
-                                            "modules": {
-                                                'type': ["directory", {
-                                                    'type': ["directory dictionary", {
-                                                        'definition': {
-                                                            'type': ["type", {
-                                                                'nodesX': pw.wrapRawDictionary({
-                                                                    "interface": _interface,
-                                                                    "imp": {
-                                                                        'type': ["directory", {
-                                                                            'type': ["type", {
-                                                                                'nodesX': pw.wrapRawDictionary({
-                                                                                    "public": _flatDir,
-                                                                                    "private": _recursiveDir,
-                                                                                    "types": _flatDir,
-                                                                                    "index.ts": {
-                                                                                        'type': ["file", {}]
-                                                                                    },
-                                                                                })
-                                                                            }]
-                                                                        }]
-                                                                    },
-                                                                })
-                                                            }]
-                                                        }
-                                                    }]
-
-                                                }]
-                                            },
-                                            "public": _flatDir,
-                                            "private": _recursiveDir,
-                                            "types": _flatDir,
-                                            "index.ts": {
-                                                'type': ["file", {}]
-                                            },
-                                        })
+                                    'type': ["directory dictionary", {
+                                        'definition': {
+                                            'type': ["type", {
+                                                'nodesX': pw.wrapRawDictionary({
+                                                    "dependencies": _flatDir,
+                                                    "index.ts": {
+                                                        'type': ["file", {}]
+                                                    },
+                                                    "interface": _interface,
+                                                    "imp": _imp,
+                                                })
+                                            }]
+                                        }
                                     }]
+            
                                 }]
                             },
                         })

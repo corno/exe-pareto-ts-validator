@@ -3,11 +3,12 @@ import * as pl from "pareto-core-lib"
 
 import * as uast from "api-untyped-ast"
 
-import { convertGlobalType, DTS2ParetoDependencies } from "../private/convertGlobalType"
+import { convertGlobalType } from "../private/convertGlobalType"
 import * as ts from "../../../cleanup/interface/types/types"
 import { convertAlgorithm } from "../private/convertAlgorithm"
 import { convertGlobalInterface } from "../private/convertGlobalInterface"
 import { convertDependency } from "../private/convertDependency"
+import { DTS2ParetoDependencies } from "../../interface/dependencies/x"
 
 
 export type TFileType =
@@ -86,7 +87,10 @@ export function doUpcycle(
 
                         } else {
                             if (startsWith(".")) {
-
+                                $i({
+                                    message: `IMPORT: ${$.file.strippedValue}`,
+                                    annotation: ann,
+                                })
                             } else {
                                 $i({
                                     message: `UNKNOWN IMPORT: ${$.file.strippedValue}`,

@@ -3,4 +3,5 @@
 // export * from "./esc/implementations/analyseTypescriptFilesInWorkspace"
 // export * from "./esc/implementations/readWorkspace"
 
-export * from "./private/processTypescriptProjectsInProject"
+export * from "./public/createParseErrorMessage"
+export * from "./public/processTypescriptProjectsInProject"

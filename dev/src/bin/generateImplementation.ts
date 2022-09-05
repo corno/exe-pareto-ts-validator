@@ -6,7 +6,7 @@ import * as collation from "res-pareto-collation"
 import * as fs from "res-pareto-filesystem"
 
 import * as tsg from "../data/embeddedParetoGrammar"
-import { generateImplementation } from "../imp/public/generateImplementation"
+import { generateImplementation } from "../imp"
 
 
 pe.runProgram(

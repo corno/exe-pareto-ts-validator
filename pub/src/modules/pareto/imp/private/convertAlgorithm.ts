@@ -1,21 +1,10 @@
 import * as pl from "pareto-core-lib"
-import * as pc from "pareto-core-candidates"
-
-import * as uglyStuff from "api-pareto-ugly-stuff"
 
 import * as ts from "../../../cleanup/interface/types/types"
 import * as t from "../../interface/types/types"
 // import { unsafeToDictionary } from "../../../private/paretoCandidates"
-import { convertLocalType } from "./convertLocalType"
-import { convertLocalInterface } from "./convertLocalInterface"
 import { convertFunction } from "./convertFunction"
-import { convertDependencies } from "./convertDependencies"
-import { FFirstCharacter } from "../../../cleanup/imp/cleanup"
-
-export type DTS2ParetoDependencies = {
-    readonly firstCharacter: FFirstCharacter
-    readonly startsWith: uglyStuff.FStartsWith
-}
+import { DTS2ParetoDependencies } from "../../interface/dependencies/x"
 
 type TAlgorithmPair = {
     name: string,

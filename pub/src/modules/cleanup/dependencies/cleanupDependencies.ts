@@ -1,7 +1,6 @@
 import * as uglyStuff from "res-pareto-ugly-stuff"
 import * as parser from "res-dynamic-typescript-parser"
-
-import { DCleanupDependencies } from "../imp/modules/cleanup/imp/cleanup"
+import { DCleanupDependencies } from "../interface/dependencies/x"
 
 export const cleanupDependencies: DCleanupDependencies = {
     firstCharacter: ($) => {

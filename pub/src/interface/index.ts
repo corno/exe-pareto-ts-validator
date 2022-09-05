@@ -1,1 +1,1 @@
-export * from "../imp/modules/embeddedParetoParser/interface"
+export * from "../modules/embeddedParetoParser/interface"

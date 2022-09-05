@@ -3,17 +3,9 @@ import * as pm from "pareto-core-state"
 
 
 import * as main from "api-pareto-main"
-import * as collation from "api-pareto-collation"
-import * as fs from "api-pareto-filesystem"
 
 import * as gta from "exe-generate-typesafe-ast"
-
-export type DDependencies = {
-    readonly  isYinBeforeYang: collation.IsYinBeforeYang
-    readonly  createWriteStream: fs.CreateWriteStream
-    readonly startAsync: main.StartAsync
-}
-
+import { DDependencies } from "../../interface"
 
 export function generateImplementation(
     $: {

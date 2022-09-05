@@ -6,15 +6,16 @@ import * as dynAPI from "api-dynamic-typescript-parser"
 import * as fs from "api-pareto-filesystem"
 import * as ap from "lib-analyse-path"
 
-import * as x from "../modules/embeddedParetoParser/imp"
+import * as x from "../../modules/embeddedParetoParser/imp"
 
 
 import { _typescriptProject } from "../../data/typescriptProject"
-import { cleanup, DCleanupDependencies } from "../modules/cleanup/imp/cleanup"
-import { doUpcycle, TFileType } from "../modules/pareto/imp/public/doUpcycle"
-import { TParseError, parseTypescriptProject, DParseTypescriptProjectDependencies } from "./processTypescriptProject"
-import { serialize } from "./serialize"
-import { DTS2ParetoDependencies } from "../modules/pareto/imp/private/convertGlobalType"
+import { cleanup } from "../../modules/cleanup/imp/cleanup"
+import { doUpcycle, TFileType } from "../../modules/pareto/imp/public/doUpcycle"
+import { TParseError, DParseTypescriptProjectDependencies } from "../private/processTypescriptProject"
+import { serialize } from "../private/serialize"
+import { DCleanupDependencies } from "../../modules/cleanup/interface/dependencies/x"
+import { DTS2ParetoDependencies } from "../../modules/pareto/interface/dependencies/x"
 
 export type TProjectType =
     | ["executable", {}]
@@ -28,6 +29,7 @@ export function parseTypescriptProjectsInProject(
         projectName: string
         contextDirectory: dynAPI.TPath
         type: TProjectType
+        typescriptProject: ap.TDirectory
     },
     $i: {
         onError: ($: TParseError) => void
@@ -75,7 +77,7 @@ export function parseTypescriptProjectsInProject(
                                 filePath: $.path
                             })
                             const analysisResult = ap.analysePath({
-                                definition: _typescriptProject,
+                                definition: config.typescriptProject,
                                 filePath: path,
                             })
 

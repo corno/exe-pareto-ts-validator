@@ -3,16 +3,11 @@ import * as pl from "pareto-core-lib"
 import * as uast from "api-untyped-ast"
 import * as parser from "api-dynamic-typescript-parser"
 
-import * as api from "../../../../interface"
+import * as api from "../../../interface"
 
 import * as t from "../interface/types/types"
+import { DCleanupDependencies } from "../interface/dependencies/x"
 
-export type FFirstCharacter = ($: string) => string
-
-export type DCleanupDependencies = {
-    readonly firstCharacter: FFirstCharacter
-    readonly stripQuotes: parser.FStripQuotes
-}
 
 export function cleanup(
     $: api.TNroot,

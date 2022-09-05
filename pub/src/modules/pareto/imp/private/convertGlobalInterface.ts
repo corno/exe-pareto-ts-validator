@@ -1,33 +1,25 @@
-import * as pl from "pareto-core-lib"
-import * as pc from "pareto-core-candidates"
 
-import * as uglyStuff from "api-pareto-ugly-stuff"
 
 import * as ts from "../../../cleanup/interface/types/types"
 import * as t from "../../interface/types/types"
 // import { unsafeToDictionary } from "../../../private/paretoCandidates"
-import { convertLocalType } from "./convertLocalType"
-import { FFirstCharacter } from "../../../cleanup/imp/cleanup"
+import { convertLocalInterface } from "./convertLocalInterface"
+import { DTS2ParetoDependencies } from "../../interface/dependencies/x"
 
-export type DTS2ParetoDependencies = {
-    readonly firstCharacter: FFirstCharacter
-    readonly startsWith: uglyStuff.FStartsWith
-}
-
-type TGlobalTypePair = {
+type TGlobalInterfacePair = {
     name: string,
-    value: undefined | t.TGlobalType
+    value: undefined | t.TGlobalInterface
 }
 
 
-export function convertGlobalType<Annotation>(
+export function convertGlobalInterface<Annotation>(
     $: ts.TTypeAlias<Annotation>,
     $i: ($: {
         message: string
         annotation: Annotation
     }) => void,
     $d: DTS2ParetoDependencies,
-): TGlobalTypePair {
+): TGlobalInterfacePair {
 
     const typeAlias = $
     function logMessage(message: string, annotation: Annotation) {
@@ -46,16 +38,16 @@ export function convertGlobalType<Annotation>(
         logMessage(`NO EXPORT: ${typeAlias.name.myValue}`, typeAlias.details)
     }
 
-    if ($d.firstCharacter($.name.myValue) !== "T") {
+    if ($d.firstCharacter($.name.myValue) !== "I") {
 
-        logMessage(`expected a type (starting with a T): ${$.name.myValue}`, typeAlias.details)
+        logMessage(`expected an interface (starting with a I): ${$.name.myValue}`, typeAlias.details)
     }
     
 
     return {
         name: $.name.myValue,
         value: {
-            type: convertLocalType(typeAlias.type, logMessage, $d)
+            type: convertLocalInterface(typeAlias.type, logMessage, $d)
         },
     }
 }

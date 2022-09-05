@@ -1,17 +1,9 @@
-import * as pl from "pareto-core-lib"
-import * as pc from "pareto-core-candidates"
 
-import * as uglyStuff from "api-pareto-ugly-stuff"
+
 
 import * as ts from "../../../cleanup/interface/types/types"
+import { DTS2ParetoDependencies } from "../../interface/dependencies/x"
 import * as t from "../../interface/types/types"
-import { convertLocalInterface } from "./convertLocalInterface"
-import { FFirstCharacter } from "../../../cleanup/imp/cleanup"
-
-export type DTS2ParetoDependencies = {
-    readonly firstCharacter: FFirstCharacter
-    readonly startsWith: uglyStuff.FStartsWith
-}
 
 type TDependencyPair = {
     name: string,

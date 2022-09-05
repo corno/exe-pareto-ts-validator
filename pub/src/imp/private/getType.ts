@@ -1,5 +1,5 @@
 import * as uglyStuff from "api-pareto-ugly-stuff"
-import { TProjectType } from "./processTypescriptProjectsInProject"
+import { TProjectType } from "../public/processTypescriptProjectsInProject"
 
 export type FFirst3Characters = ($: string) => string
 
