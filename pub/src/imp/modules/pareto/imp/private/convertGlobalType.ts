@@ -3,11 +3,11 @@ import * as pc from "pareto-core-candidates"
 
 import * as uglyStuff from "api-pareto-ugly-stuff"
 
-import * as ts from "../../cleanup/types"
-import * as t from "../types"
+import * as ts from "../../../cleanup/interface/types/types"
+import * as t from "../../interface/types/types"
 // import { unsafeToDictionary } from "../../../private/paretoCandidates"
 import { convertLocalType } from "./convertLocalType"
-import { FFirstCharacter } from "../../cleanup/imp/cleanup"
+import { FFirstCharacter } from "../../../cleanup/imp/cleanup"
 
 export type DTS2ParetoDependencies = {
     readonly firstCharacter: FFirstCharacter

@@ -1,5 +1,5 @@
 
-import * as x from "../../modules/embeddedParetoParser/imp"
+import * as x from "../modules/embeddedParetoParser/imp"
 import { XParse } from "./ParseType"
 
 export const parse: XParse = ($, $i, $d) => {

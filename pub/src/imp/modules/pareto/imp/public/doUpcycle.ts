@@ -3,11 +3,11 @@ import * as pl from "pareto-core-lib"
 
 import * as uast from "api-untyped-ast"
 
-import { convertGlobalType, DTS2ParetoDependencies } from "./convertGlobalType"
-import * as ts from "../../cleanup/types"
-import { convertAlgorithm } from "./convertAlgorithm"
-import { convertGlobalInterface } from "./convertGlobalInterface"
-import { convertDependency } from "./convertDependency"
+import { convertGlobalType, DTS2ParetoDependencies } from "../private/convertGlobalType"
+import * as ts from "../../../cleanup/interface/types/types"
+import { convertAlgorithm } from "../private/convertAlgorithm"
+import { convertGlobalInterface } from "../private/convertGlobalInterface"
+import { convertDependency } from "../private/convertDependency"
 
 
 export type TFileType =

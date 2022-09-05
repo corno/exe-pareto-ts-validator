@@ -6,7 +6,7 @@ import * as fs from "api-pareto-filesystem"
 
 import { serializeParetoFile } from "./serializeParetoFile"
 import { StartAsync } from "pareto-core-async"
-import { TSourceFile } from "../modules/cleanup/types"
+import { TSourceFile } from "../modules/cleanup/interface/types/types"
 
 export function serialize<Annotation>(
     $: {

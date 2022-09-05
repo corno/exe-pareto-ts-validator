@@ -6,15 +6,15 @@ import * as dynAPI from "api-dynamic-typescript-parser"
 import * as fs from "api-pareto-filesystem"
 import * as ap from "lib-analyse-path"
 
-import * as x from "../../modules/embeddedParetoParser/imp"
+import * as x from "../modules/embeddedParetoParser/imp"
 
 
 import { _typescriptProject } from "../../data/typescriptProject"
 import { cleanup, DCleanupDependencies } from "../modules/cleanup/imp/cleanup"
-import { doUpcycle, TFileType } from "../modules/pareto/imp/doUpcycle"
+import { doUpcycle, TFileType } from "../modules/pareto/imp/public/doUpcycle"
 import { TParseError, parseTypescriptProject, DParseTypescriptProjectDependencies } from "./processTypescriptProject"
 import { serialize } from "./serialize"
-import { DTS2ParetoDependencies } from "../modules/pareto/imp/convertGlobalType"
+import { DTS2ParetoDependencies } from "../modules/pareto/imp/private/convertGlobalType"
 
 export type TProjectType =
     | ["executable", {}]

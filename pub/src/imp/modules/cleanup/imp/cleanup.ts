@@ -5,7 +5,7 @@ import * as parser from "api-dynamic-typescript-parser"
 
 import * as api from "../../../../interface"
 
-import * as t from "../types"
+import * as t from "../interface/types/types"
 
 export type FFirstCharacter = ($: string) => string
 
