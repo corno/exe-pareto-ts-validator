@@ -5,9 +5,9 @@ import * as pe from "pareto-core-exe"
 import * as collation from "res-pareto-collation"
 import * as fs from "res-pareto-filesystem"
 
-import * as tsg from "../data/paretoGrammar"
+import * as tsg from "../data/embeddedParetoGrammar"
 
-import { generateInterface } from "../imp/generateInterface"
+import { generateInterface } from "../imp/public/generateInterface"
 
 pe.runProgram(
     ($, $i, $d) => {

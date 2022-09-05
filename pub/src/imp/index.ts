@@ -3,4 +3,4 @@
 // export * from "./esc/implementations/analyseTypescriptFilesInWorkspace"
 // export * from "./esc/implementations/readWorkspace"
 
-export * from "./processTypescriptProjectsInProject"
+export * from "./private/processTypescriptProjectsInProject"

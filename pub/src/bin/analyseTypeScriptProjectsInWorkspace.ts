@@ -12,11 +12,12 @@ import * as uglyStuff from "res-pareto-ugly-stuff"
 import * as exeLib from "lib-pareto-exe"
 
 import { _typescriptProject } from "../data/typescriptProject"
-import { parseTypescriptProjectsInProject, TProjectType } from "../imp/processTypescriptProjectsInProject"
-import { createParseErrorMessage } from "../imp/createParseErrorMessage"
-import { getType } from "../imp/getType"
-import { cleanupDependencies } from "./cleanupDependencies"
-import { parseDependencies } from "./parseDependencies"
+import { parseTypescriptProjectsInProject, TProjectType } from "../imp/private/processTypescriptProjectsInProject"
+import { createParseErrorMessage } from "../imp/public/createParseErrorMessage"
+import { getType } from "../imp/private/getType"
+import { cleanupDependencies } from "../dependencies/cleanupDependencies"
+import { parseDependencies } from "../dependencies/parseDependencies"
+import { ts2ParetoDependencies } from "../dependencies/ts2paretoDependencies"
 
 
 pe.runProgram(($, $i, $d) => {
@@ -53,7 +54,11 @@ pe.runProgram(($, $i, $d) => {
                                                     type: getType(
                                                         key,
                                                         {
-                                                            substr: uglyStuff.substr,
+                                                            first3Characters: ($) => uglyStuff.substr({
+                                                                value: $,
+                                                                begin: 0,
+                                                                length: 3,
+                                                            })
                                                         }
                                                     ),
                                                     //path: $.path,
@@ -68,6 +73,7 @@ pe.runProgram(($, $i, $d) => {
                                                     parseDependencies: parseDependencies,
                                                     createWriteStream: fs.createWriteStream,
                                                     cleanupDependencies: cleanupDependencies,
+                                                    ts2ParetoDependencies: ts2ParetoDependencies,
                                                 },
 
                                                 $d.startAsync,

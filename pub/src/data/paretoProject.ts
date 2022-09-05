@@ -1,10 +1,12 @@
+import * as pw from "pareto-core-raw"
+
 import * as ap from "lib-analyse-path"
 
 export const _dataDirectory: ap.TNode = {
     'type': ["directory", {
         'type': ["files dictionary", {
             'allow missing extension': true,
-            'extensions': ([
+            'extensionsX': pw.wrapRawArray([
                 `astn-schema`,
                 `astn`,
                 `csv`,
@@ -23,7 +25,7 @@ export const _dataDirectory: ap.TNode = {
 export const _typescriptDirectory: ap.TNode = {
     'type': ["directory", {
         'type': ["type", {
-            'nodes': {
+            'nodesX': pw.wrapRawDictionary({
                 "data": _dataDirectory,
                 "package.json": {
                     'type': ["file", {}]
@@ -35,7 +37,7 @@ export const _typescriptDirectory: ap.TNode = {
                     'type': ["directory", {
                         'type': ["files dictionary", {
                             'allow missing extension': false,
-                            'extensions': ([
+                            'extensionsX': pw.wrapRawArray([
                                 `ts`,
                             ]),
                             'recursive': true
@@ -46,24 +48,24 @@ export const _typescriptDirectory: ap.TNode = {
                 "tsconfig.json": {
                     'type': ["file", {}]
                 },
-            }
+            })
         }]
     }]
 }
 export const _paretoProject: ap.TDirectory = {
     'type': ["type", {
-        'nodes': {
+        'nodesX': pw.wrapRawDictionary({
             ".gitignore": {
                 'type': ["file", {}]
             },
             "custom scripts": {
                 'type': ["directory", {
                     'type': ["type", {
-                        'nodes': {
+                        'nodesX': pw.wrapRawDictionary({
                             "package.json": {
                                 'type': ["file", {}]
                             },
-                        }
+                        })
                     }]
                 }]
             },
@@ -71,7 +73,7 @@ export const _paretoProject: ap.TDirectory = {
             "pareto": {
                 'type': ["directory", {
                     'type': ["type", {
-                        'nodes': {
+                        'nodesX': pw.wrapRawDictionary({
                             "package.json": {
                                 'type': ["file", {}]
                             },
@@ -82,14 +84,14 @@ export const _paretoProject: ap.TDirectory = {
                                 'type': ["directory", {
                                     'type': ["files dictionary", {
                                         'allow missing extension': false,
-                                        'extensions': ([
+                                        'extensionsX': pw.wrapRawArray([
                                             `sh`,
                                         ]),
                                         'recursive': false
                                     }]
                                 }],
                             }
-                        }
+                        })
                     }]
                 }],
             },
@@ -99,6 +101,6 @@ export const _paretoProject: ap.TDirectory = {
             },
             "test": _typescriptDirectory,
             "tmp": _dataDirectory,
-        }
+        })
     }]
 }
