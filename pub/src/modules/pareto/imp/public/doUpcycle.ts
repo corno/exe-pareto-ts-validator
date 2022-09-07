@@ -87,10 +87,10 @@ export function doUpcycle(
 
                         } else {
                             if (startsWith(".")) {
-                                $i({
-                                    message: `IMPORT: ${$.file.strippedValue}`,
-                                    annotation: ann,
-                                })
+                                // $i({
+                                //     message: `IMPORT: ${$.file.strippedValue}`,
+                                //     annotation: ann,
+                                // })
                             } else {
                                 $i({
                                     message: `UNKNOWN IMPORT: ${$.file.strippedValue}`,
@@ -261,7 +261,6 @@ export function doUpcycle(
                                 break
                             case "import":
                                 pl.cc($.type[1], ($) => {
-                                    //need to handle resources differently
                                     doImport($)
                                 })
                                 break
@@ -270,11 +269,11 @@ export function doUpcycle(
 
                                 })
                                 break
-                            // case "variable":
-                            //     pl.cc($.type[1], ($) => {
-
-                            //     })
-                            //     break
+                            case "variable":
+                                pl.cc($.type[1], ($) => {
+                                    //allow both styles of functions
+                                })
+                                break
                             default: {
                                 $i({
                                     message: `unexpected statement '${$.type[0]}' in implementation`,

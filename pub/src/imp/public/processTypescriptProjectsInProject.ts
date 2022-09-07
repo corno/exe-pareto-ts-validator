@@ -17,10 +17,10 @@ import { doUpcycle, TFileType } from "../../modules/pareto"
 
 
 import { TParseError } from "../private/processTypescriptProject"
-import { serialize } from "../private/serialize"
+import { serialize } from "../../modules/serializeTypescriptSubset/imp/public/serialize"
 
 
-import { DParseTypescriptProjectDependencies } from "../../dependencies/x"
+import { DParseTypescriptProjectDependencies, DSerializeTypeScriptSubset } from "../../interface/dependencies/x"
 
 export type TProjectType =
     | ["executable", {}]
@@ -41,22 +41,19 @@ export function parseTypescriptProjectsInProject(
     },
     $d: {
         parseDependencies: DParseTypescriptProjectDependencies
-        createWriteStream: fs.CreateWriteStream
         cleanupDependencies: DCleanupDependencies
         ts2ParetoDependencies: DTS2ParetoDependencies
+        serialize: DSerializeTypeScriptSubset
     },
     $s: pa.StartAsync,
 ) {
     const config = $
-    const deps = {
-        createWriteStream: $d.createWriteStream,
-    }
     function doPart(
         type: string,
         required: boolean,
         isNative: boolean
     ) {
-        const contextPath =  [$.contextDirectory, $.projectName, type]
+        const contextPath = [$.contextDirectory, $.projectName, type]
         $s(
             $d.parseDependencies.parse2.parseDynamic(
                 {
@@ -104,32 +101,60 @@ export function parseTypescriptProjectsInProject(
                                             $: string
                                         ): TFileType {
                                             switch ($) {
+
+
                                                 case "src/_globals.ts":
                                                     return ["globals", {}]
-                                                case "src/index.ts":
-                                                    return ["root index", {}]
-                                                case "src/interface/types/**/*.ts":
-                                                    return ["interface types", {}]
-                                                case "src/interface/interfaces/*.ts":
-                                                    return ["interface interfaces", {}]
-                                                case "src/interface/algorithms/*.ts":
-                                                    return ["interface algorithms", {}]
-                                                case "src/interface/dependencies/*.ts":
-                                                    return ["interface dependencies", {}]
-                                                case "src/interface/index.ts":
-                                                    return ["interface index", {}]
-                                                case "src/imp/index.ts":
-                                                    return ["imp index", {}]
-                                                case "src/imp/public/*.ts":
-                                                    return ["public implementation", {}]
-                                                case "src/imp/private/**/*.ts":
-                                                    return ["private implementation", {}]
                                                 case "src/bin/*.ts":
                                                     return ["bin", {}]
                                                 case "src/data/*.ts":
                                                     return ["data", {}]
                                                 case "src/dependencies/*.ts":
                                                     return ["dependencies", {}]
+
+                                                //root module
+
+                                                case "src/imp/index.ts":
+                                                    return ["imp index", {}]
+                                                case "src/imp/private/*.ts":
+                                                    return ["private implementation", {}]
+                                                case "src/imp/public/*.ts":
+                                                    return ["public implementation", {}]
+
+                                                case "src/index.ts":
+                                                    return ["root index", {}]
+
+                                                case "src/interface/algorithms/*.ts":
+                                                    return ["interface algorithms", {}]
+                                                case "src/interface/dependencies/*.ts":
+                                                    return ["interface dependencies", {}]
+                                                case "src/interface/index.ts":
+                                                    return ["interface index", {}]
+                                                case "src/interface/interfaces/*.ts":
+                                                    return ["interface interfaces", {}]
+                                                case "src/interface/types/*.ts":
+                                                    return ["interface types", {}]
+
+                                                //modules
+
+                                                case "src/modules/*/imp/index.ts":
+                                                    return ["imp index", {}]
+                                                case "src/modules/*/imp/private/*.ts":
+                                                    return ["private implementation", {}]
+                                                case "src/modules/*/imp/public/*.ts":
+                                                    return ["public implementation", {}]
+
+                                                case "src/modules/*/index.ts":
+                                                    return ["root index", {}]
+
+                                                case "src/modules/*/interface/algorithms/*.ts":
+                                                    return ["interface algorithms", {}]
+                                                case "src/modules/*/interface/index.ts":
+                                                    return ["interface index", {}]
+                                                case "src/modules/*/interface/interfaces/*.ts":
+                                                    return ["interface interfaces", {}]
+                                                case "src/modules/*/interface/types/*.ts":
+                                                    return ["interface types", {}]
                                                 default:
                                                     return ["unknown", {
                                                         pattern: $
@@ -187,7 +212,7 @@ export function parseTypescriptProjectsInProject(
                                                                 path: ["..", "tmp", config.projectName, type, file.path],
                                                                 data: intermediate,
                                                             },
-                                                            deps,
+                                                            $d.serialize,
                                                             $s,
                                                         )
                                                     },

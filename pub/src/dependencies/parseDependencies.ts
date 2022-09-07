@@ -3,7 +3,7 @@ import * as diff from "res-pareto-diff"
 import * as path from "res-pareto-path"
 import * as uglyStuff from "res-pareto-ugly-stuff"
 
-import { DParse2Dependencies, DParseTypescriptProjectDependencies } from "./x"
+import { DParse2Dependencies, DParseTypescriptProjectDependencies } from "../interface/dependencies/x"
 
 export const parse2: DParse2Dependencies = {
     parseDynamic: ts.parse,

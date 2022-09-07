@@ -20,7 +20,7 @@ import { getType } from "../private/getType"
 import { _typescriptProject } from "../../data/typescriptProject"
 import { DCleanupDependencies } from "../../modules/cleanup"
 import { DTS2ParetoDependencies } from "../../modules/pareto"
-import { DParseTypescriptProjectDependencies } from "../../dependencies/x"
+import { DParseTypescriptProjectDependencies, DSerializeTypeScriptSubset } from "../../interface/dependencies/x"
 
 
 export function analyseTypeScriptProjectsInWorkspace(
@@ -31,9 +31,9 @@ export function analyseTypeScriptProjectsInWorkspace(
     $d: {
         x: {
             parseDependencies: DParseTypescriptProjectDependencies
-            createWriteStream: fs.CreateWriteStream
             cleanupDependencies: DCleanupDependencies
             ts2ParetoDependencies: DTS2ParetoDependencies
+            serialize: DSerializeTypeScriptSubset
         },
         substr: uglyStuff.FSubStr
         readDirectory: fs.ReadDirectory

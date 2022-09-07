@@ -20,7 +20,7 @@ import { getType } from "../private/getType"
 
 import { DCleanupDependencies } from "../../modules/cleanup"
 import { DTS2ParetoDependencies } from "../../modules/pareto"
-import { DParseTypescriptProjectDependencies } from "../../dependencies/x"
+import { DParseTypescriptProjectDependencies, DSerializeTypeScriptSubset } from "../../interface/dependencies/x"
 
 export function analyseTypeScriptProjectsInProject(
     $: {
@@ -30,9 +30,9 @@ export function analyseTypeScriptProjectsInProject(
     $d: {
         x: {
             parseDependencies: DParseTypescriptProjectDependencies
-            createWriteStream: fs.CreateWriteStream
             cleanupDependencies: DCleanupDependencies
             ts2ParetoDependencies: DTS2ParetoDependencies
+            serialize: DSerializeTypeScriptSubset
         },
         path: {
             basename: path.Basename

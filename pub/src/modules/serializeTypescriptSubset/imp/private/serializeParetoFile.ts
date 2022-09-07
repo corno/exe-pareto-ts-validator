@@ -1,19 +1,17 @@
 import * as pl from "pareto-core-lib"
-import * as pt from "pareto-core-types"
 
 import * as fp from "lib-fountain-pen"
 
-import * as nt from "../../modules/cleanup"
+import * as nt from "../../../cleanup"
+import { DSerializeTypeScriptSubset } from "../../../../interface/dependencies/x"
 
 
-export function serializeParetoFile<Annotation>(
+export function serializeTypeScriptSubsetFile<Annotation>(
     $: nt.TSourceFile<Annotation>,
     $i: {
         block: fp.IBlock
     },
-    $d: {
-        isNotEmpty: <T> ($: pt.Array<T>) => boolean
-    }
+    $d: DSerializeTypeScriptSubset
 ) {
 
     function Block(
@@ -35,15 +33,19 @@ export function serializeParetoFile<Annotation>(
             case "arrayLiteral":
                 pl.cc($.type[1], ($) => {
                     $i.snippet(`[`)
-                    let first = true
-                    $.expressions.forEach(($) => {
-                        if (first) {
-                            first = false
-                        } else {
-                            $i.snippet(`, `)
+                    $d.forEach(
+                        $.expressions,
+                        {
+                            onBegin: () => { },
+                            onEnd: () => { },
+                            onEntry: ($) => {
+                                if ($.isFirst) {
+                                    $i.snippet(`, `)
+                                }
+                                Expression($.entry, $i)
+                            }
                         }
-                        Expression($, $i)
-                    })
+                    )
                     $i.snippet(`]`)
                 })
                 break
@@ -99,29 +101,39 @@ export function serializeParetoFile<Annotation>(
             case "call":
                 pl.cc($.type[1], ($) => {
                     Expression($.function, $i)
-                    if ($d.isNotEmpty($.typeArguments)) {
-                        $i.snippet(`<`)
-                        let first = true
-                        $.typeArguments.forEach(($) => {
-                            if (first) {
-                                first = false
-                            } else {
-                                $i.snippet(`, `)
+                    $d.forEach(
+                        $.typeArguments,
+                        {
+                            onBegin: () => {
+                                $i.snippet(`<`)
+                            },
+                            onEnd: () => {
+                                $i.snippet(`>`)
+                            },
+                            onEntry: ($) => {
+                                if ($.isFirst) {
+                                    $i.snippet(`, `)
+                                }
+                                Type($.entry, $i)
                             }
-                            Type($, $i)
-                        })
-                        $i.snippet(`>`)
-                    }
-                    $i.snippet(`(`)
-                    let first = true
-                    $.arguments.forEach(($) => {
-                        if (first) {
-                            first = false
-                        } else {
-                            $i.snippet(`, `)
                         }
-                        Expression($, $i)
-                    })
+                    )
+                    $i.snippet(`(`)
+                    $d.forEach(
+                        $.arguments,
+                        {
+                            onBegin: () => {
+                            },
+                            onEnd: () => {
+                            },
+                            onEntry: ($) => {
+                                if ($.isFirst) {
+                                    $i.snippet(`, `)
+                                }
+                                Expression($.entry, $i)
+                            }
+                        }
+                    )
                     $i.snippet(`)`)
 
                 })
@@ -402,21 +414,27 @@ export function serializeParetoFile<Annotation>(
                                 case "named":
                                     pl.cc($.clause[1], ($) => {
                                         $i.snippet(`{ `)
-                                        let first = true
-                                        $.forEach(($) => {
-                                            if (first) {
-                                                first = false
-                                            } else {
-                                                $i.snippet(`, `)
+                                        $d.forEach(
+                                            $,
+                                            {
+                                                onBegin: () => {
+                                                },
+                                                onEnd: () => {
+                                                },
+                                                onEntry: ($) => {
+                                                    if ($.isFirst) {
+                                                        $i.snippet(`, `)
+                                                    }
+                                                    Identifier($.entry.name, $i)
+                                                    if (pl.isNotNull($.entry.as)) {
+                                                        $i.snippet(` as `)
+                                                        Identifier($.entry.as, $i)
+                                                    } else {
+                                                        //
+                                                    }
+                                                }
                                             }
-                                            Identifier($.name, $i)
-                                            if (pl.isNotNull($.as)) {
-                                                $i.snippet(` as `)
-                                                Identifier($.as, $i)
-                                            } else {
-                                                //
-                                            }
-                                        })
+                                        )
                                         $i.snippet(` }`)
                                     })
                                     break
@@ -605,15 +623,21 @@ export function serializeParetoFile<Annotation>(
             case "tuple":
                 pl.cc($.type[1], ($) => {
                     $i.snippet(`[`)
-                    let first = true
-                    $.forEach(($) => {
-                        if (first) {
-                            first = false
-                        } else {
-                            $i.snippet(`, `)
+                    $d.forEach(
+                        $,
+                        {
+                            onBegin: () => {
+                            },
+                            onEnd: () => {
+                            },
+                            onEntry: ($) => {
+                                if ($.isFirst) {
+                                    $i.snippet(`, `)
+                                }
+                                Type($.entry, $i)
+                            }
                         }
-                        Type($, $i)
-                    })
+                    )
                     $i.snippet(`]`)
                 })
                 break
@@ -647,20 +671,23 @@ export function serializeParetoFile<Annotation>(
                             break
                         default: pl.au($.identification[0])
                     }
-                    if ($d.isNotEmpty($.parameters)) {
-                        $i.snippet(`<`)
-                        let first = true
-                        $.parameters.forEach(($) => {
-                            if (first) {
-                                first = false
-                            } else {
-                                $i.snippet(`, `)
+                    $d.forEach(
+                        $.parameters,
+                        {
+                            onBegin: () => {
+                                $i.snippet(`<`)
+                            },
+                            onEnd: () => {
+                                $i.snippet(`>`)
+                            },
+                            onEntry: ($) => {
+                                if ($.isFirst) {
+                                    $i.snippet(`, `)
+                                }
+                                Type($.entry, $i)
                             }
-                            Type($, $i)
-                        })
-                        $i.snippet(`>`)
-
-                    }
+                        }
+                    )
                 })
                 break
             case "undefinedKeyword":
@@ -692,21 +719,23 @@ export function serializeParetoFile<Annotation>(
         $: nt.TTypeParameters<Annotation>,
         $i: fp.ILine,
     ) {
-        if ($d.isNotEmpty($)) {
-            $i.snippet(`<`)
-            let first = true
-            $.forEach(($) => {
-                if (first) {
-                    first = false
-                } else {
-                    $i.snippet(`, `)
+        $d.forEach(
+            $,
+            {
+                onBegin: () => {
+                    $i.snippet(`<`)
+                },
+                onEnd: () => {
+                    $i.snippet(`>`)
+                },
+                onEntry: ($) => {
+                    if ($.isFirst) {
+                        $i.snippet(`, `)
+                    }
+                    Identifier($.entry, $i)
                 }
-                Identifier($, $i)
-            })
-            $i.snippet(`>`)
-
-        }
-
+            }
+        )
     }
     function TypeSignature(
         $: nt.TTypeSignature<Annotation>,
@@ -778,16 +807,22 @@ export function serializeParetoFile<Annotation>(
         $: nt.TVariableDeclarationList<Annotation>,
         $i: fp.ILine,
     ) {
-        let first = true
         $i.snippet(`const/*??*/ `)
-        $.declarations.forEach(($) => {
-            if (first) {
-                first = false
-            } else {
-                $i.snippet(`, `)
+        $d.forEach(
+            $.declarations,
+            {
+                onBegin: () => {
+                },
+                onEnd: () => {
+                },
+                onEntry: ($) => {
+                    if ($.isFirst) {
+                        $i.snippet(`, `)
+                    }
+                    VariableDeclaration($.entry, $i)
+                }
             }
-            VariableDeclaration($, $i)
-        })
+        )
     }
 
     Statements(

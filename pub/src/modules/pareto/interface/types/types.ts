@@ -25,24 +25,29 @@ export type TLocalInterface =
 
 
 export type TFunction =
-    | ["tbd", {}]
+    | ["tbdf", {}]
+
+
+
+export type TProcedure =
+    | ["tbdp", {}]
 
 
 export type TGlobalType = {
-    type?: TLocalType
+    readonly "type"?: TLocalType
 }
 
 
 export type TAlgorithm = {
-    foo: boolean
+    readonly "foo": boolean
 }
 
 export type TDependency = {
-    bar: boolean
+    readonly "bar": boolean
 }
 
 export type TGlobalInterface = {
-    type?: TLocalInterface
+    readonly "type"?: TLocalInterface
 }
 
 export type TTypeSignature =

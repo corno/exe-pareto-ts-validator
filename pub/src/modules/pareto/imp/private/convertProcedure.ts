@@ -7,17 +7,17 @@ import * as t from "../../interface"
 import { convertIdentifierOrStringLiteral } from "./convertIdentifierOrStringLiteral"
 import { convertLocalType } from "./convertLocalType"
 import { convertLocalInterface } from "./convertLocalInterface"
-export function convertFunction<Annotation>(
+export function convertProcedure<Annotation>(
     $: ts.TType<Annotation>,
     logMessage: ($: string, context: Annotation) => void,
     $d: {
         firstCharacter: (str: string) => string
     }
-): t.TFunction | undefined {
+): t.TProcedure | undefined {
     const context = $.annotation
 
     if ($.type[0] !== "function") {
-        logMessage("expected a function", context)
+        logMessage("expected a typescript function", context)
         return undefined
     } else {
         pl.cc($.type[1], ($) => {
@@ -35,6 +35,32 @@ export function convertFunction<Annotation>(
                             logMessage(`missing interface`, context)//FIX Context
                         } else {
                             convertLocalInterface($.type, logMessage, $d)
+                        }
+                        break
+                    case "$c":
+                        if ($.type === null) {
+                            logMessage(`missing callback`, context)//FIX Context
+                        } else {
+
+                            if ($.type.type[0] !== "function") {
+                                logMessage("callback issue", $.type.annotation)
+                            } else {
+                                pl.cc($.type.type[1], ($) => {
+                                    $.parameters.forEach(($) => {
+                                        if ($.name.myValue !== "$i") {
+                                            logMessage("callback issue", context)
+
+                                        }
+                                        if ($.type === null) {
+                                            logMessage(` callback`, context)//FIX Context
+
+                                        } else {
+                                            //FIXME
+                                            convertLocalInterface($.type, logMessage, $d)
+                                        }
+                                    })
+                                })
+                            }
                         }
                         break
                     case "$a":
@@ -69,13 +95,12 @@ export function convertFunction<Annotation>(
                 }
             })
             if ($.returnType === null) {
-                logMessage(`Expected a return type`, context)
+                logMessage(`Expected 'void'`, context)
             } else {
-                convertLocalType(
-                    $.returnType,
-                    logMessage,
-                    $d,
-                )
+                if ($.returnType.type[0] !== "voidKeyword") {
+                    logMessage(`Expected 'void'`, context)
+
+                }
             }
         })
     }

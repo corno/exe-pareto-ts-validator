@@ -5,6 +5,7 @@ import * as t from "../../interface"
 // import { unsafeToDictionary } from "../../../private/paretoCandidates"
 import { convertFunction } from "./convertFunction"
 import { DTS2ParetoDependencies } from "../../interface/dependencies/x"
+import { convertProcedure } from "./convertProcedure"
 
 type TAlgorithmPair = {
     name: string,
@@ -40,18 +41,18 @@ export function convertAlgorithm<Annotation>(
 
     type TTypeAliasType =
         | ["function", {}]
-        | ["asynchronous function", {}]
-        | ["tbd", {}]
-    function getType(): TTypeAliasType {
+        | ["procedure", {}]
+    function getType(): TTypeAliasType | null {
         const firstCharacter = $d.firstCharacter($.name.myValue)
         switch (firstCharacter) {
-            case "A": return ["asynchronous function", {}]
+            //case "A": return ["asynchronous function", {}]
             case "F": return ["function", {}]
-            case "X": return ["tbd", {}]
+            case "P": return ["procedure", {}]
+            //case "X": return ["tbd", {}]
             // case "T": return ["type", {}]
             default: {
                 logMessage(`$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$Unknown type alias: ${$.name.myValue}`, typeAlias.details)
-                return ["tbd", {}]
+                return null
             }
         }
     }
@@ -59,30 +60,33 @@ export function convertAlgorithm<Annotation>(
     const type = getType()
 
     const x = pl.cc($.type, ($): undefined | t.TGlobalType => {
+        if (type === null) {
 
-        switch (type[0]) {
-            case "asynchronous function":
-                return pl.cc(type[1], ($) => {
-                    //$i.logMessage("AF", typeAlias.type.annotation)
-                    return ["tbd", {}]
-                })
-            case "function":
-                return pl.cc(type[1], ($) => {
-                    //typeAlias.
-                    convertFunction(
-                        typeAlias.type,
-                        logMessage,
-                        $d,
-                    )
-                    //$i.logMessage("FUNCTION", typeAlias.type.annotation)
-                    return ["tbd", {}]
+        } else {
+            switch (type[0]) {
+                case "function":
+                    return pl.cc(type[1], ($) => {
+                        //typeAlias.
+                        convertFunction(
+                            typeAlias.type,
+                            logMessage,
+                            $d,
+                        )
+                        //$i.logMessage("FUNCTION", typeAlias.type.annotation)
+                        return ["tbd", {}]
 
-                })
-            case "tbd":
-                return pl.cc(type[1], ($) => {
-                    return ["tbd", {}]
-                })
-            default: return pl.au(type[0])
+                    })
+                case "procedure":
+                    return pl.cc(type[1], ($) => {
+                        convertProcedure(
+                            typeAlias.type,
+                            logMessage,
+                            $d,
+                        )
+                        return ["tbd", {}]
+                    })
+                default: return pl.au(type[0])
+            }
         }
     })
     return {

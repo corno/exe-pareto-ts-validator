@@ -2,19 +2,6 @@ import * as pw from "pareto-core-raw"
 
 import * as ap from "lib-analyse-path"
 
-
-export const _recursiveDir: ap.TNode = {
-    'type': ["directory", {
-        'type': ["files dictionary", {
-            'allow missing extension': false,
-            'extensionsX': pw.wrapRawArray([
-                `ts`,
-            ]),
-            'recursive': true
-        }]
-
-    }]
-}
 export const _flatDir: ap.TNode = {
     'type': ["directory", {
         'type': ["files dictionary", {
@@ -32,7 +19,7 @@ export const _interface: ap.TNode = {
     'type': ["directory", {
         'type': ["type", {
             'nodesX': pw.wrapRawDictionary({
-                "types": _recursiveDir,
+                "types": _flatDir,
                 "interfaces": _flatDir,
                 "algorithms": _flatDir,
                 "dependencies": _flatDir,
@@ -50,7 +37,7 @@ export const _imp: ap.TNode = {
         'type': ["type", {
             'nodesX': pw.wrapRawDictionary({
                 "public": _flatDir,
-                "private": _recursiveDir,
+                "private": _flatDir,
                 "types": _flatDir,
                 "index.ts": {
                     'type': ["file", {}]

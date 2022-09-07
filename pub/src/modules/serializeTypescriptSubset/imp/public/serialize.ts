@@ -4,18 +4,17 @@ import * as pm from "pareto-core-state"
 import * as fp from "lib-fountain-pen"
 import * as fs from "api-pareto-filesystem"
 
-import { serializeParetoFile } from "./serializeParetoFile"
+import { serializeTypeScriptSubsetFile } from "../private/serializeParetoFile"
 import { StartAsync } from "pareto-core-async"
-import { TSourceFile } from "../../modules/cleanup"
+import { TSourceFile } from "../../../cleanup"
+import { DSerializeTypeScriptSubset } from "../../../../interface/dependencies/x"
 
 export function serialize<Annotation>(
     $: {
         path: fs.Path
         data: TSourceFile<Annotation>
     },
-    $d: {
-        createWriteStream: fs.CreateWriteStream
-    },
+    $d: DSerializeTypeScriptSubset,
     $s: StartAsync
 ) {
 
@@ -40,17 +39,12 @@ export function serialize<Annotation>(
                         indentation: "    "
                     },
                     ($) => {
-                        serializeParetoFile(
+                        serializeTypeScriptSubsetFile(
                             config.data,
                             {
                                 block: $
                             },
-                            {
-                                isNotEmpty: ($) => {
-                                    const stack = pm.createStack($)
-                                    return !stack.isEmpty()
-                                }
-                            }
+                            $d
                         )
                     },
                     {

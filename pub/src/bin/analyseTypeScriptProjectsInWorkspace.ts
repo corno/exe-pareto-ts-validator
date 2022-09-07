@@ -21,9 +21,30 @@ pe.runProgram(($, $i, $x) => {
         {
             x: {
                 parseDependencies: parseDependencies,
-                createWriteStream: fs.createWriteStream,
                 cleanupDependencies: cleanupDependencies,
                 ts2ParetoDependencies: ts2ParetoDependencies,
+                serialize: {
+                    createWriteStream: fs.createWriteStream,
+
+                    forEach: ($, $i) => {
+                        let first = true
+                        let empty = true
+                        $.forEach(($) => {
+                            if (empty) {
+                                $i.onBegin()
+                            }
+                            empty = false
+                            $i.onEntry({
+                                isFirst: first,
+                                entry: $
+                            })
+                            first = false
+                        })
+                        if (!empty) {
+                            $i.onEnd()
+                        }
+                    }
+                }
             },
             readDirectory: fs.readDirectory,
             substr: uglyStuff.substr,
