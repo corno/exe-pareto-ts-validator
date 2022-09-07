@@ -1,9 +1,10 @@
-
+import * as pl from "pareto-core-lib"
 
 
 import * as ts from "../../../cleanup/interface/types/types"
-import { DTS2ParetoDependencies } from "../../interface/dependencies/x"
+import { DTS2ParetoDependencies } from "../../interface/dependencies/dependencies"
 import * as t from "../../interface"
+import { ILog } from "../types/Log"
 
 type TDependencyPair = {
     name: string,
@@ -13,10 +14,7 @@ type TDependencyPair = {
 
 export function convertDependency<Annotation>(
     $: ts.TTypeAlias<Annotation>,
-    $i: ($: {
-        message: string
-        annotation: Annotation
-    }) => void,
+    $i: ILog<Annotation>,
     $d: DTS2ParetoDependencies,
 ): TDependencyPair {
 
@@ -37,10 +35,12 @@ export function convertDependency<Annotation>(
         logMessage(`NO EXPORT: ${typeAlias.name.myValue}`, typeAlias.details)
     }
 
-    if ($d.firstCharacter($.name.myValue) !== "D") {
+    pl.cc($d.analyseDependencyName($.name.myValue), ($) => {
+        if ($ === null) {
+            logMessage(`expected a dependency definition (starting with a D)`, typeAlias.details)
 
-        logMessage(`expected a dependency definition (starting with a D): ${$.name.myValue}`, typeAlias.details)
-    }
+        }
+    })
     
 
     return {

@@ -11,14 +11,16 @@ export type TImportName<Annotation> = {
     readonly "as": null | TIdentifier<Annotation>
 }
 
-export type TSwitchClause<Annotation> =
-    | ["case", {
+export type TSwitchClause<Annotation> = {
+    annotation: Annotation
+    type: | ["case", {
         readonly "expression": TExpression<Annotation>
         readonly "statements": TStatements<Annotation>
     }]
     | ["default", {
         readonly "statements": TStatements<Annotation>
     }]
+}
 
 export type TImportClause<Annotation> =
     | ["named", pt.Array<TImportName<Annotation>>]
@@ -87,6 +89,7 @@ export type TBlock<Annotation> = {
 export type TTypeParameters<Annotation> = pt.Array<TIdentifier<Annotation>>
 
 export type TParameter<Annotation> = {
+    readonly "annotation": Annotation
     readonly "name": TIdentifier<Annotation>
     readonly "optional": boolean
     readonly "type": null | TType<Annotation>

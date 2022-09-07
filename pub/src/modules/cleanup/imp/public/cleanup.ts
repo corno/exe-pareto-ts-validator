@@ -498,8 +498,10 @@ export function cleanup(
     function X_parameter(
         $: api.TGparameter,
     ): t.TParameter<uast.TDetails> {
+        const ann = $.tokenDetails
         return pl.cc($.content, ($) => {
             return {
+                annotation: ann,
                 name: X_identifier($.name),
                 optional: pl.isNotNull($.questionToken),
                 type: pl.isNotNull($.type) ? X_type($.type) : null
@@ -698,26 +700,46 @@ export function cleanup(
                                 return {
                                     expression: X_expression($.expression),
                                     clauses: $.caseBlock.content.map(($): t.TSwitchClause<uast.TDetails> => {
-                                        switch ($[0]) {
-                                            case "case": {
-                                                return pl.cc($[1], ($) => {
-                                                    return ["case", pl.cc($.content, ($) => {
-                                                        return {
-                                                            expression: X_expression($.case),
-                                                            statements: X_statements($.statements),
-                                                        }
-                                                    })]
-                                                })
-                                            }
-                                            case "default": {
-                                                return pl.cc($[1], ($) => {
-                                                    return ["default", {
-                                                        statements: X_statements($.content)
-                                                    }]
-                                                })
-                                            }
-                                            default: return pl.au($[0])
+                                        return {
+                                            annotation: pl.cc($, ($) => {
+                                                switch ($[0]) {
+                                                    case "case": {
+                                                        return pl.cc($[1], ($) => {
+                                                            return $.tokenDetails
+                                                        })
+                                                    }
+                                                    case "default": {
+                                                        return pl.cc($[1], ($) => {
+                                                            return $.tokenDetails
+                                                        })
+                                                    }
+                                                    default: return pl.au($[0])
+                                                }
+                                            }),
+                                            type: pl.cc($, ($) => {
+                                                switch ($[0]) {
+                                                    case "case": {
+                                                        return pl.cc($[1], ($) => {
+                                                            return ["case", pl.cc($.content, ($) => {
+                                                                return {
+                                                                    expression: X_expression($.case),
+                                                                    statements: X_statements($.statements),
+                                                                }
+                                                            })]
+                                                        })
+                                                    }
+                                                    case "default": {
+                                                        return pl.cc($[1], ($) => {
+                                                            return ["default", {
+                                                                statements: X_statements($.content)
+                                                            }]
+                                                        })
+                                                    }
+                                                    default: return pl.au($[0])
+                                                }
+                                            })
                                         }
+                                     
                                     }),
 
                                 }

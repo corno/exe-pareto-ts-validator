@@ -1,2 +1,2 @@
-export * from "./dependencies/x"
+export * from "./dependencies/dependencies"
 export * from "./types/types"

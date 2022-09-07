@@ -1,10 +1,11 @@
-
+import * as pl from "pareto-core-lib"
 
 import * as ts from "../../../cleanup/interface/types/types"
-import { DTS2ParetoDependencies } from "../../interface/dependencies/x"
+import { DTS2ParetoDependencies } from "../../interface/dependencies/dependencies"
 import * as t from "../../interface"
 // import { unsafeToDictionary } from "../../../private/paretoCandidates"
 import { convertLocalType } from "./convertLocalType"
+import { ILog } from "../types/Log"
 
 
 type TGlobalTypePair = {
@@ -15,10 +16,7 @@ type TGlobalTypePair = {
 
 export function convertGlobalType<Annotation>(
     $: ts.TTypeAlias<Annotation>,
-    $i: ($: {
-        message: string
-        annotation: Annotation
-    }) => void,
+    $i: ILog<Annotation>,
     $d: DTS2ParetoDependencies,
 ): TGlobalTypePair {
 
@@ -39,16 +37,18 @@ export function convertGlobalType<Annotation>(
         logMessage(`NO EXPORT: ${typeAlias.name.myValue}`, typeAlias.details)
     }
 
-    if ($d.firstCharacter($.name.myValue) !== "T") {
+    pl.cc($d.analyseTypeName($.name.myValue), ($) => {
+        if ($ === null) {
+        logMessage(`expected a type (starting with a T)`, typeAlias.details)
 
-        logMessage(`expected a type (starting with a T): ${$.name.myValue}`, typeAlias.details)
-    }
+        }
+    })
     
 
     return {
         name: $.name.myValue,
         value: {
-            type: convertLocalType(typeAlias.type, logMessage, $d)
+            type: convertLocalType(typeAlias.type, $i, $d)
         },
     }
 }

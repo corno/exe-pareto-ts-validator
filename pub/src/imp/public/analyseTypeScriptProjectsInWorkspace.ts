@@ -86,6 +86,7 @@ export function analyseTypeScriptProjectsInWorkspace(
                                                 },
                                                 {
                                                     onError: ($) => {
+                                                        pl.logDebugMessage(`???? ${contextPath} ${key}`)
 
                                                         pl.logDebugMessage(createParseErrorMessage($))
                                                     }

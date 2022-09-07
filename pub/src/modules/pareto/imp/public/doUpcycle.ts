@@ -8,7 +8,9 @@ import * as ts from "../../../cleanup/interface/types/types"
 import { convertAlgorithm } from "../private/convertAlgorithm"
 import { convertGlobalInterface } from "../private/convertGlobalInterface"
 import { convertDependency } from "../private/convertDependency"
-import { DTS2ParetoDependencies } from "../../interface/dependencies/x"
+import { DTS2ParetoDependencies } from "../../interface/dependencies/dependencies"
+import { convertFunctionStatements } from "../private/convertFunctionStatements"
+import { convertProcedureStatements } from "../private/convertProcedureStatements"
 
 
 export type TFileType =
@@ -20,9 +22,8 @@ export type TFileType =
     | ["interface dependencies", {}]
     | ["interface interfaces", {}]
     | ["interface types", {}]
-    | ["module", {}]
-    | ["public implementation", {}]
-    | ["private implementation", {}]
+    | ["implementation public", {}]
+    | ["implementation private", {}]
     | ["bin", {}]
     | ["data", {}]
     | ["dependencies", {}]
@@ -49,61 +50,33 @@ export function doUpcycle(
     function doImport($: ts.TImportStatement<uast.TDetails>) {
         const file = $.file
         const ann = $.annotation
-        function startsWith($: string): boolean {
-            return $d.startsWith({
-                contextString: file.strippedValue,
-                searchString: $
-            })
-        }
-        switch ($.file.strippedValue) {
-            case "pareto-core-types":
-                break
-            case "pareto-core-candidates":
-                break
-            case "pareto-core-async":
-                break
-            case "pareto-core-tostring":
-                break
-            case "pareto-core-raw":
-                break
-            case "pareto-core-lib":
-                break
-            case "pareto-core-resolve":
-                break
-            case "pareto-core-exe":
-                break
-            case "pareto-core-state":
-                break
-            default:
-                if (startsWith("api-")) {
+        pl.cc($d.analyseImportFile($.file.strippedValue), ($) => {
+            if ($ === null) {
+                $i({
+                    message: `invalid import`,
+                    annotation: ann,
+                })
+            } else {
+                switch ($[0]) {
+                    case "core":
+                        pl.cc($[1], ($) => {
 
-                } else {
+                        })
+                        break
+                    case "dependency":
+                        pl.cc($[1], ($) => {
 
-                    if (startsWith("lib-")) {
+                        })
+                        break
+                    case "local":
+                        pl.cc($[1], ($) => {
 
-                    } else {
-
-                        if (startsWith("res-")) {
-
-                        } else {
-                            if (startsWith(".")) {
-                                // $i({
-                                //     message: `IMPORT: ${$.file.strippedValue}`,
-                                //     annotation: ann,
-                                // })
-                            } else {
-                                $i({
-                                    message: `UNKNOWN IMPORT: ${$.file.strippedValue}`,
-                                    annotation: ann,
-                                })
-                            }
-                        }
-                    }
+                        })
+                        break
+                    default: pl.au($[0])
                 }
-        }
-        if ($.file.strippedValue === "pareto-core-types") {
-
-        }
+            }
+        })
         switch ($.clause[0]) {
             case "named":
                 pl.cc($.clause[1], ($) => {
@@ -216,62 +189,56 @@ export function doUpcycle(
                     })
                 })
                 break
-            case "module":
+            case "implementation private":
                 pl.cc($.fileType[1], ($) => {
                     config.data.statements.forEach(($) => {
+                        const ann = $.annotation
                         switch ($.type[0]) {
                             case "function":
                                 pl.cc($.type[1], ($) => {
+                                    const name = $.name
+                                    pl.cc($d.analyseAlgorithmName($.name.myValue), ($) => {
+                                        if ($ === null) {
 
+                                            $i({
+                                                message: `INVALID NAME ${name}`,
+                                                annotation: ann,
+                                            })
+                                        } else {
+                                            //Go and ANALYSE
+                                        }
+                                    })
                                 })
                                 break
                             case "import":
                                 pl.cc($.type[1], ($) => {
                                     doImport($)
-                                })
-                                break
-                            case "typeAlias":
-                                pl.cc($.type[1], ($) => {
-
-                                })
-                                break
-                            // case "variable":
-                            //     pl.cc($.type[1], ($) => {
-
-                            //     })
-                            //     break
-                            default: {
-                                $i({
-                                    message: `unexpected statement '${$.type[0]}' in implementation`,
-                                    annotation: $.annotation,
-                                })
-                            }
-                        }
-                    })
-                })
-                break
-            case "private implementation":
-                pl.cc($.fileType[1], ($) => {
-                    config.data.statements.forEach(($) => {
-                        switch ($.type[0]) {
-                            case "function":
-                                pl.cc($.type[1], ($) => {
-
-                                })
-                                break
-                            case "import":
-                                pl.cc($.type[1], ($) => {
-                                    doImport($)
-                                })
-                                break
-                            case "typeAlias":
-                                pl.cc($.type[1], ($) => {
-
                                 })
                                 break
                             case "variable":
                                 pl.cc($.type[1], ($) => {
-                                    //allow both styles of functions
+                                    $.list.declarations.forEach(($) => {
+                                        const name = $.name
+                                        if (`${$.name.myValue}.ts` !== $d.basename(path)) {
+
+                                            $i({
+                                                message: `#########################################################WRONG NAME ${$.name.myValue}<>${path}`,
+                                                annotation: ann,
+                                            })
+                                        }
+                                        pl.cc($d.analyseAlgorithmName($.name.myValue), ($) => {
+                                            if ($ === null) {
+
+                                                $i({
+                                                    message: `INVALID NAME ${name}`,
+                                                    annotation: ann,
+                                                })
+                                            } else {
+                                                //Go and ANALYSE
+                                            }
+                                        })
+
+                                    })
                                 })
                                 break
                             default: {
@@ -285,7 +252,7 @@ export function doUpcycle(
 
                 })
                 break
-            case "public implementation":
+            case "implementation public":
                 pl.cc($.fileType[1], ($) => {
                     config.data.statements.forEach(($) => {
                         const ann = $.annotation
@@ -308,13 +275,85 @@ export function doUpcycle(
                             case "variable":
                                 pl.cc($.type[1], ($) => {
                                     $.list.declarations.forEach(($) => {
-                                        if (`src/imp/public/${$.name.myValue}.ts` !== path) {
+                                        const name = $.name
+                                        if (`${$.name.myValue}.ts` !== $d.basename(path)) {
 
                                             $i({
                                                 message: `#########################################################WRONG NAME ${$.name.myValue}<>${path}`,
                                                 annotation: ann,
                                             })
                                         }
+                                        //const expression = $.expression
+
+                                        pl.cc($.expression, (($) => {
+
+                                            if ($ === null) {
+
+                                                $i({
+                                                    message: `missing expression`,
+                                                    annotation: ann,
+                                                })
+                                            } else {
+                                                const context = $.annotation
+                                                if ($.type[0] !== "arrowFunction") {
+
+                                                    $i({
+                                                        message: `expected arrow function`,
+                                                        annotation: ann,
+                                                    })
+                                                } else {
+                                                    pl.cc($.type[1], ($) => {
+                                                        if ($.implementation[0] !== "block") {
+
+                                                            $i({
+                                                                message: `expected block`,
+                                                                annotation: ann,
+                                                            })
+                                                        } else {
+                                                            pl.cc($.implementation[1], ($) => {
+                                                                const block = $
+                                                                pl.cc($d.analyseAlgorithmName(name.myValue), ($) => {
+                                                                    if ($ === null) {
+
+                                                                        $i({
+                                                                            message: `INVALID NAME ${name}`,
+                                                                            annotation: ann,
+                                                                        })
+                                                                    } else {
+                                                                        switch ($.type[0]) {
+                                                                            case "procedure":
+                                                                                pl.cc($.type[1], ($) => {
+                                                                                    convertProcedureStatements(
+                                                                                        block.statements,
+                                                                                        $i,
+                                                                                        $d,
+                                                                                    )
+                                                                                })
+                                                                                break
+                                                                            case "function":
+                                                                                pl.cc($.type[1], ($) => {
+                                                                                    convertFunctionStatements(
+                                                                                        {
+                                                                                            statements: block.statements,
+                                                                                            context: context,
+
+                                                                                        },
+                                                                                        $i,
+                                                                                        $d,
+                                                                                    )
+
+                                                                                })
+                                                                                break
+                                                                            default: pl.au($.type[0])
+                                                                        }
+                                                                    }
+                                                                })
+                                                            })
+                                                        }
+                                                    })
+                                                }
+                                            }
+                                        }))
 
                                     })
                                 })
@@ -367,18 +406,18 @@ export function doUpcycle(
                             })
                         } else {
                             pl.cc($.type[1], ($) => {
-                                if ($d.startsWith({
-                                    contextString: $.file.strippedValue,
-                                    searchString: "./public/",
-                                })) {
+                                // if ($d.startsWith({
+                                //     contextString: $.file.strippedValue,
+                                //     searchString: "./public/",
+                                // })) {
 
-                                } else {
+                                // } else {
 
-                                    $i({
-                                        message: "can only export files from public",
-                                        annotation: $.file.annotation,
-                                    })
-                                }
+                                //     $i({
+                                //         message: "can only export files from public",
+                                //         annotation: $.file.annotation,
+                                //     })
+                                // }
                             })
                         }
                     })

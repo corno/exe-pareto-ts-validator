@@ -72,6 +72,7 @@ export function analyseTypeScriptProjectsInProject(
                     },
                     {
                         onError: ($) => {
+                            pl.logDebugMessage("????")
                             pl.logDebugMessage(createParseErrorMessage($))
                         },
                     },

@@ -5,6 +5,9 @@ import * as pc from "pareto-core-candidates"
 import * as ts from "../../../cleanup/interface/types/types"
 import * as t from "../../interface"
 import { convertIdentifierOrStringLiteral } from "./convertIdentifierOrStringLiteral"
+import { DTS2ParetoDependencies } from "../../interface"
+import { ILog } from "../types/Log"
+import { createLogger } from "./createLogger"
 
 // export type XType = {
 //     nullable: boolean,
@@ -35,20 +38,17 @@ import { convertIdentifierOrStringLiteral } from "./convertIdentifierOrStringLit
 
 export function convertLocalType<Annotation>(
     $: ts.TType<Annotation>,
-    logMessage: ($: string, context: Annotation) => void,
-    $d: {
-        firstCharacter: (str: string) => string
-    }
+    $i: ILog<Annotation>,
+    $d: DTS2ParetoDependencies
 ): t.TLocalType | undefined {
-    const context = $.annotation
-
+    const logMessage = createLogger($.annotation, $i)
 
     function convertTypeSignature($: ts.TTypeSignature<Annotation>) {
         const annotation = $.annotation
         switch ($.type[0]) {
             case "index":
                 return pl.cc($.type[1], ($) => {
-                    logMessage("cant use an index", annotation)
+                    logMessage("cant use an index")
                 })
             // case "method":
             //     return pl.cc($.type[1], ($) => {
@@ -58,14 +58,14 @@ export function convertLocalType<Annotation>(
                 return pl.cc($.type[1], ($) => {
                     const hasReadonlyFlag = $.modifiers.reduce(false, (current, $) => $[0] === "readonly" ? true : current)
                     if (!hasReadonlyFlag) {
-                        logMessage("no readonly flag", annotation)
+                        logMessage("no readonly flag")
                     }
                     if ($.type !== null) {
                         const name = convertIdentifierOrStringLiteral($.name)
                         if ($.type === null) {
 
                         } else {
-                            const x = convertLocalType($.type, logMessage, $d)
+                            const x = convertLocalType($.type, $i, $d)
                         }
                         //entries.add(name,)
                     }
@@ -76,7 +76,7 @@ export function convertLocalType<Annotation>(
     switch ($.type[0]) {
         case "array":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use an array in a type", context)
+                logMessage("cant use an array in a type")
                 return undefined
             })
         case "booleanKeyword":
@@ -85,12 +85,12 @@ export function convertLocalType<Annotation>(
             })
         case "function":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use a function in a type", context)
+                logMessage("cant use a function in a type")
                 return undefined
             })
         case "literal":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use a literal in a type", context)
+                logMessage("cant use a literal in a type")
                 return undefined
             })
         case "numberKeyword":
@@ -99,12 +99,12 @@ export function convertLocalType<Annotation>(
             })
         case "optional":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use an optional in a type", context)
+                logMessage("cant use an optional in a type")
                 return undefined
             })
         case "parenthesized":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use a parenthesized type in a type", context)
+                logMessage("cant use a parenthesized type in a type")
                 return undefined
             })
         case "stringKeyword":
@@ -113,7 +113,7 @@ export function convertLocalType<Annotation>(
             })
         case "tuple":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use a tuple like this in a type", context)
+                logMessage("cant use a tuple like this in a type")
                 return undefined
             })
         case "typeLiteral":
@@ -132,9 +132,12 @@ export function convertLocalType<Annotation>(
                         case "identifier":
                             return pl.cc($[1], ($) => {
 
-                                if ($d.firstCharacter($.myValue) !== "T") {
-                                    //logMessage(`WRONG REFERENCE ${$.myValue} !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`, context)
-                                }
+                                pl.cc($d.analyseTypeName($.myValue), ($) => {
+                                    if ($ === null) {
+                                        //logMessage(`WRONG REFERENCE ${$.myValue} !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`, context)
+
+                                    }
+                                })
                             })
                         case "qualifiedName":
 
@@ -142,9 +145,12 @@ export function convertLocalType<Annotation>(
                                 if ($.context.myValue === "pt") {
 
                                 } else {
-                                    if ($d.firstCharacter($.type.myValue) !== "T") {
-                                        //logMessage(`WRONG REFERENCE ${$.type.myValue} !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`, context)
-                                    }
+                                    pl.cc($d.analyseTypeName($.type.myValue), ($) => {
+                                        if ($ === null) {
+                                            //logMessage(`WRONG REFERENCE ${$.myValue} !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`, context)
+
+                                        }
+                                    })
                                 }
                             })
 
@@ -156,7 +162,7 @@ export function convertLocalType<Annotation>(
             })
         case "undefinedKeyword":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use 'undefined' in a type", context)
+                logMessage("cant use 'undefined' in a type")
                 return undefined
             })
         case "union":
@@ -168,30 +174,30 @@ export function convertLocalType<Annotation>(
                         if ($.type[0] !== "tuple") {
                             //This has to be the 'null | X' pattern
                             if ($.type[0] !== "literal") {
-                                logMessage(`EXPECTED NULL`, context)
+                                logMessage(`EXPECTED NULL`)
                             } else {
                                 return pl.cc($.type[1], ($) => {
                                     if ($[0] !== "null") {
-                                        logMessage(`EXPECTED NULL`, context)
+                                        logMessage(`EXPECTED NULL`)
                                     } else {
                                         stack.pop( //second
                                             ($) => {
                                                 stack.pop( //third
                                                     () => {
-                                                        logMessage("UNEXPECTED AMOUNT OF ENTRIES", context)
+                                                        logMessage("UNEXPECTED AMOUNT OF ENTRIES")
                                                     },
                                                     () => {
                                                         //fully okay
                                                         convertLocalType(
                                                             $,
-                                                            logMessage,
+                                                            $i,
                                                             $d,
                                                         )
                                                     }
                                                 )
                                             },
                                             () => {
-                                                logMessage("UNEXPECTED AMOUNT OF ENTRIES", context)
+                                                logMessage("UNEXPECTED AMOUNT OF ENTRIES")
                                             }
                                         )
                                     }
@@ -202,7 +208,7 @@ export function convertLocalType<Annotation>(
                             return pl.cc($.type[1], ($) => {
                                 array.forEach(($) => {
                                     if ($.type[0] !== "tuple") {
-                                        logMessage(`EXPECTED A TUPLE, FOUND: ${$.type[0]}`, context)
+                                        logMessage(`EXPECTED A TUPLE, FOUND: ${$.type[0]}`)
                                     } else {
                                         //there should only be 2 elements
                                         const tupleStack = pm.createStack($.type[1])
@@ -214,24 +220,24 @@ export function convertLocalType<Annotation>(
                                                         const second = $
                                                         tupleStack.pop(
                                                             ($) => {
-                                                                logMessage("tuple with too many entries", context)
+                                                                logMessage("tuple with too many entries")
                                                             },
                                                             () => {
                                                                 convertLocalType(
                                                                     second,
-                                                                    logMessage,
+                                                                    $i,
                                                                     $d,
                                                                 )
                                                             }
                                                         )
                                                     },
                                                     () => {
-                                                        logMessage("tuple with only 1 entry", context)
+                                                        logMessage("tuple with only 1 entry")
                                                     }
                                                 )
                                             },
                                             () => {
-                                                logMessage("tuple without entries", context)
+                                                logMessage("tuple without entries")
                                             }
                                         )
                                     }
@@ -248,7 +254,7 @@ export function convertLocalType<Annotation>(
             })
         case "voidKeyword":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use 'void' in a type", context)
+                logMessage("cant use 'void' in a type")
                 return undefined
             })
         default: return pl.au($.type[0])

@@ -4,56 +4,57 @@ import * as pc from "pareto-core-candidates"
 
 import * as ts from "../../../cleanup/interface/types/types"
 import * as t from "../../interface"
-import { convertIdentifierOrStringLiteral } from "./convertIdentifierOrStringLiteral"
 import { convertLocalType } from "./convertLocalType"
 import { convertLocalInterface } from "./convertLocalInterface"
-export function convertFunction<Annotation>(
+import { DTS2ParetoDependencies } from "../../interface"
+import { ILog } from "../types/Log"
+import { createLogger } from "./createLogger"
+export function convertFunctionDefinition<Annotation>(
     $: ts.TType<Annotation>,
-    logMessage: ($: string, context: Annotation) => void,
-    $d: {
-        firstCharacter: (str: string) => string
-    }
+    $i: ILog<Annotation>,
+    $d: DTS2ParetoDependencies
 ): t.TFunction | undefined {
-    const context = $.annotation
+    const logMessage = createLogger($.annotation, $i)
 
     if ($.type[0] !== "function") {
-        logMessage("expected a function", context)
-        return undefined
+        return logMessage("expected a function")
     } else {
         pl.cc($.type[1], ($) => {
             $.parameters.forEach(($) => {
+                const logMessage = createLogger($.annotation, $i)
+
                 switch ($.name.myValue) {
                     case "$":
                         if ($.type === null) {
-                            logMessage(`missing type`, context)//FIX Context
+                            return logMessage(`missing type`)
                         } else {
-                            convertLocalType($.type, logMessage, $d)
+                            return convertLocalType($.type, $i, $d)
                         }
-                        break
                     case "$i":
                         if ($.type === null) {
-                            logMessage(`missing interface`, context)//FIX Context
+                            logMessage(`missing interface`)//FIX Context
                         } else {
-                            convertLocalInterface($.type, logMessage, $d)
+                            convertLocalInterface($.type, $i, $d)
                         }
                         break
                     case "$a":
                         if ($.type === null) {
-                            logMessage(`missing async`, context)//FIX Context
+                            logMessage(`missing async`)//FIX Context
                         } else {
+                            const logMessage = createLogger($.type.annotation, $i)
                             if ($.type.type[0] !== "typeReference") {
-                                logMessage(`wrong async`, context)//FIX Context
+                                logMessage(`wrong async`)//FIX Context
                             } else {
                                 if ($.type.type[1].identification[0] !== "qualifiedName") {
-                                    logMessage(`wrong async`, context)//FIX Context
+                                    logMessage(`wrong async`)//FIX Context
                                 } else {
 
                                     if ($.type.type[1].identification[1].context.myValue !== "pt") {
-                                        logMessage(`wrong async`, context)//FIX Context
+                                        logMessage(`wrong async`)//FIX Context
                                     } else {
 
                                         if ($.type.type[1].identification[1].type.myValue !== "ProcessAsyncValue") {
-                                            logMessage(`wrong async`, context)//FIX Context
+                                            logMessage(`wrong async`)//FIX Context
                                         } else {
                                             //okay
                                         }
@@ -65,15 +66,15 @@ export function convertFunction<Annotation>(
                     case "$d":
                         break
                     default:
-                        logMessage(`unexpected paramter: ${$.name.myValue}`, context)
+                        logMessage(`unexpected paramter: ${$.name.myValue}`)
                 }
             })
             if ($.returnType === null) {
-                logMessage(`Expected a return type`, context)
+                logMessage(`Expected a return type`)
             } else {
                 convertLocalType(
                     $.returnType,
-                    logMessage,
+                    $i,
                     $d,
                 )
             }

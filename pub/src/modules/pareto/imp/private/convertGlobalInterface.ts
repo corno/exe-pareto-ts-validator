@@ -1,10 +1,11 @@
-
+import * as pl from "pareto-core-lib"
 
 import * as ts from "../../../cleanup/interface/types/types"
 import * as t from "../../interface"
 // import { unsafeToDictionary } from "../../../private/paretoCandidates"
 import { convertLocalInterface } from "./convertLocalInterface"
-import { DTS2ParetoDependencies } from "../../interface/dependencies/x"
+import { DTS2ParetoDependencies } from "../../interface/dependencies/dependencies"
+import { ILog } from "../types/Log"
 
 type TGlobalInterfacePair = {
     name: string,
@@ -14,10 +15,7 @@ type TGlobalInterfacePair = {
 
 export function convertGlobalInterface<Annotation>(
     $: ts.TTypeAlias<Annotation>,
-    $i: ($: {
-        message: string
-        annotation: Annotation
-    }) => void,
+    $i: ILog<Annotation>,
     $d: DTS2ParetoDependencies,
 ): TGlobalInterfacePair {
 
@@ -38,16 +36,17 @@ export function convertGlobalInterface<Annotation>(
         logMessage(`NO EXPORT: ${typeAlias.name.myValue}`, typeAlias.details)
     }
 
-    if ($d.firstCharacter($.name.myValue) !== "I") {
+    pl.cc($d.analyseInterfaceName($.name.myValue), ($) => {
+        if ($ === null) {
+        logMessage(`expected an interface (starting with a I)`, typeAlias.details)
 
-        logMessage(`expected an interface (starting with a I): ${$.name.myValue}`, typeAlias.details)
-    }
-    
+        }
+    })
 
     return {
         name: $.name.myValue,
         value: {
-            type: convertLocalInterface(typeAlias.type, logMessage, $d)
+            type: convertLocalInterface(typeAlias.type, $i, $d)
         },
     }
 }

@@ -487,9 +487,9 @@ export function serializeTypeScriptSubsetFile<Annotation>(
                             $i.indent({}, ($i) => {
                                 $.clauses.forEach(($) => {
                                     $i.line({}, ($i) => {
-                                        switch ($[0]) {
+                                        switch ($.type[0]) {
                                             case "case":
-                                                pl.cc($[1], ($) => {
+                                                pl.cc($.type[1], ($) => {
                                                     $i.snippet(`case `)
                                                     Expression($.expression, $i)
                                                     $i.snippet(`:`)
@@ -499,14 +499,14 @@ export function serializeTypeScriptSubsetFile<Annotation>(
                                                 })
                                                 break
                                             case "default":
-                                                pl.cc($[1], ($) => {
+                                                pl.cc($.type[1], ($) => {
                                                     $i.snippet(`default:`)
                                                     $i.indent({}, ($i) => {
                                                         Statements($.statements, $i)
                                                     })
                                                 })
                                                 break
-                                            default: pl.au($[0])
+                                            default: pl.au($.type[0])
                                         }
                                     })
                                 })

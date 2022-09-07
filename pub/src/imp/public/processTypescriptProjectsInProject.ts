@@ -117,9 +117,9 @@ export function parseTypescriptProjectsInProject(
                                                 case "src/imp/index.ts":
                                                     return ["imp index", {}]
                                                 case "src/imp/private/*.ts":
-                                                    return ["private implementation", {}]
+                                                    return ["implementation private", {}]
                                                 case "src/imp/public/*.ts":
-                                                    return ["public implementation", {}]
+                                                    return ["implementation public", {}]
 
                                                 case "src/index.ts":
                                                     return ["root index", {}]
@@ -140,9 +140,9 @@ export function parseTypescriptProjectsInProject(
                                                 case "src/modules/*/imp/index.ts":
                                                     return ["imp index", {}]
                                                 case "src/modules/*/imp/private/*.ts":
-                                                    return ["private implementation", {}]
+                                                    return ["implementation private", {}]
                                                 case "src/modules/*/imp/public/*.ts":
-                                                    return ["public implementation", {}]
+                                                    return ["implementation public", {}]
 
                                                 case "src/modules/*/index.ts":
                                                     return ["root index", {}]
@@ -231,7 +231,7 @@ export function parseTypescriptProjectsInProject(
                                         if (!isNative) {
                                             doParse()
                                         } else {
-                                            if (getFileType(pattern)[0] !== "private implementation") {
+                                            if (getFileType(pattern)[0] !== "implementation private") {
                                                 doParse()
                                             } else {
                                                 //

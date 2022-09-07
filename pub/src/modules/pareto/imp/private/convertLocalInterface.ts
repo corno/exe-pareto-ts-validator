@@ -6,48 +6,52 @@ import * as ts from "../../../cleanup/interface/types/types"
 import * as t from "../../interface"
 import { convertIdentifierOrStringLiteral } from "./convertIdentifierOrStringLiteral"
 import { convertLocalType } from "./convertLocalType"
+import { DTS2ParetoDependencies } from "../../interface"
+import { createLogger } from "./createLogger"
+import { ILog } from "../types/Log"
 export function convertLocalInterface<Annotation>(
     $: ts.TType<Annotation>,
-    logMessage: ($: string, context: Annotation) => void,
-    $d: {
-        firstCharacter: (str: string) => string
-    }
+    $i: ILog<Annotation>,
+    $d: DTS2ParetoDependencies
 ): t.TLocalInterface | undefined {
-    const context = $.annotation
+    const logMessage = createLogger($.annotation, $i)
 
     switch ($.type[0]) {
         case "array":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use an array in an interface", context)
+                logMessage("cant use an array in an interface")
                 return undefined
             })
         case "booleanKeyword":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use a boolean keyword in an interface", context)
+                logMessage("cant use a boolean keyword in an interface")
                 return undefined
             })
         case "function":
             return pl.cc($.type[1], ($) => {
                 $.parameters.forEach(($) => {
+                    const logMessage = createLogger($.annotation, $i)
 
                     if ($.type === null) {
                         return undefined
                     } else {
                         switch ($.name.myValue) {
                             case "$":
-                                convertLocalType($.type, logMessage, $d)
+                                convertLocalType($.type, $i, $d)
 
                                 break
                             case "$c":
                                 if ($.type.type[0] !== "function") {
-                                    logMessage("Interface issue", $.type.annotation)
+                                    logMessage("Interface issue")
                                 } else {
                                     pl.cc($.type.type[1], ($) => {
                                         $.parameters.forEach(($) => {
+                                            const logMessage = createLogger($.annotation, $i)
+
                                             if ($.type === null) {
 
                                             } else {
-                                                convertLocalInterface($.type, logMessage, $d)
+                                                convertLocalInterface($.type, $i, $d)
                                             }
                                         })
                                     })
@@ -59,7 +63,7 @@ export function convertLocalInterface<Annotation>(
                             // case "$":
                             //     break
                             default:
-                                logMessage("unexpected parameter", $.type.annotation)
+                                logMessage("unexpected parameter")
                         }
                     }
                 })
@@ -69,7 +73,7 @@ export function convertLocalInterface<Annotation>(
                     if ($.returnType.type[0] === "voidKeyword") {
 
                     } else {
-                        convertLocalInterface($.returnType, logMessage, $d)
+                        convertLocalInterface($.returnType, $i, $d)
                     }
                 }
                 // logMessage("cant use a function in an interface", context)
@@ -77,32 +81,32 @@ export function convertLocalInterface<Annotation>(
             })
         case "literal":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use a literal in an interface", context)
+                logMessage("cant use a literal in an interface")
                 return undefined
             })
         case "numberKeyword":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use a number keyword in an interface", context)
+                logMessage("cant use a number keyword in an interface")
                 return undefined
             })
         case "optional":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use an optional in an interface", context)
+                logMessage("cant use an optional in an interface")
                 return undefined
             })
         case "parenthesized":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use a parenthesized type in an interface", context)
+                logMessage("cant use a parenthesized type in an interface")
                 return undefined
             })
         case "stringKeyword":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use a string keyword in an interface", context)
+                logMessage("cant use a string keyword in an interface")
                 return undefined
             })
         case "tuple":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use a tuple in an interface", context)
+                logMessage("cant use a tuple in an interface")
                 return undefined
             })
         case "typeLiteral":
@@ -110,24 +114,24 @@ export function convertLocalInterface<Annotation>(
                 const entries = pc.createUnsafeDictionaryBuilder<t.TTypeSignature>()
                 $.forEach(($) => {
 
-                    const annotation = $.annotation
+                    const logMessage = createLogger($.annotation, $i)
                     switch ($.type[0]) {
                         case "index":
                             return pl.cc($.type[1], ($) => {
-                                logMessage("cant use an index", annotation)
+                                logMessage("cant use an index")
                             })
                         case "property":
                             return pl.cc($.type[1], ($) => {
                                 const hasReadonlyFlag = $.modifiers.reduce(false, (current, $) => $[0] === "readonly" ? true : current)
                                 if (!hasReadonlyFlag) {
-                                    logMessage("no readonly flag", annotation)
+                                    logMessage("no readonly flag")
                                 }
                                 if ($.type !== null) {
                                     const name = convertIdentifierOrStringLiteral($.name)
                                     if ($.type === null) {
 
                                     } else {
-                                        const x = convertLocalInterface($.type, logMessage, $d)
+                                        const x = convertLocalInterface($.type, $i, $d)
                                     }
                                     //entries.add(name,)
                                 }
@@ -143,10 +147,13 @@ export function convertLocalInterface<Annotation>(
                     switch ($[0]) {
                         case "identifier":
                             return pl.cc($[1], ($) => {
+                                pl.cc($d.analyseInterfaceName($.myValue), ($) => {
+                                    if ($ === null) {
+                                        logMessage(`WRONG INTERFACE REFERENCE !!!!!!!!!!!######################################!!!!!!!!!!!`)
 
-                                if ($d.firstCharacter($.myValue) !== "I") {
-                                    logMessage(`WRONG INTERFACE REFERENCE ${$.myValue} !!!!!!!!!!!######################################!!!!!!!!!!!`, context)
-                                }
+                                    }
+                                })
+
                             })
                         case "qualifiedName":
 
@@ -154,9 +161,12 @@ export function convertLocalInterface<Annotation>(
                                 if ($.context.myValue === "pt") {
 
                                 } else {
-                                    if ($d.firstCharacter($.type.myValue) !== "I") {
-                                        logMessage(`WRONG INTERFACE REFERENCE ${$.type.myValue} !!!!!!!!!!!!!!@#######################################!!!!!!!!!!!!!`, context)
-                                    }
+                                    pl.cc($d.analyseInterfaceName($.type.myValue), ($) => {
+                                        if ($ === null) {
+                                            logMessage(`WRONG INTERFACE REFERENCE  !!!!!!!!!!!######################################!!!!!!!!!!!`)
+
+                                        }
+                                    })
                                 }
                             })
 
@@ -168,17 +178,17 @@ export function convertLocalInterface<Annotation>(
             })
         case "undefinedKeyword":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use 'undefined' in an interface", context)
+                logMessage("cant use 'undefined' in an interface")
                 return undefined
             })
         case "union":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use a union in an interface", context)
+                logMessage("cant use a union in an interface")
                 return undefined
             })
         case "voidKeyword":
             return pl.cc($.type[1], ($) => {
-                logMessage("cant use 'void' in an interface", context)
+                logMessage("cant use 'void' in an interface")
                 return undefined
             })
         default: return pl.au($.type[0])

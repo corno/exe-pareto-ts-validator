@@ -3,9 +3,11 @@ import * as pl from "pareto-core-lib"
 import * as ts from "../../../cleanup/interface/types/types"
 import * as t from "../../interface"
 // import { unsafeToDictionary } from "../../../private/paretoCandidates"
-import { convertFunction } from "./convertFunction"
-import { DTS2ParetoDependencies } from "../../interface/dependencies/x"
+import { convertFunctionDefinition } from "./convertFunctionDefinition"
+import { DTS2ParetoDependencies } from "../../interface/dependencies/dependencies"
 import { convertProcedure } from "./convertProcedure"
+import { ILog } from "../types/Log"
+import { createLogger } from "./createLogger"
 
 type TAlgorithmPair = {
     name: string,
@@ -15,50 +17,39 @@ type TAlgorithmPair = {
 
 export function convertAlgorithm<Annotation>(
     $: ts.TTypeAlias<Annotation>,
-    $i: ($: {
-        message: string
-        annotation: Annotation
-    }) => void,
+    $i: ILog<Annotation>,
     $d: DTS2ParetoDependencies,
 ): TAlgorithmPair {
 
-    const typeAlias = $
-    function logMessage(message: string, annotation: Annotation) {
-        $i({
-            message: message,
-            annotation: annotation,
-        })
-    }
+    const logMessage = createLogger($.details, $i)
 
-    const hasExport = typeAlias.modifiers.reduce(false, (current, $) => {
+    const hasExport = $.modifiers.reduce(false, (current, $) => {
         return $[0] === "export"
             ? true
             : current
     })
     if (!hasExport) {
-        logMessage(`NO EXPORT: ${typeAlias.name.myValue}`, typeAlias.details)
+        logMessage(`NO EXPORT: ${$.name.myValue}`)
     }
 
     type TTypeAliasType =
         | ["function", {}]
         | ["procedure", {}]
     function getType(): TTypeAliasType | null {
-        const firstCharacter = $d.firstCharacter($.name.myValue)
-        switch (firstCharacter) {
-            //case "A": return ["asynchronous function", {}]
-            case "F": return ["function", {}]
-            case "P": return ["procedure", {}]
-            //case "X": return ["tbd", {}]
-            // case "T": return ["type", {}]
-            default: {
-                logMessage(`$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$Unknown type alias: ${$.name.myValue}`, typeAlias.details)
+        const name = $.name
+        return pl.cc($d.analyseAlgorithmDefinitionName($.name.myValue), ($) => {
+            if ($ === null) {
+                logMessage(`$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$Unknown type alias: ${name.myValue}`)
+                return null
+            } else {
                 return null
             }
-        }
+        })
     }
 
     const type = getType()
 
+    const typeAlias = $
     const x = pl.cc($.type, ($): undefined | t.TGlobalType => {
         if (type === null) {
 
@@ -67,9 +58,9 @@ export function convertAlgorithm<Annotation>(
                 case "function":
                     return pl.cc(type[1], ($) => {
                         //typeAlias.
-                        convertFunction(
+                        convertFunctionDefinition(
                             typeAlias.type,
-                            logMessage,
+                            $i,
                             $d,
                         )
                         //$i.logMessage("FUNCTION", typeAlias.type.annotation)
@@ -80,7 +71,7 @@ export function convertAlgorithm<Annotation>(
                     return pl.cc(type[1], ($) => {
                         convertProcedure(
                             typeAlias.type,
-                            logMessage,
+                            $i,
                             $d,
                         )
                         return ["tbd", {}]
