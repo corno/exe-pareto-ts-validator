@@ -1,5 +1,5 @@
 
-export * from "./public/createParseErrorMessage"
-export * from "./public/processTypescriptProjectsInProject"
-export * from "./public/analyseTypeScriptProjectsInProject"
-export * from "./public/analyseTypeScriptProjectsInWorkspace"
+export * from "./public/createParseErrorMessage.p"
+export * from "./public/processTypescriptProjectsInProject.p"
+export * from "./public/analyseTypeScriptProjectsInProject.p"
+export * from "./public/analyseTypeScriptProjectsInWorkspace.p"
