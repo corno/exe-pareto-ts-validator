@@ -4,8 +4,8 @@ import * as uast from "api-untyped-ast"
 
 import * as api from "../../../../interface"
 
-import * as t from "../../interface/types/types"
-import { DCleanupDependencies } from "../../interface/dependencies/x"
+import * as t from "../../interface"
+import { DCleanupDependencies } from "../../interface"
 
 
 export function cleanup(

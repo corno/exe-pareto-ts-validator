@@ -3,7 +3,7 @@ import { ILog } from "../types/Log"
 export type ILogger = ($: string) => null
 
 export function createLogger<PAnnotation>(
-    $: Annotation,
+    $: PAnnotation,
     $i: ILog<PAnnotation>
 ): ILogger {
     const ann = $

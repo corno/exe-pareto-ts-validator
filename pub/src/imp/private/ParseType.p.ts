@@ -5,7 +5,7 @@ import * as ts from "api-dynamic-typescript-parser"
 import * as uast from "api-untyped-ast"
 
 import * as x from "../../interface"
-import { DParse2Dependencies } from "../../interface/dependencies/x"
+import { DParse2Dependencies } from "../../interface"
 
 export type TUnexpectedTokenData = {
     readonly "file": {

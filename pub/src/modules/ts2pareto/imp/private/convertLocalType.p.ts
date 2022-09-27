@@ -2,7 +2,7 @@ import * as pl from "pareto-core-lib"
 import * as pm from "pareto-core-state"
 import * as pc from "pareto-core-candidates"
 
-import * as ts from "../../../cleanup/interface/types/types"
+import * as ts from "../../../cleanup/interface"
 import * as t from "../../interface"
 import { convertIdentifierOrStringLiteral } from "./convertIdentifierOrStringLiteral"
 import { DTS2ParetoDependencies } from "../../interface"
@@ -16,7 +16,7 @@ import { createLogger } from "./createLogger"
 
 // export function convertNullOrType<PAnnotation>(
 //     $: ts.TType<PAnnotation>,
-//     logMessage: ($: string, context: Annotation) => void
+//     logMessage: ($: string, context: PAnnotation) => void
 // ): undefined | XType {
 //     if ($.type[0] !== "union") {
 

@@ -1,5 +1,4 @@
 import * as pl from "pareto-core-lib"
-import * as p2 from "pareto-core-tostring"
 
 import { TParseError } from "../private/processTypescriptProject"
 

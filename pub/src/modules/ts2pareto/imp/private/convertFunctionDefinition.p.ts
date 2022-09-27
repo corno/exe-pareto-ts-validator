@@ -2,7 +2,7 @@ import * as pl from "pareto-core-lib"
 import * as pc from "pareto-core-candidates"
 
 
-import * as ts from "../../../cleanup/interface/types/types.p"
+import * as ts from "../../../cleanup/interface"
 import * as t from "../../interface"
 import { convertLocalType } from "./convertLocalType.p"
 import { convertLocalInterface } from "./convertLocalInterface.p"

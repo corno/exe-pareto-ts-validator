@@ -1,2 +1,2 @@
 export * from "./types/ts_api.p"
-export * from "./interfaces/visitor.p.ts"
+export * from "./interfaces/Visitor.p"

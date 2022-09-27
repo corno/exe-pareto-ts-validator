@@ -1,7 +1,7 @@
 import * as pl from "pareto-core-lib"
 
-import * as ts from "../../../cleanup/interface/types/types"
-import { DTS2ParetoDependencies } from "../../interface/dependencies/dependencies"
+import * as ts from "../../../cleanup/interface"
+import { DTS2ParetoDependencies } from "../../interface"
 import * as t from "../../interface"
 // import { unsafeToDictionary } from "../../../private/paretoCandidates"
 import { convertLocalType } from "./convertLocalType"
@@ -29,7 +29,7 @@ export function convertGlobalType<PAnnotation>(
 ): TGlobalTypePair {
 
     const typeAlias = $
-    function logMessage(message: string, annotation: Annotation) {
+    function logMessage(message: string, annotation: PAnnotation) {
         $i({
             message: message,
             annotation: annotation,

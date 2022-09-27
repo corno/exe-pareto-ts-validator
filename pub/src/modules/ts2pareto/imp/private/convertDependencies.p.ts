@@ -2,13 +2,13 @@ import * as pl from "pareto-core-lib"
 import * as pc from "pareto-core-candidates"
 
 
-import * as ts from "../../../cleanup/interface/types/types.p"
+import * as ts from "../../../cleanup/interface"
 import * as t from "../../interface"
 import { convertIdentifierOrStringLiteral } from "./convertIdentifierOrStringLiteral.p"
 import { convertLocalType } from "./convertLocalType.p"
 export function convertDependencies<PAnnotation>(
     $: ts.TType<PAnnotation>,
-    logMessage: ($: string, context: Annotation) => void,
+    logMessage: ($: string, context: PAnnotation) => void,
     $d: {
         firstCharacter: (str: string) => string
     }

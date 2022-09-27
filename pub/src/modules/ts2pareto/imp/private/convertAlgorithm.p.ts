@@ -1,10 +1,10 @@
 import * as pl from "pareto-core-lib"
 
-import * as ts from "../../../cleanup/interface/types/types.p"
+import * as ts from "../../../cleanup/interface"
 import * as t from "../../interface"
 // import { unsafeToDictionary } from "../../../private/paretoCandidates"
 import { convertFunctionDefinition } from "./convertFunctionDefinition.p"
-import { DTS2ParetoDependencies } from "../../interface/dependencies/dependencies.p"
+import { DTS2ParetoDependencies } from "../../interface"
 import { convertProcedure } from "./convertProcedure.p"
 import { ILog } from "../types/Log.p"
 import { createLogger } from "./createLogger.p"

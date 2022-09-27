@@ -1,6 +1,6 @@
 import * as path from "res-pareto-path"
 import * as parserRes from "../../parserRes"
-import { DTS2ParetoDependencies } from "../interface/dependencies/dependencies.p"
+import { DTS2ParetoDependencies } from "../interface"
 
 
 export const ts2ParetoDependencies: DTS2ParetoDependencies = {

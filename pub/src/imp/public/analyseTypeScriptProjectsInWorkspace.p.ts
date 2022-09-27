@@ -11,21 +11,24 @@ import * as collation from "api-pareto-collation"
 import * as uglyStuff from "api-pareto-ugly-stuff"
 import * as ap from "lib-analyse-path"
 
-import { parseTypescriptProjectsInProject } from "./processTypescriptProjectsInProject"
-import { createParseErrorMessage } from "./createParseErrorMessage"
-import { getType } from "../private/getType"
+
+
+import { parseTypescriptProjectsInProject } from "./processTypescriptProjectsInProject.p"
+import { createParseErrorMessage } from "./createParseErrorMessage.p"
+import { getType } from "../private/getType.p"
 
 
 
-import { _typescriptProject } from "../../data/typescriptProject"
 import { DCleanupDependencies } from "../../modules/cleanup"
-import { DTS2ParetoDependencies } from "../../modules/ts2pareto"
-import { DParseTypescriptProjectDependencies, DSerializeTypeScriptSubset } from "../../interface/dependencies/x"
+import * as ts2pareto from "../../modules/ts2pareto"
+
+import * as api from "../../interface"
+import { DParseTypescriptProjectDependencies } from "../../interface/dependencies/dependencies.p"
 
 
 export function analyseTypeScriptProjectsInWorkspace(
     $: {
-        arguments: main.Arguments
+        arguments: main.TArguments
         typescriptProject: ap.TDirectory
     },
     $d: {

@@ -4,11 +4,11 @@ import * as pl from "pareto-core-lib"
 import * as uast from "api-untyped-ast"
 
 import { convertGlobalType } from "../private/convertGlobalType"
-import * as ts from "../../../cleanup/interface/types/types"
+import * as ts from "../../../cleanup/interface"
 import { convertAlgorithm } from "../private/convertAlgorithm"
 import { convertGlobalInterface } from "../private/convertGlobalInterface"
 import { convertDependency } from "../private/convertDependency"
-import { DTS2ParetoDependencies } from "../../interface/dependencies/dependencies"
+import { DTS2ParetoDependencies } from "../../interface"
 import { convertFunctionStatements } from "../private/convertFunctionStatements"
 import { convertProcedureStatements } from "../private/convertProcedureStatements"
 

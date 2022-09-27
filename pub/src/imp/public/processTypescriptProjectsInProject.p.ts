@@ -1,6 +1,6 @@
+import * as pt from "pareto-core-types"
 import * as pl from "pareto-core-lib"
 import * as pa from "pareto-core-async"
-import * as p2s from "pareto-core-tostring"
 
 import * as dynAPI from "api-dynamic-typescript-parser"
 import * as fs from "api-pareto-filesystem"
@@ -10,19 +10,14 @@ import * as uast from "api-untyped-ast"
 import * as x from "../../modules/embeddedParetoParser"
 
 
+import * as cleanup from "../../modules/cleanup"
+import * as ts2pareto from "../../modules/ts2pareto"
 
 
-import { cleanup, TSourceFile } from "../../modules/cleanup"
-import { DCleanupDependencies } from "../../modules/cleanup"
-
-import { DTS2ParetoDependencies } from "../../modules/ts2pareto"
-import { doUpcycle, TFileType } from "../../modules/ts2pareto"
+import { TParseError } from "../private/processTypescriptProject.p"
 
 
-import { TParseError } from "../private/processTypescriptProject"
-
-
-import { DParseTypescriptProjectDependencies, DSerializeTypeScriptSubset } from "../../interface/dependencies/x"
+import { DParseTypescriptProjectDependencies, DSerializeTypeScriptSubset } from "../../interface"
 
 export type TProjectType =
     | ["executable", {}]
@@ -40,13 +35,13 @@ export function parseTypescriptProjectsInProject(
     },
     $i: {
         onError: ($: TParseError) => void
-        onSourceFile: ($: TSourceFile<uast.TDetails>) => void
+        onSourceFile: ($: cleanup.TSourceFile<uast.TDetails>) => void
     },
     $d: {
         parseDependencies: DParseTypescriptProjectDependencies
-        cleanupDependencies: DCleanupDependencies
+        cleanupDependencies: cleanup.DCleanupDependencies
     },
-    $s: pa.StartAsync,
+    $a: pt.,
 ) {
     const config = $
     function doPart(

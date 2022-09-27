@@ -1,10 +1,10 @@
 import * as pl from "pareto-core-lib"
 
-import * as ts from "../../../cleanup/interface/types/types"
+import * as ts from "../../../cleanup/interface"
 import * as t from "../../interface"
 // import { unsafeToDictionary } from "../../../private/paretoCandidates"
 import { convertLocalInterface } from "./convertLocalInterface"
-import { DTS2ParetoDependencies } from "../../interface/dependencies/dependencies"
+import { DTS2ParetoDependencies } from "../../interface"
 import { ILog } from "../types/Log"
 
 type TGlobalInterfacePair = {
@@ -20,7 +20,7 @@ export function convertGlobalInterface<PAnnotation>(
 ): TGlobalInterfacePair {
 
     const typeAlias = $
-    function logMessage(message: string, annotation: Annotation) {
+    function logMessage(message: string, annotation: PAnnotation) {
         $i({
             message: message,
             annotation: annotation,

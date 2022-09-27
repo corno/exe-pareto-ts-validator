@@ -1,7 +1,7 @@
 import * as pl from "pareto-core-lib"
 
 
-import * as ts from "../../../cleanup/interface/types/types"
+import * as ts from "../../../cleanup/interface"
 import { DTS2ParetoDependencies } from "../../interface"
 import { ILog } from "../types/Log"
 
@@ -11,7 +11,7 @@ export function convertProcedureStatements<PAnnotation>(
     $d: DTS2ParetoDependencies
 ) {
     function convertOptionalStatement($: {
-        context: Annotation,
+        context: PAnnotation,
         statement: null | ts.TStatement<PAnnotation>
     }) {
         if ($.statement === null) {

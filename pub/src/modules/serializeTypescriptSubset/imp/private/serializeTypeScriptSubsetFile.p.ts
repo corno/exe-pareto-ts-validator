@@ -3,7 +3,7 @@ import * as pl from "pareto-core-lib"
 import * as fp from "lib-fountain-pen"
 
 import * as nt from "../../../cleanup"
-import { DSerializeTypeScriptSubset } from "../../../../interface/dependencies/x"
+import { DSerializeTypeScriptSubset } from "../../../../interface"
 
 
 export function f_serializeTypeScriptSubsetFile<PAnnotation>(
@@ -19,7 +19,7 @@ export function f_serializeTypeScriptSubsetFile<PAnnotation>(
         $i: fp.ILine
     ) {
         $i.snippet(`{`)
-        $i.indent({}, ($i) => {
+        $i.indent(($i) => {
             Statements($.statements, $i)
         })
         $i.snippet(`}`)
@@ -183,10 +183,10 @@ export function f_serializeTypeScriptSubsetFile<PAnnotation>(
             case "objectLiteral":
                 pl.cc($.type[1], ($) => {
                     $i.snippet(`{`)
-                    $i.indent({}, ($i) => {
+                    $i.indent(($i) => {
 
                         $.properties.forEach(($) => {
-                            $i.line({}, ($i) => {
+                            $i.line(($i) => {
                                 IdentifierOrStringLiteral($.name, $i)
                                 $i.snippet(`: `)
                                 Expression($.expression, $i)
@@ -270,9 +270,9 @@ export function f_serializeTypeScriptSubsetFile<PAnnotation>(
     ) {
         TypeParameters($.def.typeParameters, $i)
         $i.snippet(`(`)
-        $i.indent({}, ($i) => {
+        $i.indent(($i) => {
             $.def.parameters.forEach(($) => {
-                $i.line({}, ($i) => {
+                $i.line(($i) => {
                     Parameter($, $i)
                     $i.snippet(`,`)
                 })
@@ -457,9 +457,9 @@ export function f_serializeTypeScriptSubsetFile<PAnnotation>(
                             Identifier($.name, $i)
                             TypeParameters($.typeParameters, $i)
                             $i.snippet(` {`)
-                            $i.indent({}, ($i) => {
+                            $i.indent(($i) => {
                                 $.signatures.forEach(($) => {
-                                    $i.line({}, ($i) => {
+                                    $i.line(($i) => {
                                         TypeSignature($, $i)
                                     })
                                 })
@@ -484,16 +484,16 @@ export function f_serializeTypeScriptSubsetFile<PAnnotation>(
                             $i.snippet(`switch (`)
                             Expression($.expression, $i)
                             $i.snippet(`) {`)
-                            $i.indent({}, ($i) => {
+                            $i.indent(($i) => {
                                 $.clauses.forEach(($) => {
-                                    $i.line({}, ($i) => {
+                                    $i.line(($i) => {
                                         switch ($.type[0]) {
                                             case "case":
                                                 pl.cc($.type[1], ($) => {
                                                     $i.snippet(`case `)
                                                     Expression($.expression, $i)
                                                     $i.snippet(`:`)
-                                                    $i.indent({}, ($i) => {
+                                                    $i.indent(($i) => {
                                                         Statements($.statements, $i)
                                                     })
                                                 })
@@ -501,7 +501,7 @@ export function f_serializeTypeScriptSubsetFile<PAnnotation>(
                                             case "default":
                                                 pl.cc($.type[1], ($) => {
                                                     $i.snippet(`default:`)
-                                                    $i.indent({}, ($i) => {
+                                                    $i.indent(($i) => {
                                                         Statements($.statements, $i)
                                                     })
                                                 })
@@ -540,7 +540,7 @@ export function f_serializeTypeScriptSubsetFile<PAnnotation>(
         $i: fp.IBlock,
     ) {
         $.forEach(($) => {
-            $i.line({}, ($i) => {
+            $i.line(($i) => {
                 Statement($, $i)
 
             })
@@ -644,9 +644,9 @@ export function f_serializeTypeScriptSubsetFile<PAnnotation>(
             case "typeLiteral":
                 pl.cc($.type[1], ($) => {
                     $i.snippet(`{`)
-                    $i.indent({}, ($i) => {
+                    $i.indent(($i) => {
                         $.forEach(($) => {
-                            $i.line({}, ($i) => {
+                            $i.line(($i) => {
                                 TypeSignature($, $i)
                             })
                         })
@@ -697,9 +697,9 @@ export function f_serializeTypeScriptSubsetFile<PAnnotation>(
                 break
             case "union":
                 pl.cc($.type[1], ($) => {
-                    $i.indent({}, ($i) => {
+                    $i.indent(($i) => {
                         $.forEach(($) => {
-                            $i.line({}, ($i) => {
+                            $i.line(($i) => {
                                 $i.snippet(`| `)
                                 Type($, $i)
                             })

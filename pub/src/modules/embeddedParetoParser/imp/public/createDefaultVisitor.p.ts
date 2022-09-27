@@ -1,5 +1,5 @@
 import * as pt from "pareto-core-types"
-import * as api from "../../../../interface"
+import * as api from "../../interface"
 
 export function createDefaultVisistor(
     $i: {

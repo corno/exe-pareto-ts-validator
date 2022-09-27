@@ -16,7 +16,7 @@ export const mapToPareto: api.FMapToPareto = () => {
                 'dependencies': pw.wrapRawDictionary({}),
                 'functions': pw.wrapRawDictionary<pareto.TFunctionDefinition<PAnnotation | null>>({
                     "Resolve": {
-                        'type parameters': pw.wrapRawDictionary({ "Annotation": null }),
+                        'type parameters': pw.wrapRawDictionary({ "PAnnotation": null }),
                         'type': {
                             'annotation': null,
                             'optional': false,

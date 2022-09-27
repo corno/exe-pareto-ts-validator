@@ -3,7 +3,7 @@ import * as pt from "pareto-core-types"
 
 export type TAnnotatedString<PAnnotation> = {
     readonly "myValue": string
-    readonly "annotation": Annotation
+    readonly "annotation": PAnnotation
 }
 
 export type TImportName<PAnnotation> = {
@@ -12,7 +12,7 @@ export type TImportName<PAnnotation> = {
 }
 
 export type TSwitchClause<PAnnotation> = {
-    readonly "annotation": Annotation
+    readonly "annotation": PAnnotation
     readonly "type": | ["case", {
         readonly "expression": TExpression<PAnnotation>
         readonly "statements": TStatements<PAnnotation>
@@ -27,7 +27,7 @@ export type TImportClause<PAnnotation> =
     | ["namespace", TIdentifier<PAnnotation>]
 
 export type TTypeAlias<PAnnotation> = {
-    readonly "details": Annotation
+    readonly "details": PAnnotation
     readonly "modifiers": TModifiers<PAnnotation>
     readonly "name": TIdentifier<PAnnotation>
     readonly "typeParameters": TTypeParameters<PAnnotation>
@@ -36,13 +36,13 @@ export type TTypeAlias<PAnnotation> = {
 }
 
 export type TImportStatement<PAnnotation> = {
-    readonly "annotation": Annotation
+    readonly "annotation": PAnnotation
     readonly "clause": TImportClause<PAnnotation>
     readonly "file": TStringLiteral<PAnnotation>
 }
 
 export type TStatement<PAnnotation> = {
-    readonly "annotation": Annotation
+    readonly "annotation": PAnnotation
     readonly "type":
     | ["block", TBlock<PAnnotation>]
     | ["break", {}]
@@ -89,7 +89,7 @@ export type TBlock<PAnnotation> = {
 export type TTypeParameters<PAnnotation> = pt.Array<TIdentifier<PAnnotation>>
 
 export type TParameter<PAnnotation> = {
-    readonly "annotation": Annotation
+    readonly "annotation": PAnnotation
     readonly "name": TIdentifier<PAnnotation>
     readonly "optional": boolean
     readonly "type": null | TType<PAnnotation>
@@ -100,7 +100,7 @@ export type TLiteral<PAnnotation> =
     | ["string", TStringLiteral<PAnnotation>]
 
 export type TType<PAnnotation> = {
-    readonly "annotation": Annotation
+    readonly "annotation": PAnnotation
     readonly "type":
     | ["array", TType<PAnnotation>]
     | ["booleanKeyword", {}]
@@ -128,7 +128,7 @@ export type TType<PAnnotation> = {
 
 export type TIdentifier<PAnnotation> = TAnnotatedString<PAnnotation>
 export type TStringLiteral<PAnnotation> = {
-    readonly "annotation": Annotation
+    readonly "annotation": PAnnotation
     readonly "strippedValue": string
     readonly "wrapper": string
 }
@@ -151,7 +151,7 @@ export type TSpan<PAnnotation> = {
 }
 
 export type TExpression<PAnnotation> = {
-    readonly "annotation": Annotation
+    readonly "annotation": PAnnotation
     readonly "type":
     | ["arrayLiteral", {
         readonly "expressions": pt.Array<TExpression<PAnnotation>>
@@ -223,7 +223,7 @@ export type TSourceFile<PAnnotation> = {
 }
 
 export type TTypeSignature<PAnnotation> = {
-    readonly "annotation": Annotation
+    readonly "annotation": PAnnotation
     readonly "type":
     | ["index", {
         readonly "modifiers": TModifiers<PAnnotation>

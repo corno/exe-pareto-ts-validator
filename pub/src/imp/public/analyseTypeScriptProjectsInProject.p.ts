@@ -20,7 +20,7 @@ import { getType } from "../private/getType"
 
 import { DCleanupDependencies } from "../../modules/cleanup"
 import { DTS2ParetoDependencies } from "../../modules/ts2pareto"
-import { DParseTypescriptProjectDependencies, DSerializeTypeScriptSubset } from "../../interface/dependencies/x"
+import { DParseTypescriptProjectDependencies, DSerializeTypeScriptSubset } from "../../interface"
 
 export function analyseTypeScriptProjectsInProject(
     $: {

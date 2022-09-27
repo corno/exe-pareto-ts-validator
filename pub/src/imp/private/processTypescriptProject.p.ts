@@ -11,7 +11,7 @@ import { _typescriptProject } from "../../data/typescriptProject"
 import { TUnexpectedTokenData } from "./ParseType"
 import { TNroot } from "../../interface"
 import { StartAsync } from "pareto-core-async"
-import { DParseTypescriptProjectDependencies } from "../../interface/dependencies/x"
+import { DParseTypescriptProjectDependencies } from "../../interface"
 
 export type TParseError =
     | ["dynamic parser", ts.TTypeScriptParserError]

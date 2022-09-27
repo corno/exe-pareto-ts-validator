@@ -7,7 +7,7 @@ import * as fs from "api-pareto-filesystem"
 import { f_serializeTypeScriptSubsetFile } from "../private/serializeTypeScriptSubsetFile"
 import { StartAsync } from "pareto-core-async"
 import { TSourceFile } from "../../../cleanup"
-import { DSerializeTypeScriptSubset } from "../../../../interface/dependencies/x"
+import { DSerializeTypeScriptSubset } from "../../../../interface"
 
 export function serialize<PAnnotation>(
     $: {

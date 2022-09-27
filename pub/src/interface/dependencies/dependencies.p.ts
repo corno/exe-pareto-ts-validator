@@ -20,15 +20,15 @@ export type PEnrichedForEach = <T> (
 ) => void
 
 export type DSerializeTypeScriptSubset = {
-    forEach: PEnrichedForEach
-    createWriteStream: fs.CreateWriteStream
+    readonly "forEach": PEnrichedForEach
+    readonly "createWriteStream": fs.XCreateWriteStream
 }
 
 export type DParse2Dependencies = {
     parseDynamic: ts.XParse
     doUntil: uglyStuff.XDoUntil,
     lookAhead: uglyStuff.XLookAhead,
-    stringsAreEqual: diff.StringsAreEqual
+    stringsAreEqual: diff.FStringsAreEqual
 }
 
 export type DParseTypescriptProjectDependencies = {

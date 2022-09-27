@@ -1,6 +1,6 @@
 import * as pl from "pareto-core-lib"
 
-import * as ts from "../../../cleanup/interface/types/types"
+import * as ts from "../../../cleanup/interface"
 import { DTS2ParetoDependencies } from "../../interface"
 import { convertProcedureStatements } from "./convertProcedureStatements"
 import { ILog } from "../types/Log"
@@ -8,14 +8,14 @@ import { ILog } from "../types/Log"
 export function convertFunctionStatements<PAnnotation>(
     $: {
         statements: ts.TStatements<PAnnotation>
-        context: Annotation
+        context: PAnnotation
     },
     $i: ILog<PAnnotation>,
     $d: DTS2ParetoDependencies
 ) {
     const context = $.context
     function convertOptionalStatement($: {
-        context: Annotation,
+        context: PAnnotation,
         statement: null | ts.TStatement<PAnnotation>
     }) {
         if ($.statement === null) {
