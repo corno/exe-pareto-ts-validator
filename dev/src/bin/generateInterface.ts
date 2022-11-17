@@ -7,7 +7,7 @@ import * as fs from "res-pareto-filesystem"
 
 import * as tsg from "../data/embeddedParetoGrammar"
 
-import { generateInterface } from "../imp"
+import { generateInterface } from "../implementation"
 
 pe.runProgram(
     ($, $i, $d) => {
