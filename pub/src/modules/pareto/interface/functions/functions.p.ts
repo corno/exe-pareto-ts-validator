@@ -7,5 +7,5 @@ import { TModule } from "../types/types.p"
 export type FSerialize = <PAnnotation>(
     $: TModule<PAnnotation>,
     $i: IWriter,
-    $d: DDependencies
+    $d: DDependencies<PAnnotation>
 ) => null

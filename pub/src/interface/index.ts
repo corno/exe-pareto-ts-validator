@@ -1,2 +1,2 @@
 export * from "../modules/embeddedParetoParser/interface"
-export * from "./dependencies/dependencies.p"
+// export * from "./dependencies/dependencies.p"

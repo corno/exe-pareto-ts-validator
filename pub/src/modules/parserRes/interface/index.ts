@@ -1,2 +1,2 @@
-export * from "./algorithms/algorithms"
-export * from "./types/types"
+// export * from "./algorithms/algorithms"
+export * from "./types/types.p"

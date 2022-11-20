@@ -1,1 +1,1 @@
-export * from "./public/cleanup"
+export * from "./public/cleanup.p"

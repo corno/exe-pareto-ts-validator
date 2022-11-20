@@ -1,4 +1,4 @@
-import { ILog } from "../types/Log"
+import { ILog } from "../types/Log.p"
 
 export type ILogger = ($: string) => null
 
