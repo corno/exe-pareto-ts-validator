@@ -7,20 +7,20 @@ import * as fs from "res-pareto-filesystem"
 
 import * as tsg from "../data/embeddedParetoGrammar"
 
-import { generateInterface } from "../implementation"
+// import { generateInterface } from "../implementation"
 
 pe.runProgram(
     ($, $i, $d) => {
-        generateInterface(
-            {
-                grammar: tsg._typeScriptGrammar,
-                arguments: $.arguments,
-            },
-            {
-                isYinBeforeYang: collation.localeIsYinBeforeYang,
-                createWriteStream: fs.createWriteStream,
-                startAsync: $d.startAsync,
-            }
-        )
+        // generateInterface(
+        //     {
+        //         grammar: tsg._typeScriptGrammar,
+        //         arguments: $.arguments,
+        //     },
+        //     {
+        //         isYinBeforeYang: collation.localeIsYinBeforeYang,
+        //         createWriteStream: fs.createWriteStream,
+        //         startAsync: $d.startAsync,
+        //     }
+        // )
     }
 )
