@@ -1,7 +1,7 @@
 {
   "name": "exe-pareto-ts-validator",
   "version": "0.1.0",
-  "description": "validates if a typescript code base conforms the 'pareto' rules",
+  "description": "validates if a repository conforms the 'pareto' rules",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Corno",
@@ -11,22 +11,22 @@
     "analyseTypeScriptProject": "dist/esc/bin/analyseTypeScriptProject.js"
   },
   "dependencies": {
-    "api-pareto-main": "^0.9.0",
     "lib-analyse-path": "^0.4.1",
     "lib-fountain-pen": "^0.6.1",
     "lib-pareto-exe": "^0.5.0",
-    "pareto-core": "^0.0.2",
+    "pareto-core": "^0.0.4",
     "res-dynamic-typescript-parser": "^0.20.0",
     "res-pareto-collation": "^0.8.0",
     "res-pareto-diff": "^0.13.0",
     "res-pareto-filesystem": "^0.26.0",
     "res-pareto-path": "^0.11.0",
-    "res-pareto-ugly-stuff": "^0.9.0"
+    "res-pareto-process": "^0.8.0",
+    "res-pareto-string": "^0.1.0"
   },
   "files": [
     "dist",
     "data"
   ],
-  "interface-fingerprint": "1d66eeb509d53722ecf90973ab675c31925808c4",
-  "content-fingerprint": "24afb89990ec3b7e5636a983a8ae2cac5940d2c6"
+  "interface-fingerprint": "7de9700524816a81ec3d23e126ec8af84f5b8010",
+  "content-fingerprint": "21abc6531d72d6ed41c19ae01e2e7c4e1a2d7b48"
 }
