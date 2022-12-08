@@ -14,7 +14,10 @@
     "lib-analyse-path": "^0.4.1",
     "lib-fountain-pen": "^0.6.1",
     "lib-pareto-exe": "^0.5.0",
-    "pareto-core": "^0.0.4",
+    "pareto-core-exe": "^0.15.1",
+    "pareto-core-lib": "^0.17.0",
+    "pareto-core-raw": "^0.7.0",
+    "pareto-core-state": "^0.12.0",
     "res-dynamic-typescript-parser": "^0.20.0",
     "res-pareto-collation": "^0.8.0",
     "res-pareto-diff": "^0.13.0",
@@ -28,5 +31,5 @@
     "data"
   ],
   "interface-fingerprint": "7de9700524816a81ec3d23e126ec8af84f5b8010",
-  "content-fingerprint": "21abc6531d72d6ed41c19ae01e2e7c4e1a2d7b48"
+  "content-fingerprint": "4ef2d12b688d8561a066d4926db0f9dc3303d58f"
 }
