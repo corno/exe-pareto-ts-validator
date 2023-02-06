@@ -19,12 +19,12 @@
     "pareto-core-raw": "^0.7.0",
     "pareto-core-state": "^0.12.0",
     "res-dynamic-typescript-parser": "^0.20.0",
-    "res-pareto-collation": "^0.8.0",
-    "res-pareto-diff": "^0.13.0",
-    "res-pareto-filesystem": "^0.26.0",
+    "res-pareto-collation": "^0.9.0",
+    "res-pareto-diff": "^0.13.2",
+    "res-pareto-filesystem": "^0.26.1",
     "res-pareto-path": "^0.11.0",
     "res-pareto-process": "^0.8.0",
-    "res-pareto-string": "^0.1.0"
+    "res-pareto-string": "^0.1.1"
   },
   "files": [
     "dist",
