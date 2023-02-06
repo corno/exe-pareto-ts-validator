@@ -12,7 +12,7 @@ import * as fs from "res-pareto-filesystem"
 // import * as asstring from "res-pareto-asstring"
 
 import { git_createErrorMessage, git_ls_files } from "../implementation"
-import { _paretoProject } from "../data/paretoProject.p"
+import { _paretoProject } from "../data/paretoProject.data"
 
 pe.runProgram(($) => {
     exe.p_getSingleArgument(
