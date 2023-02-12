@@ -1,4 +1,4 @@
-// import * as pt from "pareto-core-types"
+// import * as pt from 'pareto-core-types'
 
 // import * as ts from "api-dynamic-typescript-parser"
 // import * as fs from "api-pareto-filesystem"

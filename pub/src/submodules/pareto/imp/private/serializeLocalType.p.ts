@@ -1,4 +1,4 @@
-import * as pl from "pareto-core-lib"
+import * as pl from 'pareto-core-lib'
 import * as fp from "lib-fountain-pen"
 
 import * as api from "../../interface"

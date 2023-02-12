@@ -1,6 +1,6 @@
 // #!/usr/bin/env node
 
-// import * as pe from "pareto-core-exe"
+// import * as pe from 'pareto-core-exe'
 
 // import { _typescriptProject } from "../data/typescriptProject"
 // import { analyseTypeScriptProjectsInWorkspace } from "../imp"

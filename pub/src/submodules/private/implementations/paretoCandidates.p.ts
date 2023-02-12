@@ -1,5 +1,5 @@
-import * as pt from "pareto-core-types"
-// import * as pm from "pareto-core-state"
+import * as pt from 'pareto-core-types'
+// import * as pm from 'pareto-core-state'
 
 // export function unsafeToDictionary<T, NT>(
 //     array: pt.Array<T>,

@@ -1,4 +1,4 @@
-import * as pl from "pareto-core-lib"
+import * as pl from 'pareto-core-lib'
 
 import * as uast from "api-untyped-ast"
 
@@ -38,92 +38,92 @@ export function cleanup(
             annotation: pl.cc($, ($) => {
 
                 switch ($[0]) {
-                    case "arrayLiteral": {
+                    case 'arrayLiteral': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "arrowFunction": {
+                    case 'arrowFunction': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "binary": {
+                    case 'binary': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "call": {
+                    case 'call': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "conditional": {
+                    case 'conditional': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "elementAccess": {
+                    case 'elementAccess': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "false": {
+                    case 'false': {
                         return pl.cc($[1], ($) => {
                             return $
                         })
                     }
-                    case "identifier": {
+                    case 'identifier': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "noSubstitutionTemplateLiteral": {
+                    case 'noSubstitutionTemplateLiteral': {
                         return pl.cc($[1], ($) => {
                             return $
                         })
                     }
-                    case "nullKeyword": {
+                    case 'nullKeyword': {
                         return pl.cc($[1], ($) => {
                             return $
                         })
                     }
-                    case "numericLiteral": {
+                    case 'numericLiteral': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "objectLiteral": {
+                    case 'objectLiteral': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "parenthesizedExpression": {
+                    case 'parenthesizedExpression': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "prefixUnary": {
+                    case 'prefixUnary': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "propertyAccess": {
+                    case 'propertyAccess': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "stringLiteral": {
+                    case 'stringLiteral': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "template": {
+                    case 'template': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "true": {
+                    case 'true': {
                         return pl.cc($[1], ($) => {
                             return $
                         })
@@ -134,7 +134,7 @@ export function cleanup(
             type: pl.cc($, ($) => {
 
                 switch ($[0]) {
-                    case "arrayLiteral": {
+                    case 'arrayLiteral': {
                         return pl.cc($[1], ($) => {
                             return ["arrayLiteral", pl.cc($.content, ($) => {
                                 return {
@@ -145,7 +145,7 @@ export function cleanup(
                             })]
                         })
                     }
-                    case "arrowFunction": {
+                    case 'arrowFunction': {
                         return pl.cc($[1], ($) => {
 
                             return ["arrowFunction", pl.cc($.content, ($) => {
@@ -160,12 +160,12 @@ export function cleanup(
                                     definition: X_functionDefinition($.functionDefinition),
                                     implementation: pl.cc($["implementation"], ($) => {
                                         switch ($[0]) {
-                                            case "block": {
+                                            case 'block': {
                                                 return pl.cc($[1], ($) => {
                                                     return ["block", X_block($)]
                                                 })
                                             }
-                                            case "expression": {
+                                            case 'expression': {
                                                 return pl.cc($[1], ($) => {
                                                     return ["expression", X_expression($)]
                                                 })
@@ -177,7 +177,7 @@ export function cleanup(
                             })]
                         })
                     }
-                    case "binary": {
+                    case 'binary': {
                         return pl.cc($[1], ($) => {
                             return ["binary", pl.cc($.content, ($) => {
                                 return {
@@ -186,17 +186,17 @@ export function cleanup(
                                     }),
                                     operator: pl.cc($["operator"], ($) => {
                                         switch ($[0]) {
-                                            case "equals": {
+                                            case 'equals': {
                                                 return pl.cc($[1], ($) => {
                                                     return ["equals", {}]
                                                 })
                                             }
-                                            case "equalsEqualsEquals": {
+                                            case 'equalsEqualsEquals': {
                                                 return pl.cc($[1], ($) => {
                                                     return ["equalsEqualsEquals", {}]
                                                 })
                                             }
-                                            case "exclamationEqualsEquals": {
+                                            case 'exclamationEqualsEquals': {
                                                 return pl.cc($[1], ($) => {
                                                     return ["exclamationEqualsEqualsEquals", {}]
                                                 })
@@ -211,7 +211,7 @@ export function cleanup(
                             })]
                         })
                     }
-                    case "call": {
+                    case 'call': {
                         return pl.cc($[1], ($) => {
                             return ["call", pl.cc($.content, ($) => {
 
@@ -234,7 +234,7 @@ export function cleanup(
                             })]
                         })
                     }
-                    case "conditional": {
+                    case 'conditional': {
                         return pl.cc($[1], ($) => {
                             return ["conditional", pl.cc($.content, ($) => {
 
@@ -266,7 +266,7 @@ export function cleanup(
                             })]
                         })
                     }
-                    case "elementAccess": {
+                    case 'elementAccess': {
                         return pl.cc($[1], ($) => {
                             return ["elementAccess", pl.cc($.content, ($) => {
                                 return {
@@ -280,49 +280,49 @@ export function cleanup(
                             })]
                         })
                     }
-                    case "false": {
+                    case 'false': {
                         return pl.cc($[1], ($) => {
                             return ["false", {}]
                         })
                     }
-                    case "identifier": {
+                    case 'identifier': {
                         return pl.cc($[1], ($) => {
                             return ["identifier", X_identifier($)]
                         })
                     }
-                    case "noSubstitutionTemplateLiteral": {
+                    case 'noSubstitutionTemplateLiteral': {
                         return pl.cc($[1], ($) => {
                             return ["noSubstitutionTemplateLiteral", {}]
                         })
                     }
-                    case "nullKeyword": {
+                    case 'nullKeyword': {
                         return pl.cc($[1], ($) => {
                             return ["nullKeyword", {}]
                         })
                     }
-                    case "numericLiteral": {
+                    case 'numericLiteral': {
                         return pl.cc($[1], ($) => {
                             return ["numericLiteral", X_numericLiteral($)]
                         })
                     }
-                    case "objectLiteral": {
+                    case 'objectLiteral': {
                         return pl.cc($[1], ($) => {
                             return ["objectLiteral", pl.cc($.content, ($) => {
                                 return {
                                     properties: $.map(($) => {
                                         switch ($[0]) {
-                                            case "propertyAssignment": {
+                                            case 'propertyAssignment': {
                                                 return pl.cc($[1], ($) => {
                                                     return pl.cc($.content, ($) => {
                                                         return {
                                                             name: pl.cc($["name"], ($) => {
                                                                 switch ($[0]) {
-                                                                    case "identifier": {
+                                                                    case 'identifier': {
                                                                         return pl.cc($[1], ($) => {
                                                                             return ["identifier", X_identifier($)]
                                                                         })
                                                                     }
-                                                                    case "stringLiteral": {
+                                                                    case 'stringLiteral': {
                                                                         return pl.cc($[1], ($) => {
                                                                             return ["stringLiteral", X_stringLiteral($)]
                                                                         })
@@ -344,7 +344,7 @@ export function cleanup(
                             })]
                         })
                     }
-                    case "parenthesizedExpression": {
+                    case 'parenthesizedExpression': {
                         return pl.cc($[1], ($) => {
                             return ["parenthesizedExpression", pl.cc($.content, ($) => {
                                 return X_expression($)
@@ -352,7 +352,7 @@ export function cleanup(
 
                         })
                     }
-                    case "prefixUnary": {
+                    case 'prefixUnary': {
                         return pl.cc($[1], ($) => {
                             return ["prefixUnary", pl.cc($.content, ($) => {
                                 return X_expression($)
@@ -360,7 +360,7 @@ export function cleanup(
 
                         })
                     }
-                    case "propertyAccess": {
+                    case 'propertyAccess': {
                         return pl.cc($[1], ($) => {
                             return ["propertyAccess", pl.cc($.content, ($) => {
                                 return {
@@ -374,12 +374,12 @@ export function cleanup(
                             })]
                         })
                     }
-                    case "stringLiteral": {
+                    case 'stringLiteral': {
                         return pl.cc($[1], ($) => {
                             return ["stringLiteral", X_stringLiteral($)]
                         })
                     }
-                    case "template": {
+                    case 'template': {
                         return pl.cc($[1], ($) => {
                             return ["template", pl.cc($.content, ($) => {
 
@@ -397,12 +397,12 @@ export function cleanup(
                                                     }),
                                                     suffix: pl.cc($["x"], ($) => {
                                                         switch ($[0]) {
-                                                            case "middle": {
+                                                            case 'middle': {
                                                                 return pl.cc($[1], ($) => {
                                                                     return ["middle", createAnnotatedString($)]
                                                                 })
                                                             }
-                                                            case "tail": {
+                                                            case 'tail': {
                                                                 return pl.cc($[1], ($) => {
                                                                     return ["tail", createAnnotatedString($)]
                                                                 })
@@ -418,7 +418,7 @@ export function cleanup(
                             })]
                         })
                     }
-                    case "true": {
+                    case 'true': {
                         return pl.cc($[1], ($) => {
                             return ["true", {}]
                         })
@@ -458,12 +458,12 @@ export function cleanup(
         $: api.TGidentifierOrStringLiteral,
     ): t.TIdentifierOrStringLiteral<uast.TDetails> {
         switch ($[0]) {
-            case "identifier": {
+            case 'identifier': {
                 return pl.cc($[1], ($) => {
                     return ["identifier", X_identifier($)]
                 })
             }
-            case "stringLiteral": {
+            case 'stringLiteral': {
                 return pl.cc($[1], ($) => {
                     return ["stringLiteral", X_stringLiteral($)]
                 })
@@ -476,12 +476,12 @@ export function cleanup(
     ): t.TModifiers<uast.TDetails> {
         return $.modifiers.map(($) => {
             switch ($[0]) {
-                case "export": {
+                case 'export': {
                     return pl.cc($[1], ($) => {
                         return ["export", {}]
                     })
                 }
-                case "readonly": {
+                case 'readonly': {
                     return pl.cc($[1], ($) => {
                         return ["readonly", {}]
                     })
@@ -515,62 +515,62 @@ export function cleanup(
             annotation: pl.cc($, ($) => {
 
                 switch ($[0]) {
-                    case "block": {
+                    case 'block': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "break": {
+                    case 'break': {
                         return pl.cc($[1], ($) => {
                             return $
                         })
                     }
-                    case "export": {
+                    case 'export': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "expression": {
+                    case 'expression': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "function": {
+                    case 'function': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "if": {
+                    case 'if': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "import": {
+                    case 'import': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "interface": {
+                    case 'interface': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "return": {
+                    case 'return': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "switch": {
+                    case 'switch': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "typeAlias": {
+                    case 'typeAlias': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "variable": {
+                    case 'variable': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
@@ -581,29 +581,29 @@ export function cleanup(
             type: pl.cc($, ($) => {
 
                 switch ($[0]) {
-                    case "block": {
+                    case 'block': {
                         return pl.cc($[1], ($) => {
                             return ["block", X_block($)]
                         })
                     }
-                    case "break": {
+                    case 'break': {
                         return ["break", {}]
                     }
-                    case "export": {
+                    case 'export': {
                         return pl.cc($[1], ($) => {
                             return ["export", {
                                 file: X_stringLiteral($.content)
                             }]
                         })
                     }
-                    case "expression": {
+                    case 'expression': {
                         return pl.cc($[1], ($) => {
                             return ["expression", pl.cc($.content, ($) => {
                                 return X_expression($)
                             })]
                         })
                     }
-                    case "function": {
+                    case 'function': {
                         return pl.cc($[1], ($) => {
                             return ["function", pl.cc($.content, ($) => {
                                 return {
@@ -617,7 +617,7 @@ export function cleanup(
                             })]
                         })
                     }
-                    case "if": {
+                    case 'if': {
                         return pl.cc($[1], ($) => {
                             return ["if", pl.cc($.content, ($) => {
                                 return {
@@ -628,7 +628,7 @@ export function cleanup(
                             })]
                         })
                     }
-                    case "import": {
+                    case 'import': {
                         return pl.cc($[1], ($) => {
 
                             const ann = $.tokenDetails
@@ -639,7 +639,7 @@ export function cleanup(
                                     clause: pl.cc($["clause"], ($) => {
                                         return pl.cc($.content, ($) => {
                                             switch ($[0]) {
-                                                case "named": {
+                                                case 'named': {
                                                     return pl.cc($[1], ($) => {
                                                         return ["named", pl.cc($.content, ($) => {
                                                             return $.map(($) => {
@@ -653,7 +653,7 @@ export function cleanup(
                                                         })]
                                                     })
                                                 }
-                                                case "namespace": {
+                                                case 'namespace': {
                                                     return pl.cc($[1], ($) => {
                                                         return ["namespace", pl.cc($.content, ($) => {
                                                             return X_identifier($)
@@ -669,7 +669,7 @@ export function cleanup(
                             })]
                         })
                     }
-                    case "interface": {
+                    case 'interface': {
                         return pl.cc($[1], ($) => {
                             return ["interface", pl.cc($.content, ($) => {
                                 return {
@@ -683,12 +683,12 @@ export function cleanup(
                             })]
                         })
                     }
-                    case "return": {
+                    case 'return': {
                         return pl.cc($[1], ($) => {
                             return ["return", pl.isNotNull($.content) ? X_expression($.content) : null]
                         })
                     }
-                    case "switch": {
+                    case 'switch': {
                         return pl.cc($[1], ($) => {
 
                             return ["switch", pl.cc($.content, ($) => {
@@ -703,12 +703,12 @@ export function cleanup(
                                         return {
                                             annotation: pl.cc($, ($) => {
                                                 switch ($[0]) {
-                                                    case "case": {
+                                                    case 'case': {
                                                         return pl.cc($[1], ($) => {
                                                             return $.tokenDetails
                                                         })
                                                     }
-                                                    case "default": {
+                                                    case 'default': {
                                                         return pl.cc($[1], ($) => {
                                                             return $.tokenDetails
                                                         })
@@ -718,7 +718,7 @@ export function cleanup(
                                             }),
                                             type: pl.cc($, ($) => {
                                                 switch ($[0]) {
-                                                    case "case": {
+                                                    case 'case': {
                                                         return pl.cc($[1], ($) => {
                                                             return ["case", pl.cc($.content, ($) => {
                                                                 return {
@@ -728,7 +728,7 @@ export function cleanup(
                                                             })]
                                                         })
                                                     }
-                                                    case "default": {
+                                                    case 'default': {
                                                         return pl.cc($[1], ($) => {
                                                             return ["default", {
                                                                 statements: X_statements($.content)
@@ -746,7 +746,7 @@ export function cleanup(
                             })]
                         })
                     }
-                    case "typeAlias": {
+                    case 'typeAlias': {
                         return pl.cc($[1], ($) => {
                             const details = $.tokenDetails
                             return ["typeAlias", pl.cc($.content, ($) => {
@@ -760,7 +760,7 @@ export function cleanup(
                             })]
                         })
                     }
-                    case "variable": {
+                    case 'variable': {
                         return pl.cc($[1], ($) => {
 
                             return ["variable", pl.cc($.content, ($) => {
@@ -805,72 +805,72 @@ export function cleanup(
         return {
             annotation: pl.cc($, ($) => {
                 switch ($[0]) {
-                    case "array": {
+                    case 'array': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "booleanKeyword": {
+                    case 'booleanKeyword': {
                         return pl.cc($[1], ($) => {
                             return $
                         })
                     }
-                    case "function": {
+                    case 'function': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "literal": {
+                    case 'literal': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "numberKeyword": {
+                    case 'numberKeyword': {
                         return pl.cc($[1], ($) => {
                             return $
                         })
                     }
-                    case "optional": {
+                    case 'optional': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "parenthesized": {
+                    case 'parenthesized': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "stringKeyword": {
+                    case 'stringKeyword': {
                         return pl.cc($[1], ($) => {
                             return $
                         })
                     }
-                    case "tuple": {
+                    case 'tuple': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "typeLiteral": {
+                    case 'typeLiteral': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "typeReference": {
+                    case 'typeReference': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "undefinedKeyword": {
+                    case 'undefinedKeyword': {
                         return pl.cc($[1], ($) => {
                             return $
                         })
                     }
-                    case "union": {
+                    case 'union': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    case "voidKeyword": {
+                    case 'voidKeyword': {
                         return pl.cc($[1], ($) => {
                             return $
                         })
@@ -881,7 +881,7 @@ export function cleanup(
             }),
             type: pl.cc($, ($) => {
                 switch ($[0]) {
-                    case "array": {
+                    case 'array': {
                         return pl.cc($[1], ($) => {
                             return ["array", pl.cc($.content, ($) => {
                                 return X_type($)
@@ -889,22 +889,22 @@ export function cleanup(
 
                         })
                     }
-                    case "booleanKeyword": {
+                    case 'booleanKeyword': {
                         return ["booleanKeyword", {}]
                     }
-                    case "function": {
+                    case 'function': {
                         return pl.cc($[1], ($) => {
                             return ["function", X_functionDefinition($.content)]
                         })
                     }
-                    case "literal": {
+                    case 'literal': {
                         return pl.cc($[1], ($) => {
                             return ["literal", pl.cc($.content, ($): t.TLiteral<uast.TDetails> => {
                                 switch ($[0]) {
-                                    case "null": {
+                                    case 'null': {
                                         return ["null", {}]
                                     }
-                                    case "string": {
+                                    case 'string': {
                                         return pl.cc($[1], ($) => {
                                             return ["string", X_stringLiteral($)]
                                         })
@@ -914,49 +914,49 @@ export function cleanup(
                             })]
                         })
                     }
-                    case "numberKeyword": {
+                    case 'numberKeyword': {
                         return ["numberKeyword", {}]
                     }
-                    case "optional": {
+                    case 'optional': {
                         return pl.cc($[1], ($) => {
                             return ["optional", X_type($.content)]
                         })
                     }
-                    case "parenthesized": {
+                    case 'parenthesized': {
                         return pl.cc($[1], ($) => {
                             return ["parenthesized", X_type($.content)]
                         })
                     }
-                    case "stringKeyword": {
+                    case 'stringKeyword': {
                         return ["stringKeyword", {}]
                     }
-                    case "tuple": {
+                    case 'tuple': {
                         return pl.cc($[1], ($) => {
                             return ["tuple", $.content.map(($) => {
                                 return X_type($)
                             })]
                         })
                     }
-                    case "typeLiteral": {
+                    case 'typeLiteral': {
                         return pl.cc($[1], ($) => {
                             return ["typeLiteral", $.content.map(($) => {
                                 return X_typeSignature($)
                             })]
                         })
                     }
-                    case "typeReference": {
+                    case 'typeReference': {
                         return pl.cc($[1], ($) => {
                             return ["typeReference", pl.cc($.content, ($) => {
 
                                 return {
                                     identification: pl.cc($["x"], ($) => {
                                         switch ($[0]) {
-                                            case "identifier": {
+                                            case 'identifier': {
                                                 return pl.cc($[1], ($) => {
                                                     return ["identifier", X_identifier($)]
                                                 })
                                             }
-                                            case "qualifiedName": {
+                                            case 'qualifiedName': {
                                                 return pl.cc($[1], ($) => {
                                                     return ["qualifiedName", pl.cc($.content, ($) => {
                                                         return {
@@ -976,17 +976,17 @@ export function cleanup(
                             })]
                         })
                     }
-                    case "undefinedKeyword": {
+                    case 'undefinedKeyword': {
                         return ["undefinedKeyword", {}]
                     }
-                    case "union": {
+                    case 'union': {
                         return pl.cc($[1], ($) => {
                             return ["union", $.content.map(($) => {
                                 return X_type($)
                             })]
                         })
                     }
-                    case "voidKeyword": {
+                    case 'voidKeyword': {
                         return ["voidKeyword", {}]
                     }
                     default: return pl.au($[0])
@@ -1009,17 +1009,17 @@ export function cleanup(
             annotation: pl.cc($, ($) => {
 
                 switch ($[0]) {
-                    case "index": {
+                    case 'index': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
                     }
-                    // case "method": {
+                    // case 'method': {
                     //     return pl.cc($[1], ($) => {
                     //         return $.tokenDetails
                     //     })
                     // }
-                    case "property": {
+                    case 'property': {
                         return pl.cc($[1], ($) => {
                             return $.tokenDetails
                         })
@@ -1030,7 +1030,7 @@ export function cleanup(
             type: pl.cc($, ($) => {
 
                 switch ($[0]) {
-                    case "index": {
+                    case 'index': {
                         return pl.cc($[1], ($) => {
                             return ["index", pl.cc($.content, ($) => {
                                 return {
@@ -1042,7 +1042,7 @@ export function cleanup(
                             })]
                         })
                     }
-                    // case "method": {
+                    // case 'method': {
                     //     return pl.cc($[1], ($) => {
                     //         return ["method", pl.cc($.content, ($) => {
                     //             return {
@@ -1052,7 +1052,7 @@ export function cleanup(
                     //         })]
                     //     })
                     // }
-                    case "property": {
+                    case 'property': {
                         return pl.cc($[1], ($) => {
                             return ["property", pl.cc($.content, ($) => {
                                 return {

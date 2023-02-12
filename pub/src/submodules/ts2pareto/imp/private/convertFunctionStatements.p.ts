@@ -1,4 +1,4 @@
-import * as pl from "pareto-core-lib"
+import * as pl from 'pareto-core-lib'
 
 // import * as ts from "../../../cleanup/interface"
 // import { DTS2ParetoDependencies } from "../../interface"

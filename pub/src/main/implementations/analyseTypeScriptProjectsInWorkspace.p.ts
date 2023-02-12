@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import * as pl from "pareto-core-lib"
+import * as pl from 'pareto-core-lib'
 
 // import * as fs from "api-pareto-filesystem"
 

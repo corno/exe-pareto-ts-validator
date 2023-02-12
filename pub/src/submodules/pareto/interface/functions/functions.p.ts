@@ -1,4 +1,4 @@
-import * as pt from "pareto-core-types"
+import * as pt from 'pareto-core-types'
 import { DDependencies } from "../dependencies/dependencies.p"
 
 import { IWriter } from "../interfaces/interfaces.p"

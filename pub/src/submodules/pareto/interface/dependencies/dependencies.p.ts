@@ -1,4 +1,4 @@
-import * as pt from "pareto-core-types"
+import * as pt from 'pareto-core-types'
 import { TGlobalInterface, TGlobalType, TImport, TTypeParameter, TDependencyDefinition, TFunctionDefinition } from "../types/types.p"
 
 

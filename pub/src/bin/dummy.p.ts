@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import * as pt from "pareto-core-types"
-import * as pl from "pareto-core-lib"
-import * as pe from "pareto-core-exe"
+import * as pt from 'pareto-core-types'
+import * as pl from 'pareto-core-lib'
+import * as pe from 'pareto-core-exe'
 
 import * as process from "res-pareto-process"
 import * as str from "res-pareto-string"

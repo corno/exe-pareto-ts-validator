@@ -1,4 +1,4 @@
-import * as pw from "pareto-core-raw"
+import * as pw from 'pareto-core-raw'
 
 import * as gr from "exe-generate-typesafe-ast"
 

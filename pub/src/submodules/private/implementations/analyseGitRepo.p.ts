@@ -1,4 +1,4 @@
-// import * as pr from "pareto-core-lib"
+// import * as pr from 'pareto-core-lib'
 // import { readGitRepoWithLineCounts } from "../../modules/git/esc/implementation/readGitRepoWithLineCounts"
 // import * as ap from "analyse-path-lib"
 // import { _paretoProject } from "../../data/paretoProject"

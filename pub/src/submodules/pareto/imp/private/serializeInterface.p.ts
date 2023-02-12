@@ -1,4 +1,4 @@
-import * as pl from "pareto-core-lib"
+import * as pl from 'pareto-core-lib'
 
 import * as api from "../../interface"
 import { serializeLocalInterface } from "./serializeLocalInterface.p"
@@ -20,7 +20,7 @@ export function serializeInterface<PAnnotation>(
                         "types.p.ts",
                         ($i) => {
                             $i.line(($i) => {
-                                $i.snippet(`import * as pt from "pareto-core-types`)
+                                $i.snippet(`import * as pt from 'pareto-core-state'`)
                             })
                             $d.sortedForEach($.types, ($) => {
                                 $i.line(($i) => {
@@ -64,7 +64,7 @@ export function serializeInterface<PAnnotation>(
                         "interfaces.p.ts",
                         ($i) => {
                             $i.line(($i) => {
-                                $i.snippet(`import * as pt from "pareto-core-types`)
+                                $i.snippet(`import * as pt from 'pareto-core-state'`)
                             })
                             $d.sortedForEach($.interfaces, ($) => {
                                 $i.line(($i) => {
@@ -110,7 +110,7 @@ export function serializeInterface<PAnnotation>(
                         ($i) => {
 
                             $i.line(($i) => {
-                                $i.snippet(`import * as pt from "pareto-core-types`)
+                                $i.snippet(`import * as pt from 'pareto-core-state'`)
                             })
                             $d.sortedForEach($.dependencies, ($) => {
                                 $i.line(($i) => {

@@ -1,5 +1,5 @@
-import * as pt from "pareto-core-types"
-import * as pl from "pareto-core-lib"
+import * as pt from 'pareto-core-types'
+import * as pl from 'pareto-core-lib'
 
 import * as process from "api-pareto-process"
 import * as str from "glo-pareto-string"

@@ -1,6 +1,6 @@
 // #!/usr/bin/env node
 
-// import * as pe from "pareto-core-exe"
+// import * as pe from 'pareto-core-exe'
 
 // import { parseDependencies } from "../modules/cleanup"
 // import * as fs from "res-pareto-filesystem"
