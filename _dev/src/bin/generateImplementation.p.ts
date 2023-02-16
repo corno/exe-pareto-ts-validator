@@ -5,21 +5,21 @@ import * as pe from 'pareto-core-exe'
 import * as collation from "res-pareto-collation"
 import * as fs from "res-pareto-filesystem"
 
-import * as tsg from "../data/embeddedParetoGrammar"
+import * as tsg from "../data/embeddedParetoGrammar.data"
+// import { generateImplementation } from "../implementation"
 
-// import { generateInterface } from "../implementation"
 
 pe.runProgram(
-    ($, $i, $d) => {
-        // generateInterface(
+    ($, $i, $a) => {
+        // generateImplementation(
         //     {
         //         grammar: tsg._typeScriptGrammar,
         //         arguments: $.arguments,
         //     },
         //     {
-        //         isYinBeforeYang: collation.localeIsYinBeforeYang,
-        //         createWriteStream: fs.createWriteStream,
-        //         startAsync: $d.startAsync,
+        //         isYinBeforeYang: collation.fLocaleIsYinBeforeYang,
+        //         createWriteStream: fs.f_createWriteStream,
+        //         startAsync: $a
         //     }
         // )
     }
