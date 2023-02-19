@@ -5,7 +5,7 @@
 
 
 // export const f_splitLastElement: api.FSplitLastElement = <T>($: pt.Array<T>) => {
-//     const builder = pm.createArrayBuilder<T>()
+//     const builder = pm.createArrayBuilderFIXME<T>()
 //     let current: null | T = null
 //     $.forEach(($) => {
 //         if (current !== null) {

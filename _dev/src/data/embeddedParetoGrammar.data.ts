@@ -1,8 +1,8 @@
 import * as pw from 'pareto-core-raw'
 
-import * as gr from "exe-generate-typesafe-ast"
+import * as gr from "lib-generate-typesafe-ast/dist/submodules/definition"
 
-export const _typeScriptGrammar: gr.TGrammar = {
+export const _typeScriptGrammar: gr.T.Grammar = {
     'globalValueTypes': pw.wrapRawDictionary({
         'block': ["node", {
             'name': `Block`,
