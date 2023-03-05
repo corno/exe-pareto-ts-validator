@@ -66,11 +66,11 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                                         'cardinality': ["one", {}],
                                                         'type': ["reference", { 'name': `expression` }],
                                                     },
-                                                })
+                                                }),
                                             }]
                                         }
                                     },
-                                ])
+                                ]),
                             }],
                         }]
                     }]
@@ -116,7 +116,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                                             'type': ["leaf", { 'hasTextContent': false }]
                                                         }]
                                                     },
-                                                })
+                                                }),
                                             }],
                                         }
                                     },
@@ -127,7 +127,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                             'type': ["reference", { 'name': `expression` }],
                                         }
                                     }
-                                ])
+                                ]),
                             }]
                         }]
                     }]
@@ -161,7 +161,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                             'type': ["reference", { 'name': `expression` }]
                                         }
                                     },
-                                ])
+                                ]),
                             }]
                         }]
                     }]
@@ -215,7 +215,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                             'type': ["reference", { 'name': `expression` }],
                                         }
                                     },
-                                ])
+                                ]),
                             }]
                         }]
                     }]
@@ -242,7 +242,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                             'type': ["reference", { 'name': `expression` }],
                                         }
                                     }
-                                ])
+                                ]),
                             }],
                         }]
                     }]
@@ -312,12 +312,12 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                                                 'type': ["reference", { 'name': `expression` }],
                                                             }
                                                         },
-                                                    ])
+                                                    ]),
                                                 }]
                                             }]
                                         }]
                                     }
-                                })
+                                }),
                             }]
                         }],
                     }]
@@ -364,7 +364,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                             'type': ["reference", { 'name': `expression` }],
                                         }
                                     },
-                                ])
+                                ]),
                             }]
                         }],
                     }]
@@ -430,17 +430,17 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                                                                     'type': ["leaf", { 'hasTextContent': true }]
                                                                                 }],
                                                                             }
-                                                                        })
+                                                                        }),
                                                                     }],
                                                                 }
                                                             },
-                                                        ])
+                                                        ]),
                                                     }]
                                                 }]
                                             }]
                                         }
                                     }
-                                ])
+                                ]),
                             }]
                         }]
                     }]
@@ -452,7 +452,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                         'type': ["leaf", { 'hasTextContent': false }]
                     }]
                 },
-            })
+            }),
         }],
         'functionDefinition': ["sequence", {
             'elements': pw.wrapRawArray([
@@ -481,7 +481,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                         'type': ["reference", { 'name': `type` }],
                     },
                 },
-            ])
+            ]),
         }],
         'identifier': ["node", {
             'name': `Identifier`,
@@ -501,7 +501,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                         'name': `stringLiteral`
                     }]
                 },
-            })
+            }),
         }],
         'modifiers': ["sequence", {
             'elements': pw.wrapRawArray([
@@ -525,11 +525,11 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                         'type': ["leaf", { 'hasTextContent': false }],
                                     }]
                                 },
-                            })
+                            }),
                         }]
                     },
                 },
-            ])
+            ]),
         }],
         'numericLiteral': ["node", {
             'name': `NumericLiteral`,
@@ -567,7 +567,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                 'type': ["reference", { 'name': `type` }],
                             }
                         }
-                    ])
+                    ]),
                 }]
             }]
         }],
@@ -650,7 +650,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                             }]
                                         },
                                     },
-                                ])
+                                ]),
                             }]
                         }]
                     }]
@@ -684,7 +684,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                             'type': ["reference", { 'name': `statement` }],
                                         },
                                     },
-                                ])
+                                ]),
                             }]
                         }]
                     }]
@@ -749,14 +749,14 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                                                                                 }],
                                                                                             }
                                                                                         },
-                                                                                    ])
+                                                                                    ]),
                                                                                 }]
                                                                             }]
                                                                         }]
                                                                     }]
                                                                 }]
                                                             }
-                                                        })
+                                                        }),
                                                     }]
                                                 }]
                                             }]
@@ -771,7 +771,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                             }],
                                         }
                                     }
-                                ])
+                                ]),
                             }]
                         }]
                     }]
@@ -816,7 +816,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                             'type': ["reference", { 'name': `typeSignature` }]
                                         },
                                     },
-                                ])
+                                ]),
                             }]
                         }]
                     }]
@@ -878,7 +878,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                                                                         'type': ["reference", { 'name': `statements` }]
                                                                                     },
                                                                                 }
-                                                                            ])
+                                                                            ]),
                                                                         }]
                                                                     }]
                                                                 }]
@@ -893,13 +893,13 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                                                     }]
                                                                 }]
                                                             },
-                                                        })
+                                                        }),
                                                     }]
                                                 }]
                                             }]
                                         }
                                     },
-                                ])
+                                ]),
                             }],
                         }]
                     }]
@@ -944,7 +944,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                             'type': ["reference", { 'name': `type` }],
                                         },
                                     }
-                                ])
+                                ]),
                             }]
                         }]
                     }]
@@ -973,12 +973,12 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                             }]
                                         },
                                     },
-                                ])
+                                ]),
                             }]
                         }]
                     }]
                 },
-            })
+            }),
         }],
         'statements': ["sequence", {
             'elements': pw.wrapRawArray([
@@ -991,7 +991,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                         }]
                     },
                 },
-            ])
+            ]),
         }],
         'stringLiteral': ["node", {
             'name': `StringLiteral`,
@@ -1049,7 +1049,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                             'name': `stringLiteral`
                                         }],
                                     },
-                                })
+                                }),
                             }]
                         }]
                     }]
@@ -1154,12 +1154,12 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                                                                 }],
                                                                             }
                                                                         },
-                                                                    ])
+                                                                    ]),
                                                                 }],
                                                             }]
                                                         }]
                                                     }
-                                                })
+                                                }),
                                             }]
                                         }
                                     },
@@ -1170,7 +1170,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                             'type': ["reference", { 'name': `type` }],
                                         }
                                     },
-                                ])
+                                ]),
                             }]
                         }]
                     }]
@@ -1199,7 +1199,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                         'type': ["leaf", { 'hasTextContent': false }]
                     }]
                 },
-            })
+            }),
         }],
         'typeParameters': ["sequence", {
             'elements': pw.wrapRawArray([
@@ -1254,7 +1254,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                             'type': ["reference", { 'name': `type` }],
                                         },
                                     },
-                                ])
+                                ]),
                             }]
                         }]
                     }]
@@ -1285,7 +1285,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                 //                             }]
                 //                         }
                 //                     },
-                //                 ])
+                //                 ]),
                 //             }]
                 //         }]
                 //     }]
@@ -1329,12 +1329,12 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                             'type': ["reference", { 'name': `type` }],
                                         },
                                     }
-                                ])
+                                ]),
                             }]
                         }]
                     }]
                 },
-            })
+            }),
         }],
         'variableDeclaration': ["node", {
             'name': `VariableDeclaration`,
@@ -1363,7 +1363,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                                 'type': ["reference", { 'name': `expression` }],
                             },
                         },
-                    ])
+                    ]),
                 }]
             }]
         }],
@@ -1400,7 +1400,7 @@ export const _typeScriptGrammar: gr.T.Grammar = {
                             }]
                         }
                     }
-                ])
+                ]),
             }]
         }]
     }

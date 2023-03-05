@@ -48,7 +48,7 @@ export const _typescriptDirectory: ap.TNode = {
                 "tsconfig.json": {
                     'type': ["file", null]
                 },
-            })
+            }),
         }]
     }]
 }
@@ -65,7 +65,7 @@ export const _paretoProject: ap.TDirectory = {
                             "package.json": {
                                 'type': ["file", null]
                             },
-                        })
+                        }),
                     }]
                 }]
             },
@@ -94,7 +94,7 @@ export const _paretoProject: ap.TDirectory = {
                                     }]
                                 }],
                             }
-                        })
+                        }),
                     }]
                 }],
             },
@@ -104,6 +104,6 @@ export const _paretoProject: ap.TDirectory = {
             },
             "test": _typescriptDirectory,
             "tmp": _dataDirectory,
-        })
+        }),
     }]
 }
