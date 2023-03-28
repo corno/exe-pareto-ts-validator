@@ -150,11 +150,11 @@ export function cleanup(
 
                             return ["arrowFunction", pl.cc($.content, ($) => {
                                 pl.cc($["equalsGreaterThan"], ($) => {
-                                    ((
-                                        $: api.TNGexpression_arrowFunction$_equalsGreaterThan$,
-                                    ) => {
+                                    // ((
+                                    //     $: api.TNGexpression_arrowFunction$_equalsGreaterThan$,
+                                    // ) => {
 
-                                    })($)
+                                    // })($)
                                 })
                                 return {
                                     definition: X_functionDefinition($.functionDefinition),
@@ -239,18 +239,18 @@ export function cleanup(
                             return ["conditional", pl.cc($.content, ($) => {
 
                                 pl.cc($["questionToken"], ($) => {
-                                    ((
-                                        $: api.TNGexpression_conditional$_questionToken$,
-                                    ) => {
+                                    // ((
+                                    //     $: api.TNGexpression_conditional$_questionToken$,
+                                    // ) => {
 
-                                    })($)
+                                    // })($)
                                 })
                                 pl.cc($["colonToken"], ($) => {
-                                    ((
-                                        $: api.TNGexpression_conditional$_colonToken$,
-                                    ) => {
+                                    // ((
+                                    //     $: api.TNGexpression_conditional$_colonToken$,
+                                    // ) => {
 
-                                    })($)
+                                    // })($)
                                 })
                                 return {
                                     test: pl.cc($["test"], ($) => {
@@ -1093,11 +1093,11 @@ export function cleanup(
 
     return pl.cc($.content, ($) => {
         pl.cc($["endOfFile"], ($) => {
-            ((
-                $: api.TNroot_endOfFile$,
-            ) => {
+            // ((
+            //     $: api.TNroot_endOfFile$,
+            // ) => {
 
-            })($)
+            // })($)
         })
         return {
             statements: X_statements($.statements)
