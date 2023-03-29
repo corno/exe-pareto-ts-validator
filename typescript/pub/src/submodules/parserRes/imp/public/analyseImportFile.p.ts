@@ -27,7 +27,7 @@
 //             return ["core", { type: ["async", {}] }]
 //         case "pareto-core-raw":
 //             return ["core", { type: ["raw", {}] }]
-//         case "pareto-core-lib":
+//         case 'pareto-core-lib':
 //             return ["core", { type: ["lib", {}] }]
 //         case "pareto-core-resolve":
 //             return ["core", { type: ["resolve", {}] }]

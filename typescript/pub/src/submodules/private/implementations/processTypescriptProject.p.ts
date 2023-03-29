@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-import * as fs from "api-pareto-filesystem"
+//import * as fs from "res-pareto-filesystem"
+
 // import * as ts from "api-dynamic-typescript-parser"
 // import * as uast from "api-untyped-ast"
 
